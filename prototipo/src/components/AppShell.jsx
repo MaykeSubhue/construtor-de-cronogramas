@@ -19,6 +19,7 @@ const crumbsMap = [
   { re: /^\/planos$/, c: ['Planos / Cronogramas'] },
   { re: /^\/novo/, c: ['Planos', 'Novo cronograma'] },
   { re: /^\/plano\/\d+\/construcao/, c: ['Planos', 'Construção'] },
+  { re: /^\/plano\/\d+\/lancamentos/, c: ['Planos', 'Lancamentos'] },
   { re: /^\/plano\/\d+\/cronograma/, c: ['Planos', 'Cronograma financeiro'] },
   { re: /^\/plano\/\d+\/completude/, c: ['Planos', 'Checklist de completude'] },
   { re: /^\/plano\/\d+\/simulacao/, c: ['Planos', 'Simulação de cenários'] },

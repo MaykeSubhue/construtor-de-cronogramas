@@ -52,6 +52,13 @@ function origemLabel(origem) {
   return origem === 'manual' ? 'Manual' : origem === 'cbo' ? 'CBO' : origem === 'seed' ? 'Base' : origem || 'Base'
 }
 
+function normalizarBusca(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+}
+
 function Head({ secao, children }) {
   return (
     <div className="page-head">
@@ -129,7 +136,10 @@ export default function Cadastros() {
       {atual.id === 'normativas' && <NormativasView secao={atual} />}
       {atual.id === 'regras' && <RegrasView secao={atual} />}
       {atual.id === 'presets' && <PresetsView secao={atual} />}
-      {['setores', 'servicos', 'categorias', 'regimes', 'naturezas', 'rubricas', 'encargos', 'beneficios', 'regras-custeio'].includes(atual.id) && (
+      {atual.id === 'setores' && <TiposSetorView secao={atual} onChange={refresh} />}
+      {atual.id === 'servicos' && <ServicosView secao={atual} onChange={refresh} />}
+      {atual.id === 'rubricas' && <RubricasView secao={atual} onChange={refresh} />}
+      {['categorias', 'regimes', 'naturezas', 'encargos', 'beneficios', 'regras-custeio'].includes(atual.id) && (
         <CatalogoView secao={atual} onChange={refresh} />
       )}
     </>
@@ -496,10 +506,57 @@ function RegraDetalheModal({ regra, onClose }) {
 }
 
 function PresetsView({ secao }) {
+  const cronogramas = api.listCronogramasProntos()
+  const grupos = api.gruposModelosCronograma
+  const [grupo, setGrupo] = useState('')
+  const [detalheId, setDetalheId] = useState(null)
+  const filtrados = grupo ? cronogramas.filter((modelo) => modelo.grupoId === grupo) : cronogramas
+  const detalhe = detalheId ? api.getCronogramaPronto(detalheId) : null
   return (
     <>
       <Head secao={secao} />
-      <Note>Perfis hospitalares sao templates editaveis para iniciar um plano. O calculo normativo continua acontecendo por setor, a partir da matriz validada.</Note>
+      <Note>Perfis hospitalares iniciam planos normativos. Cronogramas prontos sao modelos clonaveis: copiam estrutura/equipe das planilhas e recalculam o financeiro pelo app.</Note>
+      <div className="section-title">Cronogramas prontos</div>
+      <div className="pill-toggle mb-2">
+        <button className={!grupo ? 'active' : ''} onClick={() => setGrupo('')}>Todos</button>
+        {grupos.map((item) => (
+          <button key={item.id} className={grupo === item.id ? 'active' : ''} onClick={() => setGrupo(item.id)}>
+            {item.descricao}
+          </button>
+        ))}
+      </div>
+      <div className="grid cols-3 mb-2">
+        <Mini t="Modelos exibidos" v={String(filtrados.length)} />
+        <Mini t="Setores / abas" v={String(filtrados.reduce((acc, modelo) => acc + modelo.resumo.setoresAtivos, 0))} />
+        <Mini t="Equipe importada" v={num(filtrados.reduce((acc, modelo) => acc + modelo.resumo.equipeTotal, 0), 0)} />
+      </div>
+      <div className="grid cols-3 mb-2">
+        {filtrados.map((modelo) => (
+          <div className="card card-pad" key={modelo.id}>
+            <div className="spread mb-2">
+              <h3 style={{ fontSize: 15 }}>{modelo.nome}</h3>
+              <Badge cls={modelo.resumo.linhasRevisao ? 'ambar' : 'verde'}>{modelo.resumo.linhasRevisao ? 'Revisar' : 'Ok'}</Badge>
+            </div>
+            <p className="muted" style={{ fontSize: 12.5 }}>{modelo.descricao}</p>
+            <div className="memo-line mt-2"><span className="k">Grupo</span><span className="v"><Badge cls="azul">{modelo.grupoId} · {modelo.grupoNome}</Badge></span></div>
+            <div className="memo-line mt-2"><span className="k">Abas / linhas</span><span className="v">{modelo.resumo.setoresAtivos} abas · {modelo.resumo.linhasEquipe} linhas</span></div>
+            <div className="memo-line"><span className="k">Equipe importada</span><span className="v">{num(modelo.resumo.equipeTotal, 0)} profissionais</span></div>
+            <div className="memo-line mt-2"><span className="k">Fonte</span><span className="v">{modelo.fonte}</span></div>
+            <div className="memo-line"><span className="k">Custeio</span><span className="v">{pct((modelo.parametrosCronograma?.custeioOperacionalPct || 0) * 100)}</span></div>
+            <Note icon="i">Modelo clonavel, recalculado pelo app.</Note>
+            <button className="btn mt-2" onClick={() => setDetalheId(modelo.id)} style={{ width: '100%', justifyContent: 'center' }}>
+              Ver detalhes do modelo
+            </button>
+            <Link className="btn primary mt-2" to={`/novo?modo=modelo&modelo=${modelo.id}`} style={{ width: '100%', justifyContent: 'center' }}>
+              Criar cronograma a partir deste modelo
+            </Link>
+          </div>
+        ))}
+        {!filtrados.length && <Empty icon="🧩"><h3>Nenhum modelo neste filtro</h3></Empty>}
+      </div>
+      {detalhe && <CronogramaProntoDetalheModal modelo={detalhe} onClose={() => setDetalheId(null)} />}
+
+      <div className="section-title">Perfis normativos</div>
       <div className="grid cols-3 mb-2">
         {api.perfisHospitalares.map((perfil) => (
           <div className="card card-pad" key={perfil.id}>
@@ -521,6 +578,322 @@ function PresetsView({ secao }) {
                   <td><b>{setor.setor}</b></td>
                   <td>{setor.macroarea || '-'}</td>
                   <td className="muted">{setor.baseNormativa || '-'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function CronogramaProntoDetalheModal({ modelo, onClose }) {
+  const [setorId, setSetorId] = useState(modelo.setores?.[0]?.id || '')
+  const setor = modelo.setores?.find((item) => item.id === setorId) || modelo.setores?.[0]
+  return (
+    <Modal title={modelo.nome} icon="🧾" onClose={onClose} lg
+      footer={<>
+        <button className="btn ghost" onClick={onClose}>Fechar</button>
+        <Link className="btn primary" to={`/novo?modo=modelo&modelo=${modelo.id}`}>Criar cronograma</Link>
+      </>}>
+      <div className="grid cols-4 mb-2">
+        <Mini t="Grupo" v={modelo.grupoId} hint={modelo.grupoNome} />
+        <Mini t="Abas" v={String(modelo.resumo.setores)} />
+        <Mini t="Linhas" v={String(modelo.resumo.linhasEquipe)} />
+        <Mini t="Equipe" v={num(modelo.resumo.profissionais, 0)} />
+      </div>
+      <div className="memo-line"><span className="k">Hospital</span><span className="v">{modelo.hospitalNome || modelo.unidadeModelo}</span></div>
+      <div className="memo-line"><span className="k">Fonte</span><span className="v">{modelo.fonte}</span></div>
+      <div className="memo-line"><span className="k">Custeio / VT / VR</span><span className="v">{pct((modelo.parametrosCronograma?.custeioOperacionalPct || 0) * 100)} · VT {modelo.parametrosCronograma?.valeTransporteDia || 0} · VR {modelo.parametrosCronograma?.valeRefeicaoDia || 0}</span></div>
+      <Note icon="i">Esta visualizacao mostra as linhas importadas da planilha. Ao criar um plano, o financeiro e recalculado pelo motor atual do aplicativo.</Note>
+
+      <div className="form-row mt-2">
+        <div className="field">
+          <label>Aba / setor importado</label>
+          <select value={setor?.id || ''} onChange={(event) => setSetorId(event.target.value)}>
+            {(modelo.setores || []).map((item) => (
+              <option key={item.id} value={item.id}>{item.abaOrigem} · {item.nome}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      {setor && (
+        <div className="card mt-2" style={{ boxShadow: 'none' }}>
+          <div className="table-wrap">
+            <table className="tbl">
+              <thead><tr><th>Categoria importada</th><th className="num">CH</th><th className="num">Quantidade</th><th className="num">Qtd turno</th><th>Status</th></tr></thead>
+              <tbody>
+                {setor.linhas.map((linha) => (
+                  <tr key={linha.id}>
+                    <td><b>{linha.categoria}</b><div className="muted" style={{ fontSize: 11.5 }}>Linha {linha.linhaOrigem} · {setor.abaOrigem}</div></td>
+                    <td className="num tnum">{linha.chs}h</td>
+                    <td className="num tnum">{num(linha.quantidade, 0)}</td>
+                    <td className="num tnum">{linha.quantidadeTurno ?? '-'}</td>
+                    <td>{linha.revisar ? <Badge cls="ambar" dot>Revisar</Badge> : <Badge cls="verde" dot>Ok</Badge>}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+    </Modal>
+  )
+}
+
+function TiposSetorView({ secao, onChange }) {
+  const [classe, setClasse] = useState('')
+  const [fonte, setFonte] = useState('')
+  const dados = api.tiposSetor
+  const fontes = [...new Set(dados.map((item) => item.fonte).filter(Boolean))].sort()
+  const filtrados = dados.filter((item) => {
+    if (classe && item.classe !== classe) return false
+    if (fonte && item.fonte !== fonte) return false
+    return true
+  })
+
+  return (
+    <>
+      <Head secao={secao}>
+        <InlineForm
+          label="Novo tipo"
+          campos={[{ id: 'nome', label: 'Nome' }]}
+          onSave={(dadosForm) => {
+            if (!dadosForm.nome.trim()) return
+            api.addCadastro('setores', { nome: dadosForm.nome, classe: 'dimensionador', usoMotor: true, calculavel: true, ativo: true })
+            onChange()
+          }}
+        />
+      </Head>
+      <Note>Tipos dimensionadores alimentam o motor de construcao. Macroareas organizam a matriz e nao aparecem no seletor de criacao de setor calculavel.</Note>
+      <div className="grid cols-4 mb-2">
+        <Kpi valor={dados.length} label="Tipos cadastrados" />
+        <Kpi valor={dados.filter((item) => item.classe === 'dimensionador').length} label="Dimensionadores" />
+        <Kpi valor={dados.filter((item) => item.classe === 'macroarea').length} label="Macroareas" />
+        <Kpi valor={dados.filter((item) => item.origem === 'manual').length} label="Manuais" />
+      </div>
+      <div className="card card-pad mb-2">
+        <div className="form-row">
+          <div className="field">
+            <label>Classe</label>
+            <select value={classe} onChange={(event) => setClasse(event.target.value)}>
+              <option value="">Todas</option>
+              <option value="dimensionador">Dimensionador</option>
+              <option value="macroarea">Macroarea</option>
+            </select>
+          </div>
+          <div className="field">
+            <label>Fonte</label>
+            <select value={fonte} onChange={(event) => setFonte(event.target.value)}>
+              <option value="">Todas</option>
+              {fontes.map((item) => <option key={item} value={item}>{item}</option>)}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div className="card">
+        <div className="table-wrap">
+          <table className="tbl">
+            <thead><tr><th>Tipo</th><th>Classe</th><th>Uso no motor</th><th>Variaveis</th><th>Fonte</th><th>Status</th></tr></thead>
+            <tbody>
+              {filtrados.map((item) => (
+                <tr key={item.id || item.slug || item.nome}>
+                  <td><b>{item.nome}</b><div className="muted" style={{ fontSize: 11.5 }}>{item.slug || '-'}</div></td>
+                  <td><Badge cls={item.classe === 'dimensionador' ? 'azul' : 'roxo'}>{item.classe || '-'}</Badge></td>
+                  <td><Badge cls={item.usoMotor ? 'verde' : 'cinza'} dot>{item.usoMotor ? 'Sim' : 'Nao'}</Badge></td>
+                  <td className="muted">{(item.variaveis || []).join(', ') || '-'}</td>
+                  <td className="muted">{item.fonte || '-'}</td>
+                  <td><Badge cls={item.ativo === false ? 'cinza' : 'verde'} dot>{item.ativo === false ? 'Inativo' : 'Ativo'}</Badge></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function ServicosView({ secao, onChange }) {
+  const [busca, setBusca] = useState('')
+  const [macroarea, setMacroarea] = useState('')
+  const [status, setStatus] = useState('')
+  const dados = api.servicos
+  const macroareas = [...new Set(dados.map((item) => item.macroarea).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'))
+  const buscaNorm = normalizarBusca(busca)
+  const filtrados = dados.filter((item) => {
+    const texto = normalizarBusca([item.nome, item.macroarea, item.subtipo, item.baseNormativa, item.fonte].join(' '))
+    if (buscaNorm && !texto.includes(buscaNorm)) return false
+    if (macroarea && item.macroarea !== macroarea) return false
+    if (status && item.status !== status) return false
+    return true
+  })
+
+  return (
+    <>
+      <Head secao={secao}>
+        <InlineForm
+          label="Novo servico"
+          campos={[
+            { id: 'nome', label: 'Nome' },
+            { id: 'macroarea', label: 'Macroarea', default: 'Manual' },
+            { id: 'especialidade', label: 'Especialidade' },
+          ]}
+          onSave={(dadosForm) => {
+            if (!dadosForm.nome.trim()) return
+            api.addCadastro('servicos', {
+              nome: dadosForm.nome,
+              setor: dadosForm.nome,
+              macroarea: dadosForm.macroarea || 'Manual',
+              especialidade: dadosForm.especialidade,
+              status: 'referencial',
+              fonte: 'Cadastro manual',
+              ativo: true,
+            })
+            onChange()
+          }}
+        />
+      </Head>
+      <Note>Servicos sao o catalogo normativo-operacional da matriz. Eles nao representam automaticamente uma unidade fisica com leitos/salas; isso acontece quando o plano e construido.</Note>
+      <div className="grid cols-4 mb-2">
+        <Kpi valor={dados.length} label="Servicos cadastrados" />
+        <Kpi valor={dados.filter((item) => item.origem === 'matriz').length} label="Da matriz v4" />
+        <Kpi valor={dados.filter((item) => item.status === 'calculavel').length} label="Com regra de RH" />
+        <Kpi valor={dados.filter((item) => item.origem === 'manual').length} label="Manuais" />
+      </div>
+      <div className="card card-pad mb-2">
+        <div className="form-row">
+          <div className="field">
+            <label>Buscar</label>
+            <input value={busca} onChange={(event) => setBusca(event.target.value)} placeholder="UTI, CME, centro cirurgico..." />
+          </div>
+          <div className="field">
+            <label>Macroarea</label>
+            <select value={macroarea} onChange={(event) => setMacroarea(event.target.value)}>
+              <option value="">Todas</option>
+              {macroareas.map((item) => <option key={item} value={item}>{item}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <label>Status</label>
+            <select value={status} onChange={(event) => setStatus(event.target.value)}>
+              <option value="">Todos</option>
+              <option value="calculavel">Calculavel</option>
+              <option value="referencial">Referencial</option>
+            </select>
+          </div>
+        </div>
+        <div className="muted" style={{ fontSize: 12 }}>{num(filtrados.length, 0)} servico(s) exibido(s).</div>
+      </div>
+      <div className="card">
+        <div className="table-wrap">
+          <table className="tbl">
+            <thead><tr><th>Servico</th><th>Macroarea / subtipo</th><th className="num">Regras RH</th><th>Parametros</th><th>Fonte</th><th>Status</th></tr></thead>
+            <tbody>
+              {filtrados.map((item) => (
+                <tr key={item.id || item.matrizSetorSlug || item.nome}>
+                  <td><b>{item.nome}</b><div className="muted" style={{ fontSize: 11.5 }}>{item.matrizSetorSlug || item.slug || origemLabel(item.origem)}</div></td>
+                  <td>{item.macroarea || '-'}<div className="muted" style={{ fontSize: 11.5 }}>{item.subtipo || '-'}</div></td>
+                  <td className="num tnum">{num(item.qtdRegrasRh || 0, 0)}</td>
+                  <td className="muted" style={{ maxWidth: 360 }}>{(item.parametrosDimensionadores || []).join(', ') || item.metricaPrincipal || '-'}</td>
+                  <td className="muted">{item.fonte || '-'}</td>
+                  <td><Badge cls={item.status === 'calculavel' ? 'verde' : 'azul'} dot>{item.status || 'referencial'}</Badge></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function RubricasView({ secao, onChange }) {
+  const [busca, setBusca] = useState('')
+  const [grupo, setGrupo] = useState('')
+  const [tipo, setTipo] = useState('')
+  const dados = api.rubricas
+  const grupos = [...new Set(dados.map((item) => item.grupo).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'))
+  const tipos = [...new Set(dados.map((item) => item.tipo).filter(Boolean))].sort()
+  const buscaNorm = normalizarBusca(busca)
+  const filtrados = dados.filter((item) => {
+    const texto = normalizarBusca([item.nome, item.grupo, item.tipo, item.incidencia, item.modelo, item.fonte].join(' '))
+    if (buscaNorm && !texto.includes(buscaNorm)) return false
+    if (grupo && item.grupo !== grupo) return false
+    if (tipo && item.tipo !== tipo) return false
+    return true
+  })
+
+  return (
+    <>
+      <Head secao={secao}>
+        <InlineForm
+          label="Nova rubrica"
+          campos={[
+            { id: 'nome', label: 'Nome' },
+            { id: 'grupo', label: 'Grupo', default: 'Custeio operacional' },
+            { id: 'tipo', label: 'Tipo', default: 'custeio' },
+            { id: 'forma', label: 'Forma', default: 'valor' },
+            { id: 'percentual', label: 'Percentual' },
+          ]}
+          onSave={(dadosForm) => {
+            if (!dadosForm.nome.trim()) return
+            api.addCadastro('rubricas', {
+              ...dadosForm,
+              percentual: Number(dadosForm.percentual || 0),
+              fonte: 'Cadastro manual',
+              entraCronograma: true,
+            })
+            onChange()
+          }}
+        />
+      </Head>
+      <Note>Rubricas organizam folha, encargos, beneficios e blocos financeiros do cronograma. Nesta etapa elas estruturam o cadastro; o motor financeiro atual continua usando as formulas ja existentes.</Note>
+      <div className="grid cols-4 mb-2">
+        <Kpi valor={dados.length} label="Rubricas cadastradas" />
+        <Kpi valor={grupos.length} label="Grupos financeiros" />
+        <Kpi valor={dados.filter((item) => item.entraCronograma !== false).length} label="Entram no cronograma" />
+        <Kpi valor={dados.filter((item) => item.origem === 'manual').length} label="Manuais" />
+      </div>
+      <div className="card card-pad mb-2">
+        <div className="form-row">
+          <div className="field">
+            <label>Buscar</label>
+            <input value={busca} onChange={(event) => setBusca(event.target.value)} placeholder="FGTS, CEBAS, investimento..." />
+          </div>
+          <div className="field">
+            <label>Grupo</label>
+            <select value={grupo} onChange={(event) => setGrupo(event.target.value)}>
+              <option value="">Todos</option>
+              {grupos.map((item) => <option key={item} value={item}>{item}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <label>Tipo</label>
+            <select value={tipo} onChange={(event) => setTipo(event.target.value)}>
+              <option value="">Todos</option>
+              {tipos.map((item) => <option key={item} value={item}>{item}</option>)}
+            </select>
+          </div>
+        </div>
+      </div>
+      <div className="card">
+        <div className="table-wrap">
+          <table className="tbl">
+            <thead><tr><th>Rubrica</th><th>Grupo</th><th>Tipo</th><th>Forma</th><th>Incidencia</th><th className="num">Valor / %</th><th>Cronograma</th><th>Fonte</th></tr></thead>
+            <tbody>
+              {filtrados.map((item) => (
+                <tr key={item.id || `${item.nome}-${item.grupo}`}>
+                  <td><b>{item.nome}</b><div className="muted" style={{ fontSize: 11.5 }}>{item.modelo || origemLabel(item.origem)}</div></td>
+                  <td><Badge cls="azul">{item.grupo || '-'}</Badge></td>
+                  <td>{item.tipo || '-'}</td>
+                  <td>{item.forma || '-'}</td>
+                  <td className="muted">{item.incidencia || '-'}</td>
+                  <td className="num tnum">{item.forma === 'percentual' ? pct(item.percentual || 0) : (item.valor ? brl(item.valor) : '-')}</td>
+                  <td><Badge cls={item.entraCronograma !== false ? 'verde' : 'cinza'} dot>{item.entraCronograma !== false ? 'Sim' : 'Nao'}</Badge></td>
+                  <td className="muted">{item.fonte || '-'}</td>
                 </tr>
               ))}
             </tbody>

@@ -420,3 +420,291 @@ table.sheet tr.item td.label { padding-left: 26px; font-weight: 400; color: var(
 .note { background: var(--azul-050); border: 1px solid #cfe2f7; border-radius: 8px; padding: 12px 14px; font-size: 12.5px; color: var(--azul-800); display: flex; gap: 10px; }
 .empty { text-align: center; padding: 50px 20px; color: var(--texto-suave); }
 .empty .e-ico { font-size: 40px; opacity: .4; margin-bottom: 10px; }
+
+/* ---------------------------------------------------------------- HMLJ-like workflow */
+.lanc-page,
+.cron-page {
+  padding: 24px 28px 60px;
+}
+
+.lanc-head,
+.cron-head {
+  margin-bottom: 16px;
+}
+
+.lanc-kpis .kpi .v {
+  font-size: 20px;
+}
+
+.lanc-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  margin-top: 16px;
+}
+
+.lanc-tabs {
+  background: #fff;
+  border: 1px solid var(--cinza-borda);
+  border-radius: 8px;
+  overflow: hidden;
+  position: sticky;
+  top: 14px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+
+.lanc-tabs-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #f2f5f8;
+  border-bottom: 1px solid var(--cinza-borda);
+  font-size: 12.5px;
+}
+
+.lanc-tabs-head span {
+  color: var(--texto-suave);
+}
+
+.lanc-tabs button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 8px;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid var(--cinza-borda);
+  background: #fff;
+  padding: 11px 12px;
+  color: var(--texto);
+}
+
+.lanc-tabs button:hover,
+.lanc-tabs button.active {
+  background: #fff9d8;
+}
+
+.lanc-tabs button span {
+  grid-row: span 2;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+  background: var(--azul-100);
+  color: var(--azul-800);
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.lanc-tabs button strong {
+  font-size: 12.5px;
+}
+
+.lanc-tabs button small {
+  color: var(--texto-suave);
+  font-size: 11px;
+}
+
+.lanc-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.lanc-parametros {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) repeat(5, minmax(105px, 120px));
+  gap: 12px;
+  align-items: end;
+}
+
+.lanc-parametros h3 {
+  font-size: 15px;
+}
+
+.lanc-param {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px;
+  align-items: center;
+}
+
+.lanc-param span {
+  grid-column: 1 / -1;
+  font-size: 11px;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.lanc-param input {
+  min-width: 0;
+  width: 100%;
+  border: 1px solid var(--cinza-borda-forte);
+  border-radius: 6px;
+  padding: 8px 9px;
+  font: inherit;
+  text-align: right;
+}
+
+.lanc-param b {
+  font-size: 12px;
+  color: var(--texto-suave);
+}
+
+.lanc-sheet-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.lanc-sheet-title h2 {
+  font-size: 17px;
+}
+
+.lanc-sheet-wrap,
+.cron-sheet-wrap {
+  border-radius: 6px;
+}
+
+table.sheet .text-left {
+  text-align: left;
+}
+
+table.lanc-sheet {
+  min-width: 1700px;
+}
+
+table.lanc-sheet thead th,
+table.cron-sheet thead th,
+table.reducao-sheet thead th {
+  background: #d8d8d8;
+  color: #172033;
+}
+
+table.lanc-sheet tr.bloco td,
+table.cron-sheet tr.section-row td {
+  background: #fff7cc;
+  color: #172033;
+  font-weight: 800;
+}
+
+table.lanc-sheet td.input-cell {
+  background: #fffbea;
+}
+
+table.lanc-sheet td.input-cell small {
+  display: block;
+  margin-top: 2px;
+  color: var(--texto-suave);
+  font-size: 10.5px;
+}
+
+.lanc-select {
+  min-width: 58px;
+}
+
+.lanc-cat {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 280px;
+}
+
+.lanc-cat strong,
+.lanc-cat span {
+  display: block;
+}
+
+.lanc-cat span {
+  color: var(--texto-suave);
+  font-size: 11px;
+  font-weight: 400;
+}
+
+.lanc-status {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 120px;
+}
+
+.lanc-status small {
+  color: var(--texto-suave);
+  white-space: normal;
+  line-height: 1.25;
+}
+
+table.sheet tr.lanc-desvio td {
+  background: #fff8e7;
+}
+
+td.strong {
+  font-weight: 800;
+}
+
+table.cron-sheet {
+  min-width: 2900px;
+}
+
+table.cron-sheet thead th small {
+  display: block;
+  font-size: 10px;
+  font-weight: 400;
+  color: #5b6778;
+}
+
+table.cron-sheet td.label,
+table.lanc-sheet td.label {
+  min-width: 300px;
+}
+
+table.cron-sheet tr.section-row td.label {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+table.cron-sheet tr.item td.label {
+  padding-left: 26px;
+}
+
+table.cron-sheet tr.bloco td {
+  background: #c0c0c0;
+  color: #111827;
+}
+
+table.cron-sheet tr.total td,
+table.reducao-sheet tr.total td {
+  background: #0f497f;
+  color: #fff;
+}
+
+.reducao-wrap {
+  max-width: 980px;
+}
+
+table.reducao-sheet {
+  min-width: 760px;
+}
+
+@media (max-width: 1100px) {
+  .lanc-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .lanc-tabs {
+    position: static;
+    max-height: none;
+  }
+
+  .lanc-parametros {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

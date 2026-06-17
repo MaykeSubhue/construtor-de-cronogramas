@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import * as api from '../mock/api.js'
 import { Badge, Note } from '../components/ui.jsx'
 
@@ -9,20 +9,26 @@ const tiposUnidade = ['Hospital geral', 'Hospital especializado', 'Maternidade',
 
 export default function NovoPlano() {
   const nav = useNavigate()
+  const loc = useLocation()
   const boot = api.getBootstrap()
+  const paramsUrl = new URLSearchParams(loc.search)
+  const cronogramasProntos = api.listCronogramasProntos()
+  const modoInicial = paramsUrl.get('modo') === 'modelo' ? 'modelo' : 'setor'
+  const cronogramaProntoInicial = paramsUrl.get('modelo') || cronogramasProntos[0]?.id || ''
   const [step, setStep] = useState(0)
   const [f, setF] = useState(() => ({
-    modo: 'setor',
+    modo: modoInicial,
     nome: '',
     unidadeModo: 'existente',
     objeto_planejamento_id: boot.objetos_planejamento[0]?.id,
     unidadeNova: { nome: '', sigla: '', cnes: '', tipoUnidade: 'Hospital geral' },
     competencia_inicial: '2026-01',
-    meses_projecao: 12,
+    meses_projecao: modoInicial === 'modelo' ? 24 : 12,
     tabela_salarial_id: boot.tabelas_salariais[0]?.id || 1,
     setorTexto: 'UTI Adulto 20 leitos',
     templateId: api.perfisHospitalares[0]?.id || 'hospital-geral-emergencia',
     setores: api.setoresDoPerfilHospitalar(api.perfisHospitalares[0]?.id || 'hospital-geral-emergencia'),
+    cronogramaProntoId: cronogramaProntoInicial,
     sei: '',
   }))
   const set = (k, v) => setF((s) => ({ ...s, [k]: v }))
@@ -44,16 +50,19 @@ export default function NovoPlano() {
     tabela_salarial_id: f.tabela_salarial_id,
     setorTexto: f.setorTexto,
     templateId: f.templateId,
+    cronogramaProntoId: f.cronogramaProntoId,
     setores: f.setores,
     sei: f.sei,
   }), [f])
 
-  const preview = api.previewPlanoNormativo(payload)
+  const preview = f.modo === 'modelo'
+    ? api.previewCronogramaPronto(f.cronogramaProntoId, payload)
+    : api.previewPlanoNormativo(payload)
   const pendenciasJustificativa = f.modo === 'hospital'
     ? f.setores.filter((item) => item.obrigatorio && item.ativo === false && !item.justificativa?.trim())
     : []
   const unidadeValida = f.unidadeModo === 'existente' ? !!f.objeto_planejamento_id : !!f.unidadeNova.nome.trim()
-  const configValida = f.modo === 'setor' ? !!f.setorTexto.trim() : !!f.templateId
+  const configValida = f.modo === 'setor' ? !!f.setorTexto.trim() : f.modo === 'modelo' ? !!f.cronogramaProntoId : !!f.templateId
   const podeAvancar =
     (step !== 1 || unidadeValida) &&
     (step !== 2 || configValida) &&
@@ -61,6 +70,11 @@ export default function NovoPlano() {
   const podeCriar = unidadeValida && configValida && pendenciasJustificativa.length === 0
 
   const criar = () => {
+    if (f.modo === 'modelo') {
+      const plano = api.criarPlanoDeCronogramaPronto(f.cronogramaProntoId, payload)
+      nav(`/plano/${plano.id}/lancamentos`)
+      return
+    }
     const plano = api.criarPlanoNormativo(payload)
     nav(`/plano/${plano.id}/construcao`)
   }
@@ -88,20 +102,27 @@ export default function NovoPlano() {
         {step === 0 && (
           <>
             <div className="section-title">O que você quer construir?</div>
-            <div className="grid cols-2">
+            <div className="grid cols-3">
               <Opcao
                 ativo={f.modo === 'setor'}
                 ico="🧩"
                 titulo="Setor específico"
                 texto="Ex.: UTI Adulto 20 leitos, centro cirúrgico 6 salas. O sistema reconhece o setor e carrega RH normativo."
-                onClick={() => set('modo', 'setor')}
+                onClick={() => setF((s) => ({ ...s, modo: 'setor', meses_projecao: 12 }))}
               />
               <Opcao
                 ativo={f.modo === 'hospital'}
                 ico="🏥"
                 titulo="Hospital / unidade completa"
                 texto="Cria uma árvore inicial de setores por perfil hospitalar e calcula o que já está estruturado na matriz."
-                onClick={() => set('modo', 'hospital')}
+                onClick={() => setF((s) => ({ ...s, modo: 'hospital', meses_projecao: 12 }))}
+              />
+              <Opcao
+                ativo={f.modo === 'modelo'}
+                ico="ðŸ§¾"
+                titulo="Modelo pronto"
+                texto="Clona um cronograma HMLJ, HFA ou HFCF ja preenchido e recalcula tudo no motor do app."
+                onClick={() => setF((s) => ({ ...s, modo: 'modelo', meses_projecao: 24 }))}
               />
             </div>
             <Note icon="📜">Automação nesta etapa usa somente a matriz validada e RDCs já estruturadas. ABNT entra depois como base própria.</Note>
@@ -165,13 +186,21 @@ export default function NovoPlano() {
                 <input autoFocus value={f.setorTexto} onChange={(e) => set('setorTexto', e.target.value)} placeholder="Ex.: UTI Adulto 20 leitos, centro cirúrgico 6 salas" />
                 <div className="hint">A prévia detecta setor, parâmetro principal, fontes e quadro de RH.</div>
               </div>
-            ) : (
+            ) : f.modo === 'hospital' ? (
               <div className="field">
                 <label>Perfil hospitalar</label>
                 <select value={f.templateId} onChange={(e) => setTemplate(e.target.value)}>
                   {api.perfisHospitalares.map((t) => <option key={t.id} value={t.id}>{t.nome}</option>)}
                 </select>
                 <div className="hint">{api.perfisHospitalares.find((t) => t.id === f.templateId)?.descricao}</div>
+              </div>
+            ) : (
+              <div className="field">
+                <label>Cronograma pronto</label>
+                <select value={f.cronogramaProntoId} onChange={(e) => set('cronogramaProntoId', e.target.value)}>
+                  {cronogramasProntos.map((modelo) => <option key={modelo.id} value={modelo.id}>{modelo.nome}</option>)}
+                </select>
+                <div className="hint">O modelo copia abas de equipe e parametros principais; o cronograma final e recalculado no app.</div>
               </div>
             )}
             <div className="form-row three">
@@ -200,15 +229,19 @@ export default function NovoPlano() {
         {step === 3 && (
           <>
             <div className="spread">
-              <div className="section-title" style={{ margin: 0 }}>Prévia normativa</div>
+              <div className="section-title" style={{ margin: 0 }}>{f.modo === 'modelo' ? 'Prévia do modelo' : 'Prévia normativa'}</div>
               <div className="flex" style={{ gap: 8 }}>
                 <Badge cls="verde" dot>{preview.resumo.setoresAtivos || 0} setor(es)</Badge>
                 <Badge cls="azul">Equipe {preview.resumo.equipeTotal || 0}</Badge>
-                <Badge cls="cinza">QP30 {preview.resumo.qp30Total || 0} · QP40 {preview.resumo.qp40Total || 0}</Badge>
+                {f.modo === 'modelo'
+                  ? <Badge cls="cinza">{preview.resumo.linhasEquipe || 0} linhas</Badge>
+                  : <Badge cls="cinza">QP30 {preview.resumo.qp30Total || 0} · QP40 {preview.resumo.qp40Total || 0}</Badge>}
               </div>
             </div>
             {preview.avisos?.map((aviso, i) => <Note key={i} icon="⚠️">{aviso}</Note>)}
-            {f.modo === 'setor' ? (
+            {f.modo === 'modelo' ? (
+              <PreviewCronogramaPronto preview={preview} />
+            ) : f.modo === 'setor' ? (
               <PreviewSetor setor={preview.setores[0]} />
             ) : (
               <PreviewHospital setores={preview.setores} setSetor={setSetor} pendenciasJustificativa={pendenciasJustificativa} />
@@ -220,15 +253,15 @@ export default function NovoPlano() {
           <>
             <div className="section-title">Criar cronograma</div>
             <div className="grid cols-2">
-              <Resumo k="Tipo" v={f.modo === 'setor' ? 'Setor específico' : 'Hospital/unidade completa'} />
+              <Resumo k="Tipo" v={f.modo === 'setor' ? 'Setor específico' : f.modo === 'modelo' ? 'Modelo pronto' : 'Hospital/unidade completa'} />
               <Resumo k="Unidade" v={preview.unidade?.nome || '—'} />
               <Resumo k="Competência" v={f.competencia_inicial} />
               <Resumo k="Meses" v={f.meses_projecao} />
               <Resumo k="Setores ativos" v={preview.resumo.setoresAtivos || 0} />
-              <Resumo k="Equipe normativa estimada" v={preview.resumo.equipeTotal || 0} />
+              <Resumo k={f.modo === 'modelo' ? 'Equipe importada' : 'Equipe normativa estimada'} v={preview.resumo.equipeTotal || 0} />
             </div>
             {pendenciasJustificativa.length > 0 && <Note icon="⚠️">Há setor obrigatório desmarcado sem justificativa.</Note>}
-            <Note icon="✅">Ao criar, o plano será persistido e abrirá direto na construção. A partir daí, alterações de RH fora da norma exigem justificativa.</Note>
+            <Note icon="✅">Ao criar, o plano será persistido e abrirá direto na {f.modo === 'modelo' ? 'tela de lançamentos' : 'construção'}. A partir daí, alterações de RH fora da norma exigem justificativa.</Note>
           </>
         )}
 
@@ -240,7 +273,7 @@ export default function NovoPlano() {
           {step < passos.length - 1 ? (
             <button className="btn primary" disabled={!podeAvancar} onClick={() => setStep(step + 1)}>Continuar →</button>
           ) : (
-            <button className="btn primary" disabled={!podeCriar} onClick={criar}>Criar plano e abrir construção</button>
+            <button className="btn primary" disabled={!podeCriar} onClick={criar}>{f.modo === 'modelo' ? 'Criar plano e abrir lançamentos' : 'Criar plano e abrir construção'}</button>
           )}
         </div>
       </div>
@@ -306,6 +339,45 @@ function PreviewHospital({ setores, setSetor, pendenciasJustificativa }) {
                   <td><input className="cell-input" style={{ textAlign: 'left' }} disabled={!s.ativo} value={s.unidade} onChange={(e) => setSetor(s.slug, { unidade: e.target.value })} /></td>
                   <td className="num tnum">{s.ativo ? s.equipeTotal : '—'}</td>
                   <td className="muted">{s.fontes?.[0] || 'Matriz v4'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function PreviewCronogramaPronto({ preview }) {
+  const modelo = preview.modelo
+  return (
+    <>
+      <div className="card card-pad mt-2" style={{ boxShadow: 'none', background: 'var(--cinza-bg)' }}>
+        <div className="spread">
+          <div>
+            <div className="muted" style={{ fontSize: 12 }}>Modelo selecionado</div>
+            <b>{modelo?.nome}</b>
+          </div>
+          <Badge cls={preview.resumo.linhasRevisao ? 'ambar' : 'verde'}>
+            {preview.resumo.linhasRevisao ? `${preview.resumo.linhasRevisao} revisar` : 'Sem revisão'}
+          </Badge>
+        </div>
+        <div className="memo-line"><span className="k">Fonte</span><span className="v">{modelo?.fonte}</span></div>
+        <div className="memo-line"><span className="k">Custeio operacional</span><span className="v">{Math.round((modelo?.parametrosCronograma?.custeioOperacionalPct || 0) * 100)}%</span></div>
+      </div>
+      <div className="card mt-2">
+        <div className="table-wrap">
+          <table className="tbl">
+            <thead><tr><th>Aba importada</th><th>Setor / serviço</th><th className="num">Linhas</th><th className="num">Equipe</th><th>Revisão</th></tr></thead>
+            <tbody>
+              {preview.setores.map((setor) => (
+                <tr key={setor.id}>
+                  <td className="muted">{setor.abaOrigem}</td>
+                  <td><b>{setor.nome}</b></td>
+                  <td className="num tnum">{setor.linhasEquipe}</td>
+                  <td className="num tnum">{setor.profissionais}</td>
+                  <td>{setor.revisar ? <Badge cls="ambar" dot>Revisar</Badge> : <Badge cls="verde" dot>Ok</Badge>}</td>
                 </tr>
               ))}
             </tbody>

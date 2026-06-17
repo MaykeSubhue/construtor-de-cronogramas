@@ -1,6 +1,6 @@
-const STORAGE_KEY = 'cronogramaNormativoMvp:v2'
-const LEGACY_STORAGE_KEYS = ['cronogramaNormativoMvp:v1']
-const STORE_VERSION = 2
+const STORAGE_KEY = 'cronogramaNormativoMvp:v4'
+const LEGACY_STORAGE_KEYS = ['cronogramaNormativoMvp:v3', 'cronogramaNormativoMvp:v2', 'cronogramaNormativoMvp:v1']
+const STORE_VERSION = 4
 
 const STORED_KEYS = [
   'categoriasProfissionais',
@@ -27,6 +27,7 @@ const STORED_KEYS = [
   'regrasQuadro',
   'regrasCusteio',
   'variaveisObrigatorias',
+  'lancamentosCronograma',
 ]
 
 const LEGACY_DEMO_CNES = new Set(['7654321', '2345678', '2270250', '2295415'])
@@ -155,6 +156,61 @@ function mergeEspecialidades(seedEspecialidades, persistedEspecialidades) {
   return [...porNome.values()].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
 }
 
+function mergeCatalogoSeed(seedItems, persistedItems, keyFn, version) {
+  const porChave = new Map()
+  const usados = new Set()
+
+  ;(seedItems || []).forEach((item) => {
+    const cloneItem = clone(item)
+    const key = keyFn(cloneItem)
+    if (!key) return
+    porChave.set(key, cloneItem)
+    if (cloneItem.id != null) usados.add(cloneItem.id)
+  })
+
+  let proximoId = Math.max(0, ...usados) + 1
+  ;(Array.isArray(persistedItems) ? persistedItems : []).forEach((item) => {
+    if (!item || typeof item !== 'object') return
+    const key = keyFn(item)
+    if (!key) return
+    const atual = porChave.get(key)
+    const itemManual = item.origem === 'manual'
+
+    if (atual) {
+      if (Number(version || 1) >= STORE_VERSION || itemManual) {
+        porChave.set(key, {
+          ...atual,
+          ...clone(item),
+          id: atual.id,
+          origem: atual.origem || item.origem,
+          fonte: atual.fonte || item.fonte,
+        })
+      }
+      return
+    }
+
+    if (!itemManual && Number(version || 1) < STORE_VERSION) return
+    const novo = clone(item)
+    if (novo.id == null || usados.has(novo.id)) novo.id = proximoId++
+    usados.add(novo.id)
+    porChave.set(key, { origem: itemManual ? 'manual' : 'persistido', ativo: true, ...novo })
+  })
+
+  return [...porChave.values()]
+}
+
+function chaveTipoSetor(item) {
+  return chaveCadastro(item?.slug || item?.nome)
+}
+
+function chaveServico(item) {
+  return chaveCadastro(item?.matrizSetorSlug || item?.slug || item?.nome)
+}
+
+function chaveRubrica(item) {
+  return `${chaveCadastro(item?.slug || item?.nome)}:${chaveCadastro(item?.grupo)}`
+}
+
 function loadPersistedPayload() {
   const keys = [STORAGE_KEY, ...LEGACY_STORAGE_KEYS]
   for (const key of keys) {
@@ -175,6 +231,9 @@ function migrateState(seedState, parsed) {
     ...merged,
     objetosPlanejamento: mergeUnidades(seedState.objetosPlanejamento, persisted.objetosPlanejamento, version),
     especialidades: mergeEspecialidades(seedState.especialidades, persisted.especialidades),
+    tiposSetor: mergeCatalogoSeed(seedState.tiposSetor, persisted.tiposSetor, chaveTipoSetor, version),
+    servicos: mergeCatalogoSeed(seedState.servicos, persisted.servicos, chaveServico, version),
+    rubricas: mergeCatalogoSeed(seedState.rubricas, persisted.rubricas, chaveRubrica, version),
     statusLabels: seedState.statusLabels,
     seiStatusLabels: seedState.seiStatusLabels,
   }

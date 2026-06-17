@@ -7,6 +7,12 @@
 // =========================================================================
 
 import { especialidadesCbo, unidadesMunicipais } from '../data/cadastrosMunicipais.js'
+import {
+  gruposRubricaOperacionais,
+  rubricasOperacionais,
+  servicosOperacionais,
+  tiposSetorOperacionais,
+} from '../data/cadastrosOperacionais.js'
 
 // ----------------------------------------------------------------- catálogos
 export const categoriasProfissionais = [
@@ -170,21 +176,9 @@ export const beneficiosRegras = [
     condicao: 'Carga horária acima de 32h', dias_uteis: 22 },
 ]
 
-export const gruposRubrica = [
-  { id: 1, nome: 'Salários' }, { id: 2, nome: 'Adicionais' }, { id: 3, nome: 'Encargos' },
-  { id: 4, nome: 'Provisões' }, { id: 5, nome: 'Benefícios' }, { id: 6, nome: 'Custeio operacional' },
-]
+export const gruposRubrica = gruposRubricaOperacionais
 
-export const rubricas = [
-  { id: 1, nome: 'Salário base', grupo: 'Salários', tipo: 'provento', forma: 'valor', percentual: 0, incidencia: '—', entraCronograma: true },
-  { id: 2, nome: 'Insalubridade', grupo: 'Adicionais', tipo: 'provento', forma: 'valor', percentual: 0, incidencia: 'Salário base', entraCronograma: true },
-  { id: 3, nome: 'Adicional noturno', grupo: 'Adicionais', tipo: 'provento', forma: 'percentual', percentual: 20, incidencia: 'Salário base', entraCronograma: true },
-  { id: 4, nome: 'Gratificação (RT / chefia)', grupo: 'Adicionais', tipo: 'provento', forma: 'valor', percentual: 0, incidencia: '—', entraCronograma: true },
-  { id: 5, nome: 'FGTS', grupo: 'Encargos', tipo: 'encargo', forma: 'percentual', percentual: 8, incidencia: 'Salário total', entraCronograma: true },
-  { id: 6, nome: '13º salário', grupo: 'Provisões', tipo: 'provisão', forma: 'percentual', percentual: 8.33, incidencia: 'Salário total', entraCronograma: true },
-  { id: 7, nome: 'Vale-transporte', grupo: 'Benefícios', tipo: 'benefício', forma: 'valor', percentual: 0, incidencia: '—', entraCronograma: true },
-  { id: 8, nome: 'Vale-refeição / alimentação', grupo: 'Benefícios', tipo: 'benefício', forma: 'valor', percentual: 0, incidencia: '—', entraCronograma: true },
-]
+export const rubricas = rubricasOperacionais
 
 // =========================================================================
 // NORMATIVAS / RDCs — a regra mais fundamental do processo.
@@ -404,15 +398,7 @@ function mesclarEspecialidades(base, cbo) {
 
 export const especialidades = mesclarEspecialidades(especialidadesBase, especialidadesCbo)
 
-export const tiposSetor = [
-  { id: 1, nome: 'Leitos clínicos', calculavel: true },
-  { id: 2, nome: 'Leitos psiquiátricos', calculavel: true },
-  { id: 3, nome: 'Sala de urgência', calculavel: true },
-  { id: 4, nome: 'Acolhimento / classificação', calculavel: true },
-  { id: 5, nome: 'Apoio / administrativo', calculavel: true },
-  { id: 6, nome: 'Direção', calculavel: true },
-  { id: 7, nome: 'UTI Adulto', calculavel: true },
-]
+export const tiposSetor = tiposSetorOperacionais
 
 // ----------------------------------------------------------------- objetos / unidades
 export const objetosPlanejamento = unidadesMunicipais
@@ -575,13 +561,7 @@ export const naturezas = [
 ]
 
 // Serviços (dentro dos setores) — antes não tinham cadastro próprio.
-export const servicos = [
-  { id: 1, nome: 'Leitos Psiquiátricos', setor: 'Setor de Psiquiatria', especialidade: 'Psiquiatria', leitos: 2, salas: 0, h24: true, dias: 7 },
-  { id: 2, nome: 'Sala de estabilização', setor: 'Sala Amarela / Vermelha', especialidade: 'Clínica médica', leitos: 6, salas: 1, h24: true, dias: 7 },
-  { id: 3, nome: 'Classificação de risco', setor: 'Acolhimento e Classificação de Risco', especialidade: 'Enfermagem', leitos: 0, salas: 2, h24: true, dias: 7 },
-  { id: 4, nome: 'UTI Neonatal', setor: 'UTI Neonatal', especialidade: 'Neonatologia', leitos: 13, salas: 0, h24: true, dias: 7 },
-  { id: 5, nome: 'Sala de medicação', setor: 'Sala de Medicação', especialidade: 'Enfermagem', leitos: 0, salas: 1, h24: true, dias: 7 },
-]
+export const servicos = servicosOperacionais
 
 // Regras de quadro/RH — dimensionamento por estratégia (RegraQuadroPessoal).
 export const regrasQuadro = [
@@ -615,3 +595,5 @@ export const variaveisObrigatorias = [
   { tipoSetor: 'Direção', variaveis: [] },
   { tipoSetor: 'UTI Adulto', variaveis: ['Leitos operacionais', 'Leitos totais', 'Funcionamento', 'Dias de funcionamento'] },
 ]
+
+export const lancamentosCronograma = {}

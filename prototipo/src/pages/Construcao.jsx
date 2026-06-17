@@ -14,7 +14,7 @@ export default function Construcao() {
   const [, force] = useState(0)
   const refresh = () => force((n) => n + 1)
 
-  const escopos = api.listEscopos(planoId)
+  const escopos = plano ? api.listEscopos(planoId) : []
   const [selId, setSelId] = useState(escopos.find((e) => e.rdcId === 6)?.id || escopos[0]?.id)
   const [tab, setTab] = useState('Resumo')
   const [presetOpen, setPresetOpen] = useState(false)
@@ -27,6 +27,24 @@ export default function Construcao() {
   const [regraOpen, setRegraOpen] = useState(false)
   const [renameOpen, setRenameOpen] = useState(false)
   const [justif, setJustif] = useState(null) // desvio pendente de justificativa
+
+  if (!plano) {
+    return (
+      <div style={{ padding: 24 }}>
+        <Empty icon="⚠️">
+          <p><b>Plano {planoId} não encontrado neste navegador.</b></p>
+          <p className="muted" style={{ maxWidth: 640 }}>
+            No protótipo, planos criados ficam salvos no localStorage do navegador usado na criação.
+            Se você abrir o mesmo endereço em outro navegador, esse plano pode ainda não existir ali.
+          </p>
+          <div className="flex mt-2" style={{ gap: 8, justifyContent: 'center' }}>
+            <Link className="btn primary" to="/novo">Criar novo cronograma</Link>
+            <Link className="btn" to="/planos">Ver planos deste navegador</Link>
+          </div>
+        </Empty>
+      </div>
+    )
+  }
 
   const no = api.findNo(planoId, selId)
   const calc = no ? api.calcEscopo(no, { cebas, modelo }) : null
@@ -187,7 +205,8 @@ export default function Construcao() {
           <Link className="btn" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/completude`}>✓ Checklist de completude</Link>
           <Link className="btn" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/simulacao`}>⚖️ Simular cenários</Link>
           <Link className="btn" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/acompanhamento`}>📋 Acompanhamento / SEI</Link>
-          <Link className="btn primary" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/cronograma?${new URLSearchParams({ ...(cebas && modelo !== 'subhue' ? { cebas: '1' } : {}), ...(modelo === 'subhue' ? { modelo: 'subhue' } : {}) }).toString()}`}>🗓️ Gerar cronograma</Link>
+          <Link className="btn primary" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/lancamentos`}>Abrir lançamentos</Link>
+          <Link className="btn" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/cronograma?${new URLSearchParams({ ...(cebas && modelo !== 'subhue' ? { cebas: '1' } : {}) }).toString()}`}>Cronograma final</Link>
         </div>
       </aside>
 
@@ -840,8 +859,18 @@ function AddNodeModal({ planoId, selId, onClose, onCreate }) {
   const selNode = nos.find((n) => n.id === selId)
   // pai padrão: o nó estrutural selecionado, ou o pai do escopo selecionado, ou raiz
   const paiDefault = selNode ? (selNode.escopo ? selNode.paiId : selNode.id) : null
-  const tipo0 = api.tiposSetor[0]?.id
-  const rdc0 = api.modelosParaSetor(tipo0).sort((a, b) => (a.relevancia || 9) - (b.relevancia || 9))[0]?.id || ''
+  const tiposDisponiveis = api.tiposSetor
+    .filter((tipo) => tipo.ativo !== false)
+    .slice()
+    .sort((a, b) =>
+      Number(a.usoMotor === false || a.calculavel === false) - Number(b.usoMotor === false || b.calculavel === false) ||
+      String(a.nome).localeCompare(String(b.nome), 'pt-BR')
+    )
+  const tipo0 = tiposDisponiveis[0]?.id
+  const tipo0Obj = tiposDisponiveis.find((tipo) => Number(tipo.id) === Number(tipo0))
+  const rdc0 = tipo0Obj && tipo0Obj.usoMotor !== false && tipo0Obj.calculavel !== false
+    ? api.modelosParaSetor(tipo0).sort((a, b) => (a.relevancia || 9) - (b.relevancia || 9))[0]?.id || ''
+    : ''
   const [nome, setNome] = useState('')
   const [calculavel, setCalculavel] = useState(true)
   const [tipoSetorId, setTipoSetorId] = useState(tipo0)
@@ -852,10 +881,17 @@ function AddNodeModal({ planoId, selId, onClose, onCreate }) {
   const sugestaoTexto = descricao.trim() ? api.sugerirCriacaoPorTexto(descricao) : null
 
   // RDCs compatíveis com o tipo de setor escolhido (ordenadas por relevância).
-  const rdcs = api.modelosParaSetor(tipoSetorId).slice().sort((a, b) => (a.relevancia || 9) - (b.relevancia || 9))
+  const tipoSelecionado = tiposDisponiveis.find((tipo) => Number(tipo.id) === Number(tipoSetorId))
+  const tipoTemMotor = tipoSelecionado && tipoSelecionado.usoMotor !== false && tipoSelecionado.calculavel !== false
+  const rdcs = tipoTemMotor
+    ? api.modelosParaSetor(tipoSetorId).slice().sort((a, b) => (a.relevancia || 9) - (b.relevancia || 9))
+    : []
   const trocarTipo = (id) => {
     setTipoSetorId(id)
-    const recomendada = api.modelosParaSetor(id).sort((a, b) => (a.relevancia || 9) - (b.relevancia || 9))[0]
+    const tipo = tiposDisponiveis.find((item) => Number(item.id) === Number(id))
+    const recomendada = tipo && tipo.usoMotor !== false && tipo.calculavel !== false
+      ? api.modelosParaSetor(id).sort((a, b) => (a.relevancia || 9) - (b.relevancia || 9))[0]
+      : null
     setRdcId(recomendada?.id || '')
     if (recomendada?.especialidadeId) setEspecialidadeId(String(recomendada.especialidadeId))
   }
@@ -935,8 +971,17 @@ function AddNodeModal({ planoId, selId, onClose, onCreate }) {
             <div className="field">
               <label>Tipo de setor</label>
               <select value={tipoSetorId} onChange={(e) => trocarTipo(Number(e.target.value))}>
-                {api.tiposSetor.map((t) => <option key={t.id} value={t.id}>{t.nome}</option>)}
+                {tiposDisponiveis.map((t) => (
+                  <option key={t.id} value={t.id}>
+                    {t.nome} {t.usoMotor === false || t.calculavel === false ? '— macroárea / sem motor direto' : '— dimensionador'}
+                  </option>
+                ))}
               </select>
+              <div className="hint">
+                {tipoTemMotor
+                  ? 'Tipo com motor: pode carregar parâmetros, normativa e equipe automaticamente.'
+                  : 'Tipo cadastrado como macroárea: pode organizar ou receber equipe manual, mas não sugere RDC automaticamente.'}
+              </div>
             </div>
             <div className="field">
               <label>Especialidade</label>
@@ -960,7 +1005,11 @@ function AddNodeModal({ planoId, selId, onClose, onCreate }) {
           </div>
         </>
       )}
-      <Note icon="💡">Ao criar, o setor já carrega a RDC selecionada (parâmetros + equipe preconizada). Qualquer alteração que fuja da norma pedirá justificativa.</Note>
+      <Note icon="💡">
+        {tipoTemMotor
+          ? 'Ao criar, o setor carrega a RDC selecionada quando houver uma normativa compatível. Qualquer alteração que fuja da norma pedirá justificativa.'
+          : 'Tipos sem motor direto entram como estrutura operacional: você pode organizar o cronograma e adicionar equipe manualmente com justificativa quando necessário.'}
+      </Note>
     </Modal>
   )
 }

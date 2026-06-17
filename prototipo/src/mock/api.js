@@ -27,17 +27,41 @@ import {
   perfilMatriz,
   prescricaoMatriz,
   regrasPorSetor,
+  salarioRhParaRegra,
   setorMatrizPorSlug,
   slug,
 } from './calculo.js'
 import { sugerirSetorPorTexto } from './parser.js'
 import { gerarCompetencias } from '../lib/format.js'
+import { cronogramasProntos, gruposCronogramasProntos, perfisCronogramasProntos } from '../data/cronogramasProntos.js'
 
 const db = initStore(seedDb)
 const persist = () => persistStore(db)
 
 // Proxy dinâmico: reflete perfis adicionados em runtime (cadastro de perfis).
-const perfilById = new Proxy({}, { get: (_t, k) => db.perfis.find((p) => String(p.id) === String(k)) || perfilMatriz(k) })
+const perfisCronogramasProntosById = new Map(perfisCronogramasProntos.map((perfil) => [String(perfil.id), perfil]))
+
+function perfilCronogramaPronto(perfilId) {
+  const id = String(perfilId || '')
+  if (!id.startsWith('modelo:')) return null
+  const perfil = perfisCronogramasProntosById.get(id)
+  if (!perfil) return null
+  const regraSalarial = { funcao: perfil.funcao || perfil.nome, categoria: perfil.categoria || perfil.nome }
+  const sal = salarioRhParaRegra(regraSalarial)
+  return {
+    id,
+    label: perfil.nome,
+    categoria: perfil.categoria || perfil.nome,
+    funcaoNormativa: perfil.funcao || perfil.nome,
+    regime: null,
+    modeloCronograma: true,
+    revisar: !!perfil.revisar,
+    referenciaSalarial: sal.referenciaSalarial,
+    sal,
+  }
+}
+
+const perfilById = new Proxy({}, { get: (_t, k) => db.perfis.find((p) => String(p.id) === String(k)) || perfilCronogramaPronto(k) || perfilMatriz(k) })
 
 const SETOR_DEFAULTS = {
   'enfermaria-clinica-adulto': { quantidade: 30, unidade: 'leitos' },
@@ -440,6 +464,148 @@ export function previewPlanoNormativo(payload = {}) {
     },
     avisos: setores.filter((item) => item.ativo && item.aviso).map((item) => `${item.setor?.setor || item.slug}: ${item.aviso}`),
   }
+}
+
+function resumoCronogramaPronto(modelo) {
+  return {
+    setoresAtivos: modelo?.resumo?.setores || modelo?.setores?.length || 0,
+    setoresTotal: modelo?.resumo?.setores || modelo?.setores?.length || 0,
+    linhasEquipe: modelo?.resumo?.linhasEquipe || 0,
+    equipeTotal: modelo?.resumo?.profissionais || 0,
+    linhasRevisao: modelo?.resumo?.linhasRevisao || 0,
+  }
+}
+
+export function listCronogramasProntos() {
+  return cronogramasProntos.map((modelo) => ({
+    ...modelo,
+    setores: undefined,
+    resumo: resumoCronogramaPronto(modelo),
+  }))
+}
+
+export const gruposModelosCronograma = gruposCronogramasProntos
+
+export function getCronogramaPronto(id) {
+  return cronogramasProntos.find((modelo) => modelo.id === id) || cronogramasProntos[0]
+}
+
+export function previewCronogramaPronto(id, payload = {}) {
+  const modelo = getCronogramaPronto(id)
+  const unidade = payload.unidade?.tipo === 'nova'
+    ? { nome: payload.unidade.nome || modelo.unidadeModelo || 'Nova unidade', tipo: payload.unidade.tipoUnidade || 'Hospital geral', cnes: payload.unidade.cnes || '', nova: true }
+    : getObjeto(payload.unidade?.id || payload.objeto_planejamento_id)
+
+  return {
+    modo: 'modelo',
+    unidade,
+    modelo,
+    resumo: resumoCronogramaPronto(modelo),
+    setores: (modelo.setores || []).map((setor) => ({
+      id: setor.id,
+      nome: setor.nome,
+      abaOrigem: setor.abaOrigem,
+      linhasEquipe: setor.resumo?.linhasEquipe || setor.linhas?.length || 0,
+      profissionais: setor.resumo?.profissionais || 0,
+      revisar: setor.resumo?.revisar || 0,
+    })),
+    avisos: [
+      'Modelo clonavel: a estrutura e as equipes vêm da planilha, mas o financeiro final é recalculado pelo app.',
+      'Linhas sem correspondência segura ficam marcadas para revisão e não bloqueiam a criação.',
+    ],
+  }
+}
+
+function linhaModeloParaQuadro(linha, modelo, setor) {
+  return {
+    id: ++_novoId,
+    perfil_alocacao_id: linha.perfilId,
+    quantidade_planejada: Math.max(0, Math.round(Number(linha.quantidade) || 0)),
+    quantidade_turno_12h: Number(linha.quantidadeTurno) || 0,
+    chs: Number(linha.chs) || 40,
+    origem: 'modelo_cronograma',
+    ativo: true,
+    modeloCronograma: true,
+    revisar: !!linha.revisar,
+    memoriaCalculo: {
+      formula: 'Linha herdada de modelo de planilha; custos recalculados pelo motor atual do app.',
+      fonte: modelo.fonte,
+      abaOrigem: setor.abaOrigem,
+      linhaOrigem: linha.linhaOrigem,
+      categoriaOriginal: linha.categoria,
+      quantidadeEscolhida: Number(linha.quantidade) || 0,
+      observacao: 'Revisar antes de uso oficial quando houver divergência com a matriz normativa.',
+    },
+  }
+}
+
+export function criarPlanoDeCronogramaPronto(modeloId, payload = {}) {
+  const modelo = getCronogramaPronto(modeloId)
+  const unidade = unidadeDoPayload(payload)
+  const id = nextId(db.planos)
+  const parametrosModelo = {
+    ...modelo.parametrosCronograma,
+    mesesCronograma: Number(modelo.parametrosCronograma?.mesesCronograma || payload.meses_projecao || 24),
+  }
+  const plano = {
+    id,
+    nome: payload.nome?.trim() || `Cronograma ${modelo.unidadeModelo || modelo.nome} - ${unidade.nome}`,
+    codigo: codigoPlano(id),
+    objeto_planejamento_id: unidade.id,
+    conjunto_regras_id: null,
+    composicao_conjuntos_id: 1,
+    tabela_salarial_id: Number(payload.tabela_salarial_id || payload.tabelaSalarialId || 1),
+    competencia_inicial: payload.competencia_inicial || '2026-01',
+    meses_projecao: Number(payload.meses_projecao || 24),
+    status: 'rascunho',
+    descricao_recorte: `Modelo pronto clonavel: ${modelo.nome}.`,
+    sei: payload.sei ? { numero: payload.sei, etapa: 'Abertura', responsavel: '', status: 'em_analise', abertura: new Date().toISOString().slice(0, 10), link: '#' } : null,
+    responsavel: 'Usuário',
+    atualizado_em: new Date().toISOString().slice(0, 10),
+    origemCriacao: 'modelo_cronograma',
+    modoCriacao: 'modelo',
+    templateCronogramaId: modelo.id,
+    parametrosCronograma: parametrosModelo,
+    justificativas: [],
+  }
+  db.planos.push(plano)
+
+  const raiz = criarNoAgrupador(unidade.nome, 'unidade', { objeto_planejamento_id: unidade.id, origemCriacao: 'modelo_cronograma' })
+  db.estruturas[id] = [raiz]
+
+  ;(modelo.setores || []).forEach((setor) => {
+    const no = {
+      id: ++_novoId,
+      nome: setor.nome,
+      tipo: 'servico',
+      tipoSetor: null,
+      especialidade: null,
+      icone: '📄',
+      escopo: true,
+      bloco: setor.nome,
+      matrizSetorSlug: null,
+      origemCriacao: 'modelo_cronograma',
+      templateCronogramaId: modelo.id,
+      abaOrigem: setor.abaOrigem,
+      foraMatriz: true,
+      parametros: [],
+      quadro: (setor.linhas || []).map((linha) => linhaModeloParaQuadro(linha, modelo, setor)),
+      custeio: [],
+      justificativas: [],
+    }
+    raiz.children.push(no)
+  })
+
+  db.lancamentosCronograma = db.lancamentosCronograma || {}
+  db.lancamentosCronograma[id] = { parametros: parametrosModelo }
+
+  registrarJustificativa(id, { tipo: 'modelo_cronograma', modeloId: modelo.id }, {
+    tipo: 'modelo_cronograma',
+    motivo: 'Linha herdada de modelo de planilha; revisar antes de uso oficial.',
+    observacao: `${modelo.nome} importado como modelo clonavel. Fórmulas finais da planilha não foram importadas; o app recalcula pelo motor atual.`,
+  })
+  persist()
+  return plano
 }
 
 // Motor de dimensionamento (espelha o motor SUBHUE em Python):
@@ -1001,6 +1167,438 @@ export function getCronograma(planoId, opts = {}) {
   }
 }
 
+// ----------------------------------------------------------- lancamentos / cronograma HMLJ-like
+const PARAMETROS_CRONOGRAMA_DEFAULT = {
+  salarioMinimo: 1621,
+  valeTransporteDia: 9.4,
+  valeRefeicaoDia: 18,
+  custeioOperacionalPct: 0.30,
+  apoioRuePct: 0.04,
+  apoioCgePct: 0.01,
+  apoioMonitoramentoMensal: 0,
+  variavel1Pct: 0.02,
+  variavel2Pct: 0.01,
+  variavel3Pct: 0.02,
+  investimentoMensal: 0,
+  mesesCronograma: 24,
+}
+
+function lancamentoStore(planoId) {
+  db.lancamentosCronograma = db.lancamentosCronograma || {}
+  if (!db.lancamentosCronograma[planoId]) db.lancamentosCronograma[planoId] = { parametros: {} }
+  return db.lancamentosCronograma[planoId]
+}
+
+function parametrosCronograma(planoId) {
+  const plano = db.planos.find((p) => p.id === Number(planoId))
+  const local = lancamentoStore(planoId).parametros || {}
+  return {
+    ...PARAMETROS_CRONOGRAMA_DEFAULT,
+    ...(plano?.parametrosCronograma || {}),
+    ...local,
+  }
+}
+
+function diasOperacionais(chs) {
+  const carga = Number(chs) || 0
+  if (carga >= 40) return 22
+  if (carga >= 36) return 15
+  if (carga >= 30) return 10
+  if (carga >= 24) return 8
+  if (carga >= 18) return 6
+  if (carga >= 12) return 4
+  return 0
+}
+
+function chsDoItem(item, perfil) {
+  if (item.chs != null) return Number(item.chs)
+  const regime = db.regimesTrabalho.find((r) => r.id === Number(perfil?.regime))
+  if (regime?.cargaSemanal) return Number(regime.cargaSemanal)
+  return perfil?.referenciaSalarial?.cargaHoraria || perfil?.referenciaSalarial?.chs || 40
+}
+
+function encargosDetalhados(salarioTotal, cebas = false) {
+  const itens = db.encargosGrupos
+    .filter((g) => !(cebas && g.cebasIsenta))
+    .map((g) => ({ ...g, valor: salarioTotal * ((Number(g.pct) || 0) / 100) }))
+  const percentual = itens.reduce((acc, item) => acc + (Number(item.pct) || 0), 0) / 100
+  const total = itens.reduce((acc, item) => acc + item.valor, 0)
+  return { percentual, total, itens }
+}
+
+function linhaLancamento(planoId, no, item, opts = {}) {
+  const plano = db.planos.find((p) => p.id === Number(planoId))
+  const params = parametrosCronograma(planoId)
+  const perfil = perfilById[item.perfil_alocacao_id]
+  const salario = salItem(item.perfil_alocacao_id, plano?.tabela_salarial_id || 1)
+  const quantidade = Number(item.quantidade_planejada) || 0
+  const chs = chsDoItem(item, perfil)
+  const quantidadeTurno = Number(item.quantidade_turno_12h ?? item.quantidadePorTurno12h ?? Math.ceil(quantidade / (chs >= 40 ? 1 : 3))) || 0
+
+  const base = Number(salario.base) || 0
+  const insalubridade = Number(salario.insalubridade) || 0
+  const gratificacao = Number(salario.gratificacao) || 0
+  const titulacao = Number(salario.titulacao) || 0
+  const adicionalNoturno = Number(salario.adicional_noturno) || 0
+  const remuneracaoBruta = base + insalubridade + gratificacao + titulacao + adicionalNoturno
+  const salarioTotal = remuneracaoBruta * quantidade
+  const encargos = encargosDetalhados(salarioTotal, opts.cebas)
+  const dias = diasOperacionais(chs)
+  const vtBeneficiarios = base <= Number(params.salarioMinimo) * 4 ? quantidade : 0
+  const vrBeneficiarios = chs >= 30 ? quantidade : 0
+  const valeTransporte = vtBeneficiarios * dias * Number(params.valeTransporteDia)
+  const valeRefeicao = vrBeneficiarios * dias * Number(params.valeRefeicaoDia)
+  const beneficiosTotal = valeTransporte + valeRefeicao
+  const totalMensal = salarioTotal + encargos.total + beneficiosTotal
+  const quantidadeNormativa = item.quantidade_normativa
+
+  return {
+    id: item.id,
+    noId: no.id,
+    perfilId: item.perfil_alocacao_id,
+    categoria: perfil?.label || perfil?.categoria || 'Perfil sem cadastro',
+    funcaoNormativa: perfil?.funcaoNormativa || item.memoriaCalculo?.funcao || '',
+    origem: item.origem || 'manual',
+    chs,
+    quantidade,
+    quantidadeTurno,
+    quantidadeNormativa,
+    diferencaNormativa: quantidadeNormativa != null ? quantidade - quantidadeNormativa : null,
+    base,
+    insalubridade,
+    gratificacao,
+    titulacao,
+    adicionalNoturno,
+    remuneracaoBruta,
+    salarioTotal,
+    encargosPct: encargos.percentual,
+    encargosTotal: encargos.total,
+    encargosItens: encargos.itens,
+    diasOperacionais: dias,
+    valeTransporte,
+    valeRefeicao,
+    beneficiosTotal,
+    totalMensal,
+    memoriaCalculo: item.memoriaCalculo,
+    overrideJustificado: item.overrideJustificado,
+    justificativa: no.desvios?.[item.perfil_alocacao_id]?.motivo || null,
+    salarioProvisorio: !!salario.provisorio || !!perfil?.referenciaSalarial?.fallbackSalarial,
+  }
+}
+
+export function getLancamentosPlano(planoId, opts = {}) {
+  const plano = getPlano(planoId)
+  const params = parametrosCronograma(planoId)
+  const setores = listEscopos(planoId).map((no) => {
+    calcEscopo(no, { cebas: opts.cebas, modelo: 'grupos' })
+    const linhas = (no.quadro || [])
+      .filter((item) => item.ativo !== false)
+      .map((item) => linhaLancamento(planoId, no, item, opts))
+    const totais = linhas.reduce((acc, linha) => ({
+      quantidade: acc.quantidade + linha.quantidade,
+      salarioTotal: acc.salarioTotal + linha.salarioTotal,
+      encargosTotal: acc.encargosTotal + linha.encargosTotal,
+      beneficiosTotal: acc.beneficiosTotal + linha.beneficiosTotal,
+      totalMensal: acc.totalMensal + linha.totalMensal,
+    }), { quantidade: 0, salarioTotal: 0, encargosTotal: 0, beneficiosTotal: 0, totalMensal: 0 })
+    return {
+      noId: no.id,
+      nome: no.nome,
+      bloco: no.bloco || no.nome,
+      matrizSetorSlug: no.matrizSetorSlug,
+      foraMatriz: !!no.foraMatriz,
+      origemCriacao: no.origemCriacao,
+      linhas,
+      totais,
+    }
+  })
+  const totais = setores.reduce((acc, setor) => ({
+    quantidade: acc.quantidade + setor.totais.quantidade,
+    salarioTotal: acc.salarioTotal + setor.totais.salarioTotal,
+    encargosTotal: acc.encargosTotal + setor.totais.encargosTotal,
+    beneficiosTotal: acc.beneficiosTotal + setor.totais.beneficiosTotal,
+    totalMensal: acc.totalMensal + setor.totais.totalMensal,
+  }), { quantidade: 0, salarioTotal: 0, encargosTotal: 0, beneficiosTotal: 0, totalMensal: 0 })
+
+  return {
+    plano,
+    parametros: params,
+    cebas: !!opts.cebas,
+    setores,
+    totais,
+  }
+}
+
+export function setParametroCronograma(planoId, chave, valor) {
+  const plano = db.planos.find((p) => p.id === Number(planoId))
+  if (!plano) return null
+  const store = lancamentoStore(planoId)
+  store.parametros = store.parametros || {}
+  const numero = Number(valor)
+  store.parametros[chave] = Number.isFinite(numero) ? numero : valor
+  plano.parametrosCronograma = { ...(plano.parametrosCronograma || {}), [chave]: store.parametros[chave] }
+  persist()
+  return parametrosCronograma(planoId)
+}
+
+export function setLancamentoEquipe(planoId, noId, itemId, dados = {}) {
+  const no = findNo(planoId, noId)
+  if (!no) return { ok: false, erro: 'Setor nao encontrado' }
+  let item = (no.quadro || []).find((q) => String(q.id) === String(itemId))
+  if (!item) return { ok: false, erro: 'Linha nao encontrada' }
+
+  if (dados.chs != null) {
+    const chs = Number(dados.chs) || 0
+    item.chs = chs
+    if (item.matrizRegraId || String(item.perfil_alocacao_id).startsWith('matrix:')) {
+      setChsMatriz(planoId, noId, item.perfil_alocacao_id, chs)
+      item = (no.quadro || []).find((q) => String(q.id) === String(itemId)) || item
+    }
+  }
+
+  if (dados.quantidadeTurno != null) {
+    item.quantidade_turno_12h = Math.max(0, Number(dados.quantidadeTurno) || 0)
+  }
+
+  if (dados.quantidade != null) {
+    const quantidade = Math.max(0, Math.round(Number(dados.quantidade) || 0))
+    const normativa = item.quantidade_normativa
+    const diverge = normativa != null && Number(normativa) !== quantidade
+    if (diverge && !String(dados.justificativa || '').trim()) {
+      return { ok: false, requiresJustification: true, normativa, quantidade }
+    }
+    const anterior = item.quantidade_planejada
+    item.quantidade_planejada = quantidade
+    item.overrideJustificado = diverge
+    item.memoriaCalculo = { ...(item.memoriaCalculo || {}), quantidadeEscolhida: quantidade }
+    if (diverge) {
+      registrarDesvio(planoId, noId, item.perfil_alocacao_id, {
+        de: normativa,
+        para: quantidade,
+        motivo: dados.justificativa,
+        tipo: dados.tipo || 'lancamento_equipe',
+      })
+    } else {
+      limparDesvio(planoId, noId, item.perfil_alocacao_id)
+    }
+    no.historicoAlteracoes = no.historicoAlteracoes || []
+    no.historicoAlteracoes.push({
+      id: ++_novoId,
+      quando: new Date().toISOString(),
+      tipo: 'lancamento_equipe',
+      campo: 'quantidade',
+      itemId,
+      de: anterior,
+      para: quantidade,
+    })
+  }
+
+  persist()
+  return { ok: true, linha: item }
+}
+
+export function addLancamentoEquipe(planoId, noId, dados = {}) {
+  const no = findNo(planoId, noId)
+  if (!no) return null
+  no.quadro = no.quadro || []
+  const item = {
+    id: ++_novoId,
+    perfil_alocacao_id: Number(dados.perfilId),
+    quantidade_planejada: Math.max(0, Math.round(Number(dados.quantidade) || 1)),
+    quantidade_turno_12h: Math.max(0, Number(dados.quantidadeTurno) || 1),
+    chs: Number(dados.chs || 40),
+    origem: 'manual',
+    ativo: true,
+    memoriaCalculo: { formula: 'Linha manual adicionada em Lancamentos.', quantidadeEscolhida: Number(dados.quantidade) || 1 },
+  }
+  no.quadro.push(item)
+  if (dados.justificativa) {
+    registrarJustificativa(planoId, { tipo: 'lancamento_manual', noId, itemId: item.id }, {
+      motivo: dados.justificativa,
+      tipo: 'lancamento_manual',
+      observacao: 'Linha de equipe adicionada fora da matriz normativa.',
+    })
+  }
+  persist()
+  return item
+}
+
+export function removeLancamentoEquipe(planoId, noId, itemId, justificativa = '') {
+  const no = findNo(planoId, noId)
+  const item = (no?.quadro || []).find((q) => String(q.id) === String(itemId))
+  if (!item) return { ok: false, erro: 'Linha nao encontrada' }
+  if (item.quantidade_normativa != null && Number(item.quantidade_normativa) > 0 && !String(justificativa).trim()) {
+    return { ok: false, requiresJustification: true }
+  }
+  item.ativo = false
+  item.overrideJustificado = true
+  registrarJustificativa(planoId, { tipo: 'lancamento_removido', noId, itemId }, {
+    motivo: justificativa || 'Linha manual removida.',
+    tipo: 'lancamento_removido',
+    de: item.quantidade_normativa ?? item.quantidade_planejada,
+    para: 0,
+  })
+  persist()
+  return { ok: true }
+}
+
+function repetir(valor, meses) {
+  return Array.from({ length: meses }, () => valor)
+}
+
+function montarLinhaCronograma({ id, label, valor, meses, tipo = 'item', fonte = '', memoria = '' }) {
+  const valores = repetir(valor, meses)
+  const ano1 = valores.slice(0, 12).reduce((acc, v) => acc + v, 0)
+  const ano2 = valores.slice(12, 24).reduce((acc, v) => acc + v, 0)
+  return {
+    id,
+    label,
+    tipo,
+    valorUnitario: valor,
+    valores,
+    totalAno1: ano1,
+    totalAno2: ano2,
+    totalContrato: ano1 + ano2,
+    fonte,
+    memoria,
+  }
+}
+
+export function getCronogramaFinal(planoId, opts = {}) {
+  const plano = getPlano(planoId)
+  const lancamentos = getLancamentosPlano(planoId, { cebas: opts.cebas })
+  const params = lancamentos.parametros
+  const mesesQtd = Math.max(24, Number(params.mesesCronograma) || 24)
+  const meses = gerarCompetencias(plano?.competencia_inicial || '2026-01', mesesQtd)
+  const unidade = plano?.objeto?.sigla || plano?.objeto?.nome || 'Unidade'
+
+  const rhMensal = lancamentos.totais.totalMensal
+  const custeioMensal = rhMensal * Number(params.custeioOperacionalPct)
+  const rhCusteioMensal = rhMensal + custeioMensal
+  const apoioRue = rhCusteioMensal * Number(params.apoioRuePct)
+  const apoioCge = rhCusteioMensal * Number(params.apoioCgePct)
+  const apoioMonitoramento = Number(params.apoioMonitoramentoMensal) || 0
+  const apoioTotal = apoioRue + apoioCge + apoioMonitoramento
+  const investimento = Number(params.investimentoMensal) || 0
+  const parcelaFixa = apoioTotal + rhCusteioMensal
+  const variavel1 = parcelaFixa * Number(params.variavel1Pct)
+  const variavel2 = parcelaFixa * Number(params.variavel2Pct)
+  const variavel3 = parcelaFixa * Number(params.variavel3Pct)
+  const variavelTotal = variavel1 + variavel2 + variavel3
+  const totalTermo = parcelaFixa + investimento + variavelTotal
+
+  const linhasParte2 = [
+    montarLinhaCronograma({ id: 'rh-total', label: `B 1 - RH ${unidade}`, valor: rhMensal, meses: mesesQtd, tipo: 'total', memoria: 'Soma dos totais mensais das abas de lancamento.' }),
+    ...lancamentos.setores.map((setor, idx) => montarLinhaCronograma({
+      id: `setor-${setor.noId}`,
+      label: `b${idx + 1} - RH - ${setor.nome}`,
+      valor: setor.totais.totalMensal,
+      meses: mesesQtd,
+      tipo: 'item',
+      memoria: 'Salarios + encargos/provisoes + beneficios do setor.',
+    })),
+    montarLinhaCronograma({ id: 'custeio', label: 'C - CONTRATO E CONSUMO (CUSTEIO)', valor: custeioMensal, meses: mesesQtd, tipo: 'item', memoria: `RH mensal x ${(Number(params.custeioOperacionalPct) * 100).toFixed(0)}%.` }),
+    montarLinhaCronograma({ id: 'rh-custeio-total', label: 'D - Total - PARTE de RH + Custeio', valor: rhCusteioMensal, meses: mesesQtd, tipo: 'subtotal', memoria: 'RH + custeio operacional.' }),
+  ]
+
+  const grupos = [
+    {
+      id: 'parte-1',
+      titulo: 'PARTE 1 - APOIO A GESTAO',
+      linhas: [
+        montarLinhaCronograma({ id: 'apoio-total', label: 'A - APOIO A GESTAO', valor: apoioTotal, meses: mesesQtd, tipo: 'total' }),
+        montarLinhaCronograma({ id: 'apoio-rue', label: 'a1 - APOIO A GESTAO DA RUE - OSC', valor: apoioRue, meses: mesesQtd, memoria: `RH + custeio x ${(Number(params.apoioRuePct) * 100).toFixed(0)}%.` }),
+        montarLinhaCronograma({ id: 'apoio-cge', label: 'a2 - APOIO A GESTAO DA CGE', valor: apoioCge, meses: mesesQtd, memoria: `RH + custeio x ${(Number(params.apoioCgePct) * 100).toFixed(0)}%.` }),
+        montarLinhaCronograma({ id: 'apoio-monitoramento', label: 'a3 - APOIO A GESTAO AO MONITORAMENTO', valor: apoioMonitoramento, meses: mesesQtd }),
+        montarLinhaCronograma({ id: 'apoio-subtotal', label: 'Total APOIO A GESTAO', valor: apoioTotal, meses: mesesQtd, tipo: 'subtotal' }),
+      ],
+    },
+    {
+      id: 'parte-2',
+      titulo: 'PARTE 2 - RH E CUSTEIO',
+      linhas: linhasParte2,
+    },
+    {
+      id: 'parte-3',
+      titulo: 'PARTE 3 - INVESTIMENTO - ADAPTACOES E EQUIPAMENTOS',
+      linhas: [
+        montarLinhaCronograma({ id: 'investimento-total', label: 'D - INVESTIMENTO', valor: investimento, meses: mesesQtd, tipo: 'total' }),
+        montarLinhaCronograma({ id: 'investimento-item', label: `d1 - Investimento - Adaptacoes e equipamentos ${unidade}`, valor: investimento, meses: mesesQtd }),
+        montarLinhaCronograma({ id: 'investimento-subtotal', label: 'TOTAL - INVESTIMENTOS', valor: investimento, meses: mesesQtd, tipo: 'subtotal' }),
+        montarLinhaCronograma({ id: 'parcela-fixa', label: 'PARCELA FIXA (RH+CUSTEIO+APOIO A GESTAO)', valor: parcelaFixa, meses: mesesQtd, tipo: 'subtotal' }),
+      ],
+    },
+    {
+      id: 'parte-4',
+      titulo: 'PARTE 4 - VARIAVEL',
+      linhas: [
+        montarLinhaCronograma({ id: 'variavel-total', label: 'VARIAVEL', valor: variavelTotal, meses: mesesQtd, tipo: 'total' }),
+        montarLinhaCronograma({ id: 'variavel-1', label: 'Variavel 1', valor: variavel1, meses: mesesQtd, memoria: `Parcela fixa x ${(Number(params.variavel1Pct) * 100).toFixed(0)}%.` }),
+        montarLinhaCronograma({ id: 'variavel-2', label: 'Variavel 2', valor: variavel2, meses: mesesQtd, memoria: `Parcela fixa x ${(Number(params.variavel2Pct) * 100).toFixed(0)}%.` }),
+        montarLinhaCronograma({ id: 'variavel-3', label: 'Variavel 3', valor: variavel3, meses: mesesQtd, memoria: `Parcela fixa x ${(Number(params.variavel3Pct) * 100).toFixed(0)}%.` }),
+      ],
+    },
+    {
+      id: 'resumo',
+      titulo: `CRONOGRAMA DE DESEMBOLSO - ${unidade}`,
+      linhas: [
+        montarLinhaCronograma({ id: 'total-parte-1', label: 'TOTAL PARTE 1 - APOIO A GESTAO', valor: apoioTotal, meses: mesesQtd, tipo: 'subtotal' }),
+        montarLinhaCronograma({ id: 'total-parte-2', label: 'TOTAL PARTE 2 - RH E CUSTEIO', valor: rhCusteioMensal, meses: mesesQtd, tipo: 'subtotal' }),
+        montarLinhaCronograma({ id: 'total-parte-3', label: 'TOTAL PARTE 3 - INVESTIMENTO', valor: investimento, meses: mesesQtd, tipo: 'subtotal' }),
+        montarLinhaCronograma({ id: 'total-parte-4', label: 'TOTAL PARTE 4 - VARIAVEL', valor: variavelTotal, meses: mesesQtd, tipo: 'subtotal' }),
+        montarLinhaCronograma({ id: 'total-termo', label: 'TOTAL TERMO DE PARCERIA', valor: totalTermo, meses: mesesQtd, tipo: 'grand-total' }),
+      ],
+    },
+  ]
+
+  return {
+    plano,
+    unidade,
+    cebas: !!opts.cebas,
+    parametros: params,
+    meses,
+    lancamentos,
+    grupos,
+    resumo: {
+      rhMensal,
+      custeioMensal,
+      rhCusteioMensal,
+      apoioTotal,
+      investimento,
+      parcelaFixa,
+      variavelTotal,
+      totalMensal: totalTermo,
+      totalContrato: totalTermo * mesesQtd,
+    },
+  }
+}
+
+function totalLinha(cronograma, linhaId) {
+  for (const grupo of cronograma.grupos) {
+    const linha = grupo.linhas.find((item) => item.id === linhaId)
+    if (linha) return linha.totalContrato
+  }
+  return 0
+}
+
+export function getReducaoCebas(planoId) {
+  const sem = getCronogramaFinal(planoId, { cebas: false })
+  const com = getCronogramaFinal(planoId, { cebas: true })
+  const linhas = [
+    { rubrica: 'RH + Custeio', sem: totalLinha(sem, 'rh-custeio-total'), com: totalLinha(com, 'rh-custeio-total') },
+    { rubrica: 'Apoio a gestao da unidade', sem: totalLinha(sem, 'apoio-cge'), com: totalLinha(com, 'apoio-cge') },
+    { rubrica: 'Apoio a gestao RUE-OSC', sem: totalLinha(sem, 'apoio-rue'), com: totalLinha(com, 'apoio-rue') },
+    { rubrica: 'Variavel', sem: totalLinha(sem, 'variavel-total'), com: totalLinha(com, 'variavel-total') },
+    { rubrica: 'Investimento', sem: totalLinha(sem, 'investimento-subtotal'), com: totalLinha(com, 'investimento-subtotal') },
+  ].map((linha) => ({ ...linha, diferenca: linha.sem - linha.com }))
+  const total = linhas.reduce((acc, linha) => ({
+    sem: acc.sem + linha.sem,
+    com: acc.com + linha.com,
+    diferenca: acc.diferenca + linha.diferenca,
+  }), { sem: 0, com: 0, diferenca: 0 })
+  return { sem, com, linhas, total }
+}
+
 // ----------------------------------------------------------- dashboard
 export function getDashboard() {
   const planos = listPlanos()
@@ -1038,7 +1636,9 @@ const ICONES_TIPO = {
 // daquele tipo de setor (guia o preenchimento, como na construção do zero).
 export function addNo(planoId, { nome, paiId = null, tipoSetorId = null, calculavel = true, rdcId = null, especialidadeId = null, matrizSetorSlug = null, parametros = null }) {
   const tipo = db.tiposSetor.find((t) => t.id === tipoSetorId)
-  const obrig = tipo ? (db.variaveisObrigatorias.find((v) => v.tipoSetor === tipo.nome)?.variaveis || []) : []
+  const obrig = tipo
+    ? (db.variaveisObrigatorias.find((v) => v.tipoSetor === tipo.nome || slug(v.tipoSetor) === slug(tipo.nome) || slug(v.tipoSetor) === tipo.slug)?.variaveis || [])
+    : []
   const esp = especialidadeId != null ? getEspecialidade(Number(especialidadeId)) : null
   const novo = {
     id: ++_novoId,
@@ -1257,6 +1857,36 @@ export function addCadastro(secao, dados = {}) {
     novo.fonte = dados.fonte || 'Cadastro manual'
   }
   if (secao === 'especialidades') novo.fonte = dados.fonte || 'Cadastro manual'
+  if (secao === 'setores') {
+    novo.slug = dados.slug || slug(dados.nome)
+    novo.classe = dados.classe || 'dimensionador'
+    novo.usoMotor = dados.usoMotor ?? true
+    novo.calculavel = dados.calculavel ?? novo.usoMotor
+    novo.ativo = dados.ativo ?? true
+    novo.fonte = dados.fonte || 'Cadastro manual'
+  }
+  if (secao === 'servicos') {
+    novo.slug = dados.slug || slug(dados.nome)
+    novo.setor = dados.setor || dados.nome
+    novo.macroarea = dados.macroarea || dados.setor || 'Manual'
+    novo.status = dados.status || 'referencial'
+    novo.qtdRegrasRh = Number(dados.qtdRegrasRh || 0)
+    novo.parametrosDimensionadores = dados.parametrosDimensionadores || []
+    novo.ativo = dados.ativo ?? true
+    novo.fonte = dados.fonte || 'Cadastro manual'
+  }
+  if (secao === 'rubricas') {
+    novo.slug = dados.slug || slug(dados.nome)
+    novo.grupo = dados.grupo || 'Custeio operacional'
+    novo.tipo = dados.tipo || 'custeio'
+    novo.forma = dados.forma || 'valor'
+    novo.percentual = Number(dados.percentual || 0)
+    novo.valor = Number(dados.valor || 0)
+    novo.incidencia = dados.incidencia || 'Manual'
+    novo.entraCronograma = dados.entraCronograma ?? true
+    novo.ativo = dados.ativo ?? true
+    novo.fonte = dados.fonte || 'Cadastro manual'
+  }
   arr.push(novo)
   persist()
   return novo
