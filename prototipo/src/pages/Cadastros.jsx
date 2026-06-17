@@ -6,7 +6,7 @@ import { brl, competenciaLabel, num, pct } from '../lib/format.js'
 
 const SECOES = [
   { id: 'unidades', label: 'Unidades', desc: 'Unidades municipais e unidades manuais do planejamento.' },
-  { id: 'especialidades', label: 'Especialidades', desc: 'Especialidades assistenciais normalizadas por CBO.' },
+  { id: 'especialidades', label: 'Especialidades', desc: 'Especialidades assistenciais normalizadas.' },
   { id: 'salarios', label: 'Tabelas salariais', desc: 'Base salarial vigente por categoria profissional.' },
   { id: 'normativas', label: 'Normativas / RDCs', desc: 'Bases normativas e fontes do dimensionamento.' },
   { id: 'regras', label: 'Regras', desc: 'Biblioteca de regras normativas, metodologicas e checklists.' },
@@ -42,6 +42,17 @@ function regraStatus(status) {
   return STATUS_REGRAS[status] || { label: status || 'Sem status', cls: 'cinza' }
 }
 
+const STATUS_CATEGORIAS = {
+  validado: { label: 'Validado', cls: 'verde' },
+  revisar_financeiro: { label: 'Revisar financeiro', cls: 'ambar' },
+  revisar: { label: 'Revisar', cls: 'vermelho' },
+  manual: { label: 'Manual', cls: 'azul' },
+}
+
+function categoriaStatus(status) {
+  return STATUS_CATEGORIAS[status] || { label: status || 'Revisar', cls: 'cinza' }
+}
+
 function tipoRegraLabel(tipo) {
   return String(tipo || 'regra')
     .replace(/_/g, ' ')
@@ -49,7 +60,7 @@ function tipoRegraLabel(tipo) {
 }
 
 function origemLabel(origem) {
-  return origem === 'manual' ? 'Manual' : origem === 'cbo' ? 'CBO' : origem === 'seed' ? 'Base' : origem || 'Base'
+  return origem === 'manual' ? 'Manual' : origem === 'cbo' ? 'Base' : origem === 'seed' ? 'Base' : origem || 'Base'
 }
 
 function normalizarBusca(value) {
@@ -57,6 +68,13 @@ function normalizarBusca(value) {
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .toLowerCase()
+}
+
+function listaCurta(itens, limite = 3) {
+  const arr = Array.isArray(itens) ? itens.filter(Boolean) : []
+  if (!arr.length) return '-'
+  const visiveis = arr.slice(0, limite).join(', ')
+  return arr.length > limite ? `${visiveis} +${arr.length - limite}` : visiveis
 }
 
 function Head({ secao, children }) {
@@ -138,8 +156,9 @@ export default function Cadastros() {
       {atual.id === 'presets' && <PresetsView secao={atual} />}
       {atual.id === 'setores' && <TiposSetorView secao={atual} onChange={refresh} />}
       {atual.id === 'servicos' && <ServicosView secao={atual} onChange={refresh} />}
+      {atual.id === 'categorias' && <CategoriasView secao={atual} onChange={refresh} />}
       {atual.id === 'rubricas' && <RubricasView secao={atual} onChange={refresh} />}
-      {['categorias', 'regimes', 'naturezas', 'encargos', 'beneficios', 'regras-custeio'].includes(atual.id) && (
+      {['regimes', 'naturezas', 'encargos', 'beneficios', 'regras-custeio'].includes(atual.id) && (
         <CatalogoView secao={atual} onChange={refresh} />
       )}
     </>
@@ -219,7 +238,7 @@ function EspecialidadesView({ secao, onChange }) {
           }}
         />
       </Head>
-      <Note>Fonte inicial: {meta?.fontes?.especialidades || 'FatVinculo-2026-06-10 (1).xlsx'}. A carga usa apenas agregados de CBO/ocupacao, sem CPF, CNS, nome ou conselho profissional.</Note>
+      <Note>Fonte inicial: {meta?.fontes?.especialidades || 'FatVinculo-2026-06-10 (1).xlsx'}. A carga usa apenas dados agregados, sem CPF, CNS, nome ou conselho profissional.</Note>
       <div className="grid cols-4 mb-2">
         <Kpi valor={especialidades.length} label="Especialidades" />
         <Kpi valor={especialidades.filter((item) => item.revisao).length} label="Marcadas para revisar" />
@@ -229,13 +248,12 @@ function EspecialidadesView({ secao, onChange }) {
       <div className="card">
         <div className="table-wrap">
           <table className="tbl">
-            <thead><tr><th>Especialidade</th><th>Tipo</th><th>CBOs</th><th className="num">Vinculos</th><th>Fonte</th><th>Revisao</th></tr></thead>
+            <thead><tr><th>Especialidade</th><th>Tipo</th><th className="num">Vinculos</th><th>Fonte</th><th>Revisao</th></tr></thead>
             <tbody>
               {especialidades.map((item) => (
                 <tr key={item.id || item.nome}>
                   <td><b>{item.nome}</b><div className="muted" style={{ fontSize: 11.5 }}>{origemLabel(item.origem)}</div></td>
                   <td><Badge cls="azul">{item.tipo || 'Assistencial'}</Badge></td>
-                  <td className="muted" style={{ maxWidth: 360 }}>{(item.cbos || []).join(', ') || '-'}</td>
                   <td className="num tnum">{item.quantidadeVinculos || '-'}</td>
                   <td className="muted">{item.fonte || '-'}</td>
                   <td>{item.revisao ? <Badge cls="ambar" dot>Revisar</Badge> : <Badge cls="verde" dot>Ok</Badge>}</td>
@@ -299,6 +317,156 @@ function SalariosView({ secao }) {
                     <td className="num tnum">{item.gratificacaoDificilProvimento ? brl(item.gratificacaoDificilProvimento) : '-'}</td>
                     <td className="num tnum">{item.gratificacaoTitulacao ? brl(item.gratificacaoTitulacao) : '-'}</td>
                     <td className="num tnum"><b>{brl(item.valorFinalSalario)}</b></td>
+                  </tr>
+                )
+              })}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </>
+  )
+}
+
+function CategoriasView({ secao, onChange }) {
+  const [busca, setBusca] = useState('')
+  const [grupo, setGrupo] = useState('')
+  const [conselho, setConselho] = useState('')
+  const [status, setStatus] = useState('')
+  const [salario, setSalario] = useState('')
+  const dados = api.categoriasProfissionais
+  const meta = api.categoriasProfissionaisInfo
+  const grupos = useMemo(() => [...new Set(dados.map((item) => item.grupo).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR')), [dados])
+  const conselhos = useMemo(() => [...new Set(dados.map((item) => item.conselho).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR')), [dados])
+  const buscaNorm = normalizarBusca(busca)
+  const revisar = dados.filter((item) => ['revisar', 'revisar_financeiro'].includes(item.status)).length
+  const filtrados = dados.filter((item) => {
+    const texto = normalizarBusca([
+      item.nome,
+      item.grupo,
+      item.conselho,
+      item.fonte,
+      item.categoriaSalarial,
+    ].join(' '))
+    if (buscaNorm && !texto.includes(buscaNorm)) return false
+    if (grupo && item.grupo !== grupo) return false
+    if (conselho && item.conselho !== conselho) return false
+    if (status && item.status !== status) return false
+    if (salario === 'com' && !item.temSalario) return false
+    if (salario === 'sem' && item.temSalario) return false
+    return true
+  })
+
+  return (
+    <>
+      <Head secao={secao}>
+        <InlineForm
+          label="Nova categoria"
+          campos={[
+            { id: 'nome', label: 'Nome da categoria' },
+            { id: 'grupo', label: 'Grupo', default: 'Manual' },
+            { id: 'conselho', label: 'Conselho', default: '—' },
+          ]}
+          onSave={(dadosForm) => {
+            if (!dadosForm.nome.trim()) return
+            api.addCadastro('categorias', {
+              ...dadosForm,
+              fonte: 'Cadastro manual',
+              status: 'manual',
+              ativo: true,
+            })
+            onChange()
+          }}
+        />
+      </Head>
+      <Note>Cadastro simplificado por categoria profissional. A base salarial é a referência principal; itens sem correspondência salarial segura ficam para revisão financeira.</Note>
+      <div className="flex wrap mb-2" style={{ gap: 8 }}>
+        <span className="origem-tag">{meta.fonteSalarial}</span>
+        <span className="origem-tag">{meta.totalCategoriasSalariaisUnicas} categorias salariais únicas</span>
+        <span className="origem-tag">cadastro simplificado</span>
+      </div>
+      <div className="grid cols-5 mb-2">
+        <Kpi valor={dados.length} label="Categorias" />
+        <Kpi valor={dados.filter((item) => item.temSalario).length} label="Com salário" />
+        <Kpi valor={dados.filter((item) => !item.temSalario).length} label="Sem salário" />
+        <Kpi valor={dados.filter((item) => item.origem === 'manual').length} label="Manuais" />
+        <Kpi valor={revisar} label="Revisar" />
+      </div>
+
+      <div className="card card-pad mb-2">
+        <div className="form-row three">
+          <div className="field">
+            <label>Buscar</label>
+            <input value={busca} onChange={(event) => setBusca(event.target.value)} placeholder="Nome, grupo, conselho ou salário..." />
+          </div>
+          <div className="field">
+            <label>Grupo</label>
+            <select value={grupo} onChange={(event) => setGrupo(event.target.value)}>
+              <option value="">Todos</option>
+              {grupos.map((item) => <option key={item} value={item}>{item}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <label>Conselho</label>
+            <select value={conselho} onChange={(event) => setConselho(event.target.value)}>
+              <option value="">Todos</option>
+              {conselhos.map((item) => <option key={item} value={item}>{item}</option>)}
+            </select>
+          </div>
+        </div>
+        <div className="form-row">
+          <div className="field">
+            <label>Status</label>
+            <select value={status} onChange={(event) => setStatus(event.target.value)}>
+              <option value="">Todos</option>
+              {Object.entries(STATUS_CATEGORIAS).map(([id, info]) => <option key={id} value={id}>{info.label}</option>)}
+            </select>
+          </div>
+          <div className="field">
+            <label>Salário vinculado</label>
+            <select value={salario} onChange={(event) => setSalario(event.target.value)}>
+              <option value="">Todos</option>
+              <option value="com">Com salário</option>
+              <option value="sem">Sem salário</option>
+            </select>
+          </div>
+        </div>
+        <div className="muted" style={{ fontSize: 12 }}>{num(filtrados.length, 0)} categoria(s) exibida(s).</div>
+      </div>
+
+      <div className="card">
+        <div className="table-wrap">
+          <table className="tbl">
+            <thead>
+              <tr>
+                <th>Categoria</th>
+                <th>Grupo</th>
+                <th>Conselho</th>
+                <th>Salário vinculado</th>
+                <th>Fonte</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtrados.map((item) => {
+                const statusInfo = categoriaStatus(item.status)
+                return (
+                  <tr key={item.id || item.slug || item.nome}>
+                    <td><b>{item.nome}</b></td>
+                    <td><Badge cls={item.grupo === 'Administrativo' ? 'cinza' : item.grupo === 'Multiprofissional' ? 'roxo' : 'azul'}>{item.grupo || '-'}</Badge></td>
+                    <td>{item.conselho || '—'}</td>
+                    <td>
+                      {item.temSalario ? (
+                        <>
+                          <Badge cls="verde" dot>{item.classificacaoSalarial || 'Com salário'}</Badge>
+                          <div className="muted" style={{ fontSize: 11.5 }}>{item.categoriaSalarial || listaCurta(item.categoriasSalariaisFonte?.map((sal) => sal.categoria), 1)}</div>
+                        </>
+                      ) : (
+                        <Badge cls="ambar" dot>Sem salário</Badge>
+                      )}
+                    </td>
+                    <td className="muted" style={{ maxWidth: 260 }}>{item.fonte || '-'}</td>
+                    <td><Badge cls={statusInfo.cls} dot>{statusInfo.label}</Badge></td>
                   </tr>
                 )
               })}

@@ -7,6 +7,7 @@
 // =========================================================================
 
 import { especialidadesCbo, unidadesMunicipais } from '../data/cadastrosMunicipais.js'
+import { categoriasProfissionaisSeed } from '../data/categoriasProfissionais.js'
 import {
   gruposRubricaOperacionais,
   rubricasOperacionais,
@@ -15,14 +16,7 @@ import {
 } from '../data/cadastrosOperacionais.js'
 
 // ----------------------------------------------------------------- catálogos
-export const categoriasProfissionais = [
-  { id: 1, nome: 'Médico', grupo: 'Saúde', conselho: 'CRM' },
-  { id: 2, nome: 'Enfermeiro', grupo: 'Saúde', conselho: 'COREN' },
-  { id: 3, nome: 'Técnico de Enfermagem', grupo: 'Saúde', conselho: 'COREN' },
-  { id: 4, nome: 'Psicólogo', grupo: 'Saúde', conselho: 'CRP' },
-  { id: 5, nome: 'Assistente Social', grupo: 'Saúde', conselho: 'CRESS' },
-  { id: 6, nome: 'Técnico Administrativo', grupo: 'Administrativo', conselho: '—' },
-]
+export const categoriasProfissionais = categoriasProfissionaisSeed
 
 export const regimesTrabalho = [
   { id: 1, nome: 'Plantonista 24h', cargaSemanal: 24, escala: '24x72' },

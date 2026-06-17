@@ -1,6 +1,6 @@
-const STORAGE_KEY = 'cronogramaNormativoMvp:v4'
-const LEGACY_STORAGE_KEYS = ['cronogramaNormativoMvp:v3', 'cronogramaNormativoMvp:v2', 'cronogramaNormativoMvp:v1']
-const STORE_VERSION = 4
+const STORAGE_KEY = 'cronogramaNormativoMvp:v6'
+const LEGACY_STORAGE_KEYS = ['cronogramaNormativoMvp:v5', 'cronogramaNormativoMvp:v4', 'cronogramaNormativoMvp:v3', 'cronogramaNormativoMvp:v2', 'cronogramaNormativoMvp:v1']
+const STORE_VERSION = 6
 
 const STORED_KEYS = [
   'categoriasProfissionais',
@@ -156,6 +156,64 @@ function mergeEspecialidades(seedEspecialidades, persistedEspecialidades) {
   return [...porNome.values()].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
 }
 
+function mergeCategoriasProfissionais(seedCategorias, persistedCategorias, version) {
+  const porChave = new Map()
+  const usados = new Set()
+
+  ;(seedCategorias || []).forEach((item) => {
+    const cloneItem = clone(item)
+    const key = chaveCadastro(cloneItem.slug || cloneItem.nome)
+    if (!key) return
+    porChave.set(key, cloneItem)
+    if (cloneItem.id != null) usados.add(cloneItem.id)
+  })
+
+  let proximoId = Math.max(0, ...usados) + 1
+  ;(Array.isArray(persistedCategorias) ? persistedCategorias : []).forEach((item) => {
+    if (!item || typeof item !== 'object') return
+    const itemManual = item.origem === 'manual'
+    if (!itemManual && Number(version || 1) < STORE_VERSION) return
+
+    const key = chaveCadastro(item.slug || item.nome)
+    if (!key) return
+    const atual = porChave.get(key)
+
+    if (atual) {
+      porChave.set(key, {
+        ...atual,
+        ...clone(item),
+        id: atual.id,
+        slug: atual.slug || item.slug || key,
+        origem: atual.origem || item.origem,
+        fonte: atual.fonte || item.fonte,
+        temSalario: Boolean(atual.temSalario || item.temSalario),
+      })
+      return
+    }
+
+    const novo = clone(item)
+    if (novo.id == null || usados.has(novo.id)) novo.id = proximoId++
+    usados.add(novo.id)
+    porChave.set(key, {
+      origem: itemManual ? 'manual' : 'persistido',
+      ativo: true,
+      slug: item.slug || key,
+      grupo: item.grupo || 'Manual',
+      conselho: item.conselho || '—',
+      status: item.status || (itemManual ? 'manual' : 'revisar'),
+      ...novo,
+    })
+  })
+
+  return [...porChave.values()].sort((a, b) => {
+    const aCritico = Number(a.id) <= 7 ? 0 : 1
+    const bCritico = Number(b.id) <= 7 ? 0 : 1
+    if (aCritico !== bCritico) return aCritico - bCritico
+    if (aCritico === 0) return Number(a.id) - Number(b.id)
+    return String(a.nome || '').localeCompare(String(b.nome || ''), 'pt-BR')
+  })
+}
+
 function mergeCatalogoSeed(seedItems, persistedItems, keyFn, version) {
   const porChave = new Map()
   const usados = new Set()
@@ -231,6 +289,7 @@ function migrateState(seedState, parsed) {
     ...merged,
     objetosPlanejamento: mergeUnidades(seedState.objetosPlanejamento, persisted.objetosPlanejamento, version),
     especialidades: mergeEspecialidades(seedState.especialidades, persisted.especialidades),
+    categoriasProfissionais: mergeCategoriasProfissionais(seedState.categoriasProfissionais, persisted.categoriasProfissionais, version),
     tiposSetor: mergeCatalogoSeed(seedState.tiposSetor, persisted.tiposSetor, chaveTipoSetor, version),
     servicos: mergeCatalogoSeed(seedState.servicos, persisted.servicos, chaveServico, version),
     rubricas: mergeCatalogoSeed(seedState.rubricas, persisted.rubricas, chaveRubrica, version),

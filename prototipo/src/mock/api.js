@@ -15,6 +15,7 @@ import { initStore, persistStore } from './store.js'
 import { matrizHospitalar, setoresMatriz } from '../data/matrizHospitalar.js'
 import { cadastroMunicipalMeta } from '../data/cadastrosMunicipais.js'
 import { baseSalarialRh, baseSalarialRhMeta } from '../data/baseSalarialRh.js'
+import { categoriasProfissionaisMeta } from '../data/categoriasProfissionais.js'
 import {
   fontesNormativasMetodologicas,
   regrasNormativasMetodologicas,
@@ -1857,6 +1858,20 @@ export function addCadastro(secao, dados = {}) {
     novo.fonte = dados.fonte || 'Cadastro manual'
   }
   if (secao === 'especialidades') novo.fonte = dados.fonte || 'Cadastro manual'
+  if (secao === 'categorias') {
+    novo.slug = dados.slug || slug(dados.nome)
+    novo.grupo = dados.grupo || 'Manual'
+    novo.conselho = dados.conselho || '—'
+    novo.classificacaoSalarial = dados.classificacaoSalarial || null
+    novo.categoriaSalarialSlug = dados.categoriaSalarialSlug || null
+    novo.categoriaSalarial = dados.categoriaSalarial || null
+    novo.categoriasSalariaisFonte = dados.categoriasSalariaisFonte || []
+    novo.temSalario = Boolean(dados.temSalario || dados.categoriaSalarialSlug)
+    novo.fonte = dados.fonte || 'Cadastro manual'
+    novo.fontesComplementares = dados.fontesComplementares || []
+    novo.status = dados.status || 'manual'
+    novo.ativo = dados.ativo ?? true
+  }
   if (secao === 'setores') {
     novo.slug = dados.slug || slug(dados.nome)
     novo.classe = dados.classe || 'dimensionador'
@@ -2097,6 +2112,7 @@ export const seiStatusLabels = db.seiStatusLabels
 export const cadastroMunicipal = cadastroMunicipalMeta
 export const baseSalarialRhInfo = baseSalarialRhMeta
 export const baseSalarialRhLinhas = baseSalarialRh
+export const categoriasProfissionaisInfo = categoriasProfissionaisMeta
 export const categoriasProfissionais = db.categoriasProfissionais
 export const regimesTrabalho = db.regimesTrabalho
 export const itensSalariais = db.itensSalariais
