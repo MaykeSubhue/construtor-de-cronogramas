@@ -16,6 +16,7 @@ export default function Construcao() {
 
   const escopos = plano ? api.listEscopos(planoId) : []
   const [selId, setSelId] = useState(escopos.find((e) => e.rdcId === 6)?.id || escopos[0]?.id)
+  const [grupoEquipeId, setGrupoEquipeId] = useState(null)
   const [tab, setTab] = useState('Resumo')
   const [presetOpen, setPresetOpen] = useState(false)
   const [memo, setMemo] = useState(null)
@@ -47,6 +48,7 @@ export default function Construcao() {
   }
 
   const no = api.findNo(planoId, selId)
+  const grupoEquipe = (no?.gruposEquipe || []).find((grupo) => grupo.id === grupoEquipeId) || null
   const calc = no ? api.calcEscopo(no, { cebas, modelo }) : null
   const completude = api.getCompletude(planoId)
   const totalPlano = escopos.reduce((a, n) => a + api.calcEscopo(n, { cebas, modelo }).total_mensal, 0)
@@ -61,6 +63,7 @@ export default function Construcao() {
       }
       api.removeNo(planoId, node.id)
       setSelId(api.listEscopos(planoId)[0]?.id)
+      setGrupoEquipeId(null)
       refresh()
     }
     if (node.origemTemplate) {
@@ -91,7 +94,19 @@ export default function Construcao() {
             <p style={{ fontSize: 12.5 }}>Estrutura vazia. Comece adicionando o primeiro setor ou serviço.</p>
           </div>
         ) : (
-          <Tree nodes={api.getEstrutura(planoId)} selId={selId} onSelect={(n) => { setSelId(n.id); setTab('Resumo') }} planoId={planoId} />
+          <Tree
+            nodes={api.getEstrutura(planoId)}
+            selId={selId}
+            grupoEquipeId={grupoEquipeId}
+            onSelect={(n) => {
+              const voltandoParaEquipeCompleta = n.id === selId && Boolean(grupoEquipeId)
+              setSelId(n.id)
+              setGrupoEquipeId(null)
+              setTab(voltandoParaEquipeCompleta ? 'Equipe / RH' : 'Resumo')
+            }}
+            onSelectGrupo={(n, grupo) => { setSelId(n.id); setGrupoEquipeId(grupo.id); setTab('Equipe / RH') }}
+            planoId={planoId}
+          />
         )}
         <div className="divider" />
         <button className="btn sm" style={{ width: '100%' }} onClick={() => setAddNodeOpen(true)}>＋ Adicionar setor / serviço</button>
@@ -108,7 +123,7 @@ export default function Construcao() {
               {no && (
                 <div className="flex" style={{ gap: 2 }}>
                   <button className="btn sm ghost" onClick={() => setRenameOpen(true)}>✏️ Renomear</button>
-                  <button className="btn sm ghost" onClick={() => { const c = api.duplicarNo(planoId, no.id); if (c) { setSelId(c.id); refresh() } }}>⧉ Duplicar</button>
+                  <button className="btn sm ghost" onClick={() => { const c = api.duplicarNo(planoId, no.id); if (c) { setSelId(c.id); setGrupoEquipeId(null); refresh() } }}>⧉ Duplicar</button>
                   <button className="btn sm ghost danger" onClick={() => excluirNo(no)}>🗑 Excluir</button>
                 </div>
               )}
@@ -154,7 +169,7 @@ export default function Construcao() {
 
             {tab === 'Resumo' && <TabResumo no={no} calc={calc} completude={completude} />}
             {tab === 'Parâmetros' && <TabParametros no={no} planoId={planoId} refresh={refresh} />}
-            {tab === 'Equipe / RH' && <TabEquipe no={no} planoId={planoId} calc={calc} cebas={cebas} modelo={modelo} refresh={refresh} onMemo={setMemo} onAdd={() => setAddProfOpen(true)} onRegra={() => setRegraOpen(true)} onJustif={setJustif} />}
+            {tab === 'Equipe / RH' && <TabEquipe no={no} planoId={planoId} calc={calc} cebas={cebas} modelo={modelo} grupoEquipe={grupoEquipe} onClearGrupo={() => setGrupoEquipeId(null)} refresh={refresh} onMemo={setMemo} onAdd={() => setAddProfOpen(true)} onRegra={() => setRegraOpen(true)} onJustif={setJustif} />}
             {tab === 'Custeio' && <TabCusteio no={no} planoId={planoId} calc={calc} refresh={refresh} onAdd={() => setAddCusteioOpen(true)} />}
             {tab === 'Produção' && <TabProducao no={no} planoId={planoId} refresh={refresh} />}
             {tab === 'Regras' && <TabRegras plano={plano} no={no} />}
@@ -193,7 +208,7 @@ export default function Construcao() {
             <div className="muted" style={{ fontSize: 12.5 }}>Nenhuma pendência. ✅</div>
           )}
           {completude.linhas.flatMap((l) => l.pendencias.map((p) => ({ ...p, no: l.no }))).slice(0, 6).map((p, i) => (
-            <div key={i} className={`pend-item ${p.tipo === 'equipe' ? 'erro' : ''}`} onClick={() => { setSelId(p.no.id); setTab(p.tipo === 'equipe' ? 'Equipe / RH' : 'Parâmetros') }}>
+            <div key={i} className={`pend-item ${p.tipo === 'equipe' ? 'erro' : ''}`} onClick={() => { setSelId(p.no.id); setGrupoEquipeId(null); setTab(p.tipo === 'equipe' ? 'Equipe / RH' : 'Parâmetros') }}>
               <span className="ic">⚠️</span>
               <div><b>{p.no.nome}</b><div>{p.msg}</div></div>
             </div>
@@ -210,11 +225,11 @@ export default function Construcao() {
         </div>
       </aside>
 
-      {presetOpen && <RDCModal no={no} planoId={planoId} onClose={() => setPresetOpen(false)} onApply={() => { setPresetOpen(false); refresh() }} />}
+      {presetOpen && <RDCModal no={no} planoId={planoId} onClose={() => setPresetOpen(false)} onApply={() => { setPresetOpen(false); setGrupoEquipeId(null); refresh() }} />}
       {memo && <MemoModal data={memo} onClose={() => setMemo(null)} />}
-      {addNodeOpen && <AddNodeModal planoId={planoId} selId={selId} onClose={() => setAddNodeOpen(false)} onCreate={(novo) => { setAddNodeOpen(false); setSelId(novo.id); setTab(novo.escopo ? 'Parâmetros' : 'Resumo'); refresh() }} />}
+      {addNodeOpen && <AddNodeModal planoId={planoId} selId={selId} onClose={() => setAddNodeOpen(false)} onCreate={(novo) => { setAddNodeOpen(false); setSelId(novo.id); setGrupoEquipeId(null); setTab(novo.escopo ? 'Parâmetros' : 'Resumo'); refresh() }} />}
       {addProfOpen && no && <AddProfModal onClose={() => setAddProfOpen(false)} onAdd={(perfilId, qtd) => {
-        const item = api.addProfissional(planoId, no.id, perfilId, qtd)
+        const item = api.addProfissional(planoId, no.id, perfilId, qtd, grupoEquipe)
         setAddProfOpen(false)
         // Se o perfil não é previsto pela RDC do setor, exige justificativa.
         const previsto = api.prescricaoRDC(no).some((p) => p.perfilId === Number(perfilId))
@@ -228,7 +243,7 @@ export default function Construcao() {
         } else refresh()
       }} />}
       {addCusteioOpen && no && <AddCusteioModal onClose={() => setAddCusteioOpen(false)} onAdd={(nome, valor) => { api.addCusteio(planoId, no.id, nome, valor); setAddCusteioOpen(false); refresh() }} />}
-      {regraOpen && no && <RegraQuadroModal planoId={planoId} no={no} onClose={() => setRegraOpen(false)} onApply={(sugs) => { api.materializarQuadro(planoId, no.id, sugs); setRegraOpen(false); setTab('Equipe / RH'); refresh() }} />}
+      {regraOpen && no && <RegraQuadroModal planoId={planoId} no={no} onClose={() => setRegraOpen(false)} onApply={(sugs) => { api.materializarQuadro(planoId, no.id, sugs); setRegraOpen(false); setGrupoEquipeId(null); setTab('Equipe / RH'); refresh() }} />}
       {renameOpen && no && <RenomearModal nome={no.nome} onClose={() => setRenameOpen(false)} onSave={(nome) => { api.renomearNo(planoId, no.id, nome); setRenameOpen(false); refresh() }} />}
       {justif && <JustificativaModal data={justif} onClose={() => setJustif(null)} />}
     </div>
@@ -268,19 +283,33 @@ function JustificativaModal({ data, onClose }) {
 }
 
 /* ----------------------------------------------------------- árvore */
-function Tree({ nodes, selId, onSelect, planoId }) {
+function Tree({ nodes, selId, grupoEquipeId, onSelect, onSelectGrupo, planoId }) {
   return (
     <div>
       {nodes.map((n) => {
         const pend = n.escopo ? api.pendenciasDoNo(n).length : 0
         return (
           <div key={n.id}>
-            <div className={`tree-node ${selId === n.id ? 'active' : ''}`} onClick={() => onSelect(n)}>
+            <div className={`tree-node ${selId === n.id && !grupoEquipeId ? 'active' : ''}`} onClick={() => onSelect(n)}>
               <span className="ico">{n.icone}</span>
-              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{n.nome}</span>
+              <span title={n.nome} style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{n.nome}</span>
               {n.escopo && (pend > 0 ? <span className="pend" title={`${pend} pendência(s)`} /> : <span className="ok">✓</span>)}
             </div>
-            {n.children && <div className="tree-children"><Tree nodes={n.children} selId={selId} onSelect={onSelect} planoId={planoId} /></div>}
+            {n.escopo && (n.gruposEquipe || []).length > 0 && (
+              <div className="tree-children tree-team-groups">
+                {n.gruposEquipe.map((grupo) => (
+                  <div
+                    key={grupo.id}
+                    className={`tree-node tree-team-group ${selId === n.id && grupoEquipeId === grupo.id ? 'active' : ''}`}
+                    onClick={() => onSelectGrupo(n, grupo)}
+                  >
+                    <span className="ico">•</span>
+                    <span title={grupo.nome} style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{grupo.nome}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+            {n.children && <div className="tree-children"><Tree nodes={n.children} selId={selId} grupoEquipeId={grupoEquipeId} onSelect={onSelect} onSelectGrupo={onSelectGrupo} planoId={planoId} /></div>}
           </div>
         )
       })}
@@ -360,13 +389,18 @@ function TabParametros({ no, planoId, refresh }) {
 }
 
 /* ----------------------------------------------------------- aba Equipe / RH */
-function TabEquipe({ no, planoId, calc, cebas, modelo, refresh, onMemo, onAdd, onRegra, onJustif }) {
+function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo, refresh, onMemo, onAdd, onRegra, onJustif }) {
   const [nonce, setNonce] = useState(0)
   const rdc = no.rdcId != null ? api.getRDC(no.rdcId) : null
   const conf = api.conformidadeRDC(planoId, no)
   const previstoMap = {}
   conf.previsto.forEach((p) => { previstoMap[p.perfilId] = p })
   const rascunho = rdc ? api.temRascunho(no) : false
+  const itensVisiveis = grupoEquipe
+    ? calc.itens.filter((item) => item.categoriaGeralId === grupoEquipe.id)
+    : calc.itens
+  const equipeVisivel = itensVisiveis.reduce((total, item) => total + item.quantidade, 0)
+  const rhVisivel = itensVisiveis.reduce((total, item) => total + item.custo_total, 0)
 
   // Edição de quantitativo: se desviar do que a RDC preconiza, exige justificativa.
   const editar = (it, raw) => {
@@ -394,6 +428,15 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, refresh, onMemo, onAdd, o
 
   return (
     <>
+      {grupoEquipe && (
+        <div className="team-group-filter mb-2">
+          <div>
+            <span className="muted">Categoria geral</span>
+            <b>{grupoEquipe.nome}</b>
+          </div>
+          <button className="btn sm ghost" title="Mostrar equipe completa" aria-label="Mostrar equipe completa" onClick={onClearGrupo}>✕</button>
+        </div>
+      )}
       {rdc && (
         <div className="card card-pad mb-2" style={{ borderLeft: `3px solid ${conf.desvios.length ? 'var(--ambar-600, #b8860b)' : 'var(--verde-600, #2e7d32)'}` }}>
           <div className="spread">
@@ -429,15 +472,15 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, refresh, onMemo, onAdd, o
           <table className="tbl">
             <thead>
               <tr>
-                <th>Categoria / Perfil</th><th className="num">Qtd</th><th className="num">Norma prevê</th>
+                <th>Categoria profissional</th><th className="num">Qtd</th>
                 <th className="num">QP 40h</th><th className="num">QP 30h</th><th className="num">CHS</th>
                 <th className="num">Salário base</th><th className="num">Salário total</th>
                 <th className="num">Encargos</th><th className="num">Benefícios</th>
-                <th className="num">Custo total</th><th>Origem</th><th></th>
+                <th className="num">Custo total</th><th></th>
               </tr>
             </thead>
             <tbody>
-              {calc.itens.map((it) => {
+              {itensVisiveis.map((it) => {
                 const prev = previstoMap[it.perfil.id]
                 const desvio = prev != null && it.quantidade !== prev.qtd
                 const justif = (no.desvios || {})[it.perfil.id]?.motivo
@@ -445,23 +488,12 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, refresh, onMemo, onAdd, o
                   <tr key={it.id}>
                     <td>
                       <b>{it.perfil.label}</b>
-                      {it.perfil.funcaoNormativa && <div className="hint">Função normativa: {it.perfil.funcaoNormativa}</div>}
-                      {it.referenciaSalarial && <div className="hint">Base salarial: {it.referenciaSalarial.categoria} · CH ref. {num(it.referenciaSalarial.chReferencia, 0)}h</div>}
-                      {it.salarioProvisorio && <div className="hint">Correspondência salarial aproximada; revisar cadastro.</div>}
-                      {it.memoriaCalculo?.fonte && <div className="hint">{it.memoriaCalculo.fonte}</div>}
                     </td>
                     <td className="num">
                       <input key={`${it.id}-${it.quantidade}-${nonce}`} className="cell-input"
                         style={desvio ? { borderColor: justif ? 'var(--ambar-600, #b8860b)' : 'var(--vermelho-600, #c0392b)' } : null}
                         defaultValue={it.quantidade} type="number" step="1" min="0"
                         onBlur={(e) => editar(it, e.target.value)} />
-                    </td>
-                    <td className="num tnum">
-                      {prev != null
-                        ? <span className={desvio ? '' : 'muted'} title={`${prev.turno !== '—' ? prev.turno + ' · ' : ''}${prev.tipo === 'por_leito' ? `1:${prev.base} × fator ${prev.fator}` : 'fixo'} — ${prev.fonte}`}>
-                            {num(prev.qtd)}{prev.rascunho ? ' 🚧' : ''}{desvio && (justif ? ' 📝' : ' ⚠️')}
-                          </span>
-                        : <span className="muted" title="Profissional não previsto pela norma">fora da norma</span>}
                     </td>
                     <td className="num tnum">{it.qp40 != null ? num(it.qp40, 0) : <span className="muted">-</span>}</td>
                     <td className="num tnum">{it.qp30 != null ? num(it.qp30, 0) : <span className="muted">-</span>}</td>
@@ -473,14 +505,13 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, refresh, onMemo, onAdd, o
                             <option value={40}>40h</option>
                           </select>
                         )
-                        : <span className="muted">-</span>}
+                        : it.chs ? <span className="tnum">{num(it.chs, 0)}h</span> : <span className="muted">-</span>}
                     </td>
                     <td className="num tnum">{brl(it.base)}</td>
                     <td className="num tnum">{brl(it.salario_total)}</td>
                     <td className="num tnum">{brl(it.encargos * it.quantidade)}</td>
                     <td className="num tnum">{brl(it.beneficios * it.quantidade)}</td>
                     <td className="num tnum"><b>{brl(it.custo_total)}</b></td>
-                    <td><OrigemTag origem={it.origem} /></td>
                     <td>
                       <div className="flex" style={{ gap: 2 }}>
                         <button className="btn sm ghost" title="Memória de cálculo" onClick={() => onMemo({ tipo: 'item', it })}>🧮</button>
@@ -490,17 +521,17 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, refresh, onMemo, onAdd, o
                   </tr>
                 )
               })}
-              {calc.itens.length === 0 && (
-                <tr><td colSpan={13} className="muted" style={{ padding: 24, textAlign: 'center' }}>Nenhum profissional. Aplique uma RDC/normativa, adicione manualmente ou use uma regra de quadro.</td></tr>
+              {itensVisiveis.length === 0 && (
+                <tr><td colSpan={11} className="muted" style={{ padding: 24, textAlign: 'center' }}>{grupoEquipe ? 'Nenhum profissional vinculado a esta categoria geral.' : 'Nenhum profissional. Aplique uma RDC/normativa, adicione manualmente ou use uma regra de quadro.'}</td></tr>
               )}
             </tbody>
             <tfoot>
               <tr style={{ background: 'var(--azul-050)', fontWeight: 700 }}>
-                <td>Total da equipe</td>
-                <td className="num tnum">{num(calc.equipe_total)}</td>
-                <td colSpan={8}></td>
-                <td className="num tnum">{brl(calc.rh_total)}</td>
-                <td colSpan={2}></td>
+                <td>{grupoEquipe ? 'Total da categoria geral' : 'Total da equipe'}</td>
+                <td className="num tnum">{num(equipeVisivel)}</td>
+                <td colSpan={7}></td>
+                <td className="num tnum">{brl(rhVisivel)}</td>
+                <td></td>
               </tr>
             </tfoot>
           </table>
@@ -512,7 +543,7 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, refresh, onMemo, onAdd, o
         <button className="btn" onClick={onRegra}>⚙️ Aplicar regra de quadro</button>
         <button className="btn ghost" onClick={() => onMemo({ tipo: 'encargos', cebas, modelo })}>Ver encargos e benefícios</button>
       </div>
-      <Note icon="💡">A coluna <b>Norma prevê</b> mostra o quantitativo normativo. <b>QP 30h/40h</b> vem da matriz v4; mudar Qtd ou CHS atualiza o mesmo item do setor e divergências exigem justificativa. Origem <OrigemTag origem="matriz" /> = matriz v4; <OrigemTag origem="rdc" /> = RDC; <OrigemTag origem="manual" /> = ajuste manual.</Note>
+      <Note icon="💡"><b>QP 30h/40h</b> vem da matriz v4. Mudar Qtd ou CHS atualiza o mesmo item do setor e divergências continuam exigindo justificativa. Norma, origem e fonte permanecem disponíveis na memória de cálculo e no histórico.</Note>
     </>
   )
 }

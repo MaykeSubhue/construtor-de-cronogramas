@@ -35,6 +35,7 @@ import {
 import { sugerirSetorPorTexto } from './parser.js'
 import { gerarCompetencias } from '../lib/format.js'
 import { cronogramasProntos, gruposCronogramasProntos, perfisCronogramasProntos } from '../data/cronogramasProntos.js'
+import { agrupadoresCronogramas } from '../data/agrupadoresCronogramas.js'
 
 const db = initStore(seedDb)
 const persist = () => persistStore(db)
@@ -63,6 +64,31 @@ function perfilCronogramaPronto(perfilId) {
 }
 
 const perfilById = new Proxy({}, { get: (_t, k) => db.perfis.find((p) => String(p.id) === String(k)) || perfilCronogramaPronto(k) || perfilMatriz(k) })
+
+function normalizarModeloComAgrupadores(modelo) {
+  const agrupadoresModelo = agrupadoresCronogramas[modelo.id] || {}
+  return {
+    ...modelo,
+    setores: (modelo.setores || []).map((setor) => {
+      const agrupadores = (agrupadoresModelo[setor.id] || [])
+        .map((grupo, index) => ({ ...grupo, ordem: index + 1 }))
+        .sort((a, b) => a.linhaOrigem - b.linhaOrigem)
+      const linhas = (setor.linhas || []).map((linha) => {
+        const grupo = agrupadores
+          .filter((item) => item.linhaOrigem <= Number(linha.linhaOrigem || 0))
+          .at(-1)
+        return {
+          ...linha,
+          categoriaGeralId: grupo?.id || null,
+          categoriaGeralNome: grupo?.nome || null,
+        }
+      })
+      return { ...setor, agrupadores, linhas }
+    }),
+  }
+}
+
+const cronogramasProntosNormalizados = cronogramasProntos.map(normalizarModeloComAgrupadores)
 
 const SETOR_DEFAULTS = {
   'enfermaria-clinica-adulto': { quantidade: 30, unidade: 'leitos' },
@@ -480,7 +506,7 @@ function resumoCronogramaPronto(modelo) {
 let planosReferenciaGarantidos = false
 
 function grupoDoPlano(plano, unidade) {
-  const modeloOrigem = cronogramasProntos.find((modelo) => modelo.id === plano.templateCronogramaId)
+  const modeloOrigem = cronogramasProntosNormalizados.find((modelo) => modelo.id === plano.templateCronogramaId)
   if (modeloOrigem) return { id: modeloOrigem.grupoId, nome: modeloOrigem.grupoNome }
   const texto = slug(`${unidade?.nome || ''} ${unidade?.tipo || ''} ${plano.nome || ''}`)
   if (/matern|pediatr/.test(texto)) return { id: 'SHPM', nome: 'Hospitais pediátricos e Maternidades' }
@@ -515,6 +541,8 @@ function modeloDePlanoFinalizado(plano) {
         chs: Number(item.chs || perfil?.chs || 40),
         quantidade: Number(item.quantidade_planejada) || 0,
         quantidadeTurno: Number(item.quantidade_turno_12h) || 0,
+        categoriaGeralId: item.categoriaGeralId || null,
+        categoriaGeralNome: item.categoriaGeralNome || null,
         revisar: !!item.revisar || !!item.overrideJustificado,
         linhaOrigem: linhaIndex + 1,
       }
@@ -523,6 +551,7 @@ function modeloDePlanoFinalizado(plano) {
       id: `plano-${plano.id}-setor-${no.id}`,
       nome: no.nome,
       abaOrigem: no.bloco || no.abaOrigem || `Setor ${setorIndex + 1}`,
+      agrupadores: (no.gruposEquipe || []).map((grupo) => ({ ...grupo })),
       linhas,
       resumo: {
         linhasEquipe: linhas.length,
@@ -563,7 +592,7 @@ function todosCronogramasProntos() {
   const finalizados = db.planos
     .filter((plano) => plano.status === 'fechado' && !plano.planoReferencia)
     .map(modeloDePlanoFinalizado)
-  return [...cronogramasProntos, ...finalizados]
+  return [...cronogramasProntosNormalizados, ...finalizados]
 }
 
 export function listCronogramasProntos() {
@@ -582,7 +611,7 @@ export function listCronogramasProntos() {
 export const gruposModelosCronograma = gruposCronogramasProntos
 
 export function getCronogramaPronto(id) {
-  const modelo = todosCronogramasProntos().find((item) => item.id === id) || cronogramasProntos[0]
+  const modelo = todosCronogramasProntos().find((item) => item.id === id) || cronogramasProntosNormalizados[0]
   const referencia = modelo.origemPlanoId || db.planos.find((plano) =>
     plano.planoReferencia && plano.templateCronogramaId === modelo.id)?.id || null
   return { ...modelo, planoReferenciaId: referencia }
@@ -625,12 +654,15 @@ function linhaModeloParaQuadro(linha, modelo, setor) {
     ativo: true,
     modeloCronograma: true,
     revisar: !!linha.revisar,
+    categoriaGeralId: linha.categoriaGeralId || null,
+    categoriaGeralNome: linha.categoriaGeralNome || null,
     memoriaCalculo: {
       formula: 'Linha herdada de modelo de planilha; custos recalculados pelo motor atual do app.',
       fonte: modelo.fonte,
       abaOrigem: setor.abaOrigem,
       linhaOrigem: linha.linhaOrigem,
       categoriaOriginal: linha.categoria,
+      categoriaGeral: linha.categoriaGeralNome || null,
       quantidadeEscolhida: Number(linha.quantidade) || 0,
       observacao: 'Revisar antes de uso oficial quando houver divergência com a matriz normativa.',
     },
@@ -687,6 +719,7 @@ function materializarPlanoDeCronogramaPronto(modelo, payload = {}) {
       origemCriacao: 'modelo_cronograma',
       templateCronogramaId: modelo.id,
       abaOrigem: setor.abaOrigem,
+      gruposEquipe: (setor.agrupadores || []).map((grupo) => ({ ...grupo })),
       foraMatriz: true,
       parametros: [],
       quadro: (setor.linhas || []).map((linha) => linhaModeloParaQuadro(linha, modelo, setor)),
@@ -733,11 +766,49 @@ function unidadeReferenciaDoModelo(modelo) {
   return unidade
 }
 
+function sincronizarAgrupadoresDoSetor(no, setor) {
+  let alterou = false
+  const grupos = (setor.agrupadores || []).map((grupo) => ({ ...grupo }))
+  if (JSON.stringify(no.gruposEquipe || []) !== JSON.stringify(grupos)) {
+    no.gruposEquipe = grupos
+    alterou = true
+  }
+
+  const linhasPorOrigem = new Map((setor.linhas || []).map((linha) => [Number(linha.linhaOrigem), linha]))
+  ;(no.quadro || []).forEach((item) => {
+    const linha = linhasPorOrigem.get(Number(item.memoriaCalculo?.linhaOrigem))
+    if (!linha) return
+    const grupoId = linha.categoriaGeralId || null
+    const grupoNome = linha.categoriaGeralNome || null
+    if (item.categoriaGeralId !== grupoId || item.categoriaGeralNome !== grupoNome) {
+      item.categoriaGeralId = grupoId
+      item.categoriaGeralNome = grupoNome
+      item.memoriaCalculo = { ...(item.memoriaCalculo || {}), categoriaGeral: grupoNome }
+      alterou = true
+    }
+  })
+  return alterou
+}
+
+function sincronizarPlanosComAgrupadores() {
+  let alterou = false
+  db.planos.forEach((plano) => {
+    const modelo = cronogramasProntosNormalizados.find((item) => item.id === plano.templateCronogramaId)
+    if (!modelo) return
+    listEscopos(plano.id).forEach((no) => {
+      const setor = (modelo.setores || []).find((item) =>
+        item.abaOrigem === no.abaOrigem || slug(item.abaOrigem) === slug(no.abaOrigem))
+      if (setor && sincronizarAgrupadoresDoSetor(no, setor)) alterou = true
+    })
+  })
+  return alterou
+}
+
 function garantirPlanosReferencia() {
   if (planosReferenciaGarantidos) return
   planosReferenciaGarantidos = true
   let alterou = false
-  cronogramasProntos.forEach((modelo) => {
+  cronogramasProntosNormalizados.forEach((modelo) => {
     const existente = db.planos.find((plano) => plano.planoReferencia && plano.templateCronogramaId === modelo.id)
     if (existente) return
     const unidade = unidadeReferenciaDoModelo(modelo)
@@ -752,6 +823,7 @@ function garantirPlanosReferencia() {
     })
     alterou = true
   })
+  if (sincronizarPlanosComAgrupadores()) alterou = true
   if (alterou) persist()
 }
 
@@ -1851,10 +1923,18 @@ export function removeNo(planoId, noId) {
   persist()
 }
 
-export function addProfissional(planoId, noId, perfilId, qtd) {
+export function addProfissional(planoId, noId, perfilId, qtd, categoriaGeral = null) {
   const no = findNo(planoId, noId)
   no.quadro = no.quadro || []
-  const item = { id: ++_novoId, perfil_alocacao_id: Number(perfilId), quantidade_planejada: Math.max(0, Math.round(qtd)), origem: 'manual', ativo: true }
+  const item = {
+    id: ++_novoId,
+    perfil_alocacao_id: Number(perfilId),
+    quantidade_planejada: Math.max(0, Math.round(qtd)),
+    origem: 'manual',
+    ativo: true,
+    categoriaGeralId: categoriaGeral?.id || null,
+    categoriaGeralNome: categoriaGeral?.nome || null,
+  }
   no.quadro.push(item)
   persist()
   return item
