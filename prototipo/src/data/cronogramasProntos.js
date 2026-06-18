@@ -2742,6 +2742,1756 @@ export const perfisCronogramasProntos = [
     "categoria": "Terapia Ocupacional",
     "funcao": "Terapia Ocupacional",
     "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-multiprofissional-responsavel-tecnico",
+    "nome": "COORDENADOR MULTIPROFISSIONAL RESPONSÁVEL TÉCNICO",
+    "categoria": "COORDENADOR MULTIPROFISSIONAL RESPONSÁVEL TÉCNICO",
+    "funcao": "COORDENADOR MULTIPROFISSIONAL RESPONSÁVEL TÉCNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador-responsavel-tecnico-terapia-intensiva",
+    "nome": "MÉDICO COORDENADOR RESPONSÁVEL TÉCNICO TERAPIA INTENSIVA",
+    "categoria": "MÉDICO COORDENADOR RESPONSÁVEL TÉCNICO TERAPIA INTENSIVA",
+    "funcao": "MÉDICO COORDENADOR RESPONSÁVEL TÉCNICO TERAPIA INTENSIVA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-coordenador-responsavel-tecnico-terapia-intensiva",
+    "nome": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO TERAPIA INTENSIVA",
+    "categoria": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO TERAPIA INTENSIVA",
+    "funcao": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO TERAPIA INTENSIVA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapeuta-coordenador-rt-terapia-intensiva",
+    "nome": "FISIOTERAPEUTA COORDENADOR RT TERAPIA INTENSIVA",
+    "categoria": "FISIOTERAPEUTA COORDENADOR RT TERAPIA INTENSIVA",
+    "funcao": "FISIOTERAPEUTA COORDENADOR RT TERAPIA INTENSIVA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-de-ccih-epidemiologista",
+    "nome": "MÉDICO DE CCIH/ EPIDEMIOLOGISTA",
+    "categoria": "MÉDICO DE CCIH/ EPIDEMIOLOGISTA",
+    "funcao": "MÉDICO DE CCIH/ EPIDEMIOLOGISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador-clinica-medica",
+    "nome": "MÉDICO COORDENADOR CLÍNICA MÉDICA",
+    "categoria": "MÉDICO COORDENADOR CLÍNICA MÉDICA",
+    "funcao": "MÉDICO COORDENADOR CLÍNICA MÉDICA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-coordenador-responsavel-tecnico-clinica-medica",
+    "nome": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO CLÍNICA MÉDICA",
+    "categoria": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO CLÍNICA MÉDICA",
+    "funcao": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO CLÍNICA MÉDICA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-de-ccih",
+    "nome": "ENFERMEIRO DE CCIH",
+    "categoria": "ENFERMEIRO DE CCIH",
+    "funcao": "ENFERMEIRO DE CCIH",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-supervisor-dia",
+    "nome": "ENFERMEIRO SUPERVISOR DIA",
+    "categoria": "ENFERMEIRO SUPERVISOR DIA",
+    "funcao": "ENFERMEIRO SUPERVISOR DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:dentista-rotina",
+    "nome": "DENTISTA ROTINA",
+    "categoria": "DENTISTA ROTINA",
+    "funcao": "DENTISTA ROTINA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapeuta-rotina",
+    "nome": "FISIOTERAPEUTA ROTINA",
+    "categoria": "FISIOTERAPEUTA ROTINA",
+    "funcao": "FISIOTERAPEUTA ROTINA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapeuta-dia",
+    "nome": "FISIOTERAPEUTA DIA",
+    "categoria": "FISIOTERAPEUTA DIA",
+    "funcao": "FISIOTERAPEUTA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-enfermagem-dia",
+    "nome": "TEC ENFERMAGEM DIA",
+    "categoria": "TEC ENFERMAGEM DIA",
+    "funcao": "TEC ENFERMAGEM DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-administrativo-diurno",
+    "nome": "TEC ADMINISTRATIVO DIURNO",
+    "categoria": "TEC ADMINISTRATIVO DIURNO",
+    "funcao": "TEC ADMINISTRATIVO DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-administrativo-noturno",
+    "nome": "TEC ADMINISTRATIVO NOTURNO",
+    "categoria": "TEC ADMINISTRATIVO NOTURNO",
+    "funcao": "TEC ADMINISTRATIVO NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:psicologo-dia",
+    "nome": "PSICÓLOGO DIA",
+    "categoria": "PSICÓLOGO DIA",
+    "funcao": "PSICÓLOGO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:servico-social-dia",
+    "nome": "SERVIÇO SOCIAL DIA",
+    "categoria": "SERVIÇO SOCIAL DIA",
+    "funcao": "SERVIÇO SOCIAL DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-plantonista-psiquiatra-diurno",
+    "nome": "MÉDICO PLANTONISTA PSIQUIATRA DIURNO",
+    "categoria": "MÉDICO PLANTONISTA PSIQUIATRA DIURNO",
+    "funcao": "MÉDICO PLANTONISTA PSIQUIATRA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-plantonista-psiquiatra-noturno",
+    "nome": "MÉDICO PLANTONISTA PSIQUIATRA NOTURNO",
+    "categoria": "MÉDICO PLANTONISTA PSIQUIATRA NOTURNO",
+    "funcao": "MÉDICO PLANTONISTA PSIQUIATRA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:auxiliar-administrativo-dia",
+    "nome": "AUXILIAR ADMINISTRATIVO DIA",
+    "categoria": "AUXILIAR ADMINISTRATIVO DIA",
+    "funcao": "AUXILIAR ADMINISTRATIVO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:auxiliar-administrativo-noturno",
+    "nome": "AUXILIAR ADMINISTRATIVO NOTURNO",
+    "categoria": "AUXILIAR ADMINISTRATIVO NOTURNO",
+    "funcao": "AUXILIAR ADMINISTRATIVO NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador-ambulatorio",
+    "nome": "MÉDICO COORDENADOR AMBULATÓRIO",
+    "categoria": "MÉDICO COORDENADOR AMBULATÓRIO",
+    "funcao": "MÉDICO COORDENADOR AMBULATÓRIO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-coordenador-de-ambulatorio",
+    "nome": "ENFERMEIRO COORDENADOR DE AMBULATÓRIO",
+    "categoria": "ENFERMEIRO COORDENADOR DE AMBULATÓRIO",
+    "funcao": "ENFERMEIRO COORDENADOR DE AMBULATÓRIO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:gerente-do-servico-social",
+    "nome": "GERENTE DO SERVIÇO SOCIAL",
+    "categoria": "GERENTE DO SERVIÇO SOCIAL",
+    "funcao": "GERENTE DO SERVIÇO SOCIAL",
+    "revisar": true
+  },
+  {
+    "id": "modelo:gerente-fisioterapeuta",
+    "nome": "GERENTE FISIOTERAPEUTA",
+    "categoria": "GERENTE FISIOTERAPEUTA",
+    "funcao": "GERENTE FISIOTERAPEUTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-de-farmacia-rt",
+    "nome": "COORDENADOR DE FARMÁCIA RT",
+    "categoria": "COORDENADOR DE FARMÁCIA RT",
+    "funcao": "COORDENADOR DE FARMÁCIA RT",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador-cirurgia-geral",
+    "nome": "MÉDICO COORDENADOR CIRURGIA GERAL",
+    "categoria": "MÉDICO COORDENADOR CIRURGIA GERAL",
+    "funcao": "MÉDICO COORDENADOR CIRURGIA GERAL",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador-anestesia",
+    "nome": "MÉDICO COORDENADOR ANESTESIA",
+    "categoria": "MÉDICO COORDENADOR ANESTESIA",
+    "funcao": "MÉDICO COORDENADOR ANESTESIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-do-servico-de-imagem",
+    "nome": "COORDENADOR DO SERVIÇO DE IMAGEM",
+    "categoria": "COORDENADOR DO SERVIÇO DE IMAGEM",
+    "funcao": "COORDENADOR DO SERVIÇO DE IMAGEM",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador-responsavel-tecnico",
+    "nome": "MÉDICO COORDENADOR RESPONSÁVEL TÉCNICO",
+    "categoria": "MÉDICO COORDENADOR RESPONSÁVEL TÉCNICO",
+    "funcao": "MÉDICO COORDENADOR RESPONSÁVEL TÉCNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-coordenador-responsavel-tecnico",
+    "nome": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO",
+    "categoria": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO",
+    "funcao": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapeuta-coordenador-rt",
+    "nome": "FISIOTERAPEUTA COORDENADOR RT",
+    "categoria": "FISIOTERAPEUTA COORDENADOR RT",
+    "funcao": "FISIOTERAPEUTA COORDENADOR RT",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador",
+    "nome": "MÉDICO COORDENADOR",
+    "categoria": "MÉDICO COORDENADOR",
+    "funcao": "MÉDICO COORDENADOR",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgiao-plantonista-diurno",
+    "nome": "MÉDICO CIRURGIÃO PLANTONISTA DIURNO",
+    "categoria": "MÉDICO CIRURGIÃO PLANTONISTA DIURNO",
+    "funcao": "MÉDICO CIRURGIÃO PLANTONISTA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgiao-plantonista-noturno",
+    "nome": "MÉDICO CIRURGIÃO PLANTONISTA NOTURNO",
+    "categoria": "MÉDICO CIRURGIÃO PLANTONISTA NOTURNO",
+    "funcao": "MÉDICO CIRURGIÃO PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-enfermagem-diarista",
+    "nome": "TEC ENFERMAGEM DIARISTA",
+    "categoria": "TEC ENFERMAGEM DIARISTA",
+    "funcao": "TEC ENFERMAGEM DIARISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-adminsitrativo-diurno",
+    "nome": "TEC ADMINSITRATIVO DIURNO",
+    "categoria": "TEC ADMINSITRATIVO DIURNO",
+    "funcao": "TEC ADMINSITRATIVO DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-adminsitrativo-noturno",
+    "nome": "TEC ADMINSITRATIVO NOTURNO",
+    "categoria": "TEC ADMINSITRATIVO NOTURNO",
+    "funcao": "TEC ADMINSITRATIVO NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:instrumentador-diurno",
+    "nome": "INSTRUMENTADOR DIURNO",
+    "categoria": "INSTRUMENTADOR DIURNO",
+    "funcao": "INSTRUMENTADOR DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:instrumentador-noturno",
+    "nome": "INSTRUMENTADOR NOTURNO",
+    "categoria": "INSTRUMENTADOR NOTURNO",
+    "funcao": "INSTRUMENTADOR NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapeuta-reabilitacao-ortopedica",
+    "nome": "FISIOTERAPEUTA REABILITAÇÃO ORTOPÉDICA",
+    "categoria": "FISIOTERAPEUTA REABILITAÇÃO ORTOPÉDICA",
+    "funcao": "FISIOTERAPEUTA REABILITAÇÃO ORTOPÉDICA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapeuta-reabilitacao-respiratoria",
+    "nome": "FISIOTERAPEUTA REABILITAÇÃO RESPIRATÓRIA",
+    "categoria": "FISIOTERAPEUTA REABILITAÇÃO RESPIRATÓRIA",
+    "funcao": "FISIOTERAPEUTA REABILITAÇÃO RESPIRATÓRIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfemagem",
+    "nome": "TÉCNICO DE ENFEMAGEM",
+    "categoria": "TÉCNICO DE ENFEMAGEM",
+    "funcao": "TÉCNICO DE ENFEMAGEM",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-medico-radiologista-rt",
+    "nome": "COORDENADOR MÉDICO RADIOLOGISTA RT",
+    "categoria": "COORDENADOR MÉDICO RADIOLOGISTA RT",
+    "funcao": "COORDENADOR MÉDICO RADIOLOGISTA RT",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-radiologista-tele-laudo",
+    "nome": "MÉDICO RADIOLOGISTA TELE LAUDO",
+    "categoria": "MÉDICO RADIOLOGISTA TELE LAUDO",
+    "funcao": "MÉDICO RADIOLOGISTA TELE LAUDO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-especialista-doppler-arterial-venoso",
+    "nome": "MÉDICO ESPECIALISTA DOPPLER*arterial/venoso",
+    "categoria": "MÉDICO ESPECIALISTA DOPPLER*arterial/venoso",
+    "funcao": "MÉDICO ESPECIALISTA DOPPLER*arterial/venoso",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-especialista-ecocardiografia-transtoracica",
+    "nome": "MÉDICO ESPECIALISTA ECOCARDIOGRAFIA TRANSTORACICA",
+    "categoria": "MÉDICO ESPECIALISTA ECOCARDIOGRAFIA TRANSTORACICA",
+    "funcao": "MÉDICO ESPECIALISTA ECOCARDIOGRAFIA TRANSTORACICA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-ultrassonografia",
+    "nome": "MÉDICO ULTRASSONOGRAFIA",
+    "categoria": "MÉDICO ULTRASSONOGRAFIA",
+    "funcao": "MÉDICO ULTRASSONOGRAFIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-radiologia-diurno",
+    "nome": "TÉC RADIOLOGIA DIURNO",
+    "categoria": "TÉC RADIOLOGIA DIURNO",
+    "funcao": "TÉC RADIOLOGIA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-radiologia-noturno",
+    "nome": "TEC RADIOLOGIA NOTURNO",
+    "categoria": "TEC RADIOLOGIA NOTURNO",
+    "funcao": "TEC RADIOLOGIA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-tomografia-diurno",
+    "nome": "TEC TOMOGRAFIA DIURNO",
+    "categoria": "TEC TOMOGRAFIA DIURNO",
+    "funcao": "TEC TOMOGRAFIA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-tomografia-noturno",
+    "nome": "TÉC TOMOGRAFIA NOTURNO",
+    "categoria": "TÉC TOMOGRAFIA NOTURNO",
+    "funcao": "TÉC TOMOGRAFIA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-especialista-endoscopia-digestiva-alta",
+    "nome": "MÉDICO ESPECIALISTA ENDOSCOPIA DIGESTIVA ALTA",
+    "categoria": "MÉDICO ESPECIALISTA ENDOSCOPIA DIGESTIVA ALTA",
+    "funcao": "MÉDICO ESPECIALISTA ENDOSCOPIA DIGESTIVA ALTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-colonoscopia",
+    "nome": "MÉDICO COLONOSCOPIA",
+    "categoria": "MÉDICO COLONOSCOPIA",
+    "funcao": "MÉDICO COLONOSCOPIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-anestesista",
+    "nome": "MÉDICO ANESTESISTA",
+    "categoria": "MÉDICO ANESTESISTA",
+    "funcao": "MÉDICO ANESTESISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-angiologia",
+    "nome": "MÉDICO ANGIOLOGIA",
+    "categoria": "MÉDICO ANGIOLOGIA",
+    "funcao": "MÉDICO ANGIOLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cardiologia",
+    "nome": "MÉDICO CARDIOLOGIA",
+    "categoria": "MÉDICO CARDIOLOGIA",
+    "funcao": "MÉDICO CARDIOLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgia-geral",
+    "nome": "MÉDICO CIRURGIA GERAL",
+    "categoria": "MÉDICO CIRURGIA GERAL",
+    "funcao": "MÉDICO CIRURGIA GERAL",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgia-vascular",
+    "nome": "MÉDICO CIRURGIA VASCULAR",
+    "categoria": "MÉDICO CIRURGIA VASCULAR",
+    "funcao": "MÉDICO CIRURGIA VASCULAR",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-colo-proctologia",
+    "nome": "MÉDICO COLO PROCTOLOGIA",
+    "categoria": "MÉDICO COLO PROCTOLOGIA",
+    "funcao": "MÉDICO COLO PROCTOLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-dermatologia",
+    "nome": "MÉDICO DERMATOLOGIA",
+    "categoria": "MÉDICO DERMATOLOGIA",
+    "funcao": "MÉDICO DERMATOLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-endocrinologia",
+    "nome": "MÉDICO ENDOCRINOLOGIA",
+    "categoria": "MÉDICO ENDOCRINOLOGIA",
+    "funcao": "MÉDICO ENDOCRINOLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-gastroenterologia",
+    "nome": "MÉDICO GASTROENTEROLOGIA",
+    "categoria": "MÉDICO GASTROENTEROLOGIA",
+    "funcao": "MÉDICO GASTROENTEROLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-ginecologia",
+    "nome": "MÉDICO GINECOLOGIA -",
+    "categoria": "MÉDICO GINECOLOGIA -",
+    "funcao": "MÉDICO GINECOLOGIA -",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-nefrologia",
+    "nome": "MÉDICO NEFROLOGIA",
+    "categoria": "MÉDICO NEFROLOGIA",
+    "funcao": "MÉDICO NEFROLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-neurologia",
+    "nome": "MÉDICO NEUROLOGIA",
+    "categoria": "MÉDICO NEUROLOGIA",
+    "funcao": "MÉDICO NEUROLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-ortopedia",
+    "nome": "MÉDICO ORTOPEDIA",
+    "categoria": "MÉDICO ORTOPEDIA",
+    "funcao": "MÉDICO ORTOPEDIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-otorrinolaringologia",
+    "nome": "MÉDICO OTORRINOLARINGOLOGIA",
+    "categoria": "MÉDICO OTORRINOLARINGOLOGIA",
+    "funcao": "MÉDICO OTORRINOLARINGOLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-pneumologia",
+    "nome": "MÉDICO PNEUMOLOGIA",
+    "categoria": "MÉDICO PNEUMOLOGIA",
+    "funcao": "MÉDICO PNEUMOLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-psiquiatria",
+    "nome": "MÉDICO PSIQUIATRIA",
+    "categoria": "MÉDICO PSIQUIATRIA",
+    "funcao": "MÉDICO PSIQUIATRIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-reumatologia",
+    "nome": "MÉDICO REUMATOLOGIA",
+    "categoria": "MÉDICO REUMATOLOGIA",
+    "funcao": "MÉDICO REUMATOLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-urologia",
+    "nome": "MÉDICO UROLOGIA",
+    "categoria": "MÉDICO UROLOGIA",
+    "funcao": "MÉDICO UROLOGIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-reabilitacao-reumatologica",
+    "nome": "MÉDICO REABILITAÇÃO REUMATOLÓGICA",
+    "categoria": "MÉDICO REABILITAÇÃO REUMATOLÓGICA",
+    "funcao": "MÉDICO REABILITAÇÃO REUMATOLÓGICA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:mapa-tecnico-de-enfermagem",
+    "nome": "MAPA TÉCNICO DE ENFERMAGEM",
+    "categoria": "MAPA TÉCNICO DE ENFERMAGEM",
+    "funcao": "MAPA TÉCNICO DE ENFERMAGEM",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfemagem-holter-24h",
+    "nome": "TÉCNICO DE ENFEMAGEM HOLTER 24h",
+    "categoria": "TÉCNICO DE ENFEMAGEM HOLTER 24h",
+    "funcao": "TÉCNICO DE ENFEMAGEM HOLTER 24h",
+    "revisar": true
+  },
+  {
+    "id": "modelo:teste-esforco-ou-teste-ergometrico-2",
+    "nome": "TESTE ESFORCO OU TESTE ERGOMÉTRICO 2",
+    "categoria": "TESTE ESFORCO OU TESTE ERGOMÉTRICO 2",
+    "funcao": "TESTE ESFORCO OU TESTE ERGOMÉTRICO 2",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-enfermagem-representante-tecnico-cti-adulto",
+    "nome": "COORDENADOR ENFERMAGEM REPRESENTANTE TECNICO CTI ADULTO",
+    "categoria": "COORDENADOR ENFERMAGEM REPRESENTANTE TECNICO CTI ADULTO",
+    "funcao": "COORDENADOR ENFERMAGEM REPRESENTANTE TECNICO CTI ADULTO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenacao-fisioterapia-cti-rt",
+    "nome": "COORDENAÇÃO FISIOTERAPIA CTI RT",
+    "categoria": "COORDENAÇÃO FISIOTERAPIA CTI RT",
+    "funcao": "COORDENAÇÃO FISIOTERAPIA CTI RT",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-qualidade",
+    "nome": "ENFERMEIRO QUALIDADE",
+    "categoria": "ENFERMEIRO QUALIDADE",
+    "funcao": "ENFERMEIRO QUALIDADE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapia-dia",
+    "nome": "FISIOTERAPIA DIA",
+    "categoria": "FISIOTERAPIA DIA",
+    "funcao": "FISIOTERAPIA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapia-rotina",
+    "nome": "FISIOTERAPIA ROTINA",
+    "categoria": "FISIOTERAPIA ROTINA",
+    "funcao": "FISIOTERAPIA ROTINA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-intensivista-diurno",
+    "nome": "MÉDICO INTENSIVISTA DIURNO",
+    "categoria": "MÉDICO INTENSIVISTA DIURNO",
+    "funcao": "MÉDICO INTENSIVISTA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-intensivista-noturno",
+    "nome": "MÉDICO INTENSIVISTA NOTURNO",
+    "categoria": "MÉDICO INTENSIVISTA NOTURNO",
+    "funcao": "MÉDICO INTENSIVISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-clinico-dia",
+    "nome": "MÉDICO CLÍNICO DIA",
+    "categoria": "MÉDICO CLÍNICO DIA",
+    "funcao": "MÉDICO CLÍNICO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-clinico-noite",
+    "nome": "MÉDICO CLÍNICO NOITE",
+    "categoria": "MÉDICO CLÍNICO NOITE",
+    "funcao": "MÉDICO CLÍNICO NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-ortopedista-dia",
+    "nome": "MÉDICO ORTOPEDISTA DIA",
+    "categoria": "MÉDICO ORTOPEDISTA DIA",
+    "funcao": "MÉDICO ORTOPEDISTA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-ortopedista-noite",
+    "nome": "MÉDICO ORTOPEDISTA NOITE",
+    "categoria": "MÉDICO ORTOPEDISTA NOITE",
+    "funcao": "MÉDICO ORTOPEDISTA NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-pediatra-dia",
+    "nome": "MÉDICO PEDIATRA DIA",
+    "categoria": "MÉDICO PEDIATRA DIA",
+    "funcao": "MÉDICO PEDIATRA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-pediatra-noite",
+    "nome": "MÉDICO PEDIATRA NOITE",
+    "categoria": "MÉDICO PEDIATRA NOITE",
+    "funcao": "MÉDICO PEDIATRA NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-oftalmologista-dia",
+    "nome": "MÉDICO OFTALMOLOGISTA DIA",
+    "categoria": "MÉDICO OFTALMOLOGISTA DIA",
+    "funcao": "MÉDICO OFTALMOLOGISTA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-oftalmologista-noite",
+    "nome": "MÉDICO OFTALMOLOGISTA NOITE",
+    "categoria": "MÉDICO OFTALMOLOGISTA NOITE",
+    "funcao": "MÉDICO OFTALMOLOGISTA NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-vascular-dia",
+    "nome": "MÉDICO VASCULAR DIA",
+    "categoria": "MÉDICO VASCULAR DIA",
+    "funcao": "MÉDICO VASCULAR DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-vascular-noite",
+    "nome": "MÉDICO VASCULAR NOITE",
+    "categoria": "MÉDICO VASCULAR NOITE",
+    "funcao": "MÉDICO VASCULAR NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-plantonista-noite",
+    "nome": "ENFERMEIRO PLANTONISTA NOITE",
+    "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+    "funcao": "ENFERMEIRO PLANTONISTA NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgiao-geral-dia",
+    "nome": "MÉDICO CIRURGIÃO GERAL DIA",
+    "categoria": "MÉDICO CIRURGIÃO GERAL DIA",
+    "funcao": "MÉDICO CIRURGIÃO GERAL DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgiao-geral-noite",
+    "nome": "MÉDICO CIRURGIÃO GERAL NOITE",
+    "categoria": "MÉDICO CIRURGIÃO GERAL NOITE",
+    "funcao": "MÉDICO CIRURGIÃO GERAL NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:bucomaxilo-dia",
+    "nome": "BUCOMAXILO DIA",
+    "categoria": "BUCOMAXILO DIA",
+    "funcao": "BUCOMAXILO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:bucomaxilo-noite",
+    "nome": "BUCOMAXILO NOITE",
+    "categoria": "BUCOMAXILO NOITE",
+    "funcao": "BUCOMAXILO NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapeuta-noite",
+    "nome": "FISIOTERAPEUTA NOITE",
+    "categoria": "FISIOTERAPEUTA NOITE",
+    "funcao": "FISIOTERAPEUTA NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:assistente-social-noite",
+    "nome": "ASSISTENTE SOCIAL NOITE",
+    "categoria": "ASSISTENTE SOCIAL NOITE",
+    "funcao": "ASSISTENTE SOCIAL NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:maqueiro-dia",
+    "nome": "MAQUEIRO DIA",
+    "categoria": "MAQUEIRO DIA",
+    "funcao": "MAQUEIRO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:maqueiro-noite",
+    "nome": "MAQUEIRO NOITE",
+    "categoria": "MAQUEIRO NOITE",
+    "funcao": "MAQUEIRO NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-gesso-dia",
+    "nome": "TECNICO DE GESSO DIA",
+    "categoria": "TECNICO DE GESSO DIA",
+    "funcao": "TECNICO DE GESSO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-gesso-noite",
+    "nome": "TECNICO DE GESSO NOITE",
+    "categoria": "TECNICO DE GESSO NOITE",
+    "funcao": "TECNICO DE GESSO NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgiao-diurno",
+    "nome": "MEDICO CIRURGIÂO DIURNO",
+    "categoria": "MEDICO CIRURGIÂO DIURNO",
+    "funcao": "MEDICO CIRURGIÂO DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgiao-noturno",
+    "nome": "MEDICO CIRURGIÂO NOTURNO",
+    "categoria": "MEDICO CIRURGIÂO NOTURNO",
+    "funcao": "MEDICO CIRURGIÂO NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-plantonista-clinico",
+    "nome": "Médico plantonista CLÍNICO",
+    "categoria": "Médico plantonista CLÍNICO",
+    "funcao": "Médico plantonista CLÍNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-plantonista-clinico-noturno",
+    "nome": "Médico plantonista CLÍNICO (NOTURNO)",
+    "categoria": "Médico plantonista CLÍNICO (NOTURNO)",
+    "funcao": "Médico plantonista CLÍNICO (NOTURNO)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-ortopedia-dia",
+    "nome": "MÉDICO ORTOPEDIA DIA",
+    "categoria": "MÉDICO ORTOPEDIA DIA",
+    "funcao": "MÉDICO ORTOPEDIA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-ortopedia-noite",
+    "nome": "MÉDICO ORTOPEDIA NOITE",
+    "categoria": "MÉDICO ORTOPEDIA NOITE",
+    "funcao": "MÉDICO ORTOPEDIA NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgiao-vascular-dia",
+    "nome": "MÉDICO CIRURGIÃO VASCULAR DIA",
+    "categoria": "MÉDICO CIRURGIÃO VASCULAR DIA",
+    "funcao": "MÉDICO CIRURGIÃO VASCULAR DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgiao-vascular-noite",
+    "nome": "MÉDICO CIRURGIÃO VASCULAR NOITE",
+    "categoria": "MÉDICO CIRURGIÃO VASCULAR NOITE",
+    "funcao": "MÉDICO CIRURGIÃO VASCULAR NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-neurocirurgiao-noite",
+    "nome": "MÉDICO NEUROCIRURGIÃO NOITE",
+    "categoria": "MÉDICO NEUROCIRURGIÃO NOITE",
+    "funcao": "MÉDICO NEUROCIRURGIÃO NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-plantonista-dia",
+    "nome": "TÉCNICO DE ENFERMAGEM PLANTONISTA DIA",
+    "categoria": "TÉCNICO DE ENFERMAGEM PLANTONISTA DIA",
+    "funcao": "TÉCNICO DE ENFERMAGEM PLANTONISTA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-plantonista-noite",
+    "nome": "TÉCNICO DE ENFERMAGEM PLANTONISTA NOITE",
+    "categoria": "TÉCNICO DE ENFERMAGEM PLANTONISTA NOITE",
+    "funcao": "TÉCNICO DE ENFERMAGEM PLANTONISTA NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-neurocirurgiao-rotina",
+    "nome": "MÉDICO NEUROCIRURGIÃO (ROTINA)",
+    "categoria": "MÉDICO NEUROCIRURGIÃO (ROTINA)",
+    "funcao": "MÉDICO NEUROCIRURGIÃO (ROTINA)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-neurocirurgiao-dia",
+    "nome": "MÉDICO NEUROCIRURGIÃO DIA",
+    "categoria": "MÉDICO NEUROCIRURGIÃO DIA",
+    "funcao": "MÉDICO NEUROCIRURGIÃO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cardiologista-rotina",
+    "nome": "MÉDICO CARDIOLOGISTA (ROTINA)",
+    "categoria": "MÉDICO CARDIOLOGISTA (ROTINA)",
+    "funcao": "MÉDICO CARDIOLOGISTA (ROTINA)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cardiologista-dia",
+    "nome": "MÉDICO CARDIOLOGISTA DIA",
+    "categoria": "MÉDICO CARDIOLOGISTA DIA",
+    "funcao": "MÉDICO CARDIOLOGISTA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cardiologista-noite",
+    "nome": "MÉDICO CARDIOLOGISTA NOITE",
+    "categoria": "MÉDICO CARDIOLOGISTA NOITE",
+    "funcao": "MÉDICO CARDIOLOGISTA NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-plantonista-12x60h",
+    "nome": "Enfermeiro plantonista (12X60h)",
+    "categoria": "Enfermeiro plantonista (12X60h)",
+    "funcao": "Enfermeiro plantonista (12X60h)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-plantonista-12x60h-noturno",
+    "nome": "Enfermeiro plantonista (12X60h) NOTURNO",
+    "categoria": "Enfermeiro plantonista (12X60h) NOTURNO",
+    "funcao": "Enfermeiro plantonista (12X60h) NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-rotineiro",
+    "nome": "Técnico de Enfermagem (rotineiro)",
+    "categoria": "Técnico de Enfermagem (rotineiro)",
+    "funcao": "Técnico de Enfermagem (rotineiro)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-plantonista-12-x-60h",
+    "nome": "Técnico de Enfermagem - plantonista (12 x 60h)",
+    "categoria": "Técnico de Enfermagem - plantonista (12 x 60h)",
+    "funcao": "Técnico de Enfermagem - plantonista (12 x 60h)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-plantonista-12-x-60h-noturno",
+    "nome": "Técnico de Enfermagem - plantonista (12 x 60h) NOTURNO",
+    "categoria": "Técnico de Enfermagem - plantonista (12 x 60h) NOTURNO",
+    "funcao": "Técnico de Enfermagem - plantonista (12 x 60h) NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapia-noite",
+    "nome": "FISIOTERAPIA NOITE",
+    "categoria": "FISIOTERAPIA NOITE",
+    "funcao": "FISIOTERAPIA NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapeuta-plantao-diurno",
+    "nome": "Fisioterapeuta - plantão diurno",
+    "categoria": "Fisioterapeuta - plantão diurno",
+    "funcao": "Fisioterapeuta - plantão diurno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fisioterapeuta-plantao-noturno",
+    "nome": "Fisioterapeuta - plantão NOTURNO",
+    "categoria": "Fisioterapeuta - plantão NOTURNO",
+    "funcao": "Fisioterapeuta - plantão NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-plantonista-intensivista",
+    "nome": "Médico plantonista INTENSIVISTA",
+    "categoria": "Médico plantonista INTENSIVISTA",
+    "funcao": "Médico plantonista INTENSIVISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-medico",
+    "nome": "COORDENADOR MÉDICO",
+    "categoria": "COORDENADOR MÉDICO",
+    "funcao": "COORDENADOR MÉDICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-de-enfermagem",
+    "nome": "COORDENADOR DE ENFERMAGEM",
+    "categoria": "COORDENADOR DE ENFERMAGEM",
+    "funcao": "COORDENADOR DE ENFERMAGEM",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-anestesista-plantao-dia",
+    "nome": "MÉDICO ANESTESISTA PLANTÃO DIA",
+    "categoria": "MÉDICO ANESTESISTA PLANTÃO DIA",
+    "funcao": "MÉDICO ANESTESISTA PLANTÃO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-anestesista-plantao-noite",
+    "nome": "MÉDICO ANESTESISTA PLANTAO NOITE",
+    "categoria": "MÉDICO ANESTESISTA PLANTAO NOITE",
+    "funcao": "MÉDICO ANESTESISTA PLANTAO NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-plantao-dia",
+    "nome": "ENFERMEIRO PLANTÃO DIA",
+    "categoria": "ENFERMEIRO PLANTÃO DIA",
+    "funcao": "ENFERMEIRO PLANTÃO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-plantao-noite",
+    "nome": "ENFERMEIRO PLANTÃO NOITE",
+    "categoria": "ENFERMEIRO PLANTÃO NOITE",
+    "funcao": "ENFERMEIRO PLANTÃO NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:farmaceutico-plantao-dia",
+    "nome": "FARMACÊUTICO PLANTÃO DIA",
+    "categoria": "FARMACÊUTICO PLANTÃO DIA",
+    "funcao": "FARMACÊUTICO PLANTÃO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:farmaceutico-plantao-noite",
+    "nome": "FARMACÊUTICO PLANTÃO NOITE",
+    "categoria": "FARMACÊUTICO PLANTÃO NOITE",
+    "funcao": "FARMACÊUTICO PLANTÃO NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-farmacia-dia",
+    "nome": "TÉCNICO DE FARMÁCIA DIA",
+    "categoria": "TÉCNICO DE FARMÁCIA DIA",
+    "funcao": "TÉCNICO DE FARMÁCIA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-risco-cirurgico",
+    "nome": "MÉDICO RISCO CIRURGICO",
+    "categoria": "MÉDICO RISCO CIRURGICO",
+    "funcao": "MÉDICO RISCO CIRURGICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-neurocirurgiao-pediatrico",
+    "nome": "MÉDICO NEUROCIRURGIÃO PEDIATRICO",
+    "categoria": "MÉDICO NEUROCIRURGIÃO PEDIATRICO",
+    "funcao": "MÉDICO NEUROCIRURGIÃO PEDIATRICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-neurocirurgiao",
+    "nome": "MÉDICO NEUROCIRURGIÃO",
+    "categoria": "MÉDICO NEUROCIRURGIÃO",
+    "funcao": "MÉDICO NEUROCIRURGIÃO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-oftalmologista",
+    "nome": "MÉDICO OFTALMOLOGISTA",
+    "categoria": "MÉDICO OFTALMOLOGISTA",
+    "funcao": "MÉDICO OFTALMOLOGISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:bucomaxilo",
+    "nome": "BUCOMAXILO",
+    "categoria": "BUCOMAXILO",
+    "funcao": "BUCOMAXILO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:auxiliar-de-consultorio-dentario",
+    "nome": "AUXILIAR DE CONSULTÓRIO DENTÁRIO",
+    "categoria": "AUXILIAR DE CONSULTÓRIO DENTÁRIO",
+    "funcao": "AUXILIAR DE CONSULTÓRIO DENTÁRIO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-gesso",
+    "nome": "TÉCNICO DE GESSO",
+    "categoria": "TÉCNICO DE GESSO",
+    "funcao": "TÉCNICO DE GESSO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:assistente-administrativo",
+    "nome": "ASSISTENTE ADMINISTRATIVO",
+    "categoria": "ASSISTENTE ADMINISTRATIVO",
+    "funcao": "ASSISTENTE ADMINISTRATIVO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-administrativo-diarista",
+    "nome": "TEC ADMINISTRATIVO DIARISTA",
+    "categoria": "TEC ADMINISTRATIVO DIARISTA",
+    "funcao": "TEC ADMINISTRATIVO DIARISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-administrativo-dia",
+    "nome": "TEC ADMINISTRATIVO DIA",
+    "categoria": "TEC ADMINISTRATIVO DIA",
+    "funcao": "TEC ADMINISTRATIVO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-administrativo-noite",
+    "nome": "TEC ADMINISTRATIVO NOITE",
+    "categoria": "TEC ADMINISTRATIVO NOITE",
+    "funcao": "TEC ADMINISTRATIVO NOITE",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-infectologista-rotina",
+    "nome": "MÉDICO INFECTOLOGISTA (ROTINA)",
+    "categoria": "MÉDICO INFECTOLOGISTA (ROTINA)",
+    "funcao": "MÉDICO INFECTOLOGISTA (ROTINA)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-pneumologista-rotina",
+    "nome": "MÉDICO PNEUMOLOGISTA (ROTINA)",
+    "categoria": "MÉDICO PNEUMOLOGISTA (ROTINA)",
+    "funcao": "MÉDICO PNEUMOLOGISTA (ROTINA)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-clinico-plantonista-diurno",
+    "nome": "MÉDICO CLINICO PLANTONISTA DIURNO",
+    "categoria": "MÉDICO CLINICO PLANTONISTA DIURNO",
+    "funcao": "MÉDICO CLINICO PLANTONISTA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-clinico-plantonista-noturno",
+    "nome": "MÉDICO CLINICO PLANTONISTA NOTURNO",
+    "categoria": "MÉDICO CLINICO PLANTONISTA NOTURNO",
+    "funcao": "MÉDICO CLINICO PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-psiquiatra-rotina",
+    "nome": "MÉDICO PSIQUIATRA ROTINA",
+    "categoria": "MÉDICO PSIQUIATRA ROTINA",
+    "funcao": "MÉDICO PSIQUIATRA ROTINA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-psiquiatra-plantonista-diurno",
+    "nome": "MÉDICO PSIQUIATRA PLANTONISTA DIURNO",
+    "categoria": "MÉDICO PSIQUIATRA PLANTONISTA DIURNO",
+    "funcao": "MÉDICO PSIQUIATRA PLANTONISTA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-psiquiatra-plantonista-noturno",
+    "nome": "MÉDICO PSIQUIATRA PLANTONISTA NOTURNO",
+    "categoria": "MÉDICO PSIQUIATRA PLANTONISTA NOTURNO",
+    "funcao": "MÉDICO PSIQUIATRA PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-especialista-broncoscopista",
+    "nome": "MÉDICO ESPECIALISTA BRONCOSCOPISTA",
+    "categoria": "MÉDICO ESPECIALISTA BRONCOSCOPISTA",
+    "funcao": "MÉDICO ESPECIALISTA BRONCOSCOPISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-ultrassonografista-eco",
+    "nome": "MÉDICO ULTRASSONOGRAFISTA/ECO",
+    "categoria": "MÉDICO ULTRASSONOGRAFISTA/ECO",
+    "funcao": "MÉDICO ULTRASSONOGRAFISTA/ECO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-especialista-espirometria",
+    "nome": "MÉDICO ESPECIALISTA ESPIROMETRIA",
+    "categoria": "MÉDICO ESPECIALISTA ESPIROMETRIA",
+    "funcao": "MÉDICO ESPECIALISTA ESPIROMETRIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-anestesiologista",
+    "nome": "MÉDICO ANESTESIOLOGISTA",
+    "categoria": "MÉDICO ANESTESIOLOGISTA",
+    "funcao": "MÉDICO ANESTESIOLOGISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-enfermagem-noturno",
+    "nome": "TECNICO ENFERMAGEM NOTURNO",
+    "categoria": "TECNICO ENFERMAGEM NOTURNO",
+    "funcao": "TECNICO ENFERMAGEM NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-radiologia-diurno",
+    "nome": "TECNICO DE RADIOLOGIA DIURNO",
+    "categoria": "TECNICO DE RADIOLOGIA DIURNO",
+    "funcao": "TECNICO DE RADIOLOGIA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-radiologia-noturno",
+    "nome": "TECNICO DE RADIOLOGIA NOTURNO",
+    "categoria": "TECNICO DE RADIOLOGIA NOTURNO",
+    "funcao": "TECNICO DE RADIOLOGIA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-tomografia-diurno",
+    "nome": "TECNICO DE TOMOGRAFIA DIURNO",
+    "categoria": "TECNICO DE TOMOGRAFIA DIURNO",
+    "funcao": "TECNICO DE TOMOGRAFIA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-tomografia-noturno",
+    "nome": "TECNICO DE TOMOGRAFIA NOTURNO",
+    "categoria": "TECNICO DE TOMOGRAFIA NOTURNO",
+    "funcao": "TECNICO DE TOMOGRAFIA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:psicologo-diarista",
+    "nome": "PSICOLOGO DIARISTA",
+    "categoria": "PSICOLOGO DIARISTA",
+    "funcao": "PSICOLOGO DIARISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:nutricionista-plantonista-noturno",
+    "nome": "NUTRICIONISTA PLANTONISTA NOTURNO",
+    "categoria": "NUTRICIONISTA PLANTONISTA NOTURNO",
+    "funcao": "NUTRICIONISTA PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:farmaceutico-plantao-noturno",
+    "nome": "FARMACÊUTICO PLANTÃO NOTURNO",
+    "categoria": "FARMACÊUTICO PLANTÃO NOTURNO",
+    "funcao": "FARMACÊUTICO PLANTÃO NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-administrativo-plantao-diurno",
+    "nome": "TÉCNICO ADMINISTRATIVO PLANTAO DIURNO",
+    "categoria": "TÉCNICO ADMINISTRATIVO PLANTAO DIURNO",
+    "funcao": "TÉCNICO ADMINISTRATIVO PLANTAO DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-administrativo-plantao-noturno",
+    "nome": "TÉCNICO ADMINISTRATIVO PLANTAO NOTURNO",
+    "categoria": "TÉCNICO ADMINISTRATIVO PLANTAO NOTURNO",
+    "funcao": "TÉCNICO ADMINISTRATIVO PLANTAO NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-ti-rotina",
+    "nome": "TÉCNICO TI ROTINA",
+    "categoria": "TÉCNICO TI ROTINA",
+    "funcao": "TÉCNICO TI ROTINA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:supervisor-administrativo-plantao-diurno",
+    "nome": "SUPERVISOR ADMINISTRATIVO PLANTAO DIURNO",
+    "categoria": "SUPERVISOR ADMINISTRATIVO PLANTAO DIURNO",
+    "funcao": "SUPERVISOR ADMINISTRATIVO PLANTAO DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:supervisor-administrativo-plantao-noturno",
+    "nome": "SUPERVISOR ADMINISTRATIVO PLANTAO NOTURNO",
+    "categoria": "SUPERVISOR ADMINISTRATIVO PLANTAO NOTURNO",
+    "funcao": "SUPERVISOR ADMINISTRATIVO PLANTAO NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-cirurgiao-dentista",
+    "nome": "COORDENADOR CIRURGIÃO DENTISTA",
+    "categoria": "COORDENADOR CIRURGIÃO DENTISTA",
+    "funcao": "COORDENADOR CIRURGIÃO DENTISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:cirurgiao-dentista",
+    "nome": "CIRURGIÃO DENTISTA",
+    "categoria": "CIRURGIÃO DENTISTA",
+    "funcao": "CIRURGIÃO DENTISTA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico",
+    "nome": "MÉDICO",
+    "categoria": "MÉDICO",
+    "funcao": "MÉDICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-responsavel-tecnico",
+    "nome": "MÉDICO RESPONSÁVEL TÉCNICO",
+    "categoria": "MÉDICO RESPONSÁVEL TÉCNICO",
+    "funcao": "MÉDICO RESPONSÁVEL TÉCNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-coordenador-geral-responsavel-tecnico",
+    "nome": "ENFERMEIRO COORDENADOR GERAL RESPONSÁVEL TÉCNICO",
+    "categoria": "ENFERMEIRO COORDENADOR GERAL RESPONSÁVEL TÉCNICO",
+    "funcao": "ENFERMEIRO COORDENADOR GERAL RESPONSÁVEL TÉCNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-medico-hemoterapia",
+    "nome": "COORDENADOR MÉDICO HEMOTERAPIA",
+    "categoria": "COORDENADOR MÉDICO HEMOTERAPIA",
+    "funcao": "COORDENADOR MÉDICO HEMOTERAPIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-medico-setor-de-imagem",
+    "nome": "COORDENADOR MÉDICO SETOR DE IMAGEM",
+    "categoria": "COORDENADOR MÉDICO SETOR DE IMAGEM",
+    "funcao": "COORDENADOR MÉDICO SETOR DE IMAGEM",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-medico-ortopedista-centro-cirurgico-responsavel-tecnico",
+    "nome": "COORDENADOR MÉDICO ORTOPEDISTA CENTRO CIRURGICO RESPONSÁVEL TÉCNICO",
+    "categoria": "COORDENADOR MÉDICO ORTOPEDISTA CENTRO CIRURGICO RESPONSÁVEL TÉCNICO",
+    "funcao": "COORDENADOR MÉDICO ORTOPEDISTA CENTRO CIRURGICO RESPONSÁVEL TÉCNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-medico-cti-adulto-responsavel-tecnico",
+    "nome": "COORDENADOR MÉDICO CTI ADULTO RESPONSÁVEL TÉCNICO",
+    "categoria": "COORDENADOR MÉDICO CTI ADULTO RESPONSÁVEL TÉCNICO",
+    "funcao": "COORDENADOR MÉDICO CTI ADULTO RESPONSÁVEL TÉCNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-enfermeiro-cti-adulto-responsavel-tecnico",
+    "nome": "COORDENADOR ENFERMEIRO CTI ADULTO RESPONSAVEL TECNICO",
+    "categoria": "COORDENADOR ENFERMEIRO CTI ADULTO RESPONSAVEL TECNICO",
+    "funcao": "COORDENADOR ENFERMEIRO CTI ADULTO RESPONSAVEL TECNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-enfermagem-centro-cirurgico-responsavel-tecnico",
+    "nome": "COORDENADOR ENFERMAGEM CENTRO CIRURGICO RESPONSÁVEL TÉCNICO",
+    "categoria": "COORDENADOR ENFERMAGEM CENTRO CIRURGICO RESPONSÁVEL TÉCNICO",
+    "funcao": "COORDENADOR ENFERMAGEM CENTRO CIRURGICO RESPONSÁVEL TÉCNICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-enfermagem-do-setor-de-imagem",
+    "nome": "COORDENADOR ENFERMAGEM DO SETOR DE IMAGEM",
+    "categoria": "COORDENADOR ENFERMAGEM DO SETOR DE IMAGEM",
+    "funcao": "COORDENADOR ENFERMAGEM DO SETOR DE IMAGEM",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-enfermagem-hemoterapia",
+    "nome": "COORDENADOR ENFERMAGEM HEMOTERAPIA",
+    "categoria": "COORDENADOR ENFERMAGEM HEMOTERAPIA",
+    "funcao": "COORDENADOR ENFERMAGEM HEMOTERAPIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-enfermagem-de-ambulatorio",
+    "nome": "COORDENADOR ENFERMAGEM DE AMBULATÓRIO",
+    "categoria": "COORDENADOR ENFERMAGEM DE AMBULATÓRIO",
+    "funcao": "COORDENADOR ENFERMAGEM DE AMBULATÓRIO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-de-equipe-multiprofissional",
+    "nome": "COORDENADOR DE EQUIPE MULTIPROFISSIONAL",
+    "categoria": "COORDENADOR DE EQUIPE MULTIPROFISSIONAL",
+    "funcao": "COORDENADOR DE EQUIPE MULTIPROFISSIONAL",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-chefe-de-equipe-noturno",
+    "nome": "MÉDICO CHEFE DE EQUIPE NOTURNO",
+    "categoria": "MÉDICO CHEFE DE EQUIPE NOTURNO",
+    "funcao": "MÉDICO CHEFE DE EQUIPE NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-de-ccih",
+    "nome": "MÉDICO DE CCIH",
+    "categoria": "MÉDICO DE CCIH",
+    "funcao": "MÉDICO DE CCIH",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-imobilizacao-ortopedica",
+    "nome": "Técnico de Imobilização Ortopedica",
+    "categoria": "Técnico de Imobilização Ortopedica",
+    "funcao": "Técnico de Imobilização Ortopedica",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-adiministrativo",
+    "nome": "Tecnico adiministrativo",
+    "categoria": "Tecnico adiministrativo",
+    "funcao": "Tecnico adiministrativo",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-com-experiencia-em-cti-diurno",
+    "nome": "Médico (Com experiência em CTI) DIURNO",
+    "categoria": "Médico (Com experiência em CTI) DIURNO",
+    "funcao": "Médico (Com experiência em CTI) DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-com-experiencia-em-cti-noturno",
+    "nome": "Médico (Com experiência em CTI) NOTURNO",
+    "categoria": "Médico (Com experiência em CTI) NOTURNO",
+    "funcao": "Médico (Com experiência em CTI) NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-plantao-noturno",
+    "nome": "Técnico de Enfermagem - plantão noturno",
+    "categoria": "Técnico de Enfermagem - plantão noturno",
+    "funcao": "Técnico de Enfermagem - plantão noturno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-administrtivo",
+    "nome": "Tecnico administrtivo",
+    "categoria": "Tecnico administrtivo",
+    "funcao": "Tecnico administrtivo",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-cc-rotina",
+    "nome": "Enfermeiro CC Rotina",
+    "categoria": "Enfermeiro CC Rotina",
+    "funcao": "Enfermeiro CC Rotina",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-plantonista-cc-diurno",
+    "nome": "Enfermeiro - Plantonista CC DIURNO",
+    "categoria": "Enfermeiro - Plantonista CC DIURNO",
+    "funcao": "Enfermeiro - Plantonista CC DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-plantonista-cc-noturno",
+    "nome": "Enfermeiro - Plantonista CC NOTURNO",
+    "categoria": "Enfermeiro - Plantonista CC NOTURNO",
+    "funcao": "Enfermeiro - Plantonista CC NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-cc-plantonista-diurno",
+    "nome": "Técnico de Enfermagem CC - Plantonista Diurno",
+    "categoria": "Técnico de Enfermagem CC - Plantonista Diurno",
+    "funcao": "Técnico de Enfermagem CC - Plantonista Diurno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-cc-plantonista-noturno",
+    "nome": "Técnico de Enfermagem CC - Plantonista noturno",
+    "categoria": "Técnico de Enfermagem CC - Plantonista noturno",
+    "funcao": "Técnico de Enfermagem CC - Plantonista noturno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:instrumentador-cirurgico-plantonista-diurno",
+    "nome": "Instrumentador Cirúrgico (Plantonista) Diurno",
+    "categoria": "Instrumentador Cirúrgico (Plantonista) Diurno",
+    "funcao": "Instrumentador Cirúrgico (Plantonista) Diurno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-cme-rotina",
+    "nome": "Enfermeiro CME Rotina",
+    "categoria": "Enfermeiro CME Rotina",
+    "funcao": "Enfermeiro CME Rotina",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-cme-plantonista-diurno",
+    "nome": "Técnico de Enfermagem CME - Plantonista Diurno",
+    "categoria": "Técnico de Enfermagem CME - Plantonista Diurno",
+    "funcao": "Técnico de Enfermagem CME - Plantonista Diurno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-enfermagem-cme-plantonista-noturno",
+    "nome": "Técnico de Enfermagem CME - Plantonista noturno",
+    "categoria": "Técnico de Enfermagem CME - Plantonista noturno",
+    "funcao": "Técnico de Enfermagem CME - Plantonista noturno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-diurno",
+    "nome": "MÉDICO DIURNO",
+    "categoria": "MÉDICO DIURNO",
+    "funcao": "MÉDICO DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-noturno",
+    "nome": "MÉDICO NOTURNO",
+    "categoria": "MÉDICO NOTURNO",
+    "funcao": "MÉDICO NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-rotina-clinico",
+    "nome": "MÉDICO ROTINA CLINICO",
+    "categoria": "MÉDICO ROTINA CLINICO",
+    "funcao": "MÉDICO ROTINA CLINICO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-cirurgiao-plastico-dia",
+    "nome": "Médico Cirurgião Plástico DIA",
+    "categoria": "Médico Cirurgião Plástico DIA",
+    "funcao": "Médico Cirurgião Plástico DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-administrativo-plantonista-diurno",
+    "nome": "TEC ADMINISTRATIVO PLANTONISTA DIURNO",
+    "categoria": "TEC ADMINISTRATIVO PLANTONISTA DIURNO",
+    "funcao": "TEC ADMINISTRATIVO PLANTONISTA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-administrativo-plantonista-noturno",
+    "nome": "TEC ADMINISTRATIVO PLANTONISTA NOTURNO",
+    "categoria": "TEC ADMINISTRATIVO PLANTONISTA NOTURNO",
+    "funcao": "TEC ADMINISTRATIVO PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:farmaceutico-plantao-diurno",
+    "nome": "FARMACEUTICO PLANTÃO DIURNO",
+    "categoria": "FARMACEUTICO PLANTÃO DIURNO",
+    "funcao": "FARMACEUTICO PLANTÃO DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-farmacia-plantao-diurno",
+    "nome": "TECNICO DE FARMACIA PLANTÃO DIURNO",
+    "categoria": "TECNICO DE FARMACIA PLANTÃO DIURNO",
+    "funcao": "TECNICO DE FARMACIA PLANTÃO DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-farmacia-plantao-noturno",
+    "nome": "TECNICO DE FARMACIA PLANTÃO NOTURNO",
+    "categoria": "TECNICO DE FARMACIA PLANTÃO NOTURNO",
+    "funcao": "TECNICO DE FARMACIA PLANTÃO NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-radiologista-ultrassonografia",
+    "nome": "Médico Radiologista (Ultrassonografia)",
+    "categoria": "Médico Radiologista (Ultrassonografia)",
+    "funcao": "Médico Radiologista (Ultrassonografia)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-rotina-radiologista",
+    "nome": "MÉDICO ROTINA (RADIOLOGISTA)",
+    "categoria": "MÉDICO ROTINA (RADIOLOGISTA)",
+    "funcao": "MÉDICO ROTINA (RADIOLOGISTA)",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-radiologia-plantonista-diurno",
+    "nome": "TÉCNICO RADIOLOGIA - PLANTONISTA DIURNO",
+    "categoria": "TÉCNICO RADIOLOGIA - PLANTONISTA DIURNO",
+    "funcao": "TÉCNICO RADIOLOGIA - PLANTONISTA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-radiologia-plantonista-noturno",
+    "nome": "TÉCNICO RADIOLOGIA - PLANTONISTA NOTURNO",
+    "categoria": "TÉCNICO RADIOLOGIA - PLANTONISTA NOTURNO",
+    "funcao": "TÉCNICO RADIOLOGIA - PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-tomografia-plantonista-diurno",
+    "nome": "TÉCNICO TOMOGRAFIA - PLANTONISTA DIURNO",
+    "categoria": "TÉCNICO TOMOGRAFIA - PLANTONISTA DIURNO",
+    "funcao": "TÉCNICO TOMOGRAFIA - PLANTONISTA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-tomografia-plantonista-noturno",
+    "nome": "TÉCNICO TOMOGRAFIA - PLANTONISTA NOTURNO",
+    "categoria": "TÉCNICO TOMOGRAFIA - PLANTONISTA NOTURNO",
+    "funcao": "TÉCNICO TOMOGRAFIA - PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-radiologia-raiox-plantonista-diurno",
+    "nome": "Técnico de Radiologia (RaioX) Plantonista Diurno",
+    "categoria": "Técnico de Radiologia (RaioX) Plantonista Diurno",
+    "funcao": "Técnico de Radiologia (RaioX) Plantonista Diurno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-radiologia-raiox-plantonista-noturno",
+    "nome": "Técnico de Radiologia (RaioX) Plantonista NOTURNO",
+    "categoria": "Técnico de Radiologia (RaioX) Plantonista NOTURNO",
+    "funcao": "Técnico de Radiologia (RaioX) Plantonista NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-hemoterapia-plantao-diurno",
+    "nome": "Técnico de hemoterapia - plantão diurno",
+    "categoria": "Técnico de hemoterapia - plantão diurno",
+    "funcao": "Técnico de hemoterapia - plantão diurno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-hemoterapia-plantao-noturno",
+    "nome": "Técnico de hemoterapia - plantão noturno",
+    "categoria": "Técnico de hemoterapia - plantão noturno",
+    "funcao": "Técnico de hemoterapia - plantão noturno",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-administrattivo",
+    "nome": "Tecnico administrattivo",
+    "categoria": "Tecnico administrattivo",
+    "funcao": "Tecnico administrattivo",
+    "revisar": true
+  },
+  {
+    "id": "modelo:gerente-multi",
+    "nome": "GERENTE MULTI",
+    "categoria": "GERENTE MULTI",
+    "funcao": "GERENTE MULTI",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador-emergencia-adulto",
+    "nome": "MÉDICO COORDENADOR EMERGÊNCIA ADULTO",
+    "categoria": "MÉDICO COORDENADOR EMERGÊNCIA ADULTO",
+    "funcao": "MÉDICO COORDENADOR EMERGÊNCIA ADULTO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-coordenador-emergencia-adulto",
+    "nome": "ENFERMEIRO COORDENADOR EMERGÊNCIA ADULTO",
+    "categoria": "ENFERMEIRO COORDENADOR EMERGÊNCIA ADULTO",
+    "funcao": "ENFERMEIRO COORDENADOR EMERGÊNCIA ADULTO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador-emergencia-pediatria",
+    "nome": "MÉDICO COORDENADOR EMERGÊNCIA PEDIATRIA",
+    "categoria": "MÉDICO COORDENADOR EMERGÊNCIA PEDIATRIA",
+    "funcao": "MÉDICO COORDENADOR EMERGÊNCIA PEDIATRIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-coordenador-emergencia-pediatria",
+    "nome": "ENFERMEIRO COORDENADOR EMERGÊNCIA PEDIATRIA",
+    "categoria": "ENFERMEIRO COORDENADOR EMERGÊNCIA PEDIATRIA",
+    "funcao": "ENFERMEIRO COORDENADOR EMERGÊNCIA PEDIATRIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-coordenador-clinca-medica",
+    "nome": "MÉDICO COORDENADOR CLINCA MEDICA",
+    "categoria": "MÉDICO COORDENADOR CLINCA MEDICA",
+    "funcao": "MÉDICO COORDENADOR CLINCA MEDICA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:enfermeiro-coordenador-clinca-medica",
+    "nome": "ENFERMEIRO COORDENADOR CLINCA MEDICA",
+    "categoria": "ENFERMEIRO COORDENADOR CLINCA MEDICA",
+    "funcao": "ENFERMEIRO COORDENADOR CLINCA MEDICA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-servico-social",
+    "nome": "COORDENADOR SERVIÇO SOCIAL",
+    "categoria": "COORDENADOR SERVIÇO SOCIAL",
+    "funcao": "COORDENADOR SERVIÇO SOCIAL",
+    "revisar": true
+  },
+  {
+    "id": "modelo:coordenador-de-farmacia",
+    "nome": "COORDENADOR DE FARMÁCIA",
+    "categoria": "COORDENADOR DE FARMÁCIA",
+    "funcao": "COORDENADOR DE FARMÁCIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:fonoaudiologo-dia",
+    "nome": "FONOAUDIÓLOGO DIA",
+    "categoria": "FONOAUDIÓLOGO DIA",
+    "funcao": "FONOAUDIÓLOGO DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-plantonista-dia",
+    "nome": "MÉDICO PLANTONISTA DIA",
+    "categoria": "MÉDICO PLANTONISTA DIA",
+    "funcao": "MÉDICO PLANTONISTA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-clinico-plantonista-dia",
+    "nome": "MÉDICO CLÍNICO PLANTONISTA DIA",
+    "categoria": "MÉDICO CLÍNICO PLANTONISTA DIA",
+    "funcao": "MÉDICO CLÍNICO PLANTONISTA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-rotina-rotina",
+    "nome": "MÉDICO ROTINA ROTINA",
+    "categoria": "MÉDICO ROTINA ROTINA",
+    "funcao": "MÉDICO ROTINA ROTINA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tec-enferamgem-dia",
+    "nome": "TEC ENFERAMGEM DIA",
+    "categoria": "TEC ENFERAMGEM DIA",
+    "funcao": "TEC ENFERAMGEM DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-pediatria-plantonista-dia",
+    "nome": "MÉDICO PEDIATRIA PLANTONISTA DIA",
+    "categoria": "MÉDICO PEDIATRIA PLANTONISTA DIA",
+    "funcao": "MÉDICO PEDIATRIA PLANTONISTA DIA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:medico-pediatria-plantonista-noturno",
+    "nome": "MÉDICO PEDIATRIA PLANTONISTA NOTURNO",
+    "categoria": "MÉDICO PEDIATRIA PLANTONISTA NOTURNO",
+    "funcao": "MÉDICO PEDIATRIA PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:assistente-social-plantonista-noturno",
+    "nome": "ASSISTENTE SOCIAL - PLANTONISTA NOTURNO",
+    "categoria": "ASSISTENTE SOCIAL - PLANTONISTA NOTURNO",
+    "funcao": "ASSISTENTE SOCIAL - PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:psicologo-rotina",
+    "nome": "PSICÓLOGO ROTINA",
+    "categoria": "PSICÓLOGO ROTINA",
+    "funcao": "PSICÓLOGO ROTINA",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-farmacia-plantonista-diurno",
+    "nome": "TÉCNICO DE FARMÁCIA - PLANTONISTA DIURNO",
+    "categoria": "TÉCNICO DE FARMÁCIA - PLANTONISTA DIURNO",
+    "funcao": "TÉCNICO DE FARMÁCIA - PLANTONISTA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-farmacia-plantonista-noturno",
+    "nome": "TÉCNICO DE FARMÁCIA - PLANTONISTA NOTURNO",
+    "categoria": "TÉCNICO DE FARMÁCIA - PLANTONISTA NOTURNO",
+    "funcao": "TÉCNICO DE FARMÁCIA - PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:tecnico-de-higiene-de-saude-bucal",
+    "nome": "TECNICO DE HIGIENE DE SAUDE BUCAL",
+    "categoria": "TECNICO DE HIGIENE DE SAUDE BUCAL",
+    "funcao": "TECNICO DE HIGIENE DE SAUDE BUCAL",
+    "revisar": true
+  },
+  {
+    "id": "modelo:cirurgiao-dentista-plantonista-diurno",
+    "nome": "CIRURGIÃO DENTISTA PLANTONISTA DIURNO",
+    "categoria": "CIRURGIÃO DENTISTA PLANTONISTA DIURNO",
+    "funcao": "CIRURGIÃO DENTISTA PLANTONISTA DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:cirurgiao-dentista-plantonista-noturno",
+    "nome": "CIRURGIÃO DENTISTA PLANTONISTA NOTURNO",
+    "categoria": "CIRURGIÃO DENTISTA PLANTONISTA NOTURNO",
+    "funcao": "CIRURGIÃO DENTISTA PLANTONISTA NOTURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:auxiliar-de-consultorio-dentario-diurno",
+    "nome": "AUXILIAR DE CONSULTORIO DENTARIO DIURNO",
+    "categoria": "AUXILIAR DE CONSULTORIO DENTARIO DIURNO",
+    "funcao": "AUXILIAR DE CONSULTORIO DENTARIO DIURNO",
+    "revisar": true
+  },
+  {
+    "id": "modelo:auxiliar-de-consultorio-dentario-noturno",
+    "nome": "AUXILIAR DE CONSULTORIO DENTARIO NOTURNO",
+    "categoria": "AUXILIAR DE CONSULTORIO DENTARIO NOTURNO",
+    "funcao": "AUXILIAR DE CONSULTORIO DENTARIO NOTURNO",
+    "revisar": true
   }
 ]
 
@@ -5463,6 +7213,28 @@ export const cronogramasProntos = [
         }
       }
     ],
+    "resumoFinanceiro": {
+      "status": "extraido",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": 17965786.83,
+        "ano1": 223674046.1,
+        "ano2": 226368914.2,
+        "contrato": 450042960.3
+      },
+      "comCebas": {
+        "mes1": 15315534.46,
+        "ano1": 190678404.0,
+        "ano2": 192975734.2,
+        "contrato": 383654138.2
+      },
+      "reducao": {
+        "valor": 66388822.1,
+        "percentual": 0.147517
+      },
+      "observacao": "Valores históricos extraídos da planilha de origem. Ao criar um plano, o aplicativo recalcula o financeiro com a base vigente."
+    },
     "resumo": {
       "setores": 13,
       "linhasEquipe": 253,
@@ -5476,8 +7248,8 @@ export const cronogramasProntos = [
     "hospitalNome": "Hospital Federal do Andaraí",
     "unidadeModelo": "Hospital Federal do Andaraí",
     "sigla": "HFA",
-    "grupoId": "SHGE",
-    "grupoNome": "Hospitais Gerais e Especializados",
+    "grupoId": "SUE",
+    "grupoNome": "Hospitais de Urgência e Emergência",
     "descricao": "Modelo clonável baseado no cronograma do Hospital Federal do Andaraí sem CTI, recalculado pelo motor financeiro atual.",
     "fonte": "RDC HFA 2026 - Sem CTI (1).xlsx",
     "tipo": "modelo_cronograma",
@@ -9085,6 +10857,28 @@ export const cronogramasProntos = [
         }
       }
     ],
+    "resumoFinanceiro": {
+      "status": "extraido",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": 30364305.68,
+        "ano1": 364371668.2,
+        "ano2": 364371668.2,
+        "contrato": 728743336.3
+      },
+      "comCebas": {
+        "mes1": 26328820.92,
+        "ano1": 315945851.0,
+        "ano2": 315945851.0,
+        "contrato": 631891702.1
+      },
+      "reducao": {
+        "valor": 96851634.2,
+        "percentual": 0.132902
+      },
+      "observacao": "Valores históricos extraídos da planilha de origem. Ao criar um plano, o aplicativo recalcula o financeiro com a base vigente."
+    },
     "resumo": {
       "setores": 22,
       "linhasEquipe": 332,
@@ -9098,8 +10892,8 @@ export const cronogramasProntos = [
     "hospitalNome": "Hospital Federal Cardoso Fontes",
     "unidadeModelo": "Hospital Federal Cardoso Fontes",
     "sigla": "HFCF",
-    "grupoId": "SHGE",
-    "grupoNome": "Hospitais Gerais e Especializados",
+    "grupoId": "SUE",
+    "grupoNome": "Hospitais de Urgência e Emergência",
     "descricao": "Modelo clonável baseado no cronograma pleno do Hospital Federal Cardoso Fontes, recalculado pelo motor financeiro atual.",
     "fonte": "HFCF PLENO 2026 .xlsx",
     "tipo": "modelo_cronograma",
@@ -11929,6 +13723,28 @@ export const cronogramasProntos = [
         }
       }
     ],
+    "resumoFinanceiro": {
+      "status": "indisponivel",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": null,
+        "ano1": null,
+        "ano2": null,
+        "contrato": null
+      },
+      "comCebas": {
+        "mes1": null,
+        "ano1": null,
+        "ano2": null,
+        "contrato": null
+      },
+      "reducao": {
+        "valor": null,
+        "percentual": null
+      },
+      "observacao": "A planilha de origem contém referências quebradas (#REF!) no resumo e nos cronogramas finais. Os totais históricos não foram apresentados como zero."
+    },
     "resumo": {
       "setores": 18,
       "linhasEquipe": 259,
@@ -13333,6 +15149,28 @@ export const cronogramasProntos = [
         }
       }
     ],
+    "resumoFinanceiro": {
+      "status": "extraido",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": 5828705.57,
+        "ano1": 69944466.84,
+        "ano2": 69944466.84,
+        "contrato": 139888933.7
+      },
+      "comCebas": {
+        "mes1": 4705864.98,
+        "ano1": 56470379.76,
+        "ano2": 56547314.76,
+        "contrato": 113017694.5
+      },
+      "reducao": {
+        "valor": 26871239.2,
+        "percentual": 0.19209
+      },
+      "observacao": "Valores históricos extraídos da planilha de origem. Ao criar um plano, o aplicativo recalcula o financeiro com a base vigente."
+    },
     "resumo": {
       "setores": 8,
       "linhasEquipe": 127,
@@ -13355,7 +15193,7 @@ export const cronogramasProntos = [
     "modoUso": "clonavel",
     "observacao": "Modelo clonável: estrutura e equipe importadas da planilha; financeiro recalculado pelo app.",
     "parametrosCronograma": {
-      "custeioOperacionalPct": 0.0,
+      "custeioOperacionalPct": 0,
       "valeTransporteDia": 9.3,
       "valeRefeicaoDia": 18,
       "mesesCronograma": 24
@@ -14565,11 +16403,8925 @@ export const cronogramasProntos = [
         }
       }
     ],
+    "resumoFinanceiro": {
+      "status": "extraido",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": 6330311.06,
+        "ano1": 75963732.72,
+        "ano2": 75963732.72,
+        "contrato": 151927465.4
+      },
+      "comCebas": {
+        "mes1": 5113099.92,
+        "ano1": 61357199.04,
+        "ano2": 61357199.04,
+        "contrato": 122714398.1
+      },
+      "reducao": {
+        "valor": 29213067.3,
+        "percentual": 0.192283
+      },
+      "observacao": "Valores históricos extraídos da planilha de origem. Ao criar um plano, o aplicativo recalcula o financeiro com a base vigente."
+    },
     "resumo": {
       "setores": 7,
       "linhasEquipe": 111,
       "profissionais": 603,
       "linhasRevisao": 16
+    }
+  },
+  {
+    "id": "hmrm-2026",
+    "nome": "Cronograma Hospital Municipal Rocha Maia",
+    "hospitalNome": "Hospital Municipal Rocha Maia",
+    "unidadeModelo": "Hospital Municipal Rocha Maia",
+    "sigla": "HMRM",
+    "grupoId": "SHGE",
+    "grupoNome": "Hospitais Gerais e Especializados",
+    "descricao": "Modelo clonável baseado no cronograma do Hospital Municipal Rocha Maia, classificado em hospitais gerais e especializados.",
+    "fonte": "_2026 CRONOGRAMA HMRM.xlsx.xlsx",
+    "tipo": "modelo_cronograma",
+    "status": "revisar",
+    "modoUso": "clonavel",
+    "observacao": "Modelo importado de planilha existente; o financeiro final é recalculado pelo app e deve ser revisado antes de uso oficial.",
+    "parametrosCronograma": {
+      "custeioOperacionalPct": 0.35,
+      "valeTransporteDia": 9.4,
+      "valeRefeicaoDia": 18,
+      "mesesCronograma": 24
+    },
+    "abasIgnoradas": [
+      "Histórico de Versões",
+      "Base Salarial RH",
+      "RESUMO",
+      "REDUÇÃO",
+      "INVESTIMENTO",
+      "Cronograma final"
+    ],
+    "setores": [
+      {
+        "id": "equipe-gestao-macro-hosp-hm",
+        "nome": "EQUIPE GESTÃO MACRO HOSP HM",
+        "abaOrigem": "b1- EQUIPE GESTÃO MACRO HOSP HM",
+        "linhas": [
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l1",
+            "categoria": "DIRETOR GERAL",
+            "perfilId": "modelo:diretor-geral",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l2",
+            "categoria": "COORDENADOR MÉDICO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-medico-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l3",
+            "categoria": "ADMINISTRADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:administrador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l4",
+            "categoria": "COORDENADOR ENFERMEIRO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-enfermeiro-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l5",
+            "categoria": "COORDENADOR MULTIPROFISSIONAL RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-multiprofissional-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l6",
+            "categoria": "MÉDICO COORDENADOR RESPONSÁVEL TÉCNICO TERAPIA INTENSIVA",
+            "perfilId": "modelo:medico-coordenador-responsavel-tecnico-terapia-intensiva",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l7",
+            "categoria": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO TERAPIA INTENSIVA",
+            "perfilId": "modelo:enfermeiro-coordenador-responsavel-tecnico-terapia-intensiva",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l8",
+            "categoria": "FISIOTERAPEUTA COORDENADOR RT TERAPIA INTENSIVA",
+            "perfilId": "modelo:fisioterapeuta-coordenador-rt-terapia-intensiva",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l9",
+            "categoria": "MÉDICO DE CCIH/ EPIDEMIOLOGISTA",
+            "perfilId": "modelo:medico-de-ccih-epidemiologista",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l10",
+            "categoria": "MÉDICO COORDENADOR CLÍNICA MÉDICA",
+            "perfilId": "modelo:medico-coordenador-clinica-medica",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l11",
+            "categoria": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO CLÍNICA MÉDICA",
+            "perfilId": "modelo:enfermeiro-coordenador-responsavel-tecnico-clinica-medica",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l12",
+            "categoria": "ENFERMEIRO DE CCIH",
+            "perfilId": "modelo:enfermeiro-de-ccih",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l13",
+            "categoria": "ENFERMEIRO SUPERVISOR DIA",
+            "perfilId": "modelo:enfermeiro-supervisor-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l14",
+            "categoria": "ENFERMEIRO SUPERVISOR NOTURNO",
+            "perfilId": "modelo:enfermeiro-supervisor-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l15",
+            "categoria": "TÉCNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "equipe-gestao-macro-hosp-hm-l16",
+            "categoria": "TÉCNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 25
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 16,
+          "profissionais": 32,
+          "linhasRevisao": 9
+        }
+      },
+      {
+        "id": "servico-terapia-intensiva",
+        "nome": "SERVIÇO TERAPIA INTENSIVA",
+        "abaOrigem": "b2- SERVIÇO TERAPIA INTENSIVA",
+        "linhas": [
+          {
+            "id": "servico-terapia-intensiva-l1",
+            "categoria": "MÉDICO PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-terapia-intensiva-l2",
+            "categoria": "MÉDICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-terapia-intensiva-l3",
+            "categoria": "MÉDICO ROTINA",
+            "perfilId": "modelo:medico-rotina",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-terapia-intensiva-l4",
+            "categoria": "DENTISTA ROTINA",
+            "perfilId": "modelo:dentista-rotina",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-terapia-intensiva-l5",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-terapia-intensiva-l6",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-terapia-intensiva-l7",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-terapia-intensiva-l8",
+            "categoria": "FISIOTERAPEUTA ROTINA",
+            "perfilId": "modelo:fisioterapeuta-rotina",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-terapia-intensiva-l9",
+            "categoria": "FISIOTERAPEUTA DIA",
+            "perfilId": "modelo:fisioterapeuta-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-terapia-intensiva-l10",
+            "categoria": "FISIOTERAPEUTA NOTURNO",
+            "perfilId": "modelo:fisioterapeuta-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-terapia-intensiva-l11",
+            "categoria": "TEC ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-terapia-intensiva-l12",
+            "categoria": "TEC ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-terapia-intensiva-l13",
+            "categoria": "TEC ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "servico-terapia-intensiva-l14",
+            "categoria": "FONOAUDIÓLOGO",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 24,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "servico-terapia-intensiva-l15",
+            "categoria": "PSICÓLOGO",
+            "perfilId": "modelo:psicologo",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "servico-terapia-intensiva-l16",
+            "categoria": "TEC ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tec-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "servico-terapia-intensiva-l17",
+            "categoria": "TEC ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tec-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 24
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 17,
+          "profissionais": 73,
+          "linhasRevisao": 8
+        }
+      },
+      {
+        "id": "servico-clinica-medica",
+        "nome": "SERVIÇO CLÍNICA MÉDICA",
+        "abaOrigem": "b3- SERVIÇO CLÍNICA MÉDICA ",
+        "linhas": [
+          {
+            "id": "servico-clinica-medica-l1",
+            "categoria": "MÉDICO PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-clinica-medica-l2",
+            "categoria": "MÉDICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-clinica-medica-l3",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-clinica-medica-l4",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-clinica-medica-l5",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 9,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-clinica-medica-l6",
+            "categoria": "TECNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-clinica-medica-l7",
+            "categoria": "TECNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 30,
+            "quantidadeTurno": 10,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-clinica-medica-l8",
+            "categoria": "TECNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 30,
+            "quantidadeTurno": 10,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-clinica-medica-l9",
+            "categoria": "PSICÓLOGO DIA",
+            "perfilId": "modelo:psicologo-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-clinica-medica-l10",
+            "categoria": "SERVIÇO SOCIAL DIA",
+            "perfilId": "modelo:servico-social-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-clinica-medica-l11",
+            "categoria": "FISIOTERAPEUTA DIA",
+            "perfilId": "modelo:fisioterapeuta-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-clinica-medica-l12",
+            "categoria": "TECNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "servico-clinica-medica-l13",
+            "categoria": "TECNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 21
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 13,
+          "profissionais": 148,
+          "linhasRevisao": 3
+        }
+      },
+      {
+        "id": "servico-saude-mental",
+        "nome": "SERVIÇO SAÚDE MENTAL",
+        "abaOrigem": "b4- SERVIÇO SAÚDE MENTAL",
+        "linhas": [
+          {
+            "id": "servico-saude-mental-l1",
+            "categoria": "ENFERMEIRO DIURNO",
+            "perfilId": "modelo:enfermeiro-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 5
+          },
+          {
+            "id": "servico-saude-mental-l2",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 6
+          },
+          {
+            "id": "servico-saude-mental-l3",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 7
+          },
+          {
+            "id": "servico-saude-mental-l4",
+            "categoria": "PSICÓLOGO",
+            "perfilId": "modelo:psicologo",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-saude-mental-l5",
+            "categoria": "ASSISTENTE SOCIAL",
+            "perfilId": "modelo:assistente-social",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-saude-mental-l6",
+            "categoria": "MÉDICO PLANTONISTA PSIQUIATRA DIURNO",
+            "perfilId": "modelo:medico-plantonista-psiquiatra-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-saude-mental-l7",
+            "categoria": "MÉDICO PLANTONISTA PSIQUIATRA NOTURNO",
+            "perfilId": "modelo:medico-plantonista-psiquiatra-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-saude-mental-l8",
+            "categoria": "TEC DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-saude-mental-l9",
+            "categoria": "TEC DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-saude-mental-l10",
+            "categoria": "AUXILIAR ADMINISTRATIVO DIA",
+            "perfilId": "modelo:auxiliar-administrativo-dia",
+            "chs": 36,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-saude-mental-l11",
+            "categoria": "AUXILIAR ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:auxiliar-administrativo-noturno",
+            "chs": 36,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 11,
+          "profissionais": 47,
+          "linhasRevisao": 6
+        }
+      }
+    ],
+    "resumoFinanceiro": {
+      "status": "extraido",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": 4274914.26,
+        "ano1": 51298971.12,
+        "ano2": 51298971.12,
+        "contrato": 102597942.2
+      },
+      "comCebas": {
+        "mes1": 3038356.57,
+        "ano1": 36460278.84,
+        "ano2": 36460278.84,
+        "contrato": 72920557.68
+      },
+      "reducao": {
+        "valor": 29677384.52,
+        "percentual": 0.289259
+      },
+      "observacao": "Valores históricos extraídos da planilha de origem. Ao criar um plano, o aplicativo recalcula o financeiro com a base vigente."
+    },
+    "resumo": {
+      "setores": 4,
+      "linhasEquipe": 57,
+      "profissionais": 300,
+      "linhasRevisao": 26
+    }
+  },
+  {
+    "id": "hmrg-2026",
+    "nome": "Cronograma Hospital Municipal Ronaldo Gazolla",
+    "hospitalNome": "Hospital Municipal Ronaldo Gazolla",
+    "unidadeModelo": "Hospital Municipal Ronaldo Gazolla",
+    "sigla": "HMRG",
+    "grupoId": "SHGE",
+    "grupoNome": "Hospitais Gerais e Especializados",
+    "descricao": "Modelo clonável baseado no cronograma do Hospital Municipal Ronaldo Gazolla, classificado em hospitais gerais e especializados.",
+    "fonte": "CRONOGRAMA HMRG (AJUSTANDO COMO SERVIÇOS)xlsx.xlsx",
+    "tipo": "modelo_cronograma",
+    "status": "revisar",
+    "modoUso": "clonavel",
+    "observacao": "Modelo importado de planilha existente; o financeiro final é recalculado pelo app e deve ser revisado antes de uso oficial.",
+    "parametrosCronograma": {
+      "custeioOperacionalPct": 0.4,
+      "valeTransporteDia": 9.4,
+      "valeRefeicaoDia": 18,
+      "mesesCronograma": 24
+    },
+    "abasIgnoradas": [
+      "Histórico de Versões",
+      "Base Salarial RH",
+      "RESUMO",
+      "REDUÇÃO",
+      "INVESTIMENTO",
+      "Cronograma final"
+    ],
+    "setores": [
+      {
+        "id": "gestao-macro-hosp-hmrg",
+        "nome": "GESTÃO MACRO HOSP HMRG",
+        "abaOrigem": "b1-GESTÃO MACRO HOSP HMRG",
+        "linhas": [
+          {
+            "id": "gestao-macro-hosp-hmrg-l1",
+            "categoria": "DIRETOR GERAL",
+            "perfilId": "modelo:diretor-geral",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l2",
+            "categoria": "COORDENADOR MÉDICO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-medico-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l3",
+            "categoria": "ADMINISTRADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:administrador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l4",
+            "categoria": "COORDENADOR ENFERMEIRO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-enfermeiro-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l5",
+            "categoria": "COORDENADOR MULTIPROFISSIONAL RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-multiprofissional-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l6",
+            "categoria": "MÉDICO COORDENADOR AMBULATÓRIO",
+            "perfilId": "modelo:medico-coordenador-ambulatorio",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l7",
+            "categoria": "ENFERMEIRO COORDENADOR DE AMBULATÓRIO",
+            "perfilId": "modelo:enfermeiro-coordenador-de-ambulatorio",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l8",
+            "categoria": "GERENTE DO SERVIÇO SOCIAL",
+            "perfilId": "modelo:gerente-do-servico-social",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l9",
+            "categoria": "GERENTE FISIOTERAPEUTA",
+            "perfilId": "modelo:gerente-fisioterapeuta",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l10",
+            "categoria": "COORDENADOR DE FARMÁCIA RT",
+            "perfilId": "modelo:coordenador-de-farmacia-rt",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l11",
+            "categoria": "MÉDICO COORDENADOR CIRURGIA GERAL",
+            "perfilId": "modelo:medico-coordenador-cirurgia-geral",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l12",
+            "categoria": "MÉDICO COORDENADOR ANESTESIA",
+            "perfilId": "modelo:medico-coordenador-anestesia",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l13",
+            "categoria": "COORDENADOR DO SERVIÇO DE IMAGEM",
+            "perfilId": "modelo:coordenador-do-servico-de-imagem",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l14",
+            "categoria": "MÉDICO DE CCIH/ EPIDEMIOLOGISTA",
+            "perfilId": "modelo:medico-de-ccih-epidemiologista",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l15",
+            "categoria": "ENFERMEIRO DE CCIH",
+            "perfilId": "modelo:enfermeiro-de-ccih",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l16",
+            "categoria": "ENFERMEIRO SUPERVISOR DIA",
+            "perfilId": "modelo:enfermeiro-supervisor-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l17",
+            "categoria": "ENFERMEIRO SUPERVISOR NOTURNO",
+            "perfilId": "modelo:enfermeiro-supervisor-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l18",
+            "categoria": "TÉCNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "gestao-macro-hosp-hmrg-l19",
+            "categoria": "TÉCNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 28
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 19,
+          "profissionais": 35,
+          "linhasRevisao": 12
+        }
+      },
+      {
+        "id": "240-leitos-cti-adulto",
+        "nome": "240 leitos CTI Adulto",
+        "abaOrigem": "b2- 240 leitos CTI Adulto",
+        "linhas": [
+          {
+            "id": "240-leitos-cti-adulto-l1",
+            "categoria": "MÉDICO COORDENADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:medico-coordenador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "240-leitos-cti-adulto-l2",
+            "categoria": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:enfermeiro-coordenador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "240-leitos-cti-adulto-l3",
+            "categoria": "FISIOTERAPEUTA COORDENADOR RT",
+            "perfilId": "modelo:fisioterapeuta-coordenador-rt",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "240-leitos-cti-adulto-l4",
+            "categoria": "MÉDICO PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 168,
+            "quantidadeTurno": 24,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "240-leitos-cti-adulto-l5",
+            "categoria": "MÉDICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 168,
+            "quantidadeTurno": 24,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "240-leitos-cti-adulto-l6",
+            "categoria": "MÉDICO ROTINA",
+            "perfilId": "modelo:medico-rotina",
+            "chs": 30,
+            "quantidade": 126,
+            "quantidadeTurno": 18,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "240-leitos-cti-adulto-l7",
+            "categoria": "DENTISTA ROTINA",
+            "perfilId": "modelo:dentista-rotina",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 12,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "240-leitos-cti-adulto-l8",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 72,
+            "quantidadeTurno": 24,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "240-leitos-cti-adulto-l9",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 72,
+            "quantidadeTurno": 24,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "240-leitos-cti-adulto-l10",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 24,
+            "quantidadeTurno": 24,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "240-leitos-cti-adulto-l11",
+            "categoria": "FISIOTERAPEUTA ROTINA",
+            "perfilId": "modelo:fisioterapeuta-rotina",
+            "chs": 30,
+            "quantidade": 24,
+            "quantidadeTurno": 24,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "240-leitos-cti-adulto-l12",
+            "categoria": "FISIOTERAPEUTA DIA",
+            "perfilId": "modelo:fisioterapeuta-dia",
+            "chs": 30,
+            "quantidade": 72,
+            "quantidadeTurno": 24,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "240-leitos-cti-adulto-l13",
+            "categoria": "FISIOTERAPEUTA NOTURNO",
+            "perfilId": "modelo:fisioterapeuta-noturno",
+            "chs": 30,
+            "quantidade": 72,
+            "quantidadeTurno": 24,
+            "revisar": false,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "240-leitos-cti-adulto-l14",
+            "categoria": "TEC ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 72,
+            "quantidadeTurno": 24,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "240-leitos-cti-adulto-l15",
+            "categoria": "TEC ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 104,
+            "quantidadeTurno": 38,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "240-leitos-cti-adulto-l16",
+            "categoria": "TEC ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 104,
+            "quantidadeTurno": 38,
+            "revisar": true,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "240-leitos-cti-adulto-l17",
+            "categoria": "FONOAUDIÓLOGO",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 24,
+            "quantidade": 10,
+            "quantidadeTurno": 10,
+            "revisar": false,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "240-leitos-cti-adulto-l18",
+            "categoria": "PSICÓLOGO",
+            "perfilId": "modelo:psicologo",
+            "chs": 20,
+            "quantidade": 10,
+            "quantidadeTurno": 10,
+            "revisar": false,
+            "linhaOrigem": 26
+          },
+          {
+            "id": "240-leitos-cti-adulto-l19",
+            "categoria": "TEC ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tec-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 20,
+            "quantidadeTurno": 10,
+            "revisar": true,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "240-leitos-cti-adulto-l20",
+            "categoria": "TEC ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tec-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 20,
+            "quantidadeTurno": 10,
+            "revisar": true,
+            "linhaOrigem": 28
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 20,
+          "profissionais": 1153,
+          "linhasRevisao": 11
+        }
+      },
+      {
+        "id": "clinica-cirurgica-60-leitos",
+        "nome": "CLINICA CIRURGICA 60 LEITOS",
+        "abaOrigem": "b3- CLINICA CIRURGICA 60 LEITOS",
+        "linhas": [
+          {
+            "id": "clinica-cirurgica-60-leitos-l1",
+            "categoria": "MÉDICO COORDENADOR CIRURGIA GERAL",
+            "perfilId": "modelo:medico-coordenador-cirurgia-geral",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l2",
+            "categoria": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:enfermeiro-coordenador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l3",
+            "categoria": "MÉDICO PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l4",
+            "categoria": "MÉDICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l5",
+            "categoria": "MÉDICO ROTINA",
+            "perfilId": "modelo:medico-rotina",
+            "chs": 30,
+            "quantidade": 35,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l6",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l7",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l8",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l9",
+            "categoria": "TEC ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l10",
+            "categoria": "TEC ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l11",
+            "categoria": "TEC ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l12",
+            "categoria": "FISIOTERAPEUTA DIURNO",
+            "perfilId": "modelo:fisioterapeuta-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "clinica-cirurgica-60-leitos-l13",
+            "categoria": "TEC ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 21
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 13,
+          "profissionais": 149,
+          "linhasRevisao": 5
+        }
+      },
+      {
+        "id": "clinica-medica-120-lei",
+        "nome": "CLÍNICA MÉDICA 120 LEI",
+        "abaOrigem": "b4- CLÍNICA MÉDICA 120 LEI",
+        "linhas": [
+          {
+            "id": "clinica-medica-120-lei-l1",
+            "categoria": "MÉDICO COORDENADOR",
+            "perfilId": "modelo:medico-coordenador",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "clinica-medica-120-lei-l2",
+            "categoria": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:enfermeiro-coordenador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "clinica-medica-120-lei-l3",
+            "categoria": "MÉDICO PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 35,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "clinica-medica-120-lei-l4",
+            "categoria": "MÉDICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 35,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "clinica-medica-120-lei-l5",
+            "categoria": "MÉDICO ROTINA",
+            "perfilId": "modelo:medico-rotina",
+            "chs": 30,
+            "quantidade": 35,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "clinica-medica-120-lei-l6",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 5,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "clinica-medica-120-lei-l7",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "clinica-medica-120-lei-l8",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "clinica-medica-120-lei-l9",
+            "categoria": "TECNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 5,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "clinica-medica-120-lei-l10",
+            "categoria": "TECNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 42,
+            "quantidadeTurno": 14,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "clinica-medica-120-lei-l11",
+            "categoria": "TECNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 42,
+            "quantidadeTurno": 14,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "clinica-medica-120-lei-l12",
+            "categoria": "PSICÓLOGO DIA",
+            "perfilId": "modelo:psicologo-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "clinica-medica-120-lei-l13",
+            "categoria": "SERVIÇO SOCIAL DIA",
+            "perfilId": "modelo:servico-social-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "clinica-medica-120-lei-l14",
+            "categoria": "FISIOTERAPEUTA DIA",
+            "perfilId": "modelo:fisioterapeuta-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "clinica-medica-120-lei-l15",
+            "categoria": "TECNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "clinica-medica-120-lei-l16",
+            "categoria": "TECNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 24
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 16,
+          "profissionais": 262,
+          "linhasRevisao": 5
+        }
+      },
+      {
+        "id": "centro-cir-13-salas",
+        "nome": "CENTRO CIR 13 SALAS",
+        "abaOrigem": "b5- CENTRO CIR 13 SALAS",
+        "linhas": [
+          {
+            "id": "centro-cir-13-salas-l1",
+            "categoria": "MÉDICO COORDENADOR ANESTESIA",
+            "perfilId": "modelo:medico-coordenador-anestesia",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "centro-cir-13-salas-l2",
+            "categoria": "ENFERMEIRO COORDENADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:enfermeiro-coordenador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "centro-cir-13-salas-l3",
+            "categoria": "MÉDICO ANESTESISTA PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-anestesista-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 98,
+            "quantidadeTurno": 14,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "centro-cir-13-salas-l4",
+            "categoria": "MÉDICO ANESTESISTA PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-anestesista-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 49,
+            "quantidadeTurno": 7,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "centro-cir-13-salas-l5",
+            "categoria": "MÉDICO ROTINA",
+            "perfilId": "modelo:medico-rotina",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 6,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "centro-cir-13-salas-l6",
+            "categoria": "MÉDICO CIRURGIÃO PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-cirurgiao-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 182,
+            "quantidadeTurno": 26,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "centro-cir-13-salas-l7",
+            "categoria": "MÉDICO CIRURGIÃO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-cirurgiao-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 28,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "centro-cir-13-salas-l8",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "centro-cir-13-salas-l9",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "centro-cir-13-salas-l10",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "centro-cir-13-salas-l11",
+            "categoria": "TEC ENFERMAGEM DIARISTA",
+            "perfilId": "modelo:tec-enfermagem-diarista",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "centro-cir-13-salas-l12",
+            "categoria": "TEC ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tec-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 48,
+            "quantidadeTurno": 16,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "centro-cir-13-salas-l13",
+            "categoria": "TEC ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "centro-cir-13-salas-l14",
+            "categoria": "TEC ADMINSITRATIVO DIURNO",
+            "perfilId": "modelo:tec-adminsitrativo-diurno",
+            "chs": 40,
+            "quantidade": 8,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "centro-cir-13-salas-l15",
+            "categoria": "TEC ADMINSITRATIVO NOTURNO",
+            "perfilId": "modelo:tec-adminsitrativo-noturno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "centro-cir-13-salas-l16",
+            "categoria": "INSTRUMENTADOR DIURNO",
+            "perfilId": "modelo:instrumentador-diurno",
+            "chs": 30,
+            "quantidade": 26,
+            "quantidadeTurno": 13,
+            "revisar": true,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "centro-cir-13-salas-l17",
+            "categoria": "INSTRUMENTADOR NOTURNO",
+            "perfilId": "modelo:instrumentador-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "centro-cir-13-salas-l18",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "centro-cir-13-salas-l19",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 28
+          },
+          {
+            "id": "centro-cir-13-salas-l20",
+            "categoria": "TEC DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": true,
+            "linhaOrigem": 29
+          },
+          {
+            "id": "centro-cir-13-salas-l21",
+            "categoria": "TEC DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 30
+          },
+          {
+            "id": "centro-cir-13-salas-l22",
+            "categoria": "TEC DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 31
+          },
+          {
+            "id": "centro-cir-13-salas-l23",
+            "categoria": "TECNICO ADMINISTRATIVO DIA",
+            "perfilId": "modelo:tecnico-administrativo-dia",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 32
+          },
+          {
+            "id": "centro-cir-13-salas-l24",
+            "categoria": "TECNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 33
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 24,
+          "profissionais": 541,
+          "linhasRevisao": 14
+        }
+      },
+      {
+        "id": "hospital-dia",
+        "nome": "HOSPITAL DIA",
+        "abaOrigem": "b6- HOSPITAL DIA",
+        "linhas": [
+          {
+            "id": "hospital-dia-l1",
+            "categoria": "MÉDICO CLÍNICO ROTINA",
+            "perfilId": "modelo:medico-clinico-rotina",
+            "chs": 12,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 7
+          },
+          {
+            "id": "hospital-dia-l2",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "hospital-dia-l3",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "hospital-dia-l4",
+            "categoria": "TECNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "hospital-dia-l5",
+            "categoria": "TECNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "hospital-dia-l6",
+            "categoria": "TEC ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 12
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 6,
+          "profissionais": 19,
+          "linhasRevisao": 0
+        }
+      },
+      {
+        "id": "equipe-multi",
+        "nome": "EQUIPE MULTI",
+        "abaOrigem": "b7- EQUIPE MULTI",
+        "linhas": [
+          {
+            "id": "equipe-multi-l1",
+            "categoria": "ASSISTENTE SOCIAL DIA",
+            "perfilId": "modelo:assistente-social-dia",
+            "chs": 24,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "equipe-multi-l2",
+            "categoria": "ASSISTENTE SOCIAL NOTURNO",
+            "perfilId": "modelo:assistente-social-noturno",
+            "chs": 24,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "equipe-multi-l3",
+            "categoria": "NUTRICIONISTA",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "equipe-multi-l4",
+            "categoria": "FARMACÊUTICO ROTINA",
+            "perfilId": "modelo:farmaceutico-rotina",
+            "chs": 40,
+            "quantidade": 5,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "equipe-multi-l5",
+            "categoria": "FARMACÊUTICO PLANTONISTA DIA",
+            "perfilId": "modelo:farmaceutico-plantonista-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "equipe-multi-l6",
+            "categoria": "FARMACÊUTICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:farmaceutico-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "equipe-multi-l7",
+            "categoria": "AUX DE FARMÁCIA DIA",
+            "perfilId": "modelo:aux-de-farmacia-dia",
+            "chs": 36,
+            "quantidade": 12,
+            "quantidadeTurno": 6,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "equipe-multi-l8",
+            "categoria": "AUX DE FARMÁCIA NOTURNO",
+            "perfilId": "modelo:aux-de-farmacia-noturno",
+            "chs": 36,
+            "quantidade": 12,
+            "quantidadeTurno": 6,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "equipe-multi-l9",
+            "categoria": "AUX FARMÁCIA DIARISTA",
+            "perfilId": "modelo:aux-farmacia-diarista",
+            "chs": 40,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "equipe-multi-l10",
+            "categoria": "TERAPIA OCUPACIONAL",
+            "perfilId": "modelo:terapia-ocupacional",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "equipe-multi-l11",
+            "categoria": "NUTRIÇÃO",
+            "perfilId": "modelo:nutricao",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "equipe-multi-l12",
+            "categoria": "FONOAUDIOLOGIA",
+            "perfilId": "modelo:fonoaudiologia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "equipe-multi-l13",
+            "categoria": "FISIOTERAPIA",
+            "perfilId": "modelo:fisioterapia",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "equipe-multi-l14",
+            "categoria": "FISIOTERAPEUTA REABILITAÇÃO ORTOPÉDICA",
+            "perfilId": "modelo:fisioterapeuta-reabilitacao-ortopedica",
+            "chs": 30,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "equipe-multi-l15",
+            "categoria": "FISIOTERAPEUTA REABILITAÇÃO RESPIRATÓRIA",
+            "perfilId": "modelo:fisioterapeuta-reabilitacao-respiratoria",
+            "chs": 30,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "equipe-multi-l16",
+            "categoria": "ENFERMEIRO",
+            "perfilId": "modelo:enfermeiro",
+            "chs": 40,
+            "quantidade": 5,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "equipe-multi-l17",
+            "categoria": "TÉCNICO DE ENFEMAGEM",
+            "perfilId": "modelo:tecnico-de-enfemagem",
+            "chs": 40,
+            "quantidade": 8,
+            "quantidadeTurno": 8,
+            "revisar": true,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "equipe-multi-l18",
+            "categoria": "ENFERMEIRO DIARISTA",
+            "perfilId": "modelo:enfermeiro-diarista",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 26
+          },
+          {
+            "id": "equipe-multi-l19",
+            "categoria": "ENFERMEIRO DIA",
+            "perfilId": "modelo:enfermeiro-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "equipe-multi-l20",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 28
+          },
+          {
+            "id": "equipe-multi-l21",
+            "categoria": "TEC DE REGULAÇÃO DIA",
+            "perfilId": "modelo:tec-de-regulacao-dia",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 29
+          },
+          {
+            "id": "equipe-multi-l22",
+            "categoria": "TEC DE REGULAÇÃO NOTURNO",
+            "perfilId": "modelo:tec-de-regulacao-noturno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 30
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 22,
+          "profissionais": 145,
+          "linhasRevisao": 9
+        }
+      },
+      {
+        "id": "equipe-de-imagem",
+        "nome": "EQUIPE DE IMAGEM",
+        "abaOrigem": "b8- EQUIPE DE IMAGEM",
+        "linhas": [
+          {
+            "id": "equipe-de-imagem-l1",
+            "categoria": "COORDENADOR MÉDICO RADIOLOGISTA RT",
+            "perfilId": "modelo:coordenador-medico-radiologista-rt",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "equipe-de-imagem-l2",
+            "categoria": "MÉDICO RADIOLOGISTA TELE LAUDO",
+            "perfilId": "modelo:medico-radiologista-tele-laudo",
+            "chs": 12,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "equipe-de-imagem-l3",
+            "categoria": "MÉDICO ESPECIALISTA DOPPLER*arterial/venoso",
+            "perfilId": "modelo:medico-especialista-doppler-arterial-venoso",
+            "chs": 12,
+            "quantidade": 10,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "equipe-de-imagem-l4",
+            "categoria": "MÉDICO ESPECIALISTA ECOCARDIOGRAFIA TRANSTORACICA",
+            "perfilId": "modelo:medico-especialista-ecocardiografia-transtoracica",
+            "chs": 12,
+            "quantidade": 15,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "equipe-de-imagem-l5",
+            "categoria": "MÉDICO ULTRASSONOGRAFIA",
+            "perfilId": "modelo:medico-ultrassonografia",
+            "chs": 12,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "equipe-de-imagem-l6",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "equipe-de-imagem-l7",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "equipe-de-imagem-l8",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "equipe-de-imagem-l9",
+            "categoria": "TEC ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "equipe-de-imagem-l10",
+            "categoria": "TEC ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tec-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "equipe-de-imagem-l11",
+            "categoria": "TEC ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "equipe-de-imagem-l12",
+            "categoria": "TÉC RADIOLOGIA DIURNO",
+            "perfilId": "modelo:tec-radiologia-diurno",
+            "chs": 24,
+            "quantidade": 70,
+            "quantidadeTurno": 10,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "equipe-de-imagem-l13",
+            "categoria": "TEC RADIOLOGIA NOTURNO",
+            "perfilId": "modelo:tec-radiologia-noturno",
+            "chs": 24,
+            "quantidade": 70,
+            "quantidadeTurno": 10,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "equipe-de-imagem-l14",
+            "categoria": "TEC TOMOGRAFIA DIURNO",
+            "perfilId": "modelo:tec-tomografia-diurno",
+            "chs": 24,
+            "quantidade": 14,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "equipe-de-imagem-l15",
+            "categoria": "TÉC TOMOGRAFIA NOTURNO",
+            "perfilId": "modelo:tec-tomografia-noturno",
+            "chs": 24,
+            "quantidade": 14,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "equipe-de-imagem-l16",
+            "categoria": "TEC ADMINSITRATIVO DIURNO",
+            "perfilId": "modelo:tec-adminsitrativo-diurno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "equipe-de-imagem-l17",
+            "categoria": "TEC ADMINSITRATIVO NOTURNO",
+            "perfilId": "modelo:tec-adminsitrativo-noturno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 24
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 17,
+          "profissionais": 239,
+          "linhasRevisao": 14
+        }
+      },
+      {
+        "id": "ambulatorio",
+        "nome": "AMBULATÓRIO",
+        "abaOrigem": "b9- AMBULATÓRIO ",
+        "linhas": [
+          {
+            "id": "ambulatorio-l1",
+            "categoria": "MÉDICO ESPECIALISTA ENDOSCOPIA DIGESTIVA ALTA",
+            "perfilId": "modelo:medico-especialista-endoscopia-digestiva-alta",
+            "chs": 12,
+            "quantidade": 10,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "ambulatorio-l2",
+            "categoria": "MÉDICO COLONOSCOPIA",
+            "perfilId": "modelo:medico-colonoscopia",
+            "chs": 12,
+            "quantidade": 3,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "ambulatorio-l3",
+            "categoria": "MÉDICO ANESTESISTA",
+            "perfilId": "modelo:medico-anestesista",
+            "chs": 12,
+            "quantidade": 15,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "ambulatorio-l4",
+            "categoria": "MÉDICO ANGIOLOGIA",
+            "perfilId": "modelo:medico-angiologia",
+            "chs": 12,
+            "quantidade": 10,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "ambulatorio-l5",
+            "categoria": "MÉDICO CARDIOLOGIA",
+            "perfilId": "modelo:medico-cardiologia",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "ambulatorio-l6",
+            "categoria": "MÉDICO CIRURGIA GERAL",
+            "perfilId": "modelo:medico-cirurgia-geral",
+            "chs": 12,
+            "quantidade": 10,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "ambulatorio-l7",
+            "categoria": "MÉDICO CIRURGIA VASCULAR",
+            "perfilId": "modelo:medico-cirurgia-vascular",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "ambulatorio-l8",
+            "categoria": "MÉDICO COLO PROCTOLOGIA",
+            "perfilId": "modelo:medico-colo-proctologia",
+            "chs": 12,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "ambulatorio-l9",
+            "categoria": "MÉDICO DERMATOLOGIA",
+            "perfilId": "modelo:medico-dermatologia",
+            "chs": 12,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "ambulatorio-l10",
+            "categoria": "MÉDICO ENDOCRINOLOGIA",
+            "perfilId": "modelo:medico-endocrinologia",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "ambulatorio-l11",
+            "categoria": "MÉDICO GASTROENTEROLOGIA",
+            "perfilId": "modelo:medico-gastroenterologia",
+            "chs": 12,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "ambulatorio-l12",
+            "categoria": "MÉDICO GINECOLOGIA -",
+            "perfilId": "modelo:medico-ginecologia",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "ambulatorio-l13",
+            "categoria": "MÉDICO NEFROLOGIA",
+            "perfilId": "modelo:medico-nefrologia",
+            "chs": 12,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "ambulatorio-l14",
+            "categoria": "MÉDICO NEUROLOGIA",
+            "perfilId": "modelo:medico-neurologia",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "ambulatorio-l15",
+            "categoria": "MÉDICO ORTOPEDIA",
+            "perfilId": "modelo:medico-ortopedia",
+            "chs": 12,
+            "quantidade": 10,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "ambulatorio-l16",
+            "categoria": "MÉDICO OTORRINOLARINGOLOGIA",
+            "perfilId": "modelo:medico-otorrinolaringologia",
+            "chs": 12,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "ambulatorio-l17",
+            "categoria": "MÉDICO PNEUMOLOGIA",
+            "perfilId": "modelo:medico-pneumologia",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "ambulatorio-l18",
+            "categoria": "MÉDICO PSIQUIATRIA",
+            "perfilId": "modelo:medico-psiquiatria",
+            "chs": 12,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "ambulatorio-l19",
+            "categoria": "MÉDICO REUMATOLOGIA",
+            "perfilId": "modelo:medico-reumatologia",
+            "chs": 12,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 26
+          },
+          {
+            "id": "ambulatorio-l20",
+            "categoria": "MÉDICO UROLOGIA",
+            "perfilId": "modelo:medico-urologia",
+            "chs": 12,
+            "quantidade": 10,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "ambulatorio-l21",
+            "categoria": "MÉDICO REABILITAÇÃO REUMATOLÓGICA",
+            "perfilId": "modelo:medico-reabilitacao-reumatologica",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 28
+          },
+          {
+            "id": "ambulatorio-l22",
+            "categoria": "MAPA TÉCNICO DE ENFERMAGEM",
+            "perfilId": "modelo:mapa-tecnico-de-enfermagem",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 29
+          },
+          {
+            "id": "ambulatorio-l23",
+            "categoria": "TÉCNICO DE ENFEMAGEM HOLTER 24h",
+            "perfilId": "modelo:tecnico-de-enfemagem-holter-24h",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 30
+          },
+          {
+            "id": "ambulatorio-l24",
+            "categoria": "TESTE ESFORCO OU TESTE ERGOMÉTRICO 2",
+            "perfilId": "modelo:teste-esforco-ou-teste-ergometrico-2",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 31
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 24,
+          "profissionais": 136,
+          "linhasRevisao": 24
+        }
+      }
+    ],
+    "resumoFinanceiro": {
+      "status": "extraido",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": 34928232.88,
+        "ano1": 419138794.6,
+        "ano2": 412375879.6,
+        "contrato": 831514674.1
+      },
+      "comCebas": {
+        "mes1": 29545977.4,
+        "ano1": 354551728.8,
+        "ano2": 354551728.8,
+        "contrato": 709103457.6
+      },
+      "reducao": {
+        "valor": 122411216.5,
+        "percentual": 0.147215
+      },
+      "observacao": "Valores históricos extraídos da planilha de origem. Ao criar um plano, o aplicativo recalcula o financeiro com a base vigente."
+    },
+    "resumo": {
+      "setores": 9,
+      "linhasEquipe": 161,
+      "profissionais": 2679,
+      "linhasRevisao": 94
+    }
+  },
+  {
+    "id": "hmrps-2026",
+    "nome": "Cronograma Hospital Municipal Raphael de Paula Souza",
+    "hospitalNome": "Hospital Municipal Raphael de Paula Souza",
+    "unidadeModelo": "Hospital Municipal Raphael de Paula Souza",
+    "sigla": "HMRPS",
+    "grupoId": "SHGE",
+    "grupoNome": "Hospitais Gerais e Especializados",
+    "descricao": "Modelo clonável baseado no cronograma do Hospital Municipal Raphael de Paula Souza, classificado em hospitais gerais e especializados.",
+    "fonte": "HMRPS CR FINAL SV PADI 30-12-2025.xlsx",
+    "tipo": "modelo_cronograma",
+    "status": "revisar",
+    "modoUso": "clonavel",
+    "observacao": "Modelo importado de planilha existente; o financeiro final é recalculado pelo app e deve ser revisado antes de uso oficial.",
+    "parametrosCronograma": {
+      "custeioOperacionalPct": 0.3,
+      "valeTransporteDia": 9.4,
+      "valeRefeicaoDia": 18,
+      "mesesCronograma": 24
+    },
+    "abasIgnoradas": [
+      "Histórico de Versões",
+      "Base Salarial RH",
+      "RESUMO",
+      "REDUÇÃO",
+      "INVESTIMENTO",
+      "Cronograma final"
+    ],
+    "setores": [
+      {
+        "id": "equipe-de-gestao-macro",
+        "nome": "EQUIPE DE GESTÃO MACRO",
+        "abaOrigem": "EQUIPE DE GESTÃO MACRO",
+        "linhas": [
+          {
+            "id": "equipe-de-gestao-macro-l1",
+            "categoria": "DIRETOR MEDICO GERAL",
+            "perfilId": "modelo:diretor-medico-geral",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "equipe-de-gestao-macro-l2",
+            "categoria": "COORDENADOR MÉDICO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-medico-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "equipe-de-gestao-macro-l3",
+            "categoria": "COORDENADOR ENFERMAGEM GERAL RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-enfermagem-geral-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "equipe-de-gestao-macro-l4",
+            "categoria": "ADMINISTRADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:administrador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "equipe-de-gestao-macro-l5",
+            "categoria": "COORDENADOR DE PROCESSO",
+            "perfilId": "modelo:coordenador-de-processo",
+            "chs": 40,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "equipe-de-gestao-macro-l6",
+            "categoria": "COORDENADOR ADMINISTRATIVO",
+            "perfilId": "modelo:coordenador-administrativo",
+            "chs": 40,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "equipe-de-gestao-macro-l7",
+            "categoria": "MÉDICO COORDENADOR CLINICA MEDICA",
+            "perfilId": "modelo:medico-coordenador-clinica-medica",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "equipe-de-gestao-macro-l8",
+            "categoria": "MÉDICO COORDENADOR REPRESENTANTE TECNICO CTI ADULTO",
+            "perfilId": "modelo:medico-coordenador-representante-tecnico-cti-adulto",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "equipe-de-gestao-macro-l9",
+            "categoria": "MÉDICO COORDENADOR AMBULATÓRIO",
+            "perfilId": "modelo:medico-coordenador-ambulatorio",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "equipe-de-gestao-macro-l10",
+            "categoria": "COORDENADOR FARMACÊUTICO - RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-farmaceutico-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "equipe-de-gestao-macro-l11",
+            "categoria": "COORDENADOR ENFERMAGEM CLINICA MEDICA",
+            "perfilId": "modelo:coordenador-enfermagem-clinica-medica",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "equipe-de-gestao-macro-l12",
+            "categoria": "COORDENAÇÃO MULTI (NUTRI, PSICOLOGIA, SERV SOCIAL, FONO)",
+            "perfilId": "modelo:coordenacao-multi-nutri-psicologia-serv-social-fono",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "equipe-de-gestao-macro-l13",
+            "categoria": "COORDENADOR ENFERMAGEM AMBULATÓRIO",
+            "perfilId": "modelo:coordenador-enfermagem-ambulatorio",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "equipe-de-gestao-macro-l14",
+            "categoria": "COORDENADOR ENFERMAGEM REPRESENTANTE TECNICO CTI ADULTO",
+            "perfilId": "modelo:coordenador-enfermagem-representante-tecnico-cti-adulto",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "equipe-de-gestao-macro-l15",
+            "categoria": "COORDENAÇÃO FISIOTERAPIA CTI RT",
+            "perfilId": "modelo:coordenacao-fisioterapia-cti-rt",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "equipe-de-gestao-macro-l16",
+            "categoria": "ENFERMEIRO QUALIDADE",
+            "perfilId": "modelo:enfermeiro-qualidade",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "equipe-de-gestao-macro-l17",
+            "categoria": "ENFERMEIRO CCIH",
+            "perfilId": "modelo:enfermeiro-ccih",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 26
+          },
+          {
+            "id": "equipe-de-gestao-macro-l18",
+            "categoria": "ENFERMEIRO SUPERVISOR DIURNO",
+            "perfilId": "modelo:enfermeiro-supervisor-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "equipe-de-gestao-macro-l19",
+            "categoria": "ENFERMEIRO SUPERVISOR NOTURNO",
+            "perfilId": "modelo:enfermeiro-supervisor-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 28
+          },
+          {
+            "id": "equipe-de-gestao-macro-l20",
+            "categoria": "TÉCNICO ADMINISTRATIVO PLANTONISTA DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-plantonista-diurno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 29
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 20,
+          "profissionais": 31,
+          "linhasRevisao": 5
+        }
+      },
+      {
+        "id": "servico-terapia-intensiva-10-le",
+        "nome": "SERVIÇO TERAPIA INTENSIVA 10 LE",
+        "abaOrigem": "SERVIÇO TERAPIA INTENSIVA 10 LE",
+        "linhas": [
+          {
+            "id": "servico-terapia-intensiva-10-le-l1",
+            "categoria": "FISIOTERAPIA DIA",
+            "perfilId": "modelo:fisioterapia-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l2",
+            "categoria": "FISIOTERAPIA NOTURNO",
+            "perfilId": "modelo:fisioterapia-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l3",
+            "categoria": "FISIOTERAPIA ROTINA",
+            "perfilId": "modelo:fisioterapia-rotina",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l4",
+            "categoria": "MÉDICO INTENSIVISTA (ROTINA)",
+            "perfilId": "modelo:medico-intensivista-rotina",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l5",
+            "categoria": "MÉDICO INTENSIVISTA DIURNO",
+            "perfilId": "modelo:medico-intensivista-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l6",
+            "categoria": "MÉDICO INTENSIVISTA NOTURNO",
+            "perfilId": "modelo:medico-intensivista-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l7",
+            "categoria": "FONOAUDIÓLOGO",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l8",
+            "categoria": "DENTISTA ROTINA",
+            "perfilId": "modelo:dentista-rotina",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l9",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l10",
+            "categoria": "ENFERMEIRO DIURNO",
+            "perfilId": "modelo:enfermeiro-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l11",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l12",
+            "categoria": "TÉCNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l13",
+            "categoria": "TÉCNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l14",
+            "categoria": "TÉCNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l15",
+            "categoria": "TÉCNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "servico-terapia-intensiva-10-le-l16",
+            "categoria": "TÉCNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 23
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 16,
+          "profissionais": 72,
+          "linhasRevisao": 5
+        }
+      },
+      {
+        "id": "servico-hospital",
+        "nome": "SERVIÇO HOSPITAL",
+        "abaOrigem": "SERVIÇO HOSPITAL",
+        "linhas": [
+          {
+            "id": "servico-hospital-l1",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-hospital-l2",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-hospital-l3",
+            "categoria": "TÉCNICO DE ENFERMAGEM - PLANTONISTA DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-hospital-l4",
+            "categoria": "TÉCNICO DE ENFERMAGEM - PLANTONISTA NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-hospital-l5",
+            "categoria": "MÉDICO CLÍNICO DIA",
+            "perfilId": "modelo:medico-clinico-dia",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-hospital-l6",
+            "categoria": "MÉDICO CLÍNICO NOITE",
+            "perfilId": "modelo:medico-clinico-noite",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-hospital-l7",
+            "categoria": "MÉDICO ORTOPEDISTA DIA",
+            "perfilId": "modelo:medico-ortopedista-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-hospital-l8",
+            "categoria": "MÉDICO ORTOPEDISTA NOITE",
+            "perfilId": "modelo:medico-ortopedista-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-hospital-l9",
+            "categoria": "MÉDICO PEDIATRA DIA",
+            "perfilId": "modelo:medico-pediatra-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-hospital-l10",
+            "categoria": "MÉDICO PEDIATRA NOITE",
+            "perfilId": "modelo:medico-pediatra-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-hospital-l11",
+            "categoria": "MÉDICO OFTALMOLOGISTA DIA",
+            "perfilId": "modelo:medico-oftalmologista-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-hospital-l12",
+            "categoria": "MÉDICO OFTALMOLOGISTA NOITE",
+            "perfilId": "modelo:medico-oftalmologista-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "servico-hospital-l13",
+            "categoria": "MÉDICO VASCULAR DIA",
+            "perfilId": "modelo:medico-vascular-dia",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "servico-hospital-l14",
+            "categoria": "MÉDICO VASCULAR NOITE",
+            "perfilId": "modelo:medico-vascular-noite",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "servico-hospital-l15",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "servico-hospital-l16",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "servico-hospital-l17",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 26
+          },
+          {
+            "id": "servico-hospital-l18",
+            "categoria": "TÉC. DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "servico-hospital-l19",
+            "categoria": "TÉC. DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 28
+          },
+          {
+            "id": "servico-hospital-l20",
+            "categoria": "TÉC. DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 29
+          },
+          {
+            "id": "servico-hospital-l21",
+            "categoria": "TEC ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 30
+          },
+          {
+            "id": "servico-hospital-l22",
+            "categoria": "MÉDICO CLÍNICO DIA",
+            "perfilId": "modelo:medico-clinico-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 32
+          },
+          {
+            "id": "servico-hospital-l23",
+            "categoria": "MÉDICO CLÍNICO NOITE",
+            "perfilId": "modelo:medico-clinico-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 33
+          },
+          {
+            "id": "servico-hospital-l24",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 34
+          },
+          {
+            "id": "servico-hospital-l25",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 35
+          },
+          {
+            "id": "servico-hospital-l26",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 36
+          },
+          {
+            "id": "servico-hospital-l27",
+            "categoria": "TÉC. DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 37
+          },
+          {
+            "id": "servico-hospital-l28",
+            "categoria": "TÉC. DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 38
+          },
+          {
+            "id": "servico-hospital-l29",
+            "categoria": "TÉC. DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 39
+          },
+          {
+            "id": "servico-hospital-l30",
+            "categoria": "TEC ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 40
+          },
+          {
+            "id": "servico-hospital-l31",
+            "categoria": "MÉDICO PEDIATRA DIA",
+            "perfilId": "modelo:medico-pediatra-dia",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 42
+          },
+          {
+            "id": "servico-hospital-l32",
+            "categoria": "MÉDICO PEDIATRA NOITE",
+            "perfilId": "modelo:medico-pediatra-noite",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 43
+          },
+          {
+            "id": "servico-hospital-l33",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 44
+          },
+          {
+            "id": "servico-hospital-l34",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 45
+          },
+          {
+            "id": "servico-hospital-l35",
+            "categoria": "TÉC. DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 46
+          },
+          {
+            "id": "servico-hospital-l36",
+            "categoria": "TÉC. DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 47
+          },
+          {
+            "id": "servico-hospital-l37",
+            "categoria": "MÉDICO CLÍNICO DIA",
+            "perfilId": "modelo:medico-clinico-dia",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 49
+          },
+          {
+            "id": "servico-hospital-l38",
+            "categoria": "MÉDICO CLÍNICO NOITE",
+            "perfilId": "modelo:medico-clinico-noite",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 50
+          },
+          {
+            "id": "servico-hospital-l39",
+            "categoria": "MÉDICO CLÍNICO ROTINA",
+            "perfilId": "modelo:medico-clinico-rotina",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 51
+          },
+          {
+            "id": "servico-hospital-l40",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 52
+          },
+          {
+            "id": "servico-hospital-l41",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 53
+          },
+          {
+            "id": "servico-hospital-l42",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 54
+          },
+          {
+            "id": "servico-hospital-l43",
+            "categoria": "TÉC. DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 55
+          },
+          {
+            "id": "servico-hospital-l44",
+            "categoria": "TÉC. DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 56
+          },
+          {
+            "id": "servico-hospital-l45",
+            "categoria": "TÉC. DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 57
+          },
+          {
+            "id": "servico-hospital-l46",
+            "categoria": "TEC ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 58
+          },
+          {
+            "id": "servico-hospital-l47",
+            "categoria": "MÉDICO PEDIATRA DIA",
+            "perfilId": "modelo:medico-pediatra-dia",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 60
+          },
+          {
+            "id": "servico-hospital-l48",
+            "categoria": "MÉDICO PEDIATRA NOITE",
+            "perfilId": "modelo:medico-pediatra-noite",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 61
+          },
+          {
+            "id": "servico-hospital-l49",
+            "categoria": "MÉDICO CLÍNICO ROTINA",
+            "perfilId": "modelo:medico-clinico-rotina",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 62
+          },
+          {
+            "id": "servico-hospital-l50",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 63
+          },
+          {
+            "id": "servico-hospital-l51",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 64
+          },
+          {
+            "id": "servico-hospital-l52",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 65
+          },
+          {
+            "id": "servico-hospital-l53",
+            "categoria": "TÉC. DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 66
+          },
+          {
+            "id": "servico-hospital-l54",
+            "categoria": "TÉC. DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 67
+          },
+          {
+            "id": "servico-hospital-l55",
+            "categoria": "TÉC. DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 68
+          },
+          {
+            "id": "servico-hospital-l56",
+            "categoria": "TEC ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 69
+          },
+          {
+            "id": "servico-hospital-l57",
+            "categoria": "MÉDICO CLÍNICO DIA",
+            "perfilId": "modelo:medico-clinico-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 71
+          },
+          {
+            "id": "servico-hospital-l58",
+            "categoria": "MÉDICO CLÍNICO NOITE",
+            "perfilId": "modelo:medico-clinico-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 72
+          },
+          {
+            "id": "servico-hospital-l59",
+            "categoria": "MÉDICO CIRURGIÃO GERAL DIA",
+            "perfilId": "modelo:medico-cirurgiao-geral-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 73
+          },
+          {
+            "id": "servico-hospital-l60",
+            "categoria": "MÉDICO CIRURGIÃO GERAL NOITE",
+            "perfilId": "modelo:medico-cirurgiao-geral-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 74
+          },
+          {
+            "id": "servico-hospital-l61",
+            "categoria": "MÉDICO VASCULAR DIA",
+            "perfilId": "modelo:medico-vascular-dia",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 75
+          },
+          {
+            "id": "servico-hospital-l62",
+            "categoria": "MÉDICO VASCULAR NOITE",
+            "perfilId": "modelo:medico-vascular-noite",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 76
+          },
+          {
+            "id": "servico-hospital-l63",
+            "categoria": "MÉDICO ORTOPEDISTA DIA",
+            "perfilId": "modelo:medico-ortopedista-dia",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 77
+          },
+          {
+            "id": "servico-hospital-l64",
+            "categoria": "MÉDICO ORTOPEDISTA NOITE",
+            "perfilId": "modelo:medico-ortopedista-noite",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 78
+          },
+          {
+            "id": "servico-hospital-l65",
+            "categoria": "BUCOMAXILO DIA",
+            "perfilId": "modelo:bucomaxilo-dia",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 79
+          },
+          {
+            "id": "servico-hospital-l66",
+            "categoria": "BUCOMAXILO NOITE",
+            "perfilId": "modelo:bucomaxilo-noite",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 80
+          },
+          {
+            "id": "servico-hospital-l67",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 81
+          },
+          {
+            "id": "servico-hospital-l68",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 82
+          },
+          {
+            "id": "servico-hospital-l69",
+            "categoria": "TÉC. DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 83
+          },
+          {
+            "id": "servico-hospital-l70",
+            "categoria": "TÉC. DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 84
+          },
+          {
+            "id": "servico-hospital-l71",
+            "categoria": "TÉC. DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 85
+          },
+          {
+            "id": "servico-hospital-l72",
+            "categoria": "TEC ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 86
+          },
+          {
+            "id": "servico-hospital-l73",
+            "categoria": "FISIOTERAPEUTA DIA",
+            "perfilId": "modelo:fisioterapeuta-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 88
+          },
+          {
+            "id": "servico-hospital-l74",
+            "categoria": "FISIOTERAPEUTA NOITE",
+            "perfilId": "modelo:fisioterapeuta-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 89
+          },
+          {
+            "id": "servico-hospital-l75",
+            "categoria": "PSICOLOGO DIA",
+            "perfilId": "modelo:psicologo-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 90
+          },
+          {
+            "id": "servico-hospital-l76",
+            "categoria": "NUTRICIONISTA",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 91
+          },
+          {
+            "id": "servico-hospital-l77",
+            "categoria": "ASSISTENTE SOCIAL DIA",
+            "perfilId": "modelo:assistente-social-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 92
+          },
+          {
+            "id": "servico-hospital-l78",
+            "categoria": "ASSISTENTE SOCIAL NOITE",
+            "perfilId": "modelo:assistente-social-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 93
+          },
+          {
+            "id": "servico-hospital-l79",
+            "categoria": "MAQUEIRO DIA",
+            "perfilId": "modelo:maqueiro-dia",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 94
+          },
+          {
+            "id": "servico-hospital-l80",
+            "categoria": "MAQUEIRO NOITE",
+            "perfilId": "modelo:maqueiro-noite",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 95
+          },
+          {
+            "id": "servico-hospital-l81",
+            "categoria": "TECNICO DE GESSO DIA",
+            "perfilId": "modelo:tecnico-de-gesso-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 96
+          },
+          {
+            "id": "servico-hospital-l82",
+            "categoria": "TECNICO DE GESSO NOITE",
+            "perfilId": "modelo:tecnico-de-gesso-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 97
+          },
+          {
+            "id": "servico-hospital-l83",
+            "categoria": "TEC ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 98
+          },
+          {
+            "id": "servico-hospital-l84",
+            "categoria": "MEDICO ANESTESISTA DIURNO",
+            "perfilId": "modelo:medico-anestesista-diurno",
+            "chs": 12,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 100
+          },
+          {
+            "id": "servico-hospital-l85",
+            "categoria": "MEDICO CIRURGIÂO DIURNO",
+            "perfilId": "modelo:medico-cirurgiao-diurno",
+            "chs": 12,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 101
+          },
+          {
+            "id": "servico-hospital-l86",
+            "categoria": "MEDICO CIRURGIÂO NOTURNO",
+            "perfilId": "modelo:medico-cirurgiao-noturno",
+            "chs": 12,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 102
+          },
+          {
+            "id": "servico-hospital-l87",
+            "categoria": "MEDICO ANESTESISTA NOTURNO",
+            "perfilId": "modelo:medico-anestesista-noturno",
+            "chs": 12,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 103
+          },
+          {
+            "id": "servico-hospital-l88",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 104
+          },
+          {
+            "id": "servico-hospital-l89",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 105
+          },
+          {
+            "id": "servico-hospital-l90",
+            "categoria": "TÉC. DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 106
+          },
+          {
+            "id": "servico-hospital-l91",
+            "categoria": "TÉC. DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 107
+          },
+          {
+            "id": "servico-hospital-l92",
+            "categoria": "INSTRUMENTADOR CIRÚRGICO DIA",
+            "perfilId": "modelo:instrumentador-cirurgico-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 108
+          },
+          {
+            "id": "servico-hospital-l93",
+            "categoria": "INSTRUMENTADOR CIRÚRGICO NOITE",
+            "perfilId": "modelo:instrumentador-cirurgico-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 109
+          },
+          {
+            "id": "servico-hospital-l94",
+            "categoria": "TEC ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tec-administrativo-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 110
+          },
+          {
+            "id": "servico-hospital-l95",
+            "categoria": "TEC ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tec-administrativo-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 111
+          },
+          {
+            "id": "servico-hospital-l96",
+            "categoria": "Fisioterapeuta",
+            "perfilId": "modelo:fisioterapeuta",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 113
+          },
+          {
+            "id": "servico-hospital-l97",
+            "categoria": "Médico CLÍNICO (ROTINA)",
+            "perfilId": "modelo:medico-clinico-rotina",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 115
+          },
+          {
+            "id": "servico-hospital-l98",
+            "categoria": "Médico plantonista CLÍNICO",
+            "perfilId": "modelo:medico-plantonista-clinico",
+            "chs": 12,
+            "quantidade": 17,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 116
+          },
+          {
+            "id": "servico-hospital-l99",
+            "categoria": "Médico plantonista CLÍNICO (NOTURNO)",
+            "perfilId": "modelo:medico-plantonista-clinico-noturno",
+            "chs": 12,
+            "quantidade": 17,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 117
+          },
+          {
+            "id": "servico-hospital-l100",
+            "categoria": "Enfermeiro rotina",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 118
+          },
+          {
+            "id": "servico-hospital-l101",
+            "categoria": "Enfermeiro Diurno",
+            "perfilId": "modelo:enfermeiro-diurno",
+            "chs": 30,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 119
+          },
+          {
+            "id": "servico-hospital-l102",
+            "categoria": "Enfermeiro Noturno",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 120
+          },
+          {
+            "id": "servico-hospital-l103",
+            "categoria": "Técnico de Enfermagem (rotina)",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 121
+          },
+          {
+            "id": "servico-hospital-l104",
+            "categoria": "Técnico de Enfermagem Diurno",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 122
+          },
+          {
+            "id": "servico-hospital-l105",
+            "categoria": "Técnico de Enfermagem Noturno",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 123
+          },
+          {
+            "id": "servico-hospital-l106",
+            "categoria": "Fonoaudiólogo",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 124
+          },
+          {
+            "id": "servico-hospital-l107",
+            "categoria": "Nutricionista",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 125
+          },
+          {
+            "id": "servico-hospital-l108",
+            "categoria": "Técnico administrativo",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 126
+          },
+          {
+            "id": "servico-hospital-l109",
+            "categoria": "Fisioterapeuta",
+            "perfilId": "modelo:fisioterapeuta",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 128
+          },
+          {
+            "id": "servico-hospital-l110",
+            "categoria": "MÉDICO ORTOPEDIA (ROTINA)",
+            "perfilId": "modelo:medico-ortopedia-rotina",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 130
+          },
+          {
+            "id": "servico-hospital-l111",
+            "categoria": "MÉDICO ORTOPEDIA DIA",
+            "perfilId": "modelo:medico-ortopedia-dia",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 131
+          },
+          {
+            "id": "servico-hospital-l112",
+            "categoria": "MÉDICO ORTOPEDIA NOITE",
+            "perfilId": "modelo:medico-ortopedia-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 132
+          },
+          {
+            "id": "servico-hospital-l113",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 133
+          },
+          {
+            "id": "servico-hospital-l114",
+            "categoria": "ENFERMEIRO DIURNO",
+            "perfilId": "modelo:enfermeiro-diurno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 134
+          },
+          {
+            "id": "servico-hospital-l115",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 135
+          },
+          {
+            "id": "servico-hospital-l116",
+            "categoria": "TÉCNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 136
+          },
+          {
+            "id": "servico-hospital-l117",
+            "categoria": "TÉCNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 27,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 137
+          },
+          {
+            "id": "servico-hospital-l118",
+            "categoria": "TÉCNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 27,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 138
+          },
+          {
+            "id": "servico-hospital-l119",
+            "categoria": "ASSISTENTE SOCIAL DIURNO",
+            "perfilId": "modelo:assistente-social-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 139
+          },
+          {
+            "id": "servico-hospital-l120",
+            "categoria": "NUTRICIONISTA DIURNO",
+            "perfilId": "modelo:nutricionista-diurno",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 140
+          },
+          {
+            "id": "servico-hospital-l121",
+            "categoria": "TÉCNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 141
+          },
+          {
+            "id": "servico-hospital-l122",
+            "categoria": "FISIOTERAPEUTA",
+            "perfilId": "modelo:fisioterapeuta",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 143
+          },
+          {
+            "id": "servico-hospital-l123",
+            "categoria": "MÉDICO CIRURGIÃO VASCULAR (ROTINA)",
+            "perfilId": "modelo:medico-cirurgiao-vascular-rotina",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 144
+          },
+          {
+            "id": "servico-hospital-l124",
+            "categoria": "MÉDICO CIRURGIÃO VASCULAR DIA",
+            "perfilId": "modelo:medico-cirurgiao-vascular-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 145
+          },
+          {
+            "id": "servico-hospital-l125",
+            "categoria": "MÉDICO CIRURGIÃO VASCULAR NOITE",
+            "perfilId": "modelo:medico-cirurgiao-vascular-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 146
+          },
+          {
+            "id": "servico-hospital-l126",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 147
+          },
+          {
+            "id": "servico-hospital-l127",
+            "categoria": "ENFERMEIRO DIA",
+            "perfilId": "modelo:enfermeiro-dia",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 148
+          },
+          {
+            "id": "servico-hospital-l128",
+            "categoria": "ENFERMEIRO NOITE",
+            "perfilId": "modelo:enfermeiro-noite",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 149
+          },
+          {
+            "id": "servico-hospital-l129",
+            "categoria": "TÉCNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 150
+          },
+          {
+            "id": "servico-hospital-l130",
+            "categoria": "TÉCNICO DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tecnico-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 27,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 151
+          },
+          {
+            "id": "servico-hospital-l131",
+            "categoria": "TÉCNICO DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tecnico-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 27,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 152
+          },
+          {
+            "id": "servico-hospital-l132",
+            "categoria": "NUTRICIONISTA",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 153
+          },
+          {
+            "id": "servico-hospital-l133",
+            "categoria": "TÉCNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 154
+          },
+          {
+            "id": "servico-hospital-l134",
+            "categoria": "FISIOTERAPEUTA",
+            "perfilId": "modelo:fisioterapeuta",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 156
+          },
+          {
+            "id": "servico-hospital-l135",
+            "categoria": "MÉDICO CIRURGIÃO GERAL ROTINA",
+            "perfilId": "modelo:medico-cirurgiao-geral-rotina",
+            "chs": 6,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 158
+          },
+          {
+            "id": "servico-hospital-l136",
+            "categoria": "MÉDICO CIRURGIÃO GERAL DIA",
+            "perfilId": "modelo:medico-cirurgiao-geral-dia",
+            "chs": 30,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 159
+          },
+          {
+            "id": "servico-hospital-l137",
+            "categoria": "MÉDICO NEUROCIRURGIÃO NOITE",
+            "perfilId": "modelo:medico-neurocirurgiao-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 160
+          },
+          {
+            "id": "servico-hospital-l138",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 161
+          },
+          {
+            "id": "servico-hospital-l139",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 162
+          },
+          {
+            "id": "servico-hospital-l140",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 163
+          },
+          {
+            "id": "servico-hospital-l141",
+            "categoria": "TÉCNICO DE ENFERMAGEM (ROTINA)",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 164
+          },
+          {
+            "id": "servico-hospital-l142",
+            "categoria": "TÉCNICO DE ENFERMAGEM PLANTONISTA DIA",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 165
+          },
+          {
+            "id": "servico-hospital-l143",
+            "categoria": "TÉCNICO DE ENFERMAGEM PLANTONISTA NOITE",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-noite",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 166
+          },
+          {
+            "id": "servico-hospital-l144",
+            "categoria": "NUTRICIONISTA",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 167
+          },
+          {
+            "id": "servico-hospital-l145",
+            "categoria": "TÉCNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 168
+          },
+          {
+            "id": "servico-hospital-l146",
+            "categoria": "FISIOTERAPEUTA",
+            "perfilId": "modelo:fisioterapeuta",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 170
+          },
+          {
+            "id": "servico-hospital-l147",
+            "categoria": "MÉDICO NEUROCIRURGIÃO (ROTINA)",
+            "perfilId": "modelo:medico-neurocirurgiao-rotina",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 172
+          },
+          {
+            "id": "servico-hospital-l148",
+            "categoria": "MÉDICO NEUROCIRURGIÃO DIA",
+            "perfilId": "modelo:medico-neurocirurgiao-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 175
+          },
+          {
+            "id": "servico-hospital-l149",
+            "categoria": "MÉDICO NEUROCIRURGIÃO NOITE",
+            "perfilId": "modelo:medico-neurocirurgiao-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 176
+          },
+          {
+            "id": "servico-hospital-l150",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 177
+          },
+          {
+            "id": "servico-hospital-l151",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 178
+          },
+          {
+            "id": "servico-hospital-l152",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 179
+          },
+          {
+            "id": "servico-hospital-l153",
+            "categoria": "TÉCNICO DE ENFERMAGEM (ROTINA)",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 180
+          },
+          {
+            "id": "servico-hospital-l154",
+            "categoria": "TÉCNICO DE ENFERMAGEM PLANTONISTA DIA",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 181
+          },
+          {
+            "id": "servico-hospital-l155",
+            "categoria": "TÉCNICO DE ENFERMAGEM PLANTONISTA NOITE",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-noite",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 182
+          },
+          {
+            "id": "servico-hospital-l156",
+            "categoria": "NUTRICIONISTA",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 183
+          },
+          {
+            "id": "servico-hospital-l157",
+            "categoria": "TÉCNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 184
+          },
+          {
+            "id": "servico-hospital-l158",
+            "categoria": "FISIOTERAPEUTA",
+            "perfilId": "modelo:fisioterapeuta",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 186
+          },
+          {
+            "id": "servico-hospital-l159",
+            "categoria": "MÉDICO CARDIOLOGISTA (ROTINA)",
+            "perfilId": "modelo:medico-cardiologista-rotina",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 187
+          },
+          {
+            "id": "servico-hospital-l160",
+            "categoria": "MÉDICO CARDIOLOGISTA DIA",
+            "perfilId": "modelo:medico-cardiologista-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 190
+          },
+          {
+            "id": "servico-hospital-l161",
+            "categoria": "MÉDICO CARDIOLOGISTA NOITE",
+            "perfilId": "modelo:medico-cardiologista-noite",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 191
+          },
+          {
+            "id": "servico-hospital-l162",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 192
+          },
+          {
+            "id": "servico-hospital-l163",
+            "categoria": "ENFERMEIRO PLANTONISTA DIA",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 193
+          },
+          {
+            "id": "servico-hospital-l164",
+            "categoria": "ENFERMEIRO PLANTONISTA NOITE",
+            "perfilId": "modelo:enfermeiro-plantonista-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 194
+          },
+          {
+            "id": "servico-hospital-l165",
+            "categoria": "TÉCNICO DE ENFERMAGEM (ROTINA)",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 195
+          },
+          {
+            "id": "servico-hospital-l166",
+            "categoria": "TÉCNICO DE ENFERMAGEM PLANTONISTA DIA",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 196
+          },
+          {
+            "id": "servico-hospital-l167",
+            "categoria": "TÉCNICO DE ENFERMAGEM PLANTONISTA NOITE",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-noite",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 197
+          },
+          {
+            "id": "servico-hospital-l168",
+            "categoria": "NUTRICIONISTA",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 198
+          },
+          {
+            "id": "servico-hospital-l169",
+            "categoria": "TÉCNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 199
+          },
+          {
+            "id": "servico-hospital-l170",
+            "categoria": "Fisioterapeuta",
+            "perfilId": "modelo:fisioterapeuta",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 201
+          },
+          {
+            "id": "servico-hospital-l171",
+            "categoria": "Médico PEDIATRA (ROTINA)",
+            "perfilId": "modelo:medico-pediatra-rotina",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 202
+          },
+          {
+            "id": "servico-hospital-l172",
+            "categoria": "Médico plantonista PEDIATRA (DIA)",
+            "perfilId": "modelo:medico-plantonista-pediatra-dia",
+            "chs": 12,
+            "quantidade": 16,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 203
+          },
+          {
+            "id": "servico-hospital-l173",
+            "categoria": "Médico plantonista PEDIATRA (NOTURNO)",
+            "perfilId": "modelo:medico-plantonista-pediatra-noturno",
+            "chs": 12,
+            "quantidade": 16,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 204
+          },
+          {
+            "id": "servico-hospital-l174",
+            "categoria": "Enfermeiro rotina",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 205
+          },
+          {
+            "id": "servico-hospital-l175",
+            "categoria": "Enfermeiro plantonista (12X60h)",
+            "perfilId": "modelo:enfermeiro-plantonista-12x60h",
+            "chs": 30,
+            "quantidade": 10,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 206
+          },
+          {
+            "id": "servico-hospital-l176",
+            "categoria": "Enfermeiro plantonista (12X60h) NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-12x60h-noturno",
+            "chs": 30,
+            "quantidade": 10,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 207
+          },
+          {
+            "id": "servico-hospital-l177",
+            "categoria": "Técnico de Enfermagem (rotineiro)",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotineiro",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 208
+          },
+          {
+            "id": "servico-hospital-l178",
+            "categoria": "Técnico de Enfermagem - plantonista (12 x 60h)",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-12-x-60h",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 209
+          },
+          {
+            "id": "servico-hospital-l179",
+            "categoria": "Técnico de Enfermagem - plantonista (12 x 60h) NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-12-x-60h-noturno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 210
+          },
+          {
+            "id": "servico-hospital-l180",
+            "categoria": "Fonoaudiólogo",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 211
+          },
+          {
+            "id": "servico-hospital-l181",
+            "categoria": "Nutricionista",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 212
+          },
+          {
+            "id": "servico-hospital-l182",
+            "categoria": "Técnico administrativo",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 213
+          },
+          {
+            "id": "servico-hospital-l183",
+            "categoria": "FISIOTERAPIA DIA",
+            "perfilId": "modelo:fisioterapia-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 215
+          },
+          {
+            "id": "servico-hospital-l184",
+            "categoria": "FISIOTERAPIA NOITE",
+            "perfilId": "modelo:fisioterapia-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 216
+          },
+          {
+            "id": "servico-hospital-l185",
+            "categoria": "Médico INTENSIVISTA (ROTINA)",
+            "perfilId": "modelo:medico-intensivista-rotina",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 217
+          },
+          {
+            "id": "servico-hospital-l186",
+            "categoria": "MÉDICO INTENSIVISTA DIURNO",
+            "perfilId": "modelo:medico-intensivista-diurno",
+            "chs": 12,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 218
+          },
+          {
+            "id": "servico-hospital-l187",
+            "categoria": "MÉDICO INTENSIVISTA NOTURNO",
+            "perfilId": "modelo:medico-intensivista-noturno",
+            "chs": 12,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 219
+          },
+          {
+            "id": "servico-hospital-l188",
+            "categoria": "FONOAUDIÓLOGO",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 220
+          },
+          {
+            "id": "servico-hospital-l189",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 221
+          },
+          {
+            "id": "servico-hospital-l190",
+            "categoria": "ENFERMEIRO DIURNO",
+            "perfilId": "modelo:enfermeiro-diurno",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 222
+          },
+          {
+            "id": "servico-hospital-l191",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 223
+          },
+          {
+            "id": "servico-hospital-l192",
+            "categoria": "TÉCNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 224
+          },
+          {
+            "id": "servico-hospital-l193",
+            "categoria": "TÉCNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 225
+          },
+          {
+            "id": "servico-hospital-l194",
+            "categoria": "TÉCNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 226
+          },
+          {
+            "id": "servico-hospital-l195",
+            "categoria": "NUTRICIONISTA",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 227
+          },
+          {
+            "id": "servico-hospital-l196",
+            "categoria": "TÉCNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 228
+          },
+          {
+            "id": "servico-hospital-l197",
+            "categoria": "Fisioterapeuta - plantão diurno",
+            "perfilId": "modelo:fisioterapeuta-plantao-diurno",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 232
+          },
+          {
+            "id": "servico-hospital-l198",
+            "categoria": "Fisioterapeuta - plantão NOTURNO",
+            "perfilId": "modelo:fisioterapeuta-plantao-noturno",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 233
+          },
+          {
+            "id": "servico-hospital-l199",
+            "categoria": "Médico INTENSIVISTA (ROTINA)",
+            "perfilId": "modelo:medico-intensivista-rotina",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 234
+          },
+          {
+            "id": "servico-hospital-l200",
+            "categoria": "Médico plantonista INTENSIVISTA",
+            "perfilId": "modelo:medico-plantonista-intensivista",
+            "chs": 12,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 235
+          },
+          {
+            "id": "servico-hospital-l201",
+            "categoria": "Médico plantonista INTENSIVISTA (NOTURNO)",
+            "perfilId": "modelo:medico-plantonista-intensivista-noturno",
+            "chs": 12,
+            "quantidade": 8,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 236
+          },
+          {
+            "id": "servico-hospital-l202",
+            "categoria": "Fonoaudiólogo",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 237
+          },
+          {
+            "id": "servico-hospital-l203",
+            "categoria": "Enfermeiro Rotina",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 238
+          },
+          {
+            "id": "servico-hospital-l204",
+            "categoria": "Enfermeiro plantonista (DIA)",
+            "perfilId": "modelo:enfermeiro-plantonista-dia",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 239
+          },
+          {
+            "id": "servico-hospital-l205",
+            "categoria": "Enfermeiro plantonista (NOTURNO)",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 240
+          },
+          {
+            "id": "servico-hospital-l206",
+            "categoria": "Técnico de Enfermagem ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 241
+          },
+          {
+            "id": "servico-hospital-l207",
+            "categoria": "Técnico de Enfermagem - plantonista",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 242
+          },
+          {
+            "id": "servico-hospital-l208",
+            "categoria": "Técnico de Enfermagem - plantonista (NOTURNO)",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 243
+          },
+          {
+            "id": "servico-hospital-l209",
+            "categoria": "Nutricionista",
+            "perfilId": "modelo:nutricionista",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 244
+          },
+          {
+            "id": "servico-hospital-l210",
+            "categoria": "Técnico administrativo",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 245
+          },
+          {
+            "id": "servico-hospital-l211",
+            "categoria": "COORDENADOR MÉDICO",
+            "perfilId": "modelo:coordenador-medico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 247
+          },
+          {
+            "id": "servico-hospital-l212",
+            "categoria": "COORDENADOR DE ENFERMAGEM",
+            "perfilId": "modelo:coordenador-de-enfermagem",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 248
+          },
+          {
+            "id": "servico-hospital-l213",
+            "categoria": "MÉDICO ANESTESISTA PLANTÃO DIA",
+            "perfilId": "modelo:medico-anestesista-plantao-dia",
+            "chs": 12,
+            "quantidade": 56,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 249
+          },
+          {
+            "id": "servico-hospital-l214",
+            "categoria": "MÉDICO ANESTESISTA PLANTAO NOITE",
+            "perfilId": "modelo:medico-anestesista-plantao-noite",
+            "chs": 12,
+            "quantidade": 56,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 250
+          },
+          {
+            "id": "servico-hospital-l215",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 251
+          },
+          {
+            "id": "servico-hospital-l216",
+            "categoria": "ENFERMEIRO PLANTÃO DIA",
+            "perfilId": "modelo:enfermeiro-plantao-dia",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 252
+          },
+          {
+            "id": "servico-hospital-l217",
+            "categoria": "ENFERMEIRO PLANTÃO NOITE",
+            "perfilId": "modelo:enfermeiro-plantao-noite",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 253
+          },
+          {
+            "id": "servico-hospital-l218",
+            "categoria": "TÉC. DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 43,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 254
+          },
+          {
+            "id": "servico-hospital-l219",
+            "categoria": "TÉC. DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 43,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 255
+          },
+          {
+            "id": "servico-hospital-l220",
+            "categoria": "TÉC. DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 256
+          },
+          {
+            "id": "servico-hospital-l221",
+            "categoria": "INSTRUMENTADOR CIRÚRGICO DIA",
+            "perfilId": "modelo:instrumentador-cirurgico-dia",
+            "chs": 30,
+            "quantidade": 24,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 257
+          },
+          {
+            "id": "servico-hospital-l222",
+            "categoria": "INSTRUMENTADOR CIRÚRGICO NOITE",
+            "perfilId": "modelo:instrumentador-cirurgico-noite",
+            "chs": 30,
+            "quantidade": 24,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 258
+          },
+          {
+            "id": "servico-hospital-l223",
+            "categoria": "TÉC. ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 259
+          },
+          {
+            "id": "servico-hospital-l224",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 261
+          },
+          {
+            "id": "servico-hospital-l225",
+            "categoria": "ASSISTENTE SOCIAL ROTINA",
+            "perfilId": "modelo:assistente-social-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 267
+          },
+          {
+            "id": "servico-hospital-l226",
+            "categoria": "ASSISTENTE SOCIAL DIA",
+            "perfilId": "modelo:assistente-social-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 268
+          },
+          {
+            "id": "servico-hospital-l227",
+            "categoria": "ASSISTENTE SOCIAL NOITE",
+            "perfilId": "modelo:assistente-social-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 269
+          },
+          {
+            "id": "servico-hospital-l228",
+            "categoria": "PSICOLOGO",
+            "perfilId": "modelo:psicologo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 270
+          },
+          {
+            "id": "servico-hospital-l229",
+            "categoria": "ENFERMEIRO CCIH",
+            "perfilId": "modelo:enfermeiro-ccih",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 272
+          },
+          {
+            "id": "servico-hospital-l230",
+            "categoria": "MÉDICO INFECTOLOGISTA",
+            "perfilId": "modelo:medico-infectologista",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 273
+          },
+          {
+            "id": "servico-hospital-l231",
+            "categoria": "FARMACÊUTICO ROTINA",
+            "perfilId": "modelo:farmaceutico-rotina",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 274
+          },
+          {
+            "id": "servico-hospital-l232",
+            "categoria": "FARMACÊUTICO PLANTÃO DIA",
+            "perfilId": "modelo:farmaceutico-plantao-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 275
+          },
+          {
+            "id": "servico-hospital-l233",
+            "categoria": "FARMACÊUTICO PLANTÃO NOITE",
+            "perfilId": "modelo:farmaceutico-plantao-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 276
+          },
+          {
+            "id": "servico-hospital-l234",
+            "categoria": "TÉCNICO DE FARMÁCIA DIA",
+            "perfilId": "modelo:tecnico-de-farmacia-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 277
+          },
+          {
+            "id": "servico-hospital-l235",
+            "categoria": "TÉCNICO DE FARMÁCIA NOTURNO",
+            "perfilId": "modelo:tecnico-de-farmacia-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 278
+          },
+          {
+            "id": "servico-hospital-l236",
+            "categoria": "TÉCNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 279
+          },
+          {
+            "id": "servico-hospital-l237",
+            "categoria": "MÉDICO CIRURGIÃO GERAL",
+            "perfilId": "modelo:medico-cirurgiao-geral",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 281
+          },
+          {
+            "id": "servico-hospital-l238",
+            "categoria": "MÉDICO ORTOPEDISTA",
+            "perfilId": "modelo:medico-ortopedista",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 282
+          },
+          {
+            "id": "servico-hospital-l239",
+            "categoria": "MÉDICO CIRURGIÃO VASCULAR",
+            "perfilId": "modelo:medico-cirurgiao-vascular",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 283
+          },
+          {
+            "id": "servico-hospital-l240",
+            "categoria": "MÉDICO RISCO CIRURGICO",
+            "perfilId": "modelo:medico-risco-cirurgico",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 284
+          },
+          {
+            "id": "servico-hospital-l241",
+            "categoria": "MÉDICO NEUROCIRURGIÃO PEDIATRICO",
+            "perfilId": "modelo:medico-neurocirurgiao-pediatrico",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 285
+          },
+          {
+            "id": "servico-hospital-l242",
+            "categoria": "MÉDICO NEUROCIRURGIÃO",
+            "perfilId": "modelo:medico-neurocirurgiao",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 286
+          },
+          {
+            "id": "servico-hospital-l243",
+            "categoria": "MÉDICO OFTALMOLOGISTA",
+            "perfilId": "modelo:medico-oftalmologista",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 287
+          },
+          {
+            "id": "servico-hospital-l244",
+            "categoria": "MÉDICO OTORRINOLARINGOLOGISTA",
+            "perfilId": "modelo:medico-otorrinolaringologista",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 288
+          },
+          {
+            "id": "servico-hospital-l245",
+            "categoria": "BUCOMAXILO",
+            "perfilId": "modelo:bucomaxilo",
+            "chs": 12,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 289
+          },
+          {
+            "id": "servico-hospital-l246",
+            "categoria": "AUXILIAR DE CONSULTÓRIO DENTÁRIO",
+            "perfilId": "modelo:auxiliar-de-consultorio-dentario",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 290
+          },
+          {
+            "id": "servico-hospital-l247",
+            "categoria": "ENFERMEIRO - ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 291
+          },
+          {
+            "id": "servico-hospital-l248",
+            "categoria": "TÉCNICO DE ENFERMAGEM - ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 292
+          },
+          {
+            "id": "servico-hospital-l249",
+            "categoria": "TÉCNICO DE GESSO",
+            "perfilId": "modelo:tecnico-de-gesso",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 293
+          },
+          {
+            "id": "servico-hospital-l250",
+            "categoria": "ASSISTENTE ADMINISTRATIVO",
+            "perfilId": "modelo:assistente-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 294
+          },
+          {
+            "id": "servico-hospital-l251",
+            "categoria": "ENFERMEIRO DIARISTA",
+            "perfilId": "modelo:enfermeiro-diarista",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 296
+          },
+          {
+            "id": "servico-hospital-l252",
+            "categoria": "ENFERMEIRO DIA",
+            "perfilId": "modelo:enfermeiro-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 297
+          },
+          {
+            "id": "servico-hospital-l253",
+            "categoria": "ENFERMEIRO NOITE",
+            "perfilId": "modelo:enfermeiro-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 298
+          },
+          {
+            "id": "servico-hospital-l254",
+            "categoria": "TEC DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 299
+          },
+          {
+            "id": "servico-hospital-l255",
+            "categoria": "TEC DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 300
+          },
+          {
+            "id": "servico-hospital-l256",
+            "categoria": "TEC ADMINISTRATIVO DIARISTA",
+            "perfilId": "modelo:tec-administrativo-diarista",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 301
+          },
+          {
+            "id": "servico-hospital-l257",
+            "categoria": "TEC ADMINISTRATIVO DIA",
+            "perfilId": "modelo:tec-administrativo-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 302
+          },
+          {
+            "id": "servico-hospital-l258",
+            "categoria": "TEC ADMINISTRATIVO NOITE",
+            "perfilId": "modelo:tec-administrativo-noite",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 303
+          },
+          {
+            "id": "servico-hospital-l259",
+            "categoria": "ENFERMEIRO DIARISTA",
+            "perfilId": "modelo:enfermeiro-diarista",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 305
+          },
+          {
+            "id": "servico-hospital-l260",
+            "categoria": "ENFERMEIRO DIA",
+            "perfilId": "modelo:enfermeiro-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 306
+          },
+          {
+            "id": "servico-hospital-l261",
+            "categoria": "ENFERMEIRO NOITE",
+            "perfilId": "modelo:enfermeiro-noite",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": null,
+            "revisar": false,
+            "linhaOrigem": 307
+          },
+          {
+            "id": "servico-hospital-l262",
+            "categoria": "TEC DE ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-de-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 308
+          },
+          {
+            "id": "servico-hospital-l263",
+            "categoria": "TEC DE ENFERMAGEM NOITE",
+            "perfilId": "modelo:tec-de-enfermagem-noite",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 309
+          },
+          {
+            "id": "servico-hospital-l264",
+            "categoria": "TEC ADMINISTRATIVO DIARISTA",
+            "perfilId": "modelo:tec-administrativo-diarista",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 310
+          },
+          {
+            "id": "servico-hospital-l265",
+            "categoria": "TEC ADMINISTRATIVO DIA",
+            "perfilId": "modelo:tec-administrativo-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 311
+          },
+          {
+            "id": "servico-hospital-l266",
+            "categoria": "TEC ADMINISTRATIVO NOITE",
+            "perfilId": "modelo:tec-administrativo-noite",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": null,
+            "revisar": true,
+            "linhaOrigem": 312
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 266,
+          "profissionais": 1951,
+          "linhasRevisao": 132
+        }
+      },
+      {
+        "id": "servico-inectologia-15-leitos",
+        "nome": "SERVIÇO INECTOLOGIA 15 LEITOS",
+        "abaOrigem": "SERVIÇO INECTOLOGIA 15 LEITOS",
+        "linhas": [
+          {
+            "id": "servico-inectologia-15-leitos-l1",
+            "categoria": "MÉDICO INFECTOLOGISTA (ROTINA)",
+            "perfilId": "modelo:medico-infectologista-rotina",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-inectologia-15-leitos-l2",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-inectologia-15-leitos-l3",
+            "categoria": "ENFERMEIRO DIURNO",
+            "perfilId": "modelo:enfermeiro-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-inectologia-15-leitos-l4",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-inectologia-15-leitos-l5",
+            "categoria": "TÉCNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-inectologia-15-leitos-l6",
+            "categoria": "TÉCNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-inectologia-15-leitos-l7",
+            "categoria": "TÉCNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-inectologia-15-leitos-l8",
+            "categoria": "TÉCNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-inectologia-15-leitos-l9",
+            "categoria": "TÉCNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 16
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 9,
+          "profissionais": 36,
+          "linhasRevisao": 1
+        }
+      },
+      {
+        "id": "servico-pnelmologia-16-leitos",
+        "nome": "SERVIÇO PNELMOLOGIA 16 LEITOS",
+        "abaOrigem": "SERVIÇO PNELMOLOGIA 16 LEITOS",
+        "linhas": [
+          {
+            "id": "servico-pnelmologia-16-leitos-l1",
+            "categoria": "MÉDICO PNEUMOLOGISTA (ROTINA)",
+            "perfilId": "modelo:medico-pneumologista-rotina",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-pnelmologia-16-leitos-l2",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-pnelmologia-16-leitos-l3",
+            "categoria": "ENFERMEIRO DIURNO",
+            "perfilId": "modelo:enfermeiro-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-pnelmologia-16-leitos-l4",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-pnelmologia-16-leitos-l5",
+            "categoria": "TÉCNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-pnelmologia-16-leitos-l6",
+            "categoria": "TÉCNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-pnelmologia-16-leitos-l7",
+            "categoria": "TÉCNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-pnelmologia-16-leitos-l8",
+            "categoria": "TÉCNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-pnelmologia-16-leitos-l9",
+            "categoria": "TÉCNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 16
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 9,
+          "profissionais": 36,
+          "linhasRevisao": 1
+        }
+      },
+      {
+        "id": "servico-clinica-medica-159-cuid",
+        "nome": "SERVIÇO CLINICA MEDICA 159 CUID",
+        "abaOrigem": "SERVIÇO CLINICA MEDICA 159 CUID",
+        "linhas": [
+          {
+            "id": "servico-clinica-medica-159-cuid-l1",
+            "categoria": "MÉDICO CLINICO ROTINA",
+            "perfilId": "modelo:medico-clinico-rotina",
+            "chs": 30,
+            "quantidade": 5,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l2",
+            "categoria": "MÉDICO CLINICO PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-clinico-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l3",
+            "categoria": "MÉDICO CLINICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-clinico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 15,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l4",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l5",
+            "categoria": "ENFERMEIRO DIURNO",
+            "perfilId": "modelo:enfermeiro-diurno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l6",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l7",
+            "categoria": "TÉCNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 5,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l8",
+            "categoria": "TÉCNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 78,
+            "quantidadeTurno": 26,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l9",
+            "categoria": "TÉCNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 72,
+            "quantidadeTurno": 24,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l10",
+            "categoria": "TÉCNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 8,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-clinica-medica-159-cuid-l11",
+            "categoria": "TÉCNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 6,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 18
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 11,
+          "profissionais": 250,
+          "linhasRevisao": 2
+        }
+      },
+      {
+        "id": "saude-mental-6-leitos",
+        "nome": "SAUDE MENTAL 6 LEITOS",
+        "abaOrigem": "SAUDE MENTAL 6 LEITOS",
+        "linhas": [
+          {
+            "id": "saude-mental-6-leitos-l1",
+            "categoria": "MÉDICO PSIQUIATRA ROTINA",
+            "perfilId": "modelo:medico-psiquiatra-rotina",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "saude-mental-6-leitos-l2",
+            "categoria": "MÉDICO PSIQUIATRA PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-psiquiatra-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "saude-mental-6-leitos-l3",
+            "categoria": "MÉDICO PSIQUIATRA PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-psiquiatra-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "saude-mental-6-leitos-l4",
+            "categoria": "ENFERMEIRO DIURNO",
+            "perfilId": "modelo:enfermeiro-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "saude-mental-6-leitos-l5",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "saude-mental-6-leitos-l6",
+            "categoria": "TÉCNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "saude-mental-6-leitos-l7",
+            "categoria": "TÉCNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "saude-mental-6-leitos-l8",
+            "categoria": "TECNICO ADMINISTRATIVO PLANTONISTA DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-plantonista-diurno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 15
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 8,
+          "profissionais": 35,
+          "linhasRevisao": 3
+        }
+      },
+      {
+        "id": "servico-ambulatorio",
+        "nome": "SERVIÇO AMBULATORIO",
+        "abaOrigem": "SERVIÇO AMBULATORIO",
+        "linhas": [
+          {
+            "id": "servico-ambulatorio-l1",
+            "categoria": "MÉDICO INFECTOLOGISTA",
+            "perfilId": "modelo:medico-infectologista",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-ambulatorio-l2",
+            "categoria": "MÉDICO PNEUMOLOGISTA",
+            "perfilId": "modelo:medico-pneumologista",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-ambulatorio-l3",
+            "categoria": "MÉDICO PSIQUIATRIA",
+            "perfilId": "modelo:medico-psiquiatria",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-ambulatorio-l4",
+            "categoria": "MÉDICO ESPECIALISTA BRONCOSCOPISTA",
+            "perfilId": "modelo:medico-especialista-broncoscopista",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-ambulatorio-l5",
+            "categoria": "FISIOTERAPEUTA",
+            "perfilId": "modelo:fisioterapeuta",
+            "chs": 30,
+            "quantidade": 4,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-ambulatorio-l6",
+            "categoria": "FONOAUDIOLOGO",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-ambulatorio-l7",
+            "categoria": "PSICOLOGO",
+            "perfilId": "modelo:psicologo",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-ambulatorio-l8",
+            "categoria": "NUTRICIONISTA",
+            "perfilId": "modelo:nutricionista",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-ambulatorio-l9",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-ambulatorio-l10",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-ambulatorio-l11",
+            "categoria": "TÉCNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-ambulatorio-l12",
+            "categoria": "TÉCNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-ambulatorio-l13",
+            "categoria": "TÉCNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 20
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 13,
+          "profissionais": 34,
+          "linhasRevisao": 2
+        }
+      },
+      {
+        "id": "servico-imagem",
+        "nome": "SERVIÇO IMAGEM",
+        "abaOrigem": "SERVIÇO IMAGEM",
+        "linhas": [
+          {
+            "id": "servico-imagem-l1",
+            "categoria": "MÉDICO ULTRASSONOGRAFISTA/ECO",
+            "perfilId": "modelo:medico-ultrassonografista-eco",
+            "chs": 20,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-imagem-l2",
+            "categoria": "MÉDICO ESPECIALISTA ESPIROMETRIA",
+            "perfilId": "modelo:medico-especialista-espirometria",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-imagem-l3",
+            "categoria": "MÉDICO ANESTESIOLOGISTA",
+            "perfilId": "modelo:medico-anestesiologista",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-imagem-l4",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-imagem-l5",
+            "categoria": "TECNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-imagem-l6",
+            "categoria": "TECNICO ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-imagem-l7",
+            "categoria": "TECNICO DE RADIOLOGIA DIURNO",
+            "perfilId": "modelo:tecnico-de-radiologia-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-imagem-l8",
+            "categoria": "TECNICO DE RADIOLOGIA NOTURNO",
+            "perfilId": "modelo:tecnico-de-radiologia-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-imagem-l9",
+            "categoria": "TECNICO DE TOMOGRAFIA DIURNO",
+            "perfilId": "modelo:tecnico-de-tomografia-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-imagem-l10",
+            "categoria": "TECNICO DE TOMOGRAFIA NOTURNO",
+            "perfilId": "modelo:tecnico-de-tomografia-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-imagem-l11",
+            "categoria": "TECNICO ADMINISTRATIVO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-diurno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-imagem-l12",
+            "categoria": "TECNICO ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 19
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 12,
+          "profissionais": 49,
+          "linhasRevisao": 8
+        }
+      },
+      {
+        "id": "servico-multidisciplinar",
+        "nome": "SERVIÇO MULTIDISCIPLINAR",
+        "abaOrigem": "SERVIÇO MULTIDISCIPLINAR",
+        "linhas": [
+          {
+            "id": "servico-multidisciplinar-l1",
+            "categoria": "PSICOLOGO DIARISTA",
+            "perfilId": "modelo:psicologo-diarista",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-multidisciplinar-l2",
+            "categoria": "NUTRICIONISTA PLANTONISTA DIURNO",
+            "perfilId": "modelo:nutricionista-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-multidisciplinar-l3",
+            "categoria": "NUTRICIONISTA PLANTONISTA NOTURNO",
+            "perfilId": "modelo:nutricionista-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-multidisciplinar-l4",
+            "categoria": "FONOAUDIOLOGO PLANTONISTA DIURNO",
+            "perfilId": "modelo:fonoaudiologo-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-multidisciplinar-l5",
+            "categoria": "ASSISTENTE SOCIAL DIA",
+            "perfilId": "modelo:assistente-social-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-multidisciplinar-l6",
+            "categoria": "FISIOTERAPEUTA PLANTONISTA DIURNO",
+            "perfilId": "modelo:fisioterapeuta-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-multidisciplinar-l7",
+            "categoria": "FARMACÊUTICO PLANTÃO DIA",
+            "perfilId": "modelo:farmaceutico-plantao-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-multidisciplinar-l8",
+            "categoria": "FARMACÊUTICO PLANTÃO NOTURNO",
+            "perfilId": "modelo:farmaceutico-plantao-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-multidisciplinar-l9",
+            "categoria": "TÉCNICO DE FARMÁCIA DIA",
+            "perfilId": "modelo:tecnico-de-farmacia-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-multidisciplinar-l10",
+            "categoria": "TÉCNICO DE FARMÁCIA NOTURNO",
+            "perfilId": "modelo:tecnico-de-farmacia-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-multidisciplinar-l11",
+            "categoria": "TÉCNICO ADMINISTRATIVO PLANTAO DIURNO",
+            "perfilId": "modelo:tecnico-administrativo-plantao-diurno",
+            "chs": 40,
+            "quantidade": 6,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-multidisciplinar-l12",
+            "categoria": "TÉCNICO ADMINISTRATIVO PLANTAO NOTURNO",
+            "perfilId": "modelo:tecnico-administrativo-plantao-noturno",
+            "chs": 40,
+            "quantidade": 6,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-multidisciplinar-l13",
+            "categoria": "TÉCNICO TI ROTINA",
+            "perfilId": "modelo:tecnico-ti-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "servico-multidisciplinar-l14",
+            "categoria": "SUPERVISOR ADMINISTRATIVO PLANTAO DIURNO",
+            "perfilId": "modelo:supervisor-administrativo-plantao-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "servico-multidisciplinar-l15",
+            "categoria": "SUPERVISOR ADMINISTRATIVO PLANTAO NOTURNO",
+            "perfilId": "modelo:supervisor-administrativo-plantao-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "servico-multidisciplinar-l16",
+            "categoria": "ENFERMEIRO PLANTÃO DIURNO",
+            "perfilId": "modelo:enfermeiro-plantao-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "servico-multidisciplinar-l17",
+            "categoria": "ENFERMEIRO PLANTÃO NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantao-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "servico-multidisciplinar-l18",
+            "categoria": "TEC ADMINISTRATIVO DIA",
+            "perfilId": "modelo:tec-administrativo-dia",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 26
+          },
+          {
+            "id": "servico-multidisciplinar-l19",
+            "categoria": "TEC ADMINISTRATIVO NOTURNO",
+            "perfilId": "modelo:tec-administrativo-noturno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 27
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 19,
+          "profissionais": 98,
+          "linhasRevisao": 12
+        }
+      },
+      {
+        "id": "servico-ceo",
+        "nome": "SERVIÇO CEO",
+        "abaOrigem": "SERVIÇO CEO",
+        "linhas": [
+          {
+            "id": "servico-ceo-l1",
+            "categoria": "COORDENADOR CIRURGIÃO DENTISTA",
+            "perfilId": "modelo:coordenador-cirurgiao-dentista",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-ceo-l2",
+            "categoria": "CIRURGIÃO DENTISTA",
+            "perfilId": "modelo:cirurgiao-dentista",
+            "chs": 8,
+            "quantidade": 22,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-ceo-l3",
+            "categoria": "AUXILIAR DE CONSULTORIO DENTARIO",
+            "perfilId": "modelo:auxiliar-de-consultorio-dentario",
+            "chs": 40,
+            "quantidade": 5,
+            "quantidadeTurno": 5,
+            "revisar": true,
+            "linhaOrigem": 11
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 3,
+          "profissionais": 28,
+          "linhasRevisao": 3
+        }
+      },
+      {
+        "id": "servico-padi",
+        "nome": "SERVIÇO PADI",
+        "abaOrigem": "SERVIÇO PADI",
+        "linhas": [
+          {
+            "id": "servico-padi-l1",
+            "categoria": "MÉDICO",
+            "perfilId": "modelo:medico",
+            "chs": 20,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-padi-l2",
+            "categoria": "ENFERMEIRO",
+            "perfilId": "modelo:enfermeiro",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-padi-l3",
+            "categoria": "FISIOTERAPEUTA",
+            "perfilId": "modelo:fisioterapeuta",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-padi-l4",
+            "categoria": "TECNICO DE ENFERMAGEM",
+            "perfilId": "modelo:tecnico-de-enfermagem",
+            "chs": 40,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-padi-l5",
+            "categoria": "TECNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-padi-l6",
+            "categoria": "MÉDICO",
+            "perfilId": "modelo:medico",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-padi-l7",
+            "categoria": "ENFERMEIRO",
+            "perfilId": "modelo:enfermeiro",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-padi-l8",
+            "categoria": "PSICOLOGO",
+            "perfilId": "modelo:psicologo",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-padi-l9",
+            "categoria": "ASSISTENTE SOCIAL",
+            "perfilId": "modelo:assistente-social",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-padi-l10",
+            "categoria": "TECNICO DE ENFERMAGEM",
+            "perfilId": "modelo:tecnico-de-enfermagem",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-padi-l11",
+            "categoria": "FONOAUDIOLOGO",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "servico-padi-l12",
+            "categoria": "NUTRICIONISTA",
+            "perfilId": "modelo:nutricionista",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "servico-padi-l13",
+            "categoria": "PSICOLOGO",
+            "perfilId": "modelo:psicologo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "servico-padi-l14",
+            "categoria": "ASSISTENTE SOCIAL",
+            "perfilId": "modelo:assistente-social",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "servico-padi-l15",
+            "categoria": "TERAPEUTA OCUPACIONAL",
+            "perfilId": "modelo:terapeuta-ocupacional",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 25
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 15,
+          "profissionais": 21,
+          "linhasRevisao": 2
+        }
+      }
+    ],
+    "resumoFinanceiro": {
+      "status": "extraido",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": 6116953.3,
+        "ano1": 73403439.6,
+        "ano2": 73403439.6,
+        "contrato": 146806879.2
+      },
+      "comCebas": {
+        "mes1": 5217833.7,
+        "ano1": 62614004.4,
+        "ano2": 62614004.4,
+        "contrato": 125228008.8
+      },
+      "reducao": {
+        "valor": 21578870.4,
+        "percentual": 0.146988
+      },
+      "observacao": "Valores históricos extraídos da planilha de origem. Ao criar um plano, o aplicativo recalcula o financeiro com a base vigente."
+    },
+    "resumo": {
+      "setores": 12,
+      "linhasEquipe": 401,
+      "profissionais": 2641,
+      "linhasRevisao": 176
+    }
+  },
+  {
+    "id": "hmbr-2026",
+    "nome": "Cronograma Hospital Municipal Barata Ribeiro",
+    "hospitalNome": "Hospital Municipal Barata Ribeiro",
+    "unidadeModelo": "Hospital Municipal Barata Ribeiro",
+    "sigla": "HMBR",
+    "grupoId": "SHGE",
+    "grupoNome": "Hospitais Gerais e Especializados",
+    "descricao": "Modelo clonável baseado no cronograma do Hospital Municipal Barata Ribeiro, classificado em hospitais gerais e especializados.",
+    "fonte": "HMBR VERSÃO FINAL SV 08-12 (sem PADI) (ajuste odonto).xlsx",
+    "tipo": "modelo_cronograma",
+    "status": "revisar",
+    "modoUso": "clonavel",
+    "observacao": "Modelo importado de planilha existente; o financeiro final é recalculado pelo app e deve ser revisado antes de uso oficial.",
+    "parametrosCronograma": {
+      "custeioOperacionalPct": 0.49,
+      "valeTransporteDia": 9.4,
+      "valeRefeicaoDia": 18,
+      "mesesCronograma": 24
+    },
+    "abasIgnoradas": [
+      "Histórico de Versões",
+      "Base Salarial RH",
+      "RESUMO",
+      "REDUÇÃO",
+      "INVESTIMENTO",
+      "Cronograma final"
+    ],
+    "setores": [
+      {
+        "id": "equipe-de-gestao-macro",
+        "nome": "EQUIPE DE GESTÃO MACRO",
+        "abaOrigem": "b1 - EQUIPE DE GESTÃO MACRO",
+        "linhas": [
+          {
+            "id": "equipe-de-gestao-macro-l1",
+            "categoria": "MÉDICO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:medico-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "equipe-de-gestao-macro-l2",
+            "categoria": "ADMINISTRADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:administrador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "equipe-de-gestao-macro-l3",
+            "categoria": "ENFERMEIRO COORDENADOR GERAL RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:enfermeiro-coordenador-geral-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "equipe-de-gestao-macro-l4",
+            "categoria": "COORDENADOR ADMINISTRATIVO",
+            "perfilId": "modelo:coordenador-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "equipe-de-gestao-macro-l5",
+            "categoria": "COORDENADOR MEDICO ANESTESIOLOGIA",
+            "perfilId": "modelo:coordenador-medico-anestesiologia",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "equipe-de-gestao-macro-l6",
+            "categoria": "COORDENADOR MÉDICO HEMOTERAPIA",
+            "perfilId": "modelo:coordenador-medico-hemoterapia",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "equipe-de-gestao-macro-l7",
+            "categoria": "COORDENADOR MÉDICO SETOR DE IMAGEM",
+            "perfilId": "modelo:coordenador-medico-setor-de-imagem",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "equipe-de-gestao-macro-l8",
+            "categoria": "COORDENADOR MÉDICO ORTOPEDISTA CENTRO CIRURGICO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-medico-ortopedista-centro-cirurgico-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "equipe-de-gestao-macro-l9",
+            "categoria": "COORDENADOR MÉDICO CTI ADULTO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-medico-cti-adulto-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "equipe-de-gestao-macro-l10",
+            "categoria": "COORDENADOR ENFERMEIRO CTI ADULTO RESPONSAVEL TECNICO",
+            "perfilId": "modelo:coordenador-enfermeiro-cti-adulto-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "equipe-de-gestao-macro-l11",
+            "categoria": "COORDENADOR ENFERMAGEM CENTRO CIRURGICO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-enfermagem-centro-cirurgico-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "equipe-de-gestao-macro-l12",
+            "categoria": "COORDENADOR ENFERMAGEM DO SETOR DE IMAGEM",
+            "perfilId": "modelo:coordenador-enfermagem-do-setor-de-imagem",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "equipe-de-gestao-macro-l13",
+            "categoria": "COORDENADOR ENFERMAGEM HEMOTERAPIA",
+            "perfilId": "modelo:coordenador-enfermagem-hemoterapia",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "equipe-de-gestao-macro-l14",
+            "categoria": "COORDENADOR ENFERMAGEM NIR",
+            "perfilId": "modelo:coordenador-enfermagem-nir",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "equipe-de-gestao-macro-l15",
+            "categoria": "COORDENADOR ENFERMAGEM DE AMBULATÓRIO",
+            "perfilId": "modelo:coordenador-enfermagem-de-ambulatorio",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "equipe-de-gestao-macro-l16",
+            "categoria": "COORDENADOR DE EQUIPE MULTIPROFISSIONAL",
+            "perfilId": "modelo:coordenador-de-equipe-multiprofissional",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "equipe-de-gestao-macro-l17",
+            "categoria": "FARMACEUTICO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:farmaceutico-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "equipe-de-gestao-macro-l18",
+            "categoria": "MÉDICO CHEFE DE EQUIPE DIURNO",
+            "perfilId": "modelo:medico-chefe-de-equipe-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "equipe-de-gestao-macro-l19",
+            "categoria": "MÉDICO CHEFE DE EQUIPE NOTURNO",
+            "perfilId": "modelo:medico-chefe-de-equipe-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 28
+          },
+          {
+            "id": "equipe-de-gestao-macro-l20",
+            "categoria": "MÉDICO DE CCIH",
+            "perfilId": "modelo:medico-de-ccih",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 29
+          },
+          {
+            "id": "equipe-de-gestao-macro-l21",
+            "categoria": "ENFERMEIRO DE CCIH",
+            "perfilId": "modelo:enfermeiro-de-ccih",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 30
+          },
+          {
+            "id": "equipe-de-gestao-macro-l22",
+            "categoria": "ENFERMEIRO SUPERVISOR DIA",
+            "perfilId": "modelo:enfermeiro-supervisor-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 31
+          },
+          {
+            "id": "equipe-de-gestao-macro-l23",
+            "categoria": "ENFERMEIRO SUPERVISOR NOTURNO",
+            "perfilId": "modelo:enfermeiro-supervisor-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 32
+          },
+          {
+            "id": "equipe-de-gestao-macro-l24",
+            "categoria": "TÉCNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 34
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 24,
+          "profissionais": 42,
+          "linhasRevisao": 16
+        }
+      },
+      {
+        "id": "servico-ambulatorio",
+        "nome": "SERVIÇO AMBULATÓRIO",
+        "abaOrigem": "b2 - SERVIÇO AMBULATÓRIO",
+        "linhas": [
+          {
+            "id": "servico-ambulatorio-l1",
+            "categoria": "Médico Ortopedista",
+            "perfilId": "modelo:medico-ortopedista",
+            "chs": 12,
+            "quantidade": 18,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-ambulatorio-l2",
+            "categoria": "Médico Risco Cirúrgico",
+            "perfilId": "modelo:medico-risco-cirurgico",
+            "chs": 12,
+            "quantidade": 12,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-ambulatorio-l3",
+            "categoria": "Enfermeiro Plantonista Diurno",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-ambulatorio-l4",
+            "categoria": "Dentista",
+            "perfilId": "modelo:dentista",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-ambulatorio-l5",
+            "categoria": "Auxiliar de Consultório Dentário",
+            "perfilId": "modelo:auxiliar-de-consultorio-dentario",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-ambulatorio-l6",
+            "categoria": "Tecnico de Saude Bucal",
+            "perfilId": "modelo:tecnico-de-saude-bucal",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-ambulatorio-l7",
+            "categoria": "Enfermeiro Diarista",
+            "perfilId": "modelo:enfermeiro-diarista",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-ambulatorio-l8",
+            "categoria": "Técnico de Enfermagem Plantonista Diurno",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-ambulatorio-l9",
+            "categoria": "Fisioterapeuta Diurno",
+            "perfilId": "modelo:fisioterapeuta-diurno",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-ambulatorio-l10",
+            "categoria": "Técnico de Imobilização Ortopedica",
+            "perfilId": "modelo:tecnico-de-imobilizacao-ortopedica",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-ambulatorio-l11",
+            "categoria": "Tecnico adiministrativo",
+            "perfilId": "modelo:tecnico-adiministrativo",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 18
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 11,
+          "profissionais": 82,
+          "linhasRevisao": 4
+        }
+      },
+      {
+        "id": "servico-terapia-intensiva",
+        "nome": "SERVIÇO TERAPIA INTENSIVA",
+        "abaOrigem": "b3 - SERVIÇO TERAPIA INTENSIVA ",
+        "linhas": [
+          {
+            "id": "servico-terapia-intensiva-l1",
+            "categoria": "Médico (Com experiência em CTI) DIURNO",
+            "perfilId": "modelo:medico-com-experiencia-em-cti-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-terapia-intensiva-l2",
+            "categoria": "Médico (Com experiência em CTI) NOTURNO",
+            "perfilId": "modelo:medico-com-experiencia-em-cti-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-terapia-intensiva-l3",
+            "categoria": "Médico clinico Rotina",
+            "perfilId": "modelo:medico-clinico-rotina",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-terapia-intensiva-l4",
+            "categoria": "Dentista",
+            "perfilId": "modelo:dentista",
+            "chs": 24,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-terapia-intensiva-l5",
+            "categoria": "Enfermeiro Rotina",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-terapia-intensiva-l6",
+            "categoria": "Enfermeiro - plantão diurno",
+            "perfilId": "modelo:enfermeiro-plantao-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-terapia-intensiva-l7",
+            "categoria": "Enfermeiro - plantão noturno",
+            "perfilId": "modelo:enfermeiro-plantao-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-terapia-intensiva-l8",
+            "categoria": "Técnico enfermagem - plantão diurno",
+            "perfilId": "modelo:tecnico-enfermagem-plantao-diurno",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-terapia-intensiva-l9",
+            "categoria": "Técnico de Enfermagem - plantão noturno",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantao-noturno",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-terapia-intensiva-l10",
+            "categoria": "Fisioterapeuta Rotina",
+            "perfilId": "modelo:fisioterapeuta-rotina",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-terapia-intensiva-l11",
+            "categoria": "Fisioterapeuta diurno",
+            "perfilId": "modelo:fisioterapeuta-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-terapia-intensiva-l12",
+            "categoria": "Fisioterapeuta Noturno",
+            "perfilId": "modelo:fisioterapeuta-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-terapia-intensiva-l13",
+            "categoria": "Nutricionista diurno",
+            "perfilId": "modelo:nutricionista-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "servico-terapia-intensiva-l14",
+            "categoria": "Tecnico administrtivo",
+            "perfilId": "modelo:tecnico-administrtivo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 21
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 14,
+          "profissionais": 61,
+          "linhasRevisao": 5
+        }
+      },
+      {
+        "id": "servico-de-anestesiologia",
+        "nome": "SERVIÇO DE ANESTESIOLOGIA",
+        "abaOrigem": "b4 - SERVIÇO DE ANESTESIOLOGIA",
+        "linhas": [
+          {
+            "id": "servico-de-anestesiologia-l1",
+            "categoria": "Médico Anestesiologista",
+            "perfilId": "modelo:medico-anestesiologista",
+            "chs": 12,
+            "quantidade": 49,
+            "quantidadeTurno": 7,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-de-anestesiologia-l2",
+            "categoria": "Enfermeiro CC Rotina",
+            "perfilId": "modelo:enfermeiro-cc-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-de-anestesiologia-l3",
+            "categoria": "Enfermeiro - Plantonista CC DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-cc-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-de-anestesiologia-l4",
+            "categoria": "Enfermeiro - Plantonista CC NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-cc-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-de-anestesiologia-l5",
+            "categoria": "Técnico de Enfermagem CC - Plantonista Diurno",
+            "perfilId": "modelo:tecnico-de-enfermagem-cc-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-de-anestesiologia-l6",
+            "categoria": "Técnico de Enfermagem CC - Plantonista noturno",
+            "perfilId": "modelo:tecnico-de-enfermagem-cc-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-de-anestesiologia-l7",
+            "categoria": "Instrumentador Cirúrgico (Plantonista) Diurno",
+            "perfilId": "modelo:instrumentador-cirurgico-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-de-anestesiologia-l8",
+            "categoria": "Enfermeiro CME Rotina",
+            "perfilId": "modelo:enfermeiro-cme-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-de-anestesiologia-l9",
+            "categoria": "Enfermeiro - Plantonista CME Diurno",
+            "perfilId": "modelo:enfermeiro-plantonista-cme-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-de-anestesiologia-l10",
+            "categoria": "Enfermeiro - Plantonista CME noturno",
+            "perfilId": "modelo:enfermeiro-plantonista-cme-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-de-anestesiologia-l11",
+            "categoria": "Técnico de Enfermagem CME - Plantonista Diurno",
+            "perfilId": "modelo:tecnico-de-enfermagem-cme-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-de-anestesiologia-l12",
+            "categoria": "Técnico de Enfermagem CME - Plantonista noturno",
+            "perfilId": "modelo:tecnico-de-enfermagem-cme-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "servico-de-anestesiologia-l13",
+            "categoria": "Médico Anestesiologista",
+            "perfilId": "modelo:medico-anestesiologista",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "servico-de-anestesiologia-l14",
+            "categoria": "Dentista",
+            "perfilId": "modelo:dentista",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "servico-de-anestesiologia-l15",
+            "categoria": "Auxiliar de Consultório Dentário",
+            "perfilId": "modelo:auxiliar-de-consultorio-dentario",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "servico-de-anestesiologia-l16",
+            "categoria": "Tecnico administrativo",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 26
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 16,
+          "profissionais": 146,
+          "linhasRevisao": 12
+        }
+      },
+      {
+        "id": "servico-de-ortopedia",
+        "nome": "SERVIÇO DE ORTOPEDIA",
+        "abaOrigem": "b5 - SERVIÇO DE ORTOPEDIA",
+        "linhas": [
+          {
+            "id": "servico-de-ortopedia-l1",
+            "categoria": "MÉDICO DIURNO",
+            "perfilId": "modelo:medico-diurno",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 7
+          },
+          {
+            "id": "servico-de-ortopedia-l2",
+            "categoria": "MÉDICO NOTURNO",
+            "perfilId": "modelo:medico-noturno",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-de-ortopedia-l3",
+            "categoria": "MÉDICO ROTINA CLINICO",
+            "perfilId": "modelo:medico-rotina-clinico",
+            "chs": 30,
+            "quantidade": 8,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-de-ortopedia-l4",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-de-ortopedia-l5",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 18,
+            "quantidadeTurno": 6,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-de-ortopedia-l6",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-de-ortopedia-l7",
+            "categoria": "TECNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 57,
+            "quantidadeTurno": 19,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-de-ortopedia-l8",
+            "categoria": "TECNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 57,
+            "quantidadeTurno": 19,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-de-ortopedia-l9",
+            "categoria": "TECNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 8,
+            "quantidadeTurno": 8,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-de-ortopedia-l10",
+            "categoria": "FISIOTERAPEUTA DIURNO",
+            "perfilId": "modelo:fisioterapeuta-diurno",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-de-ortopedia-l11",
+            "categoria": "ASSISTENTE SOCIAL",
+            "perfilId": "modelo:assistente-social",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-de-ortopedia-l12",
+            "categoria": "PSICOLOGO",
+            "perfilId": "modelo:psicologo",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-de-ortopedia-l13",
+            "categoria": "Nutricionista diurno",
+            "perfilId": "modelo:nutricionista-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-de-ortopedia-l14",
+            "categoria": "TEC ADMINISTRATIVO",
+            "perfilId": "modelo:tec-administrativo",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "servico-de-ortopedia-l15",
+            "categoria": "Médico Ortopedista DIURNO",
+            "perfilId": "modelo:medico-ortopedista-diurno",
+            "chs": 12,
+            "quantidade": 70,
+            "quantidadeTurno": 10,
+            "revisar": false,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "servico-de-ortopedia-l16",
+            "categoria": "Médico Ortopedista DIURNO",
+            "perfilId": "modelo:medico-ortopedista-diurno",
+            "chs": 12,
+            "quantidade": 10,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "servico-de-ortopedia-l17",
+            "categoria": "Médico Cirurgião Plástico DIA",
+            "perfilId": "modelo:medico-cirurgiao-plastico-dia",
+            "chs": 12,
+            "quantidade": 5,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 26
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 17,
+          "profissionais": 331,
+          "linhasRevisao": 4
+        }
+      },
+      {
+        "id": "servico-multidisciplinar",
+        "nome": "SERVIÇO MULTIDISCIPLINAR",
+        "abaOrigem": "b6 - SERVIÇO MULTIDISCIPLINAR",
+        "linhas": [
+          {
+            "id": "servico-multidisciplinar-l1",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 7
+          },
+          {
+            "id": "servico-multidisciplinar-l2",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-multidisciplinar-l3",
+            "categoria": "TEC ADMINISTRATIVO PLANTONISTA DIURNO",
+            "perfilId": "modelo:tec-administrativo-plantonista-diurno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-multidisciplinar-l4",
+            "categoria": "TEC ADMINISTRATIVO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:tec-administrativo-plantonista-noturno",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-multidisciplinar-l5",
+            "categoria": "FARMACEUTICO PLANTÃO DIURNO",
+            "perfilId": "modelo:farmaceutico-plantao-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-multidisciplinar-l6",
+            "categoria": "FARMACEUTICO PLANTÃO NOTURNO",
+            "perfilId": "modelo:farmaceutico-plantao-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-multidisciplinar-l7",
+            "categoria": "TECNICO DE FARMACIA PLANTÃO DIURNO",
+            "perfilId": "modelo:tecnico-de-farmacia-plantao-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-multidisciplinar-l8",
+            "categoria": "TECNICO DE FARMACIA PLANTÃO NOTURNO",
+            "perfilId": "modelo:tecnico-de-farmacia-plantao-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 8,
+          "profissionais": 30,
+          "linhasRevisao": 6
+        }
+      },
+      {
+        "id": "servico-de-imagem",
+        "nome": "SERVIÇO DE IMAGEM",
+        "abaOrigem": "b8- SERVIÇO DE IMAGEM",
+        "linhas": [
+          {
+            "id": "servico-de-imagem-l1",
+            "categoria": "Médico Radiologista (Ultrassonografia)",
+            "perfilId": "modelo:medico-radiologista-ultrassonografia",
+            "chs": 24,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-de-imagem-l2",
+            "categoria": "MÉDICO ROTINA (RADIOLOGISTA)",
+            "perfilId": "modelo:medico-rotina-radiologista",
+            "chs": 24,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-de-imagem-l3",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-de-imagem-l4",
+            "categoria": "ENFERMEIRO - PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-de-imagem-l5",
+            "categoria": "ENFERMEIRO - PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-de-imagem-l6",
+            "categoria": "TÉCNICO DE ENFERMAGEM - PLANTONISTA DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-de-imagem-l7",
+            "categoria": "TÉCNICO DE ENFERMAGEM - PLANTONISTA NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-de-imagem-l8",
+            "categoria": "TÉCNICO RADIOLOGIA - PLANTONISTA DIURNO",
+            "perfilId": "modelo:tecnico-radiologia-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-de-imagem-l9",
+            "categoria": "TÉCNICO RADIOLOGIA - PLANTONISTA NOTURNO",
+            "perfilId": "modelo:tecnico-radiologia-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-de-imagem-l10",
+            "categoria": "TÉCNICO TOMOGRAFIA - PLANTONISTA DIURNO",
+            "perfilId": "modelo:tecnico-tomografia-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-de-imagem-l11",
+            "categoria": "TÉCNICO TOMOGRAFIA - PLANTONISTA NOTURNO",
+            "perfilId": "modelo:tecnico-tomografia-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-de-imagem-l12",
+            "categoria": "TÉCNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-de-imagem-l13",
+            "categoria": "Técnico de Radiologia (RaioX) Plantonista Diurno",
+            "perfilId": "modelo:tecnico-de-radiologia-raiox-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "servico-de-imagem-l14",
+            "categoria": "Técnico de Radiologia (RaioX) Plantonista NOTURNO",
+            "perfilId": "modelo:tecnico-de-radiologia-raiox-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 22
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 14,
+          "profissionais": 80,
+          "linhasRevisao": 8
+        }
+      },
+      {
+        "id": "servico-hemoterapia",
+        "nome": "SERVIÇO HEMOTERAPIA",
+        "abaOrigem": "b9- SERVIÇO HEMOTERAPIA",
+        "linhas": [
+          {
+            "id": "servico-hemoterapia-l1",
+            "categoria": "Enfermeiro - plantão diurno",
+            "perfilId": "modelo:enfermeiro-plantao-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-hemoterapia-l2",
+            "categoria": "Enfermeiro - plantão noturno",
+            "perfilId": "modelo:enfermeiro-plantao-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-hemoterapia-l3",
+            "categoria": "Técnico de hemoterapia - plantão diurno",
+            "perfilId": "modelo:tecnico-de-hemoterapia-plantao-diurno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-hemoterapia-l4",
+            "categoria": "Técnico de hemoterapia - plantão noturno",
+            "perfilId": "modelo:tecnico-de-hemoterapia-plantao-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-hemoterapia-l5",
+            "categoria": "Tecnico administrattivo",
+            "perfilId": "modelo:tecnico-administrattivo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 12
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 5,
+          "profissionais": 14,
+          "linhasRevisao": 3
+        }
+      }
+    ],
+    "resumoFinanceiro": {
+      "status": "extraido",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": 9010314.59,
+        "ano1": 118123775.1,
+        "ano2": 113123775.1,
+        "contrato": 231247550.2
+      },
+      "comCebas": {
+        "mes1": 7846396.53,
+        "ano1": 104156758.4,
+        "ano2": 99156758.4,
+        "contrato": 203313516.8
+      },
+      "reducao": {
+        "valor": 27934033.4,
+        "percentual": 0.120797
+      },
+      "observacao": "O cenário sem CEBAS veio da aba RESUMO; o cenário com CEBAS foi consolidado da aba final CEBAS porque o resumo original não traz esse bloco.",
+      "fonteComplementar": "CRONOGRAMA HMBR (CEBAS)"
+    },
+    "resumo": {
+      "setores": 8,
+      "linhasEquipe": 109,
+      "profissionais": 786,
+      "linhasRevisao": 58
+    }
+  },
+  {
+    "id": "hmfst-2026",
+    "nome": "Cronograma Hospital Municipal Francisco da Silva Telles",
+    "hospitalNome": "Hospital Municipal Francisco da Silva Telles",
+    "unidadeModelo": "Hospital Municipal Francisco da Silva Telles",
+    "sigla": "HMFST",
+    "grupoId": "SHGE",
+    "grupoNome": "Hospitais Gerais e Especializados",
+    "descricao": "Modelo clonável baseado no cronograma do Hospital Municipal Francisco da Silva Telles, classificado em hospitais gerais e especializados.",
+    "fonte": "HMFST CR FINAL SV COM CEO SEM CTI 22-12-2025.xlsx",
+    "tipo": "modelo_cronograma",
+    "status": "revisar",
+    "modoUso": "clonavel",
+    "observacao": "Modelo importado de planilha existente; o financeiro final é recalculado pelo app e deve ser revisado antes de uso oficial.",
+    "parametrosCronograma": {
+      "custeioOperacionalPct": 0.2998,
+      "valeTransporteDia": 9.4,
+      "valeRefeicaoDia": 18,
+      "mesesCronograma": 24
+    },
+    "abasIgnoradas": [
+      "Histórico de Versões",
+      "Base Salarial RH",
+      "RESUMO",
+      "REDUÇÃO",
+      "INVESTIMENTO",
+      "Cronograma final"
+    ],
+    "setores": [
+      {
+        "id": "gestao-macro-hosp-francisco",
+        "nome": "GESTÃO MACRO HOSP FRANCISCO",
+        "abaOrigem": "b1-GESTÃO MACRO HOSP FRANCISCO ",
+        "linhas": [
+          {
+            "id": "gestao-macro-hosp-francisco-l1",
+            "categoria": "DIRETOR GERAL",
+            "perfilId": "modelo:diretor-geral",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l2",
+            "categoria": "COORDENADOR MÉDICO RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:coordenador-medico-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l3",
+            "categoria": "ADMINISTRADOR RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:administrador-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l4",
+            "categoria": "ENFERMEIRO COORDENADOR GERAL RESPONSÁVEL TÉCNICO",
+            "perfilId": "modelo:enfermeiro-coordenador-geral-responsavel-tecnico",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l5",
+            "categoria": "GERENTE MULTI",
+            "perfilId": "modelo:gerente-multi",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l6",
+            "categoria": "COORDENADOR DE PROCESSO",
+            "perfilId": "modelo:coordenador-de-processo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l7",
+            "categoria": "COORDENADOR ADMINISTRATIVO",
+            "perfilId": "modelo:coordenador-administrativo",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l8",
+            "categoria": "MÉDICO COORDENADOR EMERGÊNCIA ADULTO",
+            "perfilId": "modelo:medico-coordenador-emergencia-adulto",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l9",
+            "categoria": "ENFERMEIRO COORDENADOR EMERGÊNCIA ADULTO",
+            "perfilId": "modelo:enfermeiro-coordenador-emergencia-adulto",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l10",
+            "categoria": "MÉDICO COORDENADOR EMERGÊNCIA PEDIATRIA",
+            "perfilId": "modelo:medico-coordenador-emergencia-pediatria",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l11",
+            "categoria": "ENFERMEIRO COORDENADOR EMERGÊNCIA PEDIATRIA",
+            "perfilId": "modelo:enfermeiro-coordenador-emergencia-pediatria",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l12",
+            "categoria": "MÉDICO COORDENADOR CLINCA MEDICA",
+            "perfilId": "modelo:medico-coordenador-clinca-medica",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l13",
+            "categoria": "ENFERMEIRO COORDENADOR CLINCA MEDICA",
+            "perfilId": "modelo:enfermeiro-coordenador-clinca-medica",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l14",
+            "categoria": "COORDENADOR SERVIÇO SOCIAL",
+            "perfilId": "modelo:coordenador-servico-social",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l15",
+            "categoria": "COORDENADOR DE FARMÁCIA",
+            "perfilId": "modelo:coordenador-de-farmacia",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l16",
+            "categoria": "MÉDICO CHEFE DE EQUIPE DIURNO",
+            "perfilId": "modelo:medico-chefe-de-equipe-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 24
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l17",
+            "categoria": "MÉDICO CHEFE DE EQUIPE NOTURNO",
+            "perfilId": "modelo:medico-chefe-de-equipe-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l18",
+            "categoria": "MÉDICO DE CCIH",
+            "perfilId": "modelo:medico-de-ccih",
+            "chs": 20,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 26
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l19",
+            "categoria": "ENFERMEIRO QUALIDADE",
+            "perfilId": "modelo:enfermeiro-qualidade",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l20",
+            "categoria": "ENFERMEIRO DE CCIH",
+            "perfilId": "modelo:enfermeiro-de-ccih",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 28
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l21",
+            "categoria": "ENFERMEIRO SUPERVISOR DIA",
+            "perfilId": "modelo:enfermeiro-supervisor-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 29
+          },
+          {
+            "id": "gestao-macro-hosp-francisco-l22",
+            "categoria": "ENFERMEIRO SUPERVISOR NOTURNO",
+            "perfilId": "modelo:enfermeiro-supervisor-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 30
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 22,
+          "profissionais": 38,
+          "linhasRevisao": 15
+        }
+      },
+      {
+        "id": "servico-clinica-medica-100",
+        "nome": "SERVIÇO CLINICA MÉDICA 100",
+        "abaOrigem": "b2- SERVIÇO CLINICA MÉDICA 100 ",
+        "linhas": [
+          {
+            "id": "servico-clinica-medica-100-l1",
+            "categoria": "MÉDICO PLANTONISTA DIURNO",
+            "perfilId": "modelo:medico-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-clinica-medica-100-l2",
+            "categoria": "MÉDICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-clinica-medica-100-l3",
+            "categoria": "MÉDICO ROTINA",
+            "perfilId": "modelo:medico-rotina",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 6,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-clinica-medica-100-l4",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 4,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-clinica-medica-100-l5",
+            "categoria": "ENFERMEIRO PLANTONISTA DIURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-clinica-medica-100-l6",
+            "categoria": "ENFERMEIRO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:enfermeiro-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 15,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-clinica-medica-100-l7",
+            "categoria": "TECNICO DE ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tecnico-de-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 5,
+            "quantidadeTurno": 5,
+            "revisar": false,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-clinica-medica-100-l8",
+            "categoria": "TECNICO DE ENFERMAGEM DIURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-diurno",
+            "chs": 30,
+            "quantidade": 39,
+            "quantidadeTurno": 13,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-clinica-medica-100-l9",
+            "categoria": "TECNICO DE ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tecnico-de-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 39,
+            "quantidadeTurno": 13,
+            "revisar": false,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-clinica-medica-100-l10",
+            "categoria": "FONOAUDIÓLOGO DIA",
+            "perfilId": "modelo:fonoaudiologo-dia",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-clinica-medica-100-l11",
+            "categoria": "FISIOTERAPEUTA DIA",
+            "perfilId": "modelo:fisioterapeuta-dia",
+            "chs": 30,
+            "quantidade": 12,
+            "quantidadeTurno": 4,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-clinica-medica-100-l12",
+            "categoria": "TECNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 19
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 12,
+          "profissionais": 176,
+          "linhasRevisao": 2
+        }
+      },
+      {
+        "id": "servico-da-emergencia",
+        "nome": "SERVIÇO DA EMERGÊNCIA",
+        "abaOrigem": "b3- SERVIÇO DA EMERGÊNCIA",
+        "linhas": [
+          {
+            "id": "servico-da-emergencia-l1",
+            "categoria": "MÉDICO PLANTONISTA DIA",
+            "perfilId": "modelo:medico-plantonista-dia",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-da-emergencia-l2",
+            "categoria": "MÉDICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 21,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-da-emergencia-l3",
+            "categoria": "ENFERMEIRO DIA",
+            "perfilId": "modelo:enfermeiro-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-da-emergencia-l4",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-da-emergencia-l5",
+            "categoria": "TEC ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-da-emergencia-l6",
+            "categoria": "TEC ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-da-emergencia-l7",
+            "categoria": "TEC ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-da-emergencia-l8",
+            "categoria": "MÉDICO CLÍNICO PLANTONISTA DIA",
+            "perfilId": "modelo:medico-clinico-plantonista-dia",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-da-emergencia-l9",
+            "categoria": "MÉDICO CLÍNICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-clinico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 17
+          },
+          {
+            "id": "servico-da-emergencia-l10",
+            "categoria": "MÉDICO ROTINA ROTINA",
+            "perfilId": "modelo:medico-rotina-rotina",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 18
+          },
+          {
+            "id": "servico-da-emergencia-l11",
+            "categoria": "ENFERMEIRO DIA",
+            "perfilId": "modelo:enfermeiro-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 19
+          },
+          {
+            "id": "servico-da-emergencia-l12",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 20
+          },
+          {
+            "id": "servico-da-emergencia-l13",
+            "categoria": "TEC ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 21
+          },
+          {
+            "id": "servico-da-emergencia-l14",
+            "categoria": "TEC ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 22
+          },
+          {
+            "id": "servico-da-emergencia-l15",
+            "categoria": "TEC ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 23
+          },
+          {
+            "id": "servico-da-emergencia-l16",
+            "categoria": "MÉDICO CLÍNICO PLANTONISTA DIA",
+            "perfilId": "modelo:medico-clinico-plantonista-dia",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 25
+          },
+          {
+            "id": "servico-da-emergencia-l17",
+            "categoria": "MÉDICO CLÍNICO PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-clinico-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 26
+          },
+          {
+            "id": "servico-da-emergencia-l18",
+            "categoria": "MÉDICO ROTINA ROTINA",
+            "perfilId": "modelo:medico-rotina-rotina",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 3,
+            "revisar": true,
+            "linhaOrigem": 27
+          },
+          {
+            "id": "servico-da-emergencia-l19",
+            "categoria": "ENFERMEIRO DIA",
+            "perfilId": "modelo:enfermeiro-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 28
+          },
+          {
+            "id": "servico-da-emergencia-l20",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 29
+          },
+          {
+            "id": "servico-da-emergencia-l21",
+            "categoria": "TEC ENFERAMGEM DIA",
+            "perfilId": "modelo:tec-enferamgem-dia",
+            "chs": 40,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 30
+          },
+          {
+            "id": "servico-da-emergencia-l22",
+            "categoria": "TEC ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 31
+          },
+          {
+            "id": "servico-da-emergencia-l23",
+            "categoria": "FISIOTERAPEUTA DIA",
+            "perfilId": "modelo:fisioterapeuta-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 32
+          },
+          {
+            "id": "servico-da-emergencia-l24",
+            "categoria": "FISIOTERAPEUTA NOTURNO",
+            "perfilId": "modelo:fisioterapeuta-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 33
+          },
+          {
+            "id": "servico-da-emergencia-l25",
+            "categoria": "MÉDICO PEDIATRIA PLANTONISTA DIA",
+            "perfilId": "modelo:medico-pediatria-plantonista-dia",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 35
+          },
+          {
+            "id": "servico-da-emergencia-l26",
+            "categoria": "MÉDICO PEDIATRIA PLANTONISTA NOTURNO",
+            "perfilId": "modelo:medico-pediatria-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 14,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 36
+          },
+          {
+            "id": "servico-da-emergencia-l27",
+            "categoria": "MÉDICO PEDIATRA ROTINA",
+            "perfilId": "modelo:medico-pediatra-rotina",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 37
+          },
+          {
+            "id": "servico-da-emergencia-l28",
+            "categoria": "ENFERMEIRO DIA",
+            "perfilId": "modelo:enfermeiro-dia",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 38
+          },
+          {
+            "id": "servico-da-emergencia-l29",
+            "categoria": "ENFERMEIRO NOTURNO",
+            "perfilId": "modelo:enfermeiro-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 39
+          },
+          {
+            "id": "servico-da-emergencia-l30",
+            "categoria": "ENFERMEIRO ROTINA",
+            "perfilId": "modelo:enfermeiro-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 40
+          },
+          {
+            "id": "servico-da-emergencia-l31",
+            "categoria": "TEC ENFERMAGEM DIA",
+            "perfilId": "modelo:tec-enfermagem-dia",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 41
+          },
+          {
+            "id": "servico-da-emergencia-l32",
+            "categoria": "TEC ENFERMAGEM NOTURNO",
+            "perfilId": "modelo:tec-enfermagem-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 42
+          },
+          {
+            "id": "servico-da-emergencia-l33",
+            "categoria": "TEC ENFERMAGEM ROTINA",
+            "perfilId": "modelo:tec-enfermagem-rotina",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 43
+          },
+          {
+            "id": "servico-da-emergencia-l34",
+            "categoria": "TECNICO ADMINISTRATIVO",
+            "perfilId": "modelo:tecnico-administrativo",
+            "chs": 40,
+            "quantidade": 2,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 44
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 34,
+          "profissionais": 208,
+          "linhasRevisao": 21
+        }
+      },
+      {
+        "id": "servico-de-apoio",
+        "nome": "SERVIÇO DE APOIO",
+        "abaOrigem": " b4- SERVIÇO DE APOIO",
+        "linhas": [
+          {
+            "id": "servico-de-apoio-l1",
+            "categoria": "NUTRICIONISTA PLANTONISTA DIURNO",
+            "perfilId": "modelo:nutricionista-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-de-apoio-l2",
+            "categoria": "NUTRICIONISTA PLANTONISTA NOTURNO",
+            "perfilId": "modelo:nutricionista-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 9
+          },
+          {
+            "id": "servico-de-apoio-l3",
+            "categoria": "FARMACÊUTICO - PLANTONISTA DIURNO",
+            "perfilId": "modelo:farmaceutico-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": false,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-de-apoio-l4",
+            "categoria": "FARMACÊUTICO - PLANTONISTA NOTURNO",
+            "perfilId": "modelo:farmaceutico-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-de-apoio-l5",
+            "categoria": "ASSISTENTE SOCIAL - PLANTONISTA DIURNO",
+            "perfilId": "modelo:assistente-social-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 9,
+            "quantidadeTurno": 3,
+            "revisar": false,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-de-apoio-l6",
+            "categoria": "ASSISTENTE SOCIAL - PLANTONISTA NOTURNO",
+            "perfilId": "modelo:assistente-social-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 3,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 13
+          },
+          {
+            "id": "servico-de-apoio-l7",
+            "categoria": "PSICÓLOGO ROTINA",
+            "perfilId": "modelo:psicologo-rotina",
+            "chs": 30,
+            "quantidade": 2,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-de-apoio-l8",
+            "categoria": "FONOAUDIÓLOGO",
+            "perfilId": "modelo:fonoaudiologo",
+            "chs": 30,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": false,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-de-apoio-l9",
+            "categoria": "TÉCNICO DE FARMÁCIA - PLANTONISTA DIURNO",
+            "perfilId": "modelo:tecnico-de-farmacia-plantonista-diurno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-de-apoio-l10",
+            "categoria": "TÉCNICO DE FARMÁCIA - PLANTONISTA NOTURNO",
+            "perfilId": "modelo:tecnico-de-farmacia-plantonista-noturno",
+            "chs": 30,
+            "quantidade": 6,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 17
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 10,
+          "profissionais": 48,
+          "linhasRevisao": 5
+        }
+      },
+      {
+        "id": "servico-ceo",
+        "nome": "SERVIÇO CEO",
+        "abaOrigem": "b5- SERVIÇO CEO",
+        "linhas": [
+          {
+            "id": "servico-ceo-l1",
+            "categoria": "COORDENADOR CIRURGIÃO DENTISTA",
+            "perfilId": "modelo:coordenador-cirurgiao-dentista",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 8
+          },
+          {
+            "id": "servico-ceo-l2",
+            "categoria": "CIRURGIÃO DENTISTA",
+            "perfilId": "modelo:cirurgiao-dentista",
+            "chs": 8,
+            "quantidade": 37,
+            "quantidadeTurno": 7,
+            "revisar": true,
+            "linhaOrigem": 10
+          },
+          {
+            "id": "servico-ceo-l3",
+            "categoria": "TECNICO DE HIGIENE DE SAUDE BUCAL",
+            "perfilId": "modelo:tecnico-de-higiene-de-saude-bucal",
+            "chs": 40,
+            "quantidade": 1,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 11
+          },
+          {
+            "id": "servico-ceo-l4",
+            "categoria": "AUXILIAR DE CONSULTORIO DENTARIO",
+            "perfilId": "modelo:auxiliar-de-consultorio-dentario",
+            "chs": 40,
+            "quantidade": 7,
+            "quantidadeTurno": 7,
+            "revisar": true,
+            "linhaOrigem": 12
+          },
+          {
+            "id": "servico-ceo-l5",
+            "categoria": "CIRURGIÃO DENTISTA PLANTONISTA DIURNO",
+            "perfilId": "modelo:cirurgiao-dentista-plantonista-diurno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 14
+          },
+          {
+            "id": "servico-ceo-l6",
+            "categoria": "CIRURGIÃO DENTISTA PLANTONISTA NOTURNO",
+            "perfilId": "modelo:cirurgiao-dentista-plantonista-noturno",
+            "chs": 12,
+            "quantidade": 7,
+            "quantidadeTurno": 1,
+            "revisar": true,
+            "linhaOrigem": 15
+          },
+          {
+            "id": "servico-ceo-l7",
+            "categoria": "AUXILIAR DE CONSULTORIO DENTARIO DIURNO",
+            "perfilId": "modelo:auxiliar-de-consultorio-dentario-diurno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 16
+          },
+          {
+            "id": "servico-ceo-l8",
+            "categoria": "AUXILIAR DE CONSULTORIO DENTARIO NOTURNO",
+            "perfilId": "modelo:auxiliar-de-consultorio-dentario-noturno",
+            "chs": 40,
+            "quantidade": 4,
+            "quantidadeTurno": 2,
+            "revisar": true,
+            "linhaOrigem": 17
+          }
+        ],
+        "resumo": {
+          "linhasEquipe": 8,
+          "profissionais": 68,
+          "linhasRevisao": 8
+        }
+      }
+    ],
+    "resumoFinanceiro": {
+      "status": "extraido",
+      "fonteAba": "RESUMO",
+      "periodoMeses": 24,
+      "semCebas": {
+        "mes1": 6660586.48,
+        "ano1": 70927037.76,
+        "ano2": 67927037.76,
+        "contrato": 138854075.5
+      },
+      "comCebas": {
+        "mes1": 5821325.34,
+        "ano1": 60855904.08,
+        "ano2": 57855904.08,
+        "contrato": 118711808.2
+      },
+      "reducao": {
+        "valor": 20142267.3,
+        "percentual": 0.145061
+      },
+      "observacao": "Valores históricos extraídos da planilha de origem. Ao criar um plano, o aplicativo recalcula o financeiro com a base vigente."
+    },
+    "resumo": {
+      "setores": 5,
+      "linhasEquipe": 86,
+      "profissionais": 538,
+      "linhasRevisao": 51
     }
   }
 ]

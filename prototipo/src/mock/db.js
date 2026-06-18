@@ -535,7 +535,7 @@ export const statusLabels = {
   apurado: { txt: 'Apurado', cls: 'verde' },
   cronograma_gerado: { txt: 'Cronograma gerado', cls: 'verde' },
   enviado_sei: { txt: 'Enviado ao SEI', cls: 'azul' },
-  fechado: { txt: 'Fechado', cls: 'cinza' },
+  fechado: { txt: 'Finalizado', cls: 'verde' },
   arquivado: { txt: 'Arquivado', cls: 'cinza' },
 }
 

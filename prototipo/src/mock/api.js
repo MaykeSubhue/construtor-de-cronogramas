@@ -477,9 +477,103 @@ function resumoCronogramaPronto(modelo) {
   }
 }
 
+let planosReferenciaGarantidos = false
+
+function grupoDoPlano(plano, unidade) {
+  const modeloOrigem = cronogramasProntos.find((modelo) => modelo.id === plano.templateCronogramaId)
+  if (modeloOrigem) return { id: modeloOrigem.grupoId, nome: modeloOrigem.grupoNome }
+  const texto = slug(`${unidade?.nome || ''} ${unidade?.tipo || ''} ${plano.nome || ''}`)
+  if (/matern|pediatr/.test(texto)) return { id: 'SHPM', nome: 'Hospitais pediátricos e Maternidades' }
+  if (/upa|cer|urgenc|emergenc/.test(texto)) return { id: 'SUE', nome: 'Hospitais de Urgência e Emergência' }
+  return { id: 'SHGE', nome: 'Hospitais Gerais e Especializados' }
+}
+
+function resumoFinanceiroPlanoFinalizado(planoId) {
+  const sem = getCronogramaFinal(planoId, { cebas: false }).resumo
+  const com = getCronogramaFinal(planoId, { cebas: true }).resumo
+  const meses = Math.max(24, Number(getPlano(planoId)?.parametrosCronograma?.mesesCronograma) || 24)
+  const totalSem = sem.totalMensal * meses
+  const totalCom = com.totalMensal * meses
+  return {
+    fonteAba: 'Cronograma calculado pelo aplicativo',
+    semCebas: { mes1: sem.totalMensal, ano1: sem.totalMensal * 12, ano2: sem.totalMensal * 12, contrato: totalSem },
+    comCebas: { mes1: com.totalMensal, ano1: com.totalMensal * 12, ano2: com.totalMensal * 12, contrato: totalCom },
+    reducao: { valor: totalSem - totalCom, percentual: totalSem ? (totalSem - totalCom) / totalSem : 0 },
+  }
+}
+
+function modeloDePlanoFinalizado(plano) {
+  const unidade = getObjeto(plano.objeto_planejamento_id)
+  const grupo = grupoDoPlano(plano, unidade)
+  const setores = listEscopos(plano.id).map((no, setorIndex) => {
+    const linhas = (no.quadro || []).filter((item) => item.ativo !== false).map((item, linhaIndex) => {
+      const perfil = perfilById[item.perfil_alocacao_id]
+      return {
+        id: `plano-${plano.id}-linha-${item.id}`,
+        categoria: item.memoriaCalculo?.categoriaOriginal || perfil?.label || perfil?.categoria || 'Categoria profissional',
+        perfilId: item.perfil_alocacao_id,
+        chs: Number(item.chs || perfil?.chs || 40),
+        quantidade: Number(item.quantidade_planejada) || 0,
+        quantidadeTurno: Number(item.quantidade_turno_12h) || 0,
+        revisar: !!item.revisar || !!item.overrideJustificado,
+        linhaOrigem: linhaIndex + 1,
+      }
+    })
+    return {
+      id: `plano-${plano.id}-setor-${no.id}`,
+      nome: no.nome,
+      abaOrigem: no.bloco || no.abaOrigem || `Setor ${setorIndex + 1}`,
+      linhas,
+      resumo: {
+        linhasEquipe: linhas.length,
+        profissionais: linhas.reduce((total, linha) => total + linha.quantidade, 0),
+        revisar: linhas.filter((linha) => linha.revisar).length,
+      },
+    }
+  })
+  const linhas = setores.flatMap((setor) => setor.linhas)
+  return {
+    id: `plano-finalizado-${plano.id}`,
+    nome: plano.nome,
+    hospitalNome: unidade?.nome || plano.nome,
+    unidadeModelo: unidade?.nome || plano.nome,
+    sigla: unidade?.sigla || '',
+    grupoId: grupo.id,
+    grupoNome: grupo.nome,
+    fonte: `${plano.codigo} · Plano finalizado no sistema`,
+    descricao: 'Modelo gerado automaticamente a partir de um plano revisado e finalizado no aplicativo.',
+    modoUso: 'clonavel',
+    status: 'validado',
+    origemPlanoId: plano.id,
+    abasOrigem: setores.map((setor) => setor.abaOrigem),
+    parametrosCronograma: { ...(plano.parametrosCronograma || {}) },
+    resumoFinanceiro: resumoFinanceiroPlanoFinalizado(plano.id),
+    resumo: {
+      setores: setores.length,
+      linhasEquipe: linhas.length,
+      profissionais: linhas.reduce((total, linha) => total + linha.quantidade, 0),
+      linhasRevisao: linhas.filter((linha) => linha.revisar).length,
+    },
+    setores,
+  }
+}
+
+function todosCronogramasProntos() {
+  garantirPlanosReferencia()
+  const finalizados = db.planos
+    .filter((plano) => plano.status === 'fechado' && !plano.planoReferencia)
+    .map(modeloDePlanoFinalizado)
+  return [...cronogramasProntos, ...finalizados]
+}
+
 export function listCronogramasProntos() {
-  return cronogramasProntos.map((modelo) => ({
+  const modelos = todosCronogramasProntos()
+  const referencias = new Map(db.planos
+    .filter((plano) => plano.planoReferencia && plano.templateCronogramaId)
+    .map((plano) => [plano.templateCronogramaId, plano.id]))
+  return modelos.map((modelo) => ({
     ...modelo,
+    planoReferenciaId: modelo.origemPlanoId || referencias.get(modelo.id) || null,
     setores: undefined,
     resumo: resumoCronogramaPronto(modelo),
   }))
@@ -488,7 +582,10 @@ export function listCronogramasProntos() {
 export const gruposModelosCronograma = gruposCronogramasProntos
 
 export function getCronogramaPronto(id) {
-  return cronogramasProntos.find((modelo) => modelo.id === id) || cronogramasProntos[0]
+  const modelo = todosCronogramasProntos().find((item) => item.id === id) || cronogramasProntos[0]
+  const referencia = modelo.origemPlanoId || db.planos.find((plano) =>
+    plano.planoReferencia && plano.templateCronogramaId === modelo.id)?.id || null
+  return { ...modelo, planoReferenciaId: referencia }
 }
 
 export function previewCronogramaPronto(id, payload = {}) {
@@ -540,8 +637,7 @@ function linhaModeloParaQuadro(linha, modelo, setor) {
   }
 }
 
-export function criarPlanoDeCronogramaPronto(modeloId, payload = {}) {
-  const modelo = getCronogramaPronto(modeloId)
+function materializarPlanoDeCronogramaPronto(modelo, payload = {}) {
   const unidade = unidadeDoPayload(payload)
   const id = nextId(db.planos)
   const parametrosModelo = {
@@ -558,14 +654,17 @@ export function criarPlanoDeCronogramaPronto(modeloId, payload = {}) {
     tabela_salarial_id: Number(payload.tabela_salarial_id || payload.tabelaSalarialId || 1),
     competencia_inicial: payload.competencia_inicial || '2026-01',
     meses_projecao: Number(payload.meses_projecao || 24),
-    status: 'rascunho',
+    status: payload.statusInicial || 'rascunho',
     descricao_recorte: `Modelo pronto clonavel: ${modelo.nome}.`,
     sei: payload.sei ? { numero: payload.sei, etapa: 'Abertura', responsavel: '', status: 'em_analise', abertura: new Date().toISOString().slice(0, 10), link: '#' } : null,
-    responsavel: 'Usuário',
-    atualizado_em: new Date().toISOString().slice(0, 10),
+    responsavel: payload.responsavel || 'Usuário',
+    atualizado_em: payload.atualizado_em || new Date().toISOString().slice(0, 10),
     origemCriacao: 'modelo_cronograma',
     modoCriacao: 'modelo',
     templateCronogramaId: modelo.id,
+    planoReferencia: !!payload.planoReferencia,
+    publicadoComoModelo: !!payload.planoReferencia || payload.statusInicial === 'fechado',
+    modeloPublicadoEm: payload.statusInicial === 'fechado' ? new Date().toISOString() : null,
     parametrosCronograma: parametrosModelo,
     justificativas: [],
   }
@@ -607,6 +706,53 @@ export function criarPlanoDeCronogramaPronto(modeloId, payload = {}) {
   })
   persist()
   return plano
+}
+
+export function criarPlanoDeCronogramaPronto(modeloId, payload = {}) {
+  return materializarPlanoDeCronogramaPronto(getCronogramaPronto(modeloId), payload)
+}
+
+function unidadeReferenciaDoModelo(modelo) {
+  const nome = modelo.hospitalNome || modelo.unidadeModelo || modelo.nome
+  const siglaModelo = String(modelo.sigla || '').trim().toUpperCase()
+  const existente = db.objetosPlanejamento.find((unidade) =>
+    slug(unidade.nome) === slug(nome) || (siglaModelo && String(unidade.sigla || '').toUpperCase() === siglaModelo))
+  if (existente) return existente
+  const unidade = {
+    id: nextId(db.objetosPlanejamento),
+    nome,
+    sigla: siglaModelo || slug(nome).slice(0, 18).toUpperCase(),
+    cnes: '',
+    tipo: modelo.grupoId === 'SHPM' ? 'Maternidade' : 'Hospital geral',
+    ap: 'Não informada',
+    ativo: true,
+    fonte: modelo.fonte,
+    origem: 'modelo_cronograma',
+  }
+  db.objetosPlanejamento.push(unidade)
+  return unidade
+}
+
+function garantirPlanosReferencia() {
+  if (planosReferenciaGarantidos) return
+  planosReferenciaGarantidos = true
+  let alterou = false
+  cronogramasProntos.forEach((modelo) => {
+    const existente = db.planos.find((plano) => plano.planoReferencia && plano.templateCronogramaId === modelo.id)
+    if (existente) return
+    const unidade = unidadeReferenciaDoModelo(modelo)
+    materializarPlanoDeCronogramaPronto(modelo, {
+      unidade: { tipo: 'existente', id: unidade.id },
+      nome: modelo.nome,
+      statusInicial: 'fechado',
+      planoReferencia: true,
+      responsavel: 'Base histórica SUBHUE',
+      competencia_inicial: '2026-01',
+      meses_projecao: 24,
+    })
+    alterou = true
+  })
+  if (alterou) persist()
 }
 
 // Motor de dimensionamento (espelha o motor SUBHUE em Python):
@@ -917,8 +1063,9 @@ export function pendenciasDoNo(no) {
 }
 
 // ----------------------------------------------------------- planos
-export const listPlanos = () =>
-  db.planos.map((p) => {
+export function listPlanos() {
+  garantirPlanosReferencia()
+  return db.planos.map((p) => {
     const escopos = listEscopos(p.id)
     const total = escopos.reduce((a, n) => a + calcEscopo(n).total_mensal, 0)
     return {
@@ -928,6 +1075,7 @@ export const listPlanos = () =>
       valor_anual: total * 12,
     }
   })
+}
 
 export const getPlano = (id) => listPlanos().find((p) => p.id === Number(id))
 
@@ -1603,6 +1751,7 @@ export function getReducaoCebas(planoId) {
 // ----------------------------------------------------------- dashboard
 export function getDashboard() {
   const planos = listPlanos()
+  const planosOrdenados = planos.slice().sort((a, b) => b.atualizado_em.localeCompare(a.atualizado_em))
   const valorEmAnalise = planos
     .filter((p) => p.sei && p.sei.status === 'em_analise')
     .reduce((a, p) => a + p.valor_anual, 0)
@@ -1610,15 +1759,23 @@ export function getDashboard() {
     total: planos.length,
     em_andamento: planos.filter((p) => p.status === 'em_andamento').length,
     validados: planos.filter((p) => p.status === 'validado').length,
+    finalizados: planos.filter((p) => p.status === 'fechado').length,
     com_pendencia: planos.filter((p) => getCompletude(p.id).resumo.total_faltantes > 0).length,
     enviados_sei: planos.filter((p) => p.sei).length,
     valor_em_analise: valorEmAnalise,
-    recentes: planos.slice().sort((a, b) => b.atualizado_em.localeCompare(a.atualizado_em)),
+    planos: planosOrdenados,
+    recentes: planosOrdenados,
   }
 }
 
 // ----------------------------------------------------------- mutações (em memória)
 let _novoId = 9000
+Object.values(db.estruturas || {}).forEach((nodes) => {
+  walk(nodes || [], (no) => {
+    _novoId = Math.max(_novoId, Number(no.id) || 0)
+    ;(no.quadro || []).forEach((item) => { _novoId = Math.max(_novoId, Number(item.id) || 0) })
+  })
+})
 
 // Lista plana dos nós (para escolher o pai ao criar um nó).
 export function listNos(planoId) {
@@ -1978,7 +2135,14 @@ export function addTabelaSalarial({ nome, competencia, fonte, baseTabelaId = 1 }
 // ---- Ciclo de vida do plano + SEI
 export function setStatusPlano(planoId, status) {
   const p = db.planos.find((x) => x.id === planoId)
-  if (p) { p.status = status; p.atualizado_em = '2026-06-02' }
+  if (p) {
+    p.status = status
+    p.atualizado_em = new Date().toISOString().slice(0, 10)
+    if (status === 'fechado') {
+      p.publicadoComoModelo = true
+      p.modeloPublicadoEm = new Date().toISOString()
+    }
+  }
   persist()
 }
 export function vincularSei(planoId, dados) {
@@ -1991,13 +2155,41 @@ export function duplicarPlano(planoId) {
   const orig = db.planos.find((x) => x.id === planoId)
   if (!orig) return null
   const novoId = Math.max(...db.planos.map((p) => p.id)) + 1
-  const clone = { ...orig, id: novoId, nome: `${orig.nome} (cópia)`, codigo: `${orig.codigo}-C`, status: 'rascunho', sei: null, atualizado_em: '2026-06-02' }
+  const clone = {
+    ...orig,
+    id: novoId,
+    nome: `${orig.nome} (cópia)`,
+    codigo: `${orig.codigo}-C`,
+    status: 'rascunho',
+    sei: null,
+    atualizado_em: new Date().toISOString().slice(0, 10),
+    planoReferencia: false,
+    publicadoComoModelo: false,
+    modeloPublicadoEm: null,
+  }
   db.planos.push(clone)
   db.estruturas[novoId] = JSON.parse(JSON.stringify(getEstrutura(planoId)))
   let nid = 50000
   walk(db.estruturas[novoId], (n) => { n.id = ++nid; (n.quadro || []).forEach((q) => (q.id = ++nid)) })
   persist()
   return clone
+}
+
+export function excluirPlanoRascunho(planoId) {
+  const id = Number(planoId)
+  const index = db.planos.findIndex((plano) => plano.id === id)
+  if (index < 0) return { ok: false, erro: 'Plano não encontrado.' }
+
+  const plano = db.planos[index]
+  if (plano.status !== 'rascunho') {
+    return { ok: false, erro: 'Somente planos em rascunho podem ser excluídos.' }
+  }
+
+  db.planos.splice(index, 1)
+  delete db.estruturas[id]
+  delete db.lancamentosCronograma[id]
+  persist()
+  return { ok: true, plano }
 }
 
 export function setQuantidade(planoId, noId, itemId, qtd) {

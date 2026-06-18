@@ -1,12 +1,13 @@
+import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as api from '../mock/api.js'
 import { brl, competenciaLabel } from '../lib/format.js'
-import { Kpi, StatusBadge } from '../components/ui.jsx'
+import { Kpi, Modal, Note, StatusBadge } from '../components/ui.jsx'
 
 const modulos = [
   { ico: '➕', t: 'Novo cronograma', d: 'Inicie um plano do zero ou a partir de um modelo.', to: '/novo' },
   { ico: '🗓️', t: 'Planos em andamento', d: 'Continue planos em construção.', to: '/planos' },
-  { ico: '✅', t: 'Planos validados', d: 'Prontos para apuração e cronograma.', to: '/planos' },
+  { ico: '✅', t: 'Planos finalizados', d: 'Referências revisadas e disponíveis como modelos.', to: '/planos' },
   { ico: '🗂️', t: 'Cadastros e bases', d: 'Unidades, setores, perfis, salários, rubricas.', to: '/cadastros' },
   { ico: '📜', t: 'Normativas / RDCs', d: 'Regras aplicáveis ao dimensionamento.', to: '/cadastros/normativas' },
   { ico: '🧩', t: 'Modelos / Presets', d: 'Modelos por setor e especialidade.', to: '/cadastros/presets' },
@@ -14,7 +15,17 @@ const modulos = [
 
 export default function Dashboard() {
   const nav = useNavigate()
+  const [, setVersao] = useState(0)
+  const [rascunhoExcluir, setRascunhoExcluir] = useState(null)
   const d = api.getDashboard()
+
+  const excluirRascunho = () => {
+    if (!rascunhoExcluir) return
+    const resultado = api.excluirPlanoRascunho(rascunhoExcluir.id)
+    if (!resultado.ok) return
+    setRascunhoExcluir(null)
+    setVersao((atual) => atual + 1)
+  }
   return (
     <>
       <div className="page-head">
@@ -30,7 +41,7 @@ export default function Dashboard() {
       <div className="grid cols-4 mb-2">
         <Kpi valor={d.total} label="Planos no sistema" />
         <Kpi valor={d.em_andamento} label="Em construção" />
-        <Kpi valor={d.validados} label="Validados" />
+        <Kpi valor={d.finalizados} label="Finalizados" />
         <Kpi valor={d.com_pendencia} label="Com pendências" />
       </div>
 
@@ -60,32 +71,60 @@ export default function Dashboard() {
 
       <div className="card">
         <div className="card-pad spread">
-          <h3 style={{ fontSize: 15 }}>Atualizações recentes</h3>
-          <Link to="/planos">Ver todos os planos →</Link>
+          <div>
+            <h3 style={{ fontSize: 15 }}>Todos os planos cadastrados</h3>
+            <div className="muted" style={{ fontSize: 12, marginTop: 3 }}>{d.planos.length} planos salvos neste navegador</div>
+          </div>
+          <Link to="/planos">Gerenciar planos →</Link>
         </div>
         <div className="table-wrap">
           <table className="tbl">
             <thead>
               <tr>
                 <th>Plano</th><th>Unidade</th><th>Competência</th><th>Status</th>
-                <th className="num">Valor anual</th><th>Atualizado</th>
+                <th className="num">Valor anual</th><th>Atualizado</th><th className="num">Ações</th>
               </tr>
             </thead>
             <tbody>
-              {d.recentes.map((p) => (
+              {d.planos.map((p) => (
                 <tr key={p.id} className="row-link" onClick={() => nav(`/plano/${p.id}/construcao`)}>
-                  <td><b>{p.nome}</b><div className="muted" style={{ fontSize: 11.5 }}>{p.codigo}</div></td>
+                  <td><b>{p.nome}</b><div className="muted" style={{ fontSize: 11.5 }}>{p.codigo}{p.planoReferencia ? ' · Modelo de referência' : ''}</div></td>
                   <td>{p.objeto?.nome}</td>
                   <td>{competenciaLabel(p.competencia_inicial)} · {p.meses_projecao}m</td>
                   <td><StatusBadge status={p.status} map={api.statusLabels} /></td>
                   <td className="num tnum">{brl(p.valor_anual)}</td>
                   <td className="muted">{p.atualizado_em}</td>
+                  <td className="num">
+                    {p.status === 'rascunho'
+                      ? <button
+                          className="btn sm ghost danger"
+                          title="Excluir rascunho"
+                          aria-label={`Excluir rascunho ${p.nome}`}
+                          onClick={(event) => {
+                            event.stopPropagation()
+                            setRascunhoExcluir(p)
+                          }}
+                        >🗑</button>
+                      : <span className="muted">—</span>}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+
+      {rascunhoExcluir && (
+        <Modal title="Excluir rascunho" icon="🗑" onClose={() => setRascunhoExcluir(null)}
+          footer={<>
+            <button className="btn ghost" onClick={() => setRascunhoExcluir(null)}>Cancelar</button>
+            <button className="btn danger" onClick={excluirRascunho}>Excluir rascunho</button>
+          </>}>
+          <p>Tem certeza de que deseja excluir <b>{rascunhoExcluir.nome}</b>?</p>
+          <div className="muted mt-1">{rascunhoExcluir.codigo} · {rascunhoExcluir.objeto?.nome}</div>
+          <Note icon="!">A exclusão remove o plano, sua estrutura e os lançamentos salvos. Esta ação não pode ser desfeita.</Note>
+        </Modal>
+      )}
     </>
   )
 }

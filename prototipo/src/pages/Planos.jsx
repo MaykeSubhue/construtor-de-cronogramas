@@ -49,6 +49,7 @@ export default function Planos() {
                   <td className="row-link" onClick={() => nav(`/plano/${p.id}/construcao`)}>
                     <b>{p.nome}</b>
                     <div className="muted" style={{ fontSize: 11.5 }}>{p.codigo} · {p.responsavel}</div>
+                    {p.planoReferencia && <Badge cls="azul">Modelo de referência</Badge>}
                   </td>
                   <td>{p.objeto?.nome}<div className="muted" style={{ fontSize: 11.5 }}>{p.objeto?.tipo}</div></td>
                   <td>{competenciaLabel(p.competencia_inicial)}<div className="muted" style={{ fontSize: 11.5 }}>{p.meses_projecao} meses</div></td>

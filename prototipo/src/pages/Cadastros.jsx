@@ -715,6 +715,11 @@ function PresetsView({ secao }) {
             <button className="btn mt-2" onClick={() => setDetalheId(modelo.id)} style={{ width: '100%', justifyContent: 'center' }}>
               Ver detalhes do modelo
             </button>
+            {modelo.planoReferenciaId && (
+              <Link className="btn mt-2" to={`/plano/${modelo.planoReferenciaId}/construcao`} style={{ width: '100%', justifyContent: 'center' }}>
+                Abrir plano finalizado
+              </Link>
+            )}
             <Link className="btn primary mt-2" to={`/novo?modo=modelo&modelo=${modelo.id}`} style={{ width: '100%', justifyContent: 'center' }}>
               Criar cronograma a partir deste modelo
             </Link>
@@ -759,22 +764,56 @@ function PresetsView({ secao }) {
 function CronogramaProntoDetalheModal({ modelo, onClose }) {
   const [setorId, setSetorId] = useState(modelo.setores?.[0]?.id || '')
   const setor = modelo.setores?.find((item) => item.id === setorId) || modelo.setores?.[0]
+  const resumoFinanceiro = modelo.resumoFinanceiro || {}
+  const semCebas = resumoFinanceiro.semCebas || {}
+  const comCebas = resumoFinanceiro.comCebas || {}
+  const reducao = resumoFinanceiro.reducao || {}
+  const resumoDisponivel = Number.isFinite(semCebas.contrato) && Number.isFinite(comCebas.contrato)
   return (
     <Modal title={modelo.nome} icon="🧾" onClose={onClose} lg
       footer={<>
         <button className="btn ghost" onClick={onClose}>Fechar</button>
+        {modelo.planoReferenciaId && <Link className="btn" to={`/plano/${modelo.planoReferenciaId}/construcao`}>Abrir plano finalizado</Link>}
         <Link className="btn primary" to={`/novo?modo=modelo&modelo=${modelo.id}`}>Criar cronograma</Link>
       </>}>
       <div className="grid cols-4 mb-2">
-        <Mini t="Grupo" v={modelo.grupoId} hint={modelo.grupoNome} />
-        <Mini t="Abas" v={String(modelo.resumo.setores)} />
-        <Mini t="Linhas" v={String(modelo.resumo.linhasEquipe)} />
-        <Mini t="Equipe" v={num(modelo.resumo.profissionais, 0)} />
+        <Mini t="Sem CEBAS · 24 meses" v={brl(semCebas.contrato)} hint={modelo.origemPlanoId ? 'Calculado no fechamento' : 'Total histórico da planilha'} />
+        <Mini t="Com CEBAS · 24 meses" v={brl(comCebas.contrato)} hint={modelo.origemPlanoId ? 'Calculado no fechamento' : 'Total histórico da planilha'} />
+        <Mini t="Economia CEBAS" v={brl(reducao.valor)} hint="Diferença no contrato" />
+        <Mini t="Redução" v={pct(reducao.percentual == null ? null : reducao.percentual * 100, 2)} hint="Comparação em 24 meses" />
       </div>
+      <div className="table-wrap mb-2">
+        <table className="tbl">
+          <thead><tr><th>Cenário da planilha</th><th className="num">Mês 01</th><th className="num">1º ano</th><th className="num">2º ano</th><th className="num">Total 24 meses</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><Badge cls="cinza" dot>Sem CEBAS</Badge></td>
+              <td className="num tnum">{brl(semCebas.mes1)}</td>
+              <td className="num tnum">{brl(semCebas.ano1)}</td>
+              <td className="num tnum">{brl(semCebas.ano2)}</td>
+              <td className="num tnum"><b>{brl(semCebas.contrato)}</b></td>
+            </tr>
+            <tr>
+              <td><Badge cls="verde" dot>Com CEBAS</Badge></td>
+              <td className="num tnum">{brl(comCebas.mes1)}</td>
+              <td className="num tnum">{brl(comCebas.ano1)}</td>
+              <td className="num tnum">{brl(comCebas.ano2)}</td>
+              <td className="num tnum"><b>{brl(comCebas.contrato)}</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <Note icon={resumoDisponivel ? "i" : "!"}>
+        {resumoDisponivel
+          ? modelo.origemPlanoId
+            ? <>Resumo calculado pelo aplicativo no momento da finalização do plano. Ao clonar, os valores continuam ligados às equipes e bases vigentes.</>
+            : <>Resumo histórico extraído da aba <b>{resumoFinanceiro.fonteAba || 'RESUMO'}</b>. Ao criar um plano, o financeiro será recalculado com a base vigente do aplicativo.</>
+          : resumoFinanceiro.observacao || 'A planilha de origem não possui totais financeiros consolidados disponíveis.'}
+      </Note>
       <div className="memo-line"><span className="k">Hospital</span><span className="v">{modelo.hospitalNome || modelo.unidadeModelo}</span></div>
       <div className="memo-line"><span className="k">Fonte</span><span className="v">{modelo.fonte}</span></div>
       <div className="memo-line"><span className="k">Custeio / VT / VR</span><span className="v">{pct((modelo.parametrosCronograma?.custeioOperacionalPct || 0) * 100)} · VT {modelo.parametrosCronograma?.valeTransporteDia || 0} · VR {modelo.parametrosCronograma?.valeRefeicaoDia || 0}</span></div>
-      <Note icon="i">Esta visualizacao mostra as linhas importadas da planilha. Ao criar um plano, o financeiro e recalculado pelo motor atual do aplicativo.</Note>
+      <Note icon="i">A tabela de equipes abaixo mostra as linhas importadas da planilha e continua sendo apenas a base clonável do modelo.</Note>
 
       <div className="form-row mt-2">
         <div className="field">

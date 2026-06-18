@@ -13,7 +13,7 @@ const FLUXO = [
   { s: 'cronograma_gerado', t: 'Cronograma' },
   { s: 'enviado_sei', t: 'Enviado ao SEI' },
   { s: 'aprovado', t: 'Aprovado' },
-  { s: 'fechado', t: 'Fechado' },
+  { s: 'fechado', t: 'Finalizado' },
 ]
 
 export default function Acompanhamento() {
@@ -37,7 +37,7 @@ export default function Acompanhamento() {
     acoes.push({ t: 'Registrar aprovação', to: 'aprovado', primary: true })
     acoes.push({ t: 'Registrar devolução', to: 'em_andamento' })
   }
-  if (plano.status === 'aprovado') acoes.push({ t: 'Fechar plano', to: 'fechado', primary: true })
+  if (plano.status === 'aprovado') acoes.push({ t: 'Finalizar e publicar como modelo', to: 'fechado', primary: true })
   if (plano.status === 'arquivado') acoes.push({ t: 'Reabrir', to: 'em_andamento', primary: true })
   else acoes.push({ t: 'Arquivar', to: 'arquivado' })
 
@@ -67,6 +67,11 @@ export default function Acompanhamento() {
           ))}
         </div>
         {plano.status === 'arquivado' && <Note icon="📦">Plano arquivado — fora do fluxo ativo. Pode ser reaberto.</Note>}
+        {plano.status === 'fechado' && (
+          <Note icon="✓">
+            Plano finalizado e publicado em <Link to="/cadastros/presets"><b>Modelos / Presets</b></Link>. A estrutura, as equipes e a memória de cálculo podem ser consultadas ou clonadas.
+          </Note>
+        )}
         <div className="flex wrap mt-2" style={{ gap: 10 }}>
           {acoes.map((a) => (
             <button key={a.t} className={`btn ${a.primary ? 'primary' : ''}`} onClick={() => go(a.to)}>{a.t}</button>
