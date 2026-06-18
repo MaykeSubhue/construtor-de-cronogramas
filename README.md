@@ -1,5 +1,7 @@
 # Documentacao do app `plano_trabalho`
 
+**Aplicativo publicado:** [Construtor de Cronogramas SUBHUE](https://maykesubhue.github.io/construtor-de-cronogramas/)
+
 Esta pasta concentra a documentacao funcional e tecnica do app `plano_trabalho`.
 Ela deve responder rapidamente a tres perguntas:
 
