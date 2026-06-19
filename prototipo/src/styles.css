@@ -245,6 +245,13 @@ table.tbl td.num, table.tbl th.num { text-align: right; font-variant-numeric: ta
 }
 .cell-input:hover { border-color: var(--cinza-borda); }
 .cell-input:focus { border-color: var(--azul-500); background: #fff; outline: none; box-shadow: 0 0 0 3px var(--azul-100); }
+.team-grid { min-width: 1460px; }
+.team-grid th:first-child, .team-grid td:first-child { min-width: 260px; }
+.team-grid th:not(:first-child) { min-width: 102px; }
+.team-grid .team-input {
+  min-width: 68px; background: #fff9dc; border-color: #eadb96; font-weight: 650;
+}
+.team-grid .team-input:hover { border-color: #c7ad43; }
 
 /* ---------------------------------------------------------------- badges */
 .badge {
@@ -274,6 +281,8 @@ table.tbl td.num, table.tbl th.num { text-align: right; font-variant-numeric: ta
   grid-template-columns: 290px 1fr 300px;
   height: calc(100vh - var(--topbar-h));
 }
+.builder.team-layout { grid-template-columns: 270px minmax(0, 1fr); }
+.builder.team-layout .builder-side { display: none; }
 .builder-col { overflow-y: auto; height: 100%; }
 .builder-tree { background: #fff; border-right: 1px solid var(--cinza-borda); padding: 14px; }
 .builder-center { padding: 22px 24px; }
@@ -305,6 +314,12 @@ table.tbl td.num, table.tbl th.num { text-align: right; font-variant-numeric: ta
 }
 .team-group-filter > div { display: flex; align-items: center; gap: 8px; min-width: 0; }
 .team-group-filter b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12.5px; }
+.plan-flow { display: flex; align-items: center; gap: 18px; border-bottom: 1px solid var(--cinza-borda); padding-bottom: 10px; }
+.plan-flow span, .plan-flow a { display: inline-flex; align-items: center; gap: 7px; color: var(--texto-suave); font-size: 12.5px; text-decoration: none; }
+.plan-flow b { display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: #e8edf3; color: var(--texto-suave); }
+.plan-flow .active { color: var(--azul-800); font-weight: 700; }
+.plan-flow .active b { background: var(--azul-600); color: #fff; }
+.plan-flow a:hover { color: var(--azul-700); }
 
 /* tabs */
 .tabs { display: flex; gap: 2px; border-bottom: 1px solid var(--cinza-borda); margin-bottom: 20px; flex-wrap: wrap; }
@@ -389,6 +404,7 @@ table.sheet tr.item td.label { padding-left: 26px; font-weight: 400; color: var(
   display: flex; gap: 12px; align-items: flex-start; padding: 13px 14px;
   border: 1px solid var(--cinza-borda); border-radius: var(--raio-sm); cursor: pointer; margin-bottom: 10px;
 }
+.preset-button { width: 100%; background: #fff; color: inherit; text-align: left; font: inherit; }
 .preset-opt:hover { border-color: var(--azul-500); background: var(--azul-050); }
 .preset-opt.sel { border-color: var(--azul-600); background: var(--azul-050); box-shadow: 0 0 0 1px var(--azul-600); }
 .preset-opt .p-ico { width: 38px; height: 38px; border-radius: 9px; background: var(--roxo-bg); color: var(--roxo); display: grid; place-items: center; font-size: 18px; }

@@ -36,6 +36,7 @@ import { sugerirSetorPorTexto } from './parser.js'
 import { gerarCompetencias } from '../lib/format.js'
 import { cronogramasProntos, gruposCronogramasProntos, perfisCronogramasProntos } from '../data/cronogramasProntos.js'
 import { agrupadoresCronogramas } from '../data/agrupadoresCronogramas.js'
+import { componentesPlanilhasCronogramas } from '../data/componentesPlanilhasCronogramas.js'
 
 const db = initStore(seedDb)
 const persist = () => persistStore(db)
@@ -67,6 +68,7 @@ const perfilById = new Proxy({}, { get: (_t, k) => db.perfis.find((p) => String(
 
 function normalizarModeloComAgrupadores(modelo) {
   const agrupadoresModelo = agrupadoresCronogramas[modelo.id] || {}
+  const componentesModelo = componentesPlanilhasCronogramas[modelo.id] || {}
   return {
     ...modelo,
     setores: (modelo.setores || []).map((setor) => {
@@ -81,6 +83,7 @@ function normalizarModeloComAgrupadores(modelo) {
           ...linha,
           categoriaGeralId: grupo?.id || null,
           categoriaGeralNome: grupo?.nome || null,
+          componentesPlanilha: componentesModelo[setor.id]?.[linha.id] || null,
         }
       })
       return { ...setor, agrupadores, linhas }
@@ -541,6 +544,7 @@ function modeloDePlanoFinalizado(plano) {
         chs: Number(item.chs || perfil?.chs || 40),
         quantidade: Number(item.quantidade_planejada) || 0,
         quantidadeTurno: Number(item.quantidade_turno_12h) || 0,
+        componentesPlanilha: item.componentesPlanilha ? { ...item.componentesPlanilha } : null,
         categoriaGeralId: item.categoriaGeralId || null,
         categoriaGeralNome: item.categoriaGeralNome || null,
         revisar: !!item.revisar || !!item.overrideJustificado,
@@ -637,7 +641,7 @@ export function previewCronogramaPronto(id, payload = {}) {
       revisar: setor.resumo?.revisar || 0,
     })),
     avisos: [
-      'Modelo clonavel: a estrutura e as equipes vêm da planilha, mas o financeiro final é recalculado pelo app.',
+      'Modelo clonável: estrutura, equipes e componentes salariais vêm da planilha; encargos, benefícios e cronograma são calculados pelo app.',
       'Linhas sem correspondência segura ficam marcadas para revisão e não bloqueiam a criação.',
     ],
   }
@@ -648,6 +652,7 @@ function linhaModeloParaQuadro(linha, modelo, setor) {
     id: ++_novoId,
     perfil_alocacao_id: linha.perfilId,
     quantidade_planejada: Math.max(0, Math.round(Number(linha.quantidade) || 0)),
+    quantidade_referencia: Math.max(0, Math.round(Number(linha.quantidade) || 0)),
     quantidade_turno_12h: Number(linha.quantidadeTurno) || 0,
     chs: Number(linha.chs) || 40,
     origem: 'modelo_cronograma',
@@ -656,8 +661,9 @@ function linhaModeloParaQuadro(linha, modelo, setor) {
     revisar: !!linha.revisar,
     categoriaGeralId: linha.categoriaGeralId || null,
     categoriaGeralNome: linha.categoriaGeralNome || null,
+    componentesPlanilha: linha.componentesPlanilha ? { ...linha.componentesPlanilha } : null,
     memoriaCalculo: {
-      formula: 'Linha herdada de modelo de planilha; custos recalculados pelo motor atual do app.',
+      formula: 'Linha herdada de modelo de planilha; remuneração preservada e encargos/benefícios calculados pelo app.',
       fonte: modelo.fonte,
       abaOrigem: setor.abaOrigem,
       linhaOrigem: linha.linhaOrigem,
@@ -735,7 +741,7 @@ function materializarPlanoDeCronogramaPronto(modelo, payload = {}) {
   registrarJustificativa(id, { tipo: 'modelo_cronograma', modeloId: modelo.id }, {
     tipo: 'modelo_cronograma',
     motivo: 'Linha herdada de modelo de planilha; revisar antes de uso oficial.',
-    observacao: `${modelo.nome} importado como modelo clonavel. Fórmulas finais da planilha não foram importadas; o app recalcula pelo motor atual.`,
+    observacao: `${modelo.nome} importado como modelo clonável. Equipes e componentes salariais foram preservados; encargos, benefícios e cronograma são calculados pelo aplicativo.`,
   })
   persist()
   return plano
@@ -784,6 +790,20 @@ function sincronizarAgrupadoresDoSetor(no, setor) {
       item.categoriaGeralId = grupoId
       item.categoriaGeralNome = grupoNome
       item.memoriaCalculo = { ...(item.memoriaCalculo || {}), categoriaGeral: grupoNome }
+      alterou = true
+    }
+    const componentes = linha.componentesPlanilha ? { ...linha.componentesPlanilha } : null
+    if (componentes && JSON.stringify(item.componentesPlanilha || null) !== JSON.stringify(componentes)) {
+      item.componentesPlanilha = componentes
+      item.memoriaCalculo = {
+        ...(item.memoriaCalculo || {}),
+        componentesPlanilha: true,
+        observacaoFinanceira: 'Componentes salariais preservados da planilha de origem.',
+      }
+      alterou = true
+    }
+    if (item.modeloCronograma && item.quantidade_referencia == null) {
+      item.quantidade_referencia = Math.max(0, Math.round(Number(linha.quantidade) || 0))
       alterou = true
     }
   })
@@ -1025,9 +1045,38 @@ export function calcPerfil(perfilId, opts = {}) {
   }
 }
 
+function calcPerfilDoItem(item, opts = {}) {
+  const calculado = calcPerfil(item.perfil_alocacao_id, opts)
+  const fonte = item.componentesPlanilha
+  if (!fonte) return calculado
+
+  const base = Number(fonte.base) || 0
+  const insalubridade = Number(fonte.insalubridade) || 0
+  const gratificacao = Number(fonte.gratificacao) || 0
+  const titulacao = Number(fonte.titulacao) || 0
+  const adicional_noturno = Number(fonte.adicionalNoturno) || 0
+  const salario_total = base + insalubridade + gratificacao + titulacao + adicional_noturno
+  const encargos = salario_total * calculado.encargos_pct
+  const custo_unitario = salario_total + encargos + calculado.beneficios
+
+  return {
+    ...calculado,
+    base,
+    insalubridade,
+    gratificacao,
+    titulacao,
+    adicional_noturno,
+    salario_total,
+    encargos,
+    custo_unitario,
+    salarioProvisorio: salario_total <= 0,
+    origemFinanceira: salario_total > 0 ? 'planilha' : 'planilha_sem_valor',
+  }
+}
+
 export function calcItemQuadro(item, opts = {}) {
   const p = perfilById[item.perfil_alocacao_id]
-  const c = calcPerfil(item.perfil_alocacao_id, opts)
+  const c = calcPerfilDoItem(item, opts)
   const qtd = Number(item.quantidade_planejada) || 0
   return {
     ...item,
@@ -1040,6 +1089,8 @@ export function calcItemQuadro(item, opts = {}) {
     chs: item.chs,
     memoriaCalculo: item.memoriaCalculo,
     overrideJustificado: item.overrideJustificado,
+    remuneracao_bruta: c.salario_total,
+    salario_total_linha: c.salario_total * qtd,
     custo_total: c.custo_unitario * qtd,
   }
 }
@@ -1451,7 +1502,16 @@ function linhaLancamento(planoId, no, item, opts = {}) {
   const plano = db.planos.find((p) => p.id === Number(planoId))
   const params = parametrosCronograma(planoId)
   const perfil = perfilById[item.perfil_alocacao_id]
-  const salario = salItem(item.perfil_alocacao_id, plano?.tabela_salarial_id || 1)
+  const salarioCadastro = salItem(item.perfil_alocacao_id, plano?.tabela_salarial_id || 1)
+  const salario = item.componentesPlanilha
+    ? {
+        base: item.componentesPlanilha.base,
+        insalubridade: item.componentesPlanilha.insalubridade,
+        gratificacao: item.componentesPlanilha.gratificacao,
+        titulacao: item.componentesPlanilha.titulacao,
+        adicional_noturno: item.componentesPlanilha.adicionalNoturno,
+      }
+    : salarioCadastro
   const quantidade = Number(item.quantidade_planejada) || 0
   const chs = chsDoItem(item, perfil)
   const quantidadeTurno = Number(item.quantidade_turno_12h ?? item.quantidadePorTurno12h ?? Math.ceil(quantidade / (chs >= 40 ? 1 : 3))) || 0
@@ -1500,10 +1560,14 @@ function linhaLancamento(planoId, no, item, opts = {}) {
     valeRefeicao,
     beneficiosTotal,
     totalMensal,
+    origemFinanceira: item.componentesPlanilha ? (remuneracaoBruta > 0 ? 'planilha' : 'planilha_sem_valor') : 'tabela_salarial',
+    componentesPlanilha: item.componentesPlanilha || null,
     memoriaCalculo: item.memoriaCalculo,
     overrideJustificado: item.overrideJustificado,
     justificativa: no.desvios?.[item.perfil_alocacao_id]?.motivo || null,
-    salarioProvisorio: !!salario.provisorio || !!perfil?.referenciaSalarial?.fallbackSalarial,
+    salarioProvisorio: item.componentesPlanilha
+      ? remuneracaoBruta <= 0
+      : !!salario.provisorio || !!perfil?.referenciaSalarial?.fallbackSalarial,
   }
 }
 
@@ -1583,7 +1647,7 @@ export function setLancamentoEquipe(planoId, noId, itemId, dados = {}) {
 
   if (dados.quantidade != null) {
     const quantidade = Math.max(0, Math.round(Number(dados.quantidade) || 0))
-    const normativa = item.quantidade_normativa
+    const normativa = item.quantidade_normativa ?? item.quantidade_referencia
     const diverge = normativa != null && Number(normativa) !== quantidade
     if (diverge && !String(dados.justificativa || '').trim()) {
       return { ok: false, requiresJustification: true, normativa, quantidade }
@@ -1923,13 +1987,15 @@ export function removeNo(planoId, noId) {
   persist()
 }
 
-export function addProfissional(planoId, noId, perfilId, qtd, categoriaGeral = null) {
+export function addProfissional(planoId, noId, perfilId, qtd, categoriaGeral = null, dados = {}) {
   const no = findNo(planoId, noId)
   no.quadro = no.quadro || []
   const item = {
     id: ++_novoId,
     perfil_alocacao_id: Number(perfilId),
     quantidade_planejada: Math.max(0, Math.round(qtd)),
+    quantidade_turno_12h: Math.max(0, Number(dados.quantidadeTurno) || 0),
+    chs: Math.max(0, Number(dados.chs) || 40),
     origem: 'manual',
     ativo: true,
     categoriaGeralId: categoriaGeral?.id || null,
@@ -2276,9 +2342,24 @@ export function setQuantidade(planoId, noId, itemId, qtd) {
   const no = findNo(planoId, noId)
   const item = (no.quadro || []).find((i) => i.id === itemId)
   if (item) {
+    const anterior = item.quantidade_planejada
     item.quantidade_planejada = Math.max(0, Math.round(Number(qtd) || 0))
     item.origem = 'manual'
-    item.overrideJustificado = item.quantidade_normativa != null && item.quantidade_planejada !== item.quantidade_normativa
+    const referencia = item.quantidade_normativa ?? item.quantidade_referencia
+    item.overrideJustificado = referencia != null && item.quantidade_planejada !== referencia
+    item.memoriaCalculo = { ...(item.memoriaCalculo || {}), quantidadeEscolhida: item.quantidade_planejada }
+    if (anterior !== item.quantidade_planejada) {
+      no.historicoAlteracoes = no.historicoAlteracoes || []
+      no.historicoAlteracoes.push({
+        id: ++_novoId,
+        quando: new Date().toISOString(),
+        tipo: 'equipe',
+        campo: 'quantidade',
+        itemId,
+        de: anterior,
+        para: item.quantidade_planejada,
+      })
+    }
   }
   persist()
 }

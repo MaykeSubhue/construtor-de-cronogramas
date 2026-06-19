@@ -17,7 +17,7 @@ export default function Construcao() {
   const escopos = plano ? api.listEscopos(planoId) : []
   const [selId, setSelId] = useState(escopos.find((e) => e.rdcId === 6)?.id || escopos[0]?.id)
   const [grupoEquipeId, setGrupoEquipeId] = useState(null)
-  const [tab, setTab] = useState('Resumo')
+  const [tab, setTab] = useState('Equipe / RH')
   const [presetOpen, setPresetOpen] = useState(false)
   const [memo, setMemo] = useState(null)
   const [cebas, setCebas] = useState(false) // cenário ativo (Sem/Com CEBAS)
@@ -81,7 +81,7 @@ export default function Construcao() {
   }
 
   return (
-    <div className="builder">
+    <div className={`builder ${tab === 'Equipe / RH' ? 'team-layout' : ''}`}>
       {/* ---------------------------------------------------- árvore */}
       <aside className="builder-col builder-tree">
         <div className="tree-head">
@@ -99,10 +99,9 @@ export default function Construcao() {
             selId={selId}
             grupoEquipeId={grupoEquipeId}
             onSelect={(n) => {
-              const voltandoParaEquipeCompleta = n.id === selId && Boolean(grupoEquipeId)
               setSelId(n.id)
               setGrupoEquipeId(null)
-              setTab(voltandoParaEquipeCompleta ? 'Equipe / RH' : 'Resumo')
+              setTab('Equipe / RH')
             }}
             onSelectGrupo={(n, grupo) => { setSelId(n.id); setGrupoEquipeId(grupo.id); setTab('Equipe / RH') }}
             planoId={planoId}
@@ -148,6 +147,11 @@ export default function Construcao() {
               <button className="btn primary" onClick={() => setPresetOpen(true)}>📜 Aplicar RDC / normativa</button>
             )}
           </div>
+        </div>
+
+        <div className="plan-flow mb-2">
+          <span className="active"><b>1</b> Estrutura e equipes</span>
+          <Link to={`/plano/${planoId}/cronograma`}><b>2</b> Cronograma calculado</Link>
         </div>
 
         {!no && (
@@ -220,16 +224,16 @@ export default function Construcao() {
           <Link className="btn" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/completude`}>✓ Checklist de completude</Link>
           <Link className="btn" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/simulacao`}>⚖️ Simular cenários</Link>
           <Link className="btn" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/acompanhamento`}>📋 Acompanhamento / SEI</Link>
-          <Link className="btn primary" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/lancamentos`}>Abrir lançamentos</Link>
-          <Link className="btn" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/cronograma?${new URLSearchParams({ ...(cebas && modelo !== 'subhue' ? { cebas: '1' } : {}) }).toString()}`}>Cronograma final</Link>
+          <Link className="btn primary" style={{ width: '100%', justifyContent: 'center' }} to={`/plano/${planoId}/cronograma?${new URLSearchParams({ ...(cebas && modelo !== 'subhue' ? { cebas: '1' } : {}) }).toString()}`}>Abrir cronograma calculado</Link>
         </div>
       </aside>
 
       {presetOpen && <RDCModal no={no} planoId={planoId} onClose={() => setPresetOpen(false)} onApply={() => { setPresetOpen(false); setGrupoEquipeId(null); refresh() }} />}
       {memo && <MemoModal data={memo} onClose={() => setMemo(null)} />}
       {addNodeOpen && <AddNodeModal planoId={planoId} selId={selId} onClose={() => setAddNodeOpen(false)} onCreate={(novo) => { setAddNodeOpen(false); setSelId(novo.id); setGrupoEquipeId(null); setTab(novo.escopo ? 'Parâmetros' : 'Resumo'); refresh() }} />}
-      {addProfOpen && no && <AddProfModal onClose={() => setAddProfOpen(false)} onAdd={(perfilId, qtd) => {
-        const item = api.addProfissional(planoId, no.id, perfilId, qtd, grupoEquipe)
+      {addProfOpen && no && <AddProfModal onClose={() => setAddProfOpen(false)} onAdd={(dados) => {
+        const { perfilId, qtd, chs, quantidadeTurno } = dados
+        const item = api.addProfissional(planoId, no.id, perfilId, qtd, grupoEquipe, { chs, quantidadeTurno })
         setAddProfOpen(false)
         // Se o perfil não é previsto pela RDC do setor, exige justificativa.
         const previsto = api.prescricaoRDC(no).some((p) => p.perfilId === Number(perfilId))
@@ -267,7 +271,7 @@ function JustificativaModal({ data, onClose }) {
           <b>{data.generico ? data.label : data.perfil?.label}</b><br />
           {data.generico
             ? <span>Alteração estrutural fora da criação automática.</span>
-            : <>RDC preconiza: <b>{num(data.previsto)}</b> · você está definindo: <b>{num(data.novo)}</b></>}
+            : <>{data.referenciaLabel || 'RDC preconiza'}: <b>{num(data.previsto)}</b> · você está definindo: <b>{num(data.novo)}</b></>}
           {data.texto && <div className="muted" style={{ fontSize: 12, marginTop: 4 }}>{data.texto}</div>}
         </div>
       </div>
@@ -400,27 +404,31 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo
     ? calc.itens.filter((item) => item.categoriaGeralId === grupoEquipe.id)
     : calc.itens
   const equipeVisivel = itensVisiveis.reduce((total, item) => total + item.quantidade, 0)
-  const rhVisivel = itensVisiveis.reduce((total, item) => total + item.custo_total, 0)
+  const salarioVisivel = itensVisiveis.reduce((total, item) => total + item.salario_total_linha, 0)
 
-  // Edição de quantitativo: se desviar do que a RDC preconiza, exige justificativa.
+  // Edição de quantitativo: desvios da norma ou do modelo de origem exigem justificativa.
   const editar = (it, raw) => {
     const novo = Math.max(0, Math.round(Number(raw) || 0))
     if (novo === it.quantidade) return
     const prev = previstoMap[it.perfil.id]
-    if (!rdc || prev == null) { api.setQuantidade(planoId, no.id, it.id, novo); refresh(); return }
-    if (novo === prev.qtd) { api.setQuantidade(planoId, no.id, it.id, novo); api.limparDesvio(planoId, no.id, it.perfil.id); refresh(); return }
+    const referencia = prev?.qtd ?? it.quantidade_referencia
+    if (referencia == null) { api.setQuantidade(planoId, no.id, it.id, novo); refresh(); return }
+    if (novo === referencia) { api.setQuantidade(planoId, no.id, it.id, novo); api.limparDesvio(planoId, no.id, it.perfil.id); refresh(); return }
     onJustif({
-      perfil: it.perfil, previsto: prev.qtd, novo, texto: prev.texto,
-      onConfirm: (motivo) => { api.setQuantidade(planoId, no.id, it.id, novo); api.registrarDesvio(planoId, no.id, it.perfil.id, { de: prev.qtd, para: novo, motivo }); refresh() },
+      perfil: it.perfil, previsto: referencia, novo, texto: prev?.texto || 'Quantidade registrada no cronograma de origem.',
+      referenciaLabel: prev ? 'Norma prevê' : 'Modelo de origem',
+      onConfirm: (motivo) => { api.setQuantidade(planoId, no.id, it.id, novo); api.registrarDesvio(planoId, no.id, it.perfil.id, { de: referencia, para: novo, motivo }); refresh() },
       onCancel: () => setNonce((n) => n + 1), // reverte o input
     })
   }
   const remover = (it) => {
     const prev = previstoMap[it.perfil.id]
-    if (rdc && prev != null) {
+    const referencia = prev?.qtd ?? it.quantidade_referencia
+    if (referencia != null) {
       onJustif({
-        perfil: it.perfil, previsto: prev.qtd, novo: 0, texto: prev.texto,
-        onConfirm: (motivo) => { api.removeProfissional(planoId, no.id, it.id); api.registrarDesvio(planoId, no.id, it.perfil.id, { de: prev.qtd, para: 0, motivo, tipo: 'removido' }); refresh() },
+        perfil: it.perfil, previsto: referencia, novo: 0, texto: prev?.texto || 'Linha existente no cronograma de origem.',
+        referenciaLabel: prev ? 'Norma prevê' : 'Modelo de origem',
+        onConfirm: (motivo) => { api.removeProfissional(planoId, no.id, it.id); api.registrarDesvio(planoId, no.id, it.perfil.id, { de: referencia, para: 0, motivo, tipo: 'removido' }); refresh() },
         onCancel: () => {},
       })
     } else { api.removeProfissional(planoId, no.id, it.id); refresh() }
@@ -469,20 +477,28 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo
 
       <div className="card mb-2">
         <div className="table-wrap">
-          <table className="tbl">
+          <table className="tbl team-grid">
             <thead>
               <tr>
-                <th>Categoria profissional</th><th className="num">Qtd</th>
-                <th className="num">QP 40h</th><th className="num">QP 30h</th><th className="num">CHS</th>
-                <th className="num">Salário base</th><th className="num">Salário total</th>
-                <th className="num">Encargos</th><th className="num">Benefícios</th>
-                <th className="num">Custo total</th><th></th>
+                <th>Categoria profissional</th>
+                <th className="num">Carga horária</th>
+                <th className="num">Quantitativo</th>
+                <th className="num">Qtd. por turno 12h</th>
+                <th className="num">Salário base</th>
+                <th className="num">Insalubridade</th>
+                <th className="num">Gratificação RT / chefia</th>
+                <th className="num">Titulação</th>
+                <th className="num">Adic. noturno</th>
+                <th className="num">Remuneração bruta</th>
+                <th className="num">Salário total</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               {itensVisiveis.map((it) => {
                 const prev = previstoMap[it.perfil.id]
-                const desvio = prev != null && it.quantidade !== prev.qtd
+                const referencia = prev?.qtd ?? it.quantidade_referencia
+                const desvio = referencia != null && it.quantidade !== referencia
                 const justif = (no.desvios || {})[it.perfil.id]?.motivo
                 return (
                   <tr key={it.id}>
@@ -490,28 +506,29 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo
                       <b>{it.perfil.label}</b>
                     </td>
                     <td className="num">
-                      <input key={`${it.id}-${it.quantidade}-${nonce}`} className="cell-input"
-                        style={desvio ? { borderColor: justif ? 'var(--ambar-600, #b8860b)' : 'var(--vermelho-600, #c0392b)' } : null}
-                        defaultValue={it.quantidade} type="number" step="1" min="0"
-                        onBlur={(e) => editar(it, e.target.value)} />
-                    </td>
-                    <td className="num tnum">{it.qp40 != null ? num(it.qp40, 0) : <span className="muted">-</span>}</td>
-                    <td className="num tnum">{it.qp30 != null ? num(it.qp30, 0) : <span className="muted">-</span>}</td>
-                    <td className="num tnum">
                       {it.matrizRegraId
                         ? (
-                          <select className="cell-input" value={it.chs || 30} onChange={(e) => { api.setChsMatriz(planoId, no.id, it.perfil.id, e.target.value); refresh() }}>
+                          <select className="cell-input team-input" value={it.chs || 30} onChange={(e) => { api.setLancamentoEquipe(planoId, no.id, it.id, { chs: e.target.value }); refresh() }}>
                             <option value={30}>30h</option>
                             <option value={40}>40h</option>
                           </select>
                         )
-                        : it.chs ? <span className="tnum">{num(it.chs, 0)}h</span> : <span className="muted">-</span>}
+                        : <input className="cell-input team-input" type="number" min="0" step="1" defaultValue={it.chs || 40} onBlur={(e) => { api.setLancamentoEquipe(planoId, no.id, it.id, { chs: e.target.value }); refresh() }} />}
                     </td>
+                    <td className="num">
+                      <input key={`${it.id}-${it.quantidade}-${nonce}`} className="cell-input team-input"
+                        style={desvio ? { borderColor: justif ? 'var(--ambar-600, #b8860b)' : 'var(--vermelho-600, #c0392b)' } : null}
+                        defaultValue={it.quantidade} type="number" step="1" min="0"
+                        onBlur={(e) => editar(it, e.target.value)} />
+                    </td>
+                    <td className="num"><input className="cell-input team-input" type="number" min="0" step="1" defaultValue={it.quantidade_turno_12h || 0} onBlur={(e) => { api.setLancamentoEquipe(planoId, no.id, it.id, { quantidadeTurno: e.target.value }); refresh() }} /></td>
                     <td className="num tnum">{brl(it.base)}</td>
-                    <td className="num tnum">{brl(it.salario_total)}</td>
-                    <td className="num tnum">{brl(it.encargos * it.quantidade)}</td>
-                    <td className="num tnum">{brl(it.beneficios * it.quantidade)}</td>
-                    <td className="num tnum"><b>{brl(it.custo_total)}</b></td>
+                    <td className="num tnum">{it.insalubridade ? brl(it.insalubridade) : '-'}</td>
+                    <td className="num tnum">{it.gratificacao ? brl(it.gratificacao) : '-'}</td>
+                    <td className="num tnum">{it.titulacao ? brl(it.titulacao) : '-'}</td>
+                    <td className="num tnum">{it.adicional_noturno ? brl(it.adicional_noturno) : '-'}</td>
+                    <td className="num tnum">{brl(it.remuneracao_bruta)}</td>
+                    <td className="num tnum"><b>{brl(it.salario_total_linha)}</b></td>
                     <td>
                       <div className="flex" style={{ gap: 2 }}>
                         <button className="btn sm ghost" title="Memória de cálculo" onClick={() => onMemo({ tipo: 'item', it })}>🧮</button>
@@ -522,15 +539,16 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo
                 )
               })}
               {itensVisiveis.length === 0 && (
-                <tr><td colSpan={11} className="muted" style={{ padding: 24, textAlign: 'center' }}>{grupoEquipe ? 'Nenhum profissional vinculado a esta categoria geral.' : 'Nenhum profissional. Aplique uma RDC/normativa, adicione manualmente ou use uma regra de quadro.'}</td></tr>
+                <tr><td colSpan={12} className="muted" style={{ padding: 24, textAlign: 'center' }}>{grupoEquipe ? 'Nenhum profissional vinculado a esta categoria geral.' : 'Nenhum profissional. Aplique uma RDC/normativa, adicione manualmente ou use uma regra de quadro.'}</td></tr>
               )}
             </tbody>
             <tfoot>
               <tr style={{ background: 'var(--azul-050)', fontWeight: 700 }}>
                 <td>{grupoEquipe ? 'Total da categoria geral' : 'Total da equipe'}</td>
+                <td></td>
                 <td className="num tnum">{num(equipeVisivel)}</td>
                 <td colSpan={7}></td>
-                <td className="num tnum">{brl(rhVisivel)}</td>
+                <td className="num tnum">{brl(salarioVisivel)}</td>
                 <td></td>
               </tr>
             </tfoot>
@@ -543,7 +561,7 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo
         <button className="btn" onClick={onRegra}>⚙️ Aplicar regra de quadro</button>
         <button className="btn ghost" onClick={() => onMemo({ tipo: 'encargos', cebas, modelo })}>Ver encargos e benefícios</button>
       </div>
-      <Note icon="💡"><b>QP 30h/40h</b> vem da matriz v4. Mudar Qtd ou CHS atualiza o mesmo item do setor e divergências continuam exigindo justificativa. Norma, origem e fonte permanecem disponíveis na memória de cálculo e no histórico.</Note>
+      <Note icon="💡"><b>Campos destacados</b> são preenchidos pela equipe. Salários e adicionais vêm da planilha de origem ou da tabela salarial do plano. QP normativo, origem, fonte e justificativas permanecem na memória de cálculo e no histórico.</Note>
     </>
   )
 }
@@ -1049,12 +1067,14 @@ function AddNodeModal({ planoId, selId, onClose, onCreate }) {
 function AddProfModal({ onClose, onAdd }) {
   const [perfilId, setPerfilId] = useState(api.perfis[0]?.id)
   const [qtd, setQtd] = useState(1)
+  const [chs, setChs] = useState(40)
+  const [quantidadeTurno, setQuantidadeTurno] = useState(1)
   const c = api.calcPerfil(Number(perfilId))
   return (
     <Modal title="Adicionar profissional" icon="🧑‍⚕️" onClose={onClose}
       footer={<>
         <button className="btn ghost" onClick={onClose}>Cancelar</button>
-        <button className="btn primary" disabled={!qtd} onClick={() => onAdd(Number(perfilId), Number(qtd))}>Adicionar</button>
+        <button className="btn primary" disabled={!qtd} onClick={() => onAdd({ perfilId: Number(perfilId), qtd: Number(qtd), chs: Number(chs), quantidadeTurno: Number(quantidadeTurno) })}>Adicionar</button>
       </>}>
       <div className="field">
         <label>Perfil de alocação</label>
@@ -1063,11 +1083,22 @@ function AddProfModal({ onClose, onAdd }) {
         </select>
         <div className="hint">Categoria + regime + turno. Cadastre novos perfis em Cadastros › Perfis de alocação.</div>
       </div>
-      <div className="field" style={{ maxWidth: 180 }}>
-        <label>Quantitativo (profissionais)</label>
-        <input type="number" step="1" min="0" value={qtd} onChange={(e) => setQtd(e.target.value)} />
+      <div className="form-row three">
+        <div className="field">
+          <label>Carga horária</label>
+          <input type="number" step="1" min="0" value={chs} onChange={(e) => setChs(e.target.value)} />
+        </div>
+        <div className="field">
+          <label>Quantitativo</label>
+          <input type="number" step="1" min="0" value={qtd} onChange={(e) => setQtd(e.target.value)} />
+        </div>
+        <div className="field">
+          <label>Qtd. por turno 12h</label>
+          <input type="number" step="1" min="0" value={quantidadeTurno} onChange={(e) => setQuantidadeTurno(e.target.value)} />
+        </div>
       </div>
-      <div className="memo-line"><span className="k">Salário total (unit.)</span><span className="v">{brl(c.salario_total)}</span></div>
+      <div className="memo-line"><span className="k">Remuneração bruta (unit.)</span><span className="v">{brl(c.salario_total)}</span></div>
+      <div className="memo-line"><span className="k">Salário total da linha</span><span className="v">{brl(c.salario_total * (Number(qtd) || 0))}</span></div>
       <div className="memo-line"><span className="k">Custo total (unit. c/ encargos+benef.)</span><span className="v">{brl(c.custo_unitario)}</span></div>
       <div className="memo-line"><span className="k"><b>Custo do item ({num(qtd)} prof.)</b></span><span className="v">{brl(c.custo_unitario * (Number(qtd) || 0))}</span></div>
     </Modal>

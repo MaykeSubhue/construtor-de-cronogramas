@@ -683,7 +683,7 @@ function PresetsView({ secao }) {
   return (
     <>
       <Head secao={secao} />
-      <Note>Perfis hospitalares iniciam planos normativos. Cronogramas prontos sao modelos clonaveis: copiam estrutura/equipe das planilhas e recalculam o financeiro pelo app.</Note>
+      <Note>Perfis hospitalares iniciam planos normativos. Cronogramas prontos copiam estrutura, equipes e componentes salariais das planilhas; encargos, benefícios e cronograma são calculados pelo app.</Note>
       <div className="section-title">Cronogramas prontos</div>
       <div className="pill-toggle mb-2">
         <button className={!grupo ? 'active' : ''} onClick={() => setGrupo('')}>Todos</button>
@@ -711,7 +711,7 @@ function PresetsView({ secao }) {
             <div className="memo-line"><span className="k">Equipe importada</span><span className="v">{num(modelo.resumo.equipeTotal, 0)} profissionais</span></div>
             <div className="memo-line mt-2"><span className="k">Fonte</span><span className="v">{modelo.fonte}</span></div>
             <div className="memo-line"><span className="k">Custeio</span><span className="v">{pct((modelo.parametrosCronograma?.custeioOperacionalPct || 0) * 100)}</span></div>
-            <Note icon="i">Modelo clonavel, recalculado pelo app.</Note>
+            <Note icon="i">Modelo clonável com equipes e remuneração da planilha de origem.</Note>
             <button className="btn mt-2" onClick={() => setDetalheId(modelo.id)} style={{ width: '100%', justifyContent: 'center' }}>
               Ver detalhes do modelo
             </button>
@@ -807,7 +807,7 @@ function CronogramaProntoDetalheModal({ modelo, onClose }) {
         {resumoDisponivel
           ? modelo.origemPlanoId
             ? <>Resumo calculado pelo aplicativo no momento da finalização do plano. Ao clonar, os valores continuam ligados às equipes e bases vigentes.</>
-            : <>Resumo histórico extraído da aba <b>{resumoFinanceiro.fonteAba || 'RESUMO'}</b>. Ao criar um plano, o financeiro será recalculado com a base vigente do aplicativo.</>
+            : <>Resumo histórico extraído da aba <b>{resumoFinanceiro.fonteAba || 'RESUMO'}</b>. Ao criar um plano, a remuneração é preservada e o aplicativo calcula encargos, benefícios e cenários.</>
           : resumoFinanceiro.observacao || 'A planilha de origem não possui totais financeiros consolidados disponíveis.'}
       </Note>
       <div className="memo-line"><span className="k">Hospital</span><span className="v">{modelo.hospitalNome || modelo.unidadeModelo}</span></div>
@@ -829,18 +829,30 @@ function CronogramaProntoDetalheModal({ modelo, onClose }) {
       {setor && (
         <div className="card mt-2" style={{ boxShadow: 'none' }}>
           <div className="table-wrap">
-            <table className="tbl">
-              <thead><tr><th>Categoria importada</th><th className="num">CH</th><th className="num">Quantidade</th><th className="num">Qtd turno</th><th>Status</th></tr></thead>
+            <table className="tbl team-grid">
+              <thead><tr><th>Categoria profissional</th><th className="num">CH</th><th className="num">Quantitativo</th><th className="num">Qtd. por turno 12h</th><th className="num">Salário base</th><th className="num">Insalubridade</th><th className="num">Gratificação RT / chefia</th><th className="num">Titulação</th><th className="num">Adic. noturno</th><th className="num">Remuneração bruta</th><th className="num">Salário total</th><th>Status</th></tr></thead>
               <tbody>
-                {setor.linhas.map((linha) => (
-                  <tr key={linha.id}>
-                    <td><b>{linha.categoria}</b><div className="muted" style={{ fontSize: 11.5 }}>Linha {linha.linhaOrigem} · {setor.abaOrigem}</div></td>
-                    <td className="num tnum">{linha.chs}h</td>
-                    <td className="num tnum">{num(linha.quantidade, 0)}</td>
-                    <td className="num tnum">{linha.quantidadeTurno ?? '-'}</td>
-                    <td>{linha.revisar ? <Badge cls="ambar" dot>Revisar</Badge> : <Badge cls="verde" dot>Ok</Badge>}</td>
-                  </tr>
-                ))}
+                {setor.linhas.map((linha) => {
+                  const comp = linha.componentesPlanilha || {}
+                  const remuneracao = Number(comp.remuneracaoBruta) || (Number(comp.base) || 0) + (Number(comp.insalubridade) || 0) + (Number(comp.gratificacao) || 0) + (Number(comp.titulacao) || 0) + (Number(comp.adicionalNoturno) || 0)
+                  const total = Number(comp.salarioTotal) || remuneracao * Number(linha.quantidade || 0)
+                  return (
+                    <tr key={linha.id}>
+                      <td><b>{linha.categoria}</b><div className="muted" style={{ fontSize: 11.5 }}>Linha {linha.linhaOrigem} · {setor.abaOrigem}</div></td>
+                      <td className="num tnum">{linha.chs}h</td>
+                      <td className="num tnum">{num(linha.quantidade, 0)}</td>
+                      <td className="num tnum">{linha.quantidadeTurno ?? '-'}</td>
+                      <td className="num tnum">{brl(comp.base || 0)}</td>
+                      <td className="num tnum">{comp.insalubridade ? brl(comp.insalubridade) : '-'}</td>
+                      <td className="num tnum">{comp.gratificacao ? brl(comp.gratificacao) : '-'}</td>
+                      <td className="num tnum">{comp.titulacao ? brl(comp.titulacao) : '-'}</td>
+                      <td className="num tnum">{comp.adicionalNoturno ? brl(comp.adicionalNoturno) : '-'}</td>
+                      <td className="num tnum">{brl(remuneracao)}</td>
+                      <td className="num tnum"><b>{brl(total)}</b></td>
+                      <td>{linha.revisar ? <Badge cls="ambar" dot>Revisar</Badge> : <Badge cls="verde" dot>Ok</Badge>}</td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
           </div>

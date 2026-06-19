@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import * as api from '../mock/api.js'
 import { Badge, Note } from '../components/ui.jsx'
 
-const passos = ['Tipo', 'Unidade', 'Configuração', 'Prévia', 'Criar']
+const passos = ['Unidade', 'Estrutura e equipe', 'Prévia', 'Criar']
 
 const tiposUnidade = ['Hospital geral', 'Hospital especializado', 'Maternidade', 'UPA 24h', 'CER', 'Unidade especializada']
 
@@ -64,15 +64,15 @@ export default function NovoPlano() {
   const unidadeValida = f.unidadeModo === 'existente' ? !!f.objeto_planejamento_id : !!f.unidadeNova.nome.trim()
   const configValida = f.modo === 'setor' ? !!f.setorTexto.trim() : f.modo === 'modelo' ? !!f.cronogramaProntoId : !!f.templateId
   const podeAvancar =
-    (step !== 1 || unidadeValida) &&
-    (step !== 2 || configValida) &&
-    (step !== 3 || pendenciasJustificativa.length === 0)
+    (step !== 0 || unidadeValida) &&
+    (step !== 1 || configValida) &&
+    (step !== 2 || pendenciasJustificativa.length === 0)
   const podeCriar = unidadeValida && configValida && pendenciasJustificativa.length === 0
 
   const criar = () => {
     if (f.modo === 'modelo') {
       const plano = api.criarPlanoDeCronogramaPronto(f.cronogramaProntoId, payload)
-      nav(`/plano/${plano.id}/lancamentos`)
+      nav(`/plano/${plano.id}/construcao`)
       return
     }
     const plano = api.criarPlanoNormativo(payload)
@@ -84,7 +84,7 @@ export default function NovoPlano() {
       <div className="page-head">
         <div>
           <h1>Novo cronograma</h1>
-          <div className="sub">Crie um setor ou hospital com estrutura e RH preenchidos pela matriz normativa validada.</div>
+          <div className="sub">Escolha a unidade, monte os serviços e as equipes e deixe o cronograma financeiro ser calculado automaticamente.</div>
         </div>
       </div>
 
@@ -99,37 +99,37 @@ export default function NovoPlano() {
       </div>
 
       <div className="card card-pad">
-        {step === 0 && (
+        {step === 1 && (
           <>
-            <div className="section-title">O que você quer construir?</div>
+            <div className="section-title">Como deseja começar?</div>
             <div className="grid cols-3">
               <Opcao
                 ativo={f.modo === 'setor'}
                 ico="🧩"
                 titulo="Setor específico"
-                texto="Ex.: UTI Adulto 20 leitos, centro cirúrgico 6 salas. O sistema reconhece o setor e carrega RH normativo."
+                texto="Cria um único serviço com equipe sugerida pelas regras cadastradas."
                 onClick={() => setF((s) => ({ ...s, modo: 'setor', meses_projecao: 12 }))}
               />
               <Opcao
                 ativo={f.modo === 'hospital'}
                 ico="🏥"
                 titulo="Hospital / unidade completa"
-                texto="Cria uma árvore inicial de setores por perfil hospitalar e calcula o que já está estruturado na matriz."
+                texto="Monta uma estrutura inicial de serviços para você revisar e preencher."
                 onClick={() => setF((s) => ({ ...s, modo: 'hospital', meses_projecao: 12 }))}
               />
               <Opcao
                 ativo={f.modo === 'modelo'}
-                ico="ðŸ§¾"
+                ico="📋"
                 titulo="Modelo pronto"
-                texto="Clona um cronograma HMLJ, HFA ou HFCF ja preenchido e recalcula tudo no motor do app."
+                texto="Copia um cronograma concluído, com serviços, equipes e valores da planilha de origem."
                 onClick={() => setF((s) => ({ ...s, modo: 'modelo', meses_projecao: 24 }))}
               />
             </div>
-            <Note icon="📜">Automação nesta etapa usa somente a matriz validada e RDCs já estruturadas. ABNT entra depois como base própria.</Note>
+            <Note icon="📜">A estrutura e a equipe podem ser alteradas depois. Quando houver divergência normativa, o sistema solicitará justificativa.</Note>
           </>
         )}
 
-        {step === 1 && (
+        {step === 0 && (
           <>
             <div className="section-title">Unidade</div>
             <div className="pill-toggle mb-2">
@@ -173,9 +173,9 @@ export default function NovoPlano() {
           </>
         )}
 
-        {step === 2 && (
+        {step === 1 && (
           <>
-            <div className="section-title">Configuração</div>
+            <div className="section-title">Dados do cronograma</div>
             <div className="field">
               <label>Nome do plano <span className="muted">(opcional)</span></label>
               <input value={f.nome} onChange={(e) => set('nome', e.target.value)} placeholder="Se ficar vazio, o sistema monta um nome automático" />
@@ -200,7 +200,7 @@ export default function NovoPlano() {
                 <select value={f.cronogramaProntoId} onChange={(e) => set('cronogramaProntoId', e.target.value)}>
                   {cronogramasProntos.map((modelo) => <option key={modelo.id} value={modelo.id}>{modelo.nome}</option>)}
                 </select>
-                <div className="hint">O modelo copia abas de equipe e parametros principais; o cronograma final e recalculado no app.</div>
+                <div className="hint">O modelo preserva os serviços, as equipes e os componentes salariais da planilha de origem.</div>
               </div>
             )}
             <div className="form-row three">
@@ -226,7 +226,7 @@ export default function NovoPlano() {
           </>
         )}
 
-        {step === 3 && (
+        {step === 2 && (
           <>
             <div className="spread">
               <div className="section-title" style={{ margin: 0 }}>{f.modo === 'modelo' ? 'Prévia do modelo' : 'Prévia normativa'}</div>
@@ -249,7 +249,7 @@ export default function NovoPlano() {
           </>
         )}
 
-        {step === 4 && (
+        {step === 3 && (
           <>
             <div className="section-title">Criar cronograma</div>
             <div className="grid cols-2">
@@ -261,7 +261,7 @@ export default function NovoPlano() {
               <Resumo k={f.modo === 'modelo' ? 'Equipe importada' : 'Equipe normativa estimada'} v={preview.resumo.equipeTotal || 0} />
             </div>
             {pendenciasJustificativa.length > 0 && <Note icon="⚠️">Há setor obrigatório desmarcado sem justificativa.</Note>}
-            <Note icon="✅">Ao criar, o plano será persistido e abrirá direto na {f.modo === 'modelo' ? 'tela de lançamentos' : 'construção'}. A partir daí, alterações de RH fora da norma exigem justificativa.</Note>
+            <Note icon="✅">Ao criar, o plano abrirá na Construção. Preencha ou revise as equipes de cada serviço; o cronograma financeiro será atualizado automaticamente. Alterações de RH fora da norma continuam exigindo justificativa.</Note>
           </>
         )}
 
@@ -273,7 +273,7 @@ export default function NovoPlano() {
           {step < passos.length - 1 ? (
             <button className="btn primary" disabled={!podeAvancar} onClick={() => setStep(step + 1)}>Continuar →</button>
           ) : (
-            <button className="btn primary" disabled={!podeCriar} onClick={criar}>{f.modo === 'modelo' ? 'Criar plano e abrir lançamentos' : 'Criar plano e abrir construção'}</button>
+            <button className="btn primary" disabled={!podeCriar} onClick={criar}>Criar plano e preencher equipes</button>
           )}
         </div>
       </div>
@@ -283,13 +283,13 @@ export default function NovoPlano() {
 
 function Opcao({ ativo, ico, titulo, texto, onClick }) {
   return (
-    <div className={`preset-opt ${ativo ? 'sel' : ''}`} onClick={onClick}>
+    <button type="button" className={`preset-opt preset-button ${ativo ? 'sel' : ''}`} onClick={onClick} aria-pressed={ativo}>
       <div className="p-ico">{ico}</div>
       <div>
         <h4>{titulo}</h4>
         <p>{texto}</p>
       </div>
-    </div>
+    </button>
   )
 }
 

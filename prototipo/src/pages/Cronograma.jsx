@@ -35,10 +35,10 @@ export default function Cronograma() {
     <div className="cron-page">
       <div className="page-head cron-head">
         <div>
-          <Link to={`/plano/${planoId}/lancamentos`} className="muted" style={{ fontSize: 12.5 }}>← Lancamentos de equipe e custos</Link>
+          <Link to={`/plano/${planoId}/construcao`} className="muted" style={{ fontSize: 12.5 }}>← Estrutura e equipes</Link>
           <h1 style={{ marginTop: 4 }}>Cronograma de desembolso financeiro - {cr.unidade}</h1>
           <div className="sub">
-            {competenciaLabel(cr.meses[0])} a {competenciaLabel(cr.meses[cr.meses.length - 1])} · matriz final baseada nas abas de lancamento.
+            {competenciaLabel(cr.meses[0])} a {competenciaLabel(cr.meses[cr.meses.length - 1])} · calculado automaticamente a partir das equipes dos serviços.
           </div>
         </div>
         <div className="actions">
@@ -56,7 +56,7 @@ export default function Cronograma() {
               <button className={view === 'reducao' ? 'active' : ''} onClick={() => setView('reducao')}>Reducao</button>
             </div>
           </div>
-          <Link className="btn" to={`/plano/${planoId}/construcao`}>Construcao</Link>
+          <Link className="btn" to={`/plano/${planoId}/construcao`}>Estrutura e equipes</Link>
         </div>
       </div>
 
@@ -68,8 +68,7 @@ export default function Cronograma() {
       </div>
 
       <Note icon="i">
-        A matriz final nao tem motor duplicado: ela le as abas de lancamento, aplica custeio 30%, apoio 4%/1%,
-        parte variavel 2%/1%/2% e o cenario CEBAS selecionado.
+        O cronograma lê as equipes preenchidas em cada serviço e aplica custeio, apoio à gestão, parcela variável e o cenário CEBAS selecionado.
       </Note>
 
       {view === 'reducao' ? (
