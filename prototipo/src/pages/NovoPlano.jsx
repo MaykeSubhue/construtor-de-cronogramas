@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import * as api from '../mock/api.js'
 import { Badge, Note } from '../components/ui.jsx'
 
-const passos = ['Unidade', 'Especialidades', 'Prévia', 'Criar']
+const passos = ['Unidade', 'Serviços', 'Prévia', 'Criar']
 
 const tiposUnidade = ['Hospital geral', 'Hospital especializado', 'Maternidade', 'UPA 24h', 'CER', 'Unidade especializada']
 
@@ -13,8 +13,8 @@ export default function NovoPlano() {
   const boot = api.getBootstrap()
   const paramsUrl = new URLSearchParams(loc.search)
   const cronogramasProntos = api.listCronogramasProntos()
-  const especialidadesDisponiveis = useMemo(() => api.listEspecialidadesCronograma(), [])
-  const modoInicial = paramsUrl.get('modo') === 'modelo' ? 'modelo' : 'especialidades'
+  const servicosDisponiveis = useMemo(() => api.listServicosCronograma(), [])
+  const modoInicial = paramsUrl.get('modo') === 'modelo' ? 'modelo' : 'servicos'
   const cronogramaProntoInicial = paramsUrl.get('modelo') || cronogramasProntos[0]?.id || ''
   const [step, setStep] = useState(0)
   const [f, setF] = useState(() => ({
@@ -26,23 +26,23 @@ export default function NovoPlano() {
     competencia_inicial: '2026-01',
     meses_projecao: modoInicial === 'modelo' ? 24 : 12,
     tabela_salarial_id: boot.tabelas_salariais[0]?.id || 1,
-    especialidades: [],
+    servicos: [],
     cronogramaProntoId: cronogramaProntoInicial,
     sei: '',
   }))
   const set = (k, v) => setF((s) => ({ ...s, [k]: v }))
   const setUnidadeNova = (k, v) => setF((s) => ({ ...s, unidadeNova: { ...s.unidadeNova, [k]: v } }))
-  const toggleEspecialidade = (item) => setF((s) => {
-    const existe = s.especialidades.some((especialidade) => especialidade.key === item.key)
-    if (existe) return { ...s, especialidades: s.especialidades.filter((especialidade) => especialidade.key !== item.key) }
+  const toggleServico = (item) => setF((s) => {
+    const existe = s.servicos.some((servico) => servico.key === item.key)
+    if (existe) return { ...s, servicos: s.servicos.filter((servico) => servico.key !== item.key) }
     const categorias = item.categoriasSugeridas?.length
       ? item.categoriasSugeridas.map((grupo, index) => ({ ...grupo, ativo: index === 0 }))
-      : [{ id: `categoria-${item.key.replace(/[^a-z0-9]+/gi, '-')}`, nome: `Equipe de ${item.nome}`, ativo: true }]
-    return { ...s, especialidades: [...s.especialidades, { ...item, especialidadeId: item.id, categoriasGerais: categorias }] }
+      : [{ id: `categoria-${item.key.replace(/[^a-z0-9]+/gi, '-')}`, nome: 'Equipe do serviço', ativo: true }]
+    return { ...s, servicos: [...s.servicos, { ...item, categoriasGerais: categorias }] }
   })
-  const setCategoriasEspecialidade = (key, categoriasGerais) => setF((s) => ({
+  const setCategoriasServico = (key, categoriasGerais) => setF((s) => ({
     ...s,
-    especialidades: s.especialidades.map((item) => item.key === key ? { ...item, categoriasGerais } : item),
+    servicos: s.servicos.map((item) => item.key === key ? { ...item, categoriasGerais } : item),
   }))
 
   const payload = useMemo(() => ({
@@ -54,7 +54,7 @@ export default function NovoPlano() {
     competencia_inicial: f.competencia_inicial,
     meses_projecao: f.meses_projecao,
     tabela_salarial_id: f.tabela_salarial_id,
-    especialidades: f.especialidades,
+    servicos: f.servicos,
     cronogramaProntoId: f.cronogramaProntoId,
     sei: f.sei,
   }), [f])
@@ -65,7 +65,7 @@ export default function NovoPlano() {
   const unidadeValida = f.unidadeModo === 'existente' ? !!f.objeto_planejamento_id : !!f.unidadeNova.nome.trim()
   const configValida = f.modo === 'modelo'
     ? !!f.cronogramaProntoId
-    : f.especialidades.length > 0 && f.especialidades.every((item) => item.categoriasGerais.some((grupo) => grupo.ativo !== false))
+    : f.servicos.length > 0 && f.servicos.every((item) => item.categoriasGerais.some((grupo) => grupo.ativo !== false))
   const podeAvancar =
     (step !== 0 || unidadeValida) &&
     (step !== 1 || configValida)
@@ -86,7 +86,7 @@ export default function NovoPlano() {
       <div className="page-head">
         <div>
           <h1>Novo cronograma</h1>
-          <div className="sub">Escolha a unidade, selecione as especialidades e organize cada equipe por categoria geral.</div>
+          <div className="sub">Escolha a unidade, selecione os serviços e monte a equipe de cada aba por categoria geral.</div>
         </div>
       </div>
 
@@ -106,21 +106,21 @@ export default function NovoPlano() {
             <div className="section-title">Como deseja começar?</div>
             <div className="grid cols-2">
               <Opcao
-                ativo={f.modo === 'especialidades'}
+                ativo={f.modo === 'servicos'}
                 ico="🏥"
-                titulo="Montar por especialidades"
-                texto="Escolha uma ou várias especialidades, suas categorias gerais e depois preencha os profissionais."
-                onClick={() => setF((s) => ({ ...s, modo: 'especialidades', meses_projecao: 12 }))}
+                titulo="Montar por serviços"
+                texto="Escolha as abas de serviço, suas categorias gerais e depois preencha os profissionais."
+                onClick={() => setF((s) => ({ ...s, modo: 'servicos', meses_projecao: 12 }))}
               />
               <Opcao
                 ativo={f.modo === 'modelo'}
                 ico="📋"
                 titulo="Modelo pronto"
-                texto="Copia um cronograma concluído, com especialidades, categorias gerais, equipes e valores da planilha de origem."
+                texto="Copia um cronograma concluído, com serviços, categorias gerais, equipes e valores da planilha de origem."
                 onClick={() => setF((s) => ({ ...s, modo: 'modelo', meses_projecao: 24 }))}
               />
             </div>
-            <Note icon="📜">Fluxo de preenchimento: unidade → especialidades → categorias gerais → profissionais → cronograma calculado.</Note>
+            <Note icon="📜">Fluxo de preenchimento: unidade → serviços → categorias gerais → profissionais → cronograma calculado.</Note>
           </>
         )}
 
@@ -175,12 +175,12 @@ export default function NovoPlano() {
               <label>Nome do plano <span className="muted">(opcional)</span></label>
               <input value={f.nome} onChange={(e) => set('nome', e.target.value)} placeholder="Se ficar vazio, o sistema monta um nome automático" />
             </div>
-            {f.modo === 'especialidades' ? (
-              <SeletorEspecialidades
-                disponiveis={especialidadesDisponiveis}
-                selecionadas={f.especialidades}
-                onToggle={toggleEspecialidade}
-                onCategorias={setCategoriasEspecialidade}
+            {f.modo === 'servicos' ? (
+              <SeletorServicos
+                disponiveis={servicosDisponiveis}
+                selecionados={f.servicos}
+                onToggle={toggleServico}
+                onCategorias={setCategoriasServico}
               />
             ) : (
               <div className="field">
@@ -188,7 +188,7 @@ export default function NovoPlano() {
                 <select value={f.cronogramaProntoId} onChange={(e) => set('cronogramaProntoId', e.target.value)}>
                   {cronogramasProntos.map((modelo) => <option key={modelo.id} value={modelo.id}>{modelo.nome}</option>)}
                 </select>
-                <div className="hint">O modelo preserva as especialidades, categorias gerais, equipes e componentes salariais da planilha de origem.</div>
+                <div className="hint">O modelo preserva os serviços, categorias gerais, equipes e componentes salariais da planilha de origem.</div>
               </div>
             )}
             <div className="form-row three">
@@ -217,9 +217,9 @@ export default function NovoPlano() {
         {step === 2 && (
           <>
             <div className="spread">
-              <div className="section-title" style={{ margin: 0 }}>{f.modo === 'modelo' ? 'Prévia do modelo' : 'Prévia das especialidades'}</div>
+              <div className="section-title" style={{ margin: 0 }}>{f.modo === 'modelo' ? 'Prévia do modelo' : 'Prévia dos serviços'}</div>
               <div className="flex" style={{ gap: 8 }}>
-                <Badge cls="verde" dot>{preview.resumo.especialidadesAtivas || preview.resumo.setoresAtivos || 0} especialidade(s)</Badge>
+                <Badge cls="verde" dot>{preview.resumo.servicosAtivos || preview.resumo.setoresAtivos || 0} serviço(s)</Badge>
                 <Badge cls="azul">Equipe {preview.resumo.equipeTotal || 0}</Badge>
                 {f.modo === 'modelo'
                   ? <Badge cls="cinza">{preview.resumo.linhasEquipe || 0} linhas</Badge>
@@ -229,7 +229,7 @@ export default function NovoPlano() {
             {preview.avisos?.map((aviso, i) => <Note key={i} icon="⚠️">{aviso}</Note>)}
             {f.modo === 'modelo'
               ? <PreviewCronogramaPronto preview={preview} />
-              : <PreviewEspecialidades especialidades={preview.especialidades || []} />}
+              : <PreviewServicos servicos={preview.servicos || []} />}
           </>
         )}
 
@@ -237,14 +237,14 @@ export default function NovoPlano() {
           <>
             <div className="section-title">Criar cronograma</div>
             <div className="grid cols-2">
-              <Resumo k="Tipo" v={f.modo === 'modelo' ? 'Modelo pronto' : 'Montagem por especialidades'} />
+              <Resumo k="Tipo" v={f.modo === 'modelo' ? 'Modelo pronto' : 'Montagem por serviços'} />
               <Resumo k="Unidade" v={preview.unidade?.nome || '—'} />
               <Resumo k="Competência" v={f.competencia_inicial} />
               <Resumo k="Meses" v={f.meses_projecao} />
-              <Resumo k="Especialidades" v={preview.resumo.especialidadesAtivas || preview.resumo.setoresAtivos || 0} />
+              <Resumo k="Serviços" v={preview.resumo.servicosAtivos || preview.resumo.setoresAtivos || 0} />
               <Resumo k={f.modo === 'modelo' ? 'Equipe importada' : 'Equipe normativa estimada'} v={preview.resumo.equipeTotal || 0} />
             </div>
-            <Note icon="✅">Ao criar, o plano abrirá na primeira categoria geral. Preencha os profissionais de cada especialidade; o cronograma financeiro será atualizado automaticamente.</Note>
+            <Note icon="✅">Ao criar, o plano abrirá na primeira categoria geral. Preencha os profissionais de cada serviço; o cronograma financeiro será atualizado automaticamente.</Note>
           </>
         )}
 
@@ -264,37 +264,46 @@ export default function NovoPlano() {
   )
 }
 
-function SeletorEspecialidades({ disponiveis, selecionadas, onToggle, onCategorias }) {
+function SeletorServicos({ disponiveis, selecionados, onToggle, onCategorias }) {
+  const [aberto, setAberto] = useState(false)
   const [busca, setBusca] = useState('')
   const termo = busca.trim().toLocaleLowerCase('pt-BR')
-  const filtradas = disponiveis.filter((item) => !termo || `${item.nome} ${item.tipo}`.toLocaleLowerCase('pt-BR').includes(termo))
-  const selecionadasIds = new Set(selecionadas.map((item) => item.key))
+  const filtradas = disponiveis.filter((item) => !termo || `${item.nome} ${item.modelos?.map((modelo) => modelo.nome).join(' ')}`.toLocaleLowerCase('pt-BR').includes(termo))
+  const selecionadosIds = new Set(selecionados.map((item) => item.key))
 
   return (
     <div className="specialty-builder">
-      <div className="field">
-        <label>Especialidades da unidade</label>
-        <input value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar especialidade ou área da unidade" />
-        <div className="hint">Selecione uma ou várias. As áreas existentes nos cronogramas de referência também aparecem na busca.</div>
-      </div>
-      <div className="specialty-options" role="group" aria-label="Especialidades disponíveis">
-        {filtradas.slice(0, 80).map((item) => (
-          <label key={item.key} className={`specialty-option ${selecionadasIds.has(item.key) ? 'selected' : ''}`}>
-            <input type="checkbox" checked={selecionadasIds.has(item.key)} onChange={() => onToggle(item)} />
-            <span><b>{item.nome}</b><small>{item.tipo} · {item.origem}</small></span>
-          </label>
-        ))}
-        {!filtradas.length && <div className="muted specialty-empty">Nenhuma especialidade encontrada.</div>}
-      </div>
+      <button type="button" className="service-picker-trigger" aria-expanded={aberto} onClick={() => setAberto((valor) => !valor)}>
+        <span><b>Selecionar serviços</b><small>Os nomes reproduzem as abas dos cronogramas de referência.</small></span>
+        <Badge cls={selecionados.length ? 'azul' : 'cinza'}>{selecionados.length} selecionado(s)</Badge>
+        <span className="service-picker-chevron">{aberto ? '▴' : '▾'}</span>
+      </button>
+      {aberto && (
+        <div className="service-picker-panel">
+          <div className="field">
+            <label>Serviços disponíveis</label>
+            <input autoFocus value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar pelo nome da aba ou hospital de referência" />
+          </div>
+          <div className="specialty-options" role="group" aria-label="Serviços disponíveis">
+            {filtradas.map((item) => (
+              <label key={item.key} className={`specialty-option ${selecionadosIds.has(item.key) ? 'selected' : ''}`}>
+                <input type="checkbox" checked={selecionadosIds.has(item.key)} onChange={() => onToggle(item)} />
+                <span><b>{item.nome}</b><small>{item.modelos?.map((modelo) => modelo.nome).join(' · ') || item.origem}</small></span>
+              </label>
+            ))}
+            {!filtradas.length && <div className="muted specialty-empty">Nenhum serviço encontrado.</div>}
+          </div>
+        </div>
+      )}
 
       <div className="spread mt-2">
-        <div className="section-title" style={{ margin: 0 }}>Especialidades selecionadas</div>
-        <Badge cls={selecionadas.length ? 'azul' : 'cinza'}>{selecionadas.length}</Badge>
+        <div className="section-title" style={{ margin: 0 }}>Serviços selecionados</div>
+        <Badge cls={selecionados.length ? 'azul' : 'cinza'}>{selecionados.length}</Badge>
       </div>
-      {!selecionadas.length && <Note icon="👆">Escolha pelo menos uma especialidade para continuar.</Note>}
+      {!selecionados.length && <Note icon="👆">Clique em “Selecionar serviços” e escolha pelo menos uma aba para continuar.</Note>}
       <div className="specialty-selected-list">
-        {selecionadas.map((item) => (
-          <EspecialidadeSelecionada
+        {selecionados.map((item) => (
+          <ServicoSelecionado
             key={item.key}
             item={item}
             onRemove={() => onToggle(item)}
@@ -306,7 +315,7 @@ function SeletorEspecialidades({ disponiveis, selecionadas, onToggle, onCategori
   )
 }
 
-function EspecialidadeSelecionada({ item, onRemove, onChange }) {
+function ServicoSelecionado({ item, onRemove, onChange }) {
   const [novaCategoria, setNovaCategoria] = useState('')
   const categorias = item.categoriasGerais || []
   const adicionar = () => {
@@ -338,14 +347,14 @@ function EspecialidadeSelecionada({ item, onRemove, onChange }) {
   )
 }
 
-function PreviewEspecialidades({ especialidades }) {
+function PreviewServicos({ servicos }) {
   return (
     <div className="card mt-2">
       <div className="table-wrap">
         <table className="tbl">
-          <thead><tr><th>Especialidade</th><th>Categorias gerais</th><th>Preenchimento inicial</th><th>Referência normativa</th></tr></thead>
+          <thead><tr><th>Serviço / aba</th><th>Categorias gerais</th><th>Preenchimento inicial</th><th>Referência normativa</th></tr></thead>
           <tbody>
-            {especialidades.map((item) => (
+            {servicos.map((item) => (
               <tr key={item.key}>
                 <td><b>{item.nome}</b></td>
                 <td>{item.categoriasGerais.map((grupo) => grupo.nome).join(' · ')}</td>
@@ -448,7 +457,7 @@ function PreviewCronogramaPronto({ preview }) {
       <div className="card mt-2">
         <div className="table-wrap">
           <table className="tbl">
-            <thead><tr><th>Aba importada</th><th>Especialidade / área</th><th className="num">Linhas</th><th className="num">Equipe</th><th>Revisão</th></tr></thead>
+            <thead><tr><th>Aba importada</th><th>Serviço</th><th className="num">Linhas</th><th className="num">Equipe</th><th>Revisão</th></tr></thead>
             <tbody>
               {preview.setores.map((setor) => (
                 <tr key={setor.id}>

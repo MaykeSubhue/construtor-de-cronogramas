@@ -1,6 +1,6 @@
-const STORAGE_KEY = 'cronogramaNormativoMvp:v9'
-const LEGACY_STORAGE_KEYS = ['cronogramaNormativoMvp:v8', 'cronogramaNormativoMvp:v7', 'cronogramaNormativoMvp:v6', 'cronogramaNormativoMvp:v5', 'cronogramaNormativoMvp:v4', 'cronogramaNormativoMvp:v3', 'cronogramaNormativoMvp:v2', 'cronogramaNormativoMvp:v1']
-const STORE_VERSION = 9
+const STORAGE_KEY = 'cronogramaNormativoMvp:v10'
+const LEGACY_STORAGE_KEYS = ['cronogramaNormativoMvp:v9', 'cronogramaNormativoMvp:v8', 'cronogramaNormativoMvp:v7', 'cronogramaNormativoMvp:v6', 'cronogramaNormativoMvp:v5', 'cronogramaNormativoMvp:v4', 'cronogramaNormativoMvp:v3', 'cronogramaNormativoMvp:v2', 'cronogramaNormativoMvp:v1']
+const STORE_VERSION = 10
 
 const STORED_KEYS = [
   'categoriasProfissionais',
