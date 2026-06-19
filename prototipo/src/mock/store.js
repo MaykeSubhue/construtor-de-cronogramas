@@ -1,6 +1,6 @@
-const STORAGE_KEY = 'cronogramaNormativoMvp:v8'
-const LEGACY_STORAGE_KEYS = ['cronogramaNormativoMvp:v7', 'cronogramaNormativoMvp:v6', 'cronogramaNormativoMvp:v5', 'cronogramaNormativoMvp:v4', 'cronogramaNormativoMvp:v3', 'cronogramaNormativoMvp:v2', 'cronogramaNormativoMvp:v1']
-const STORE_VERSION = 8
+const STORAGE_KEY = 'cronogramaNormativoMvp:v9'
+const LEGACY_STORAGE_KEYS = ['cronogramaNormativoMvp:v8', 'cronogramaNormativoMvp:v7', 'cronogramaNormativoMvp:v6', 'cronogramaNormativoMvp:v5', 'cronogramaNormativoMvp:v4', 'cronogramaNormativoMvp:v3', 'cronogramaNormativoMvp:v2', 'cronogramaNormativoMvp:v1']
+const STORE_VERSION = 9
 
 const STORED_KEYS = [
   'categoriasProfissionais',
@@ -315,7 +315,20 @@ export function initStore(seed) {
 export function persistStore(state) {
   if (!canUseStorage()) return
   try {
-    const serializable = Object.fromEntries(STORED_KEYS.map((key) => [key, state[key]]))
+    const planosPersistiveis = (state.planos || []).filter((plano) => !plano.planoReferencia)
+    const idsPersistiveis = new Set(planosPersistiveis.map((plano) => String(plano.id)))
+    const estruturasPersistiveis = Object.fromEntries(
+      Object.entries(state.estruturas || {}).filter(([planoId]) => idsPersistiveis.has(String(planoId))),
+    )
+    const lancamentosPersistiveis = Object.fromEntries(
+      Object.entries(state.lancamentosCronograma || {}).filter(([planoId]) => idsPersistiveis.has(String(planoId))),
+    )
+    const serializable = Object.fromEntries(STORED_KEYS.map((key) => {
+      if (key === 'planos') return [key, planosPersistiveis]
+      if (key === 'estruturas') return [key, estruturasPersistiveis]
+      if (key === 'lancamentosCronograma') return [key, lancamentosPersistiveis]
+      return [key, state[key]]
+    }))
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify({
       version: STORE_VERSION,
       savedAt: new Date().toISOString(),

@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import * as api from '../mock/api.js'
 import { Badge, Note } from '../components/ui.jsx'
 
-const passos = ['Unidade', 'Estrutura e equipe', 'Prévia', 'Criar']
+const passos = ['Unidade', 'Especialidades', 'Prévia', 'Criar']
 
 const tiposUnidade = ['Hospital geral', 'Hospital especializado', 'Maternidade', 'UPA 24h', 'CER', 'Unidade especializada']
 
@@ -13,7 +13,8 @@ export default function NovoPlano() {
   const boot = api.getBootstrap()
   const paramsUrl = new URLSearchParams(loc.search)
   const cronogramasProntos = api.listCronogramasProntos()
-  const modoInicial = paramsUrl.get('modo') === 'modelo' ? 'modelo' : 'setor'
+  const especialidadesDisponiveis = useMemo(() => api.listEspecialidadesCronograma(), [])
+  const modoInicial = paramsUrl.get('modo') === 'modelo' ? 'modelo' : 'especialidades'
   const cronogramaProntoInicial = paramsUrl.get('modelo') || cronogramasProntos[0]?.id || ''
   const [step, setStep] = useState(0)
   const [f, setF] = useState(() => ({
@@ -25,18 +26,23 @@ export default function NovoPlano() {
     competencia_inicial: '2026-01',
     meses_projecao: modoInicial === 'modelo' ? 24 : 12,
     tabela_salarial_id: boot.tabelas_salariais[0]?.id || 1,
-    setorTexto: 'UTI Adulto 20 leitos',
-    templateId: api.perfisHospitalares[0]?.id || 'hospital-geral-emergencia',
-    setores: api.setoresDoPerfilHospitalar(api.perfisHospitalares[0]?.id || 'hospital-geral-emergencia'),
+    especialidades: [],
     cronogramaProntoId: cronogramaProntoInicial,
     sei: '',
   }))
   const set = (k, v) => setF((s) => ({ ...s, [k]: v }))
   const setUnidadeNova = (k, v) => setF((s) => ({ ...s, unidadeNova: { ...s.unidadeNova, [k]: v } }))
-  const setTemplate = (id) => setF((s) => ({ ...s, templateId: id, setores: api.setoresDoPerfilHospitalar(id) }))
-  const setSetor = (slug, patch) => setF((s) => ({
+  const toggleEspecialidade = (item) => setF((s) => {
+    const existe = s.especialidades.some((especialidade) => especialidade.key === item.key)
+    if (existe) return { ...s, especialidades: s.especialidades.filter((especialidade) => especialidade.key !== item.key) }
+    const categorias = item.categoriasSugeridas?.length
+      ? item.categoriasSugeridas.map((grupo, index) => ({ ...grupo, ativo: index === 0 }))
+      : [{ id: `categoria-${item.key.replace(/[^a-z0-9]+/gi, '-')}`, nome: `Equipe de ${item.nome}`, ativo: true }]
+    return { ...s, especialidades: [...s.especialidades, { ...item, especialidadeId: item.id, categoriasGerais: categorias }] }
+  })
+  const setCategoriasEspecialidade = (key, categoriasGerais) => setF((s) => ({
     ...s,
-    setores: s.setores.map((item) => item.slug === slug ? { ...item, ...patch } : item),
+    especialidades: s.especialidades.map((item) => item.key === key ? { ...item, categoriasGerais } : item),
   }))
 
   const payload = useMemo(() => ({
@@ -48,26 +54,22 @@ export default function NovoPlano() {
     competencia_inicial: f.competencia_inicial,
     meses_projecao: f.meses_projecao,
     tabela_salarial_id: f.tabela_salarial_id,
-    setorTexto: f.setorTexto,
-    templateId: f.templateId,
+    especialidades: f.especialidades,
     cronogramaProntoId: f.cronogramaProntoId,
-    setores: f.setores,
     sei: f.sei,
   }), [f])
 
   const preview = f.modo === 'modelo'
     ? api.previewCronogramaPronto(f.cronogramaProntoId, payload)
     : api.previewPlanoNormativo(payload)
-  const pendenciasJustificativa = f.modo === 'hospital'
-    ? f.setores.filter((item) => item.obrigatorio && item.ativo === false && !item.justificativa?.trim())
-    : []
   const unidadeValida = f.unidadeModo === 'existente' ? !!f.objeto_planejamento_id : !!f.unidadeNova.nome.trim()
-  const configValida = f.modo === 'setor' ? !!f.setorTexto.trim() : f.modo === 'modelo' ? !!f.cronogramaProntoId : !!f.templateId
+  const configValida = f.modo === 'modelo'
+    ? !!f.cronogramaProntoId
+    : f.especialidades.length > 0 && f.especialidades.every((item) => item.categoriasGerais.some((grupo) => grupo.ativo !== false))
   const podeAvancar =
     (step !== 0 || unidadeValida) &&
-    (step !== 1 || configValida) &&
-    (step !== 2 || pendenciasJustificativa.length === 0)
-  const podeCriar = unidadeValida && configValida && pendenciasJustificativa.length === 0
+    (step !== 1 || configValida)
+  const podeCriar = unidadeValida && configValida
 
   const criar = () => {
     if (f.modo === 'modelo') {
@@ -84,7 +86,7 @@ export default function NovoPlano() {
       <div className="page-head">
         <div>
           <h1>Novo cronograma</h1>
-          <div className="sub">Escolha a unidade, monte os serviços e as equipes e deixe o cronograma financeiro ser calculado automaticamente.</div>
+          <div className="sub">Escolha a unidade, selecione as especialidades e organize cada equipe por categoria geral.</div>
         </div>
       </div>
 
@@ -102,30 +104,23 @@ export default function NovoPlano() {
         {step === 1 && (
           <>
             <div className="section-title">Como deseja começar?</div>
-            <div className="grid cols-3">
+            <div className="grid cols-2">
               <Opcao
-                ativo={f.modo === 'setor'}
-                ico="🧩"
-                titulo="Setor específico"
-                texto="Cria um único serviço com equipe sugerida pelas regras cadastradas."
-                onClick={() => setF((s) => ({ ...s, modo: 'setor', meses_projecao: 12 }))}
-              />
-              <Opcao
-                ativo={f.modo === 'hospital'}
+                ativo={f.modo === 'especialidades'}
                 ico="🏥"
-                titulo="Hospital / unidade completa"
-                texto="Monta uma estrutura inicial de serviços para você revisar e preencher."
-                onClick={() => setF((s) => ({ ...s, modo: 'hospital', meses_projecao: 12 }))}
+                titulo="Montar por especialidades"
+                texto="Escolha uma ou várias especialidades, suas categorias gerais e depois preencha os profissionais."
+                onClick={() => setF((s) => ({ ...s, modo: 'especialidades', meses_projecao: 12 }))}
               />
               <Opcao
                 ativo={f.modo === 'modelo'}
                 ico="📋"
                 titulo="Modelo pronto"
-                texto="Copia um cronograma concluído, com serviços, equipes e valores da planilha de origem."
+                texto="Copia um cronograma concluído, com especialidades, categorias gerais, equipes e valores da planilha de origem."
                 onClick={() => setF((s) => ({ ...s, modo: 'modelo', meses_projecao: 24 }))}
               />
             </div>
-            <Note icon="📜">A estrutura e a equipe podem ser alteradas depois. Quando houver divergência normativa, o sistema solicitará justificativa.</Note>
+            <Note icon="📜">Fluxo de preenchimento: unidade → especialidades → categorias gerais → profissionais → cronograma calculado.</Note>
           </>
         )}
 
@@ -180,27 +175,20 @@ export default function NovoPlano() {
               <label>Nome do plano <span className="muted">(opcional)</span></label>
               <input value={f.nome} onChange={(e) => set('nome', e.target.value)} placeholder="Se ficar vazio, o sistema monta um nome automático" />
             </div>
-            {f.modo === 'setor' ? (
-              <div className="field">
-                <label>Descreva o setor</label>
-                <input autoFocus value={f.setorTexto} onChange={(e) => set('setorTexto', e.target.value)} placeholder="Ex.: UTI Adulto 20 leitos, centro cirúrgico 6 salas" />
-                <div className="hint">A prévia detecta setor, parâmetro principal, fontes e quadro de RH.</div>
-              </div>
-            ) : f.modo === 'hospital' ? (
-              <div className="field">
-                <label>Perfil hospitalar</label>
-                <select value={f.templateId} onChange={(e) => setTemplate(e.target.value)}>
-                  {api.perfisHospitalares.map((t) => <option key={t.id} value={t.id}>{t.nome}</option>)}
-                </select>
-                <div className="hint">{api.perfisHospitalares.find((t) => t.id === f.templateId)?.descricao}</div>
-              </div>
+            {f.modo === 'especialidades' ? (
+              <SeletorEspecialidades
+                disponiveis={especialidadesDisponiveis}
+                selecionadas={f.especialidades}
+                onToggle={toggleEspecialidade}
+                onCategorias={setCategoriasEspecialidade}
+              />
             ) : (
               <div className="field">
                 <label>Cronograma pronto</label>
                 <select value={f.cronogramaProntoId} onChange={(e) => set('cronogramaProntoId', e.target.value)}>
                   {cronogramasProntos.map((modelo) => <option key={modelo.id} value={modelo.id}>{modelo.nome}</option>)}
                 </select>
-                <div className="hint">O modelo preserva os serviços, as equipes e os componentes salariais da planilha de origem.</div>
+                <div className="hint">O modelo preserva as especialidades, categorias gerais, equipes e componentes salariais da planilha de origem.</div>
               </div>
             )}
             <div className="form-row three">
@@ -229,23 +217,19 @@ export default function NovoPlano() {
         {step === 2 && (
           <>
             <div className="spread">
-              <div className="section-title" style={{ margin: 0 }}>{f.modo === 'modelo' ? 'Prévia do modelo' : 'Prévia normativa'}</div>
+              <div className="section-title" style={{ margin: 0 }}>{f.modo === 'modelo' ? 'Prévia do modelo' : 'Prévia das especialidades'}</div>
               <div className="flex" style={{ gap: 8 }}>
-                <Badge cls="verde" dot>{preview.resumo.setoresAtivos || 0} setor(es)</Badge>
+                <Badge cls="verde" dot>{preview.resumo.especialidadesAtivas || preview.resumo.setoresAtivos || 0} especialidade(s)</Badge>
                 <Badge cls="azul">Equipe {preview.resumo.equipeTotal || 0}</Badge>
                 {f.modo === 'modelo'
                   ? <Badge cls="cinza">{preview.resumo.linhasEquipe || 0} linhas</Badge>
-                  : <Badge cls="cinza">QP30 {preview.resumo.qp30Total || 0} · QP40 {preview.resumo.qp40Total || 0}</Badge>}
+                  : <Badge cls="cinza">{preview.resumo.categoriasGerais || 0} categorias gerais</Badge>}
               </div>
             </div>
             {preview.avisos?.map((aviso, i) => <Note key={i} icon="⚠️">{aviso}</Note>)}
-            {f.modo === 'modelo' ? (
-              <PreviewCronogramaPronto preview={preview} />
-            ) : f.modo === 'setor' ? (
-              <PreviewSetor setor={preview.setores[0]} />
-            ) : (
-              <PreviewHospital setores={preview.setores} setSetor={setSetor} pendenciasJustificativa={pendenciasJustificativa} />
-            )}
+            {f.modo === 'modelo'
+              ? <PreviewCronogramaPronto preview={preview} />
+              : <PreviewEspecialidades especialidades={preview.especialidades || []} />}
           </>
         )}
 
@@ -253,15 +237,14 @@ export default function NovoPlano() {
           <>
             <div className="section-title">Criar cronograma</div>
             <div className="grid cols-2">
-              <Resumo k="Tipo" v={f.modo === 'setor' ? 'Setor específico' : f.modo === 'modelo' ? 'Modelo pronto' : 'Hospital/unidade completa'} />
+              <Resumo k="Tipo" v={f.modo === 'modelo' ? 'Modelo pronto' : 'Montagem por especialidades'} />
               <Resumo k="Unidade" v={preview.unidade?.nome || '—'} />
               <Resumo k="Competência" v={f.competencia_inicial} />
               <Resumo k="Meses" v={f.meses_projecao} />
-              <Resumo k="Setores ativos" v={preview.resumo.setoresAtivos || 0} />
+              <Resumo k="Especialidades" v={preview.resumo.especialidadesAtivas || preview.resumo.setoresAtivos || 0} />
               <Resumo k={f.modo === 'modelo' ? 'Equipe importada' : 'Equipe normativa estimada'} v={preview.resumo.equipeTotal || 0} />
             </div>
-            {pendenciasJustificativa.length > 0 && <Note icon="⚠️">Há setor obrigatório desmarcado sem justificativa.</Note>}
-            <Note icon="✅">Ao criar, o plano abrirá na Construção. Preencha ou revise as equipes de cada serviço; o cronograma financeiro será atualizado automaticamente. Alterações de RH fora da norma continuam exigindo justificativa.</Note>
+            <Note icon="✅">Ao criar, o plano abrirá na primeira categoria geral. Preencha os profissionais de cada especialidade; o cronograma financeiro será atualizado automaticamente.</Note>
           </>
         )}
 
@@ -276,6 +259,102 @@ export default function NovoPlano() {
             <button className="btn primary" disabled={!podeCriar} onClick={criar}>Criar plano e preencher equipes</button>
           )}
         </div>
+      </div>
+    </div>
+  )
+}
+
+function SeletorEspecialidades({ disponiveis, selecionadas, onToggle, onCategorias }) {
+  const [busca, setBusca] = useState('')
+  const termo = busca.trim().toLocaleLowerCase('pt-BR')
+  const filtradas = disponiveis.filter((item) => !termo || `${item.nome} ${item.tipo}`.toLocaleLowerCase('pt-BR').includes(termo))
+  const selecionadasIds = new Set(selecionadas.map((item) => item.key))
+
+  return (
+    <div className="specialty-builder">
+      <div className="field">
+        <label>Especialidades da unidade</label>
+        <input value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar especialidade ou área da unidade" />
+        <div className="hint">Selecione uma ou várias. As áreas existentes nos cronogramas de referência também aparecem na busca.</div>
+      </div>
+      <div className="specialty-options" role="group" aria-label="Especialidades disponíveis">
+        {filtradas.slice(0, 80).map((item) => (
+          <label key={item.key} className={`specialty-option ${selecionadasIds.has(item.key) ? 'selected' : ''}`}>
+            <input type="checkbox" checked={selecionadasIds.has(item.key)} onChange={() => onToggle(item)} />
+            <span><b>{item.nome}</b><small>{item.tipo} · {item.origem}</small></span>
+          </label>
+        ))}
+        {!filtradas.length && <div className="muted specialty-empty">Nenhuma especialidade encontrada.</div>}
+      </div>
+
+      <div className="spread mt-2">
+        <div className="section-title" style={{ margin: 0 }}>Especialidades selecionadas</div>
+        <Badge cls={selecionadas.length ? 'azul' : 'cinza'}>{selecionadas.length}</Badge>
+      </div>
+      {!selecionadas.length && <Note icon="👆">Escolha pelo menos uma especialidade para continuar.</Note>}
+      <div className="specialty-selected-list">
+        {selecionadas.map((item) => (
+          <EspecialidadeSelecionada
+            key={item.key}
+            item={item}
+            onRemove={() => onToggle(item)}
+            onChange={(categorias) => onCategorias(item.key, categorias)}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function EspecialidadeSelecionada({ item, onRemove, onChange }) {
+  const [novaCategoria, setNovaCategoria] = useState('')
+  const categorias = item.categoriasGerais || []
+  const adicionar = () => {
+    const nome = novaCategoria.trim()
+    if (!nome) return
+    const id = `categoria-manual-${item.key.replace(/[^a-z0-9]+/gi, '-')}-${categorias.length + 1}`
+    onChange([...categorias, { id, nome, ativo: true, origem: 'Cadastro manual' }])
+    setNovaCategoria('')
+  }
+  return (
+    <section className="specialty-selected">
+      <div className="spread">
+        <div><b>{item.nome}</b><div className="hint">Escolha as categorias gerais que organizarão os profissionais.</div></div>
+        <button type="button" className="btn sm ghost danger" onClick={onRemove} aria-label={`Remover ${item.nome}`}>✕</button>
+      </div>
+      <div className="general-category-options">
+        {categorias.map((grupo) => (
+          <label key={grupo.id} className="general-category-option">
+            <input type="checkbox" checked={grupo.ativo !== false} onChange={(e) => onChange(categorias.map((itemCategoria) => itemCategoria.id === grupo.id ? { ...itemCategoria, ativo: e.target.checked } : itemCategoria))} />
+            <span>{grupo.nome}</span>
+          </label>
+        ))}
+      </div>
+      <div className="specialty-add-category">
+        <input value={novaCategoria} onChange={(e) => setNovaCategoria(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); adicionar() } }} placeholder="Adicionar outra categoria geral" />
+        <button type="button" className="btn sm" disabled={!novaCategoria.trim()} onClick={adicionar}>Adicionar</button>
+      </div>
+    </section>
+  )
+}
+
+function PreviewEspecialidades({ especialidades }) {
+  return (
+    <div className="card mt-2">
+      <div className="table-wrap">
+        <table className="tbl">
+          <thead><tr><th>Especialidade</th><th>Categorias gerais</th><th>Preenchimento inicial</th><th>Referência normativa</th></tr></thead>
+          <tbody>
+            {especialidades.map((item) => (
+              <tr key={item.key}>
+                <td><b>{item.nome}</b></td>
+                <td>{item.categoriasGerais.map((grupo) => grupo.nome).join(' · ')}</td>
+                <td>{item.equipeTotal ? <Badge cls="verde">{item.equipeTotal} profissionais sugeridos</Badge> : <Badge cls="cinza">Equipe a preencher</Badge>}</td>
+                <td className="muted">{item.referenciaNormativa || 'Sem regra automática correspondente'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     </div>
   )
@@ -369,7 +448,7 @@ function PreviewCronogramaPronto({ preview }) {
       <div className="card mt-2">
         <div className="table-wrap">
           <table className="tbl">
-            <thead><tr><th>Aba importada</th><th>Setor / serviço</th><th className="num">Linhas</th><th className="num">Equipe</th><th>Revisão</th></tr></thead>
+            <thead><tr><th>Aba importada</th><th>Especialidade / área</th><th className="num">Linhas</th><th className="num">Equipe</th><th>Revisão</th></tr></thead>
             <tbody>
               {preview.setores.map((setor) => (
                 <tr key={setor.id}>

@@ -15,8 +15,9 @@ export default function Construcao() {
   const refresh = () => force((n) => n + 1)
 
   const escopos = plano ? api.listEscopos(planoId) : []
-  const [selId, setSelId] = useState(escopos.find((e) => e.rdcId === 6)?.id || escopos[0]?.id)
-  const [grupoEquipeId, setGrupoEquipeId] = useState(null)
+  const especialidadeInicial = escopos.find((e) => e.rdcId === 6) || escopos[0]
+  const [selId, setSelId] = useState(especialidadeInicial?.id)
+  const [grupoEquipeId, setGrupoEquipeId] = useState(especialidadeInicial?.gruposEquipe?.[0]?.id || null)
   const [tab, setTab] = useState('Equipe / RH')
   const [presetOpen, setPresetOpen] = useState(false)
   const [memo, setMemo] = useState(null)
@@ -24,6 +25,7 @@ export default function Construcao() {
   const [modelo, setModelo] = useState('grupos') // modelo de custo: grupos A–E ou motor SUBHUE
   const [addNodeOpen, setAddNodeOpen] = useState(false)
   const [addProfOpen, setAddProfOpen] = useState(false)
+  const [addGrupoOpen, setAddGrupoOpen] = useState(false)
   const [addCusteioOpen, setAddCusteioOpen] = useState(false)
   const [regraOpen, setRegraOpen] = useState(false)
   const [renameOpen, setRenameOpen] = useState(false)
@@ -58,7 +60,7 @@ export default function Construcao() {
         api.registrarJustificativa(planoId, { tipo: 'setor_template_removido', noId: node.id, setorSlug: node.matrizSetorSlug }, {
           motivo,
           tipo: 'setor_template_removido',
-          observacao: `Setor "${node.nome}" removido da estrutura criada automaticamente.`,
+          observacao: `Especialidade "${node.nome}" removida da estrutura criada automaticamente.`,
         })
       }
       api.removeNo(planoId, node.id)
@@ -69,9 +71,9 @@ export default function Construcao() {
     if (node.origemTemplate) {
       setJustif({
         generico: true,
-        titulo: 'Remover setor criado pelo template',
+        titulo: 'Remover especialidade criada pelo modelo',
         label: node.nome,
-        texto: 'Este setor veio da criação automática do hospital. Para remover, registre a justificativa técnica.',
+        texto: 'Esta especialidade veio da criação automática. Para remover, registre a justificativa técnica.',
         onConfirm: concluir,
         onCancel: () => {},
       })
@@ -85,13 +87,13 @@ export default function Construcao() {
       {/* ---------------------------------------------------- árvore */}
       <aside className="builder-col builder-tree">
         <div className="tree-head">
-          <h4>Estrutura da unidade</h4>
-          <button className="btn sm ghost" title="Adicionar setor" onClick={() => setAddNodeOpen(true)}>＋</button>
+          <h4>Especialidades da unidade</h4>
+          <button className="btn sm ghost" title="Adicionar especialidade" onClick={() => setAddNodeOpen(true)}>＋</button>
         </div>
         {escopos.length === 0 && api.getEstrutura(planoId).length === 0 ? (
           <div className="empty" style={{ padding: '24px 8px' }}>
             <div className="e-ico" style={{ fontSize: 30 }}>🏗️</div>
-            <p style={{ fontSize: 12.5 }}>Estrutura vazia. Comece adicionando o primeiro setor ou serviço.</p>
+            <p style={{ fontSize: 12.5 }}>Nenhuma especialidade cadastrada nesta unidade.</p>
           </div>
         ) : (
           <Tree
@@ -108,7 +110,7 @@ export default function Construcao() {
           />
         )}
         <div className="divider" />
-        <button className="btn sm" style={{ width: '100%' }} onClick={() => setAddNodeOpen(true)}>＋ Adicionar setor / serviço</button>
+        <button className="btn sm" style={{ width: '100%' }} onClick={() => setAddNodeOpen(true)}>＋ Adicionar especialidade</button>
       </aside>
 
       {/* ---------------------------------------------------- centro */}
@@ -116,7 +118,7 @@ export default function Construcao() {
         <div className="spread mb-2">
           <div>
             <div className="muted" style={{ fontSize: 12 }}>{plano.nome} · {plano.objeto?.nome}</div>
-            <h1 style={{ fontSize: 20, marginTop: 2 }}>{no?.nome || 'Selecione um setor'}</h1>
+            <h1 style={{ fontSize: 20, marginTop: 2 }}>{no?.nome || 'Selecione uma especialidade'}</h1>
             <div className="flex" style={{ gap: 8, marginTop: 4 }}>
               {no?.especialidade && <Badge cls="roxo">{no.especialidade}</Badge>}
               {no && (
@@ -150,19 +152,19 @@ export default function Construcao() {
         </div>
 
         <div className="plan-flow mb-2">
-          <span className="active"><b>1</b> Estrutura e equipes</span>
+          <span className="active"><b>1</b> Especialidades e equipes</span>
           <Link to={`/plano/${planoId}/cronograma`}><b>2</b> Cronograma calculado</Link>
         </div>
 
         {!no && (
           <Empty icon="🏗️">
-            <p>Nenhum setor selecionado.</p>
-            <button className="btn primary mt-2" onClick={() => setAddNodeOpen(true)}>＋ Adicionar setor / serviço</button>
+            <p>Nenhuma especialidade selecionada.</p>
+            <button className="btn primary mt-2" onClick={() => setAddNodeOpen(true)}>＋ Adicionar especialidade</button>
           </Empty>
         )}
 
         {no && !no.escopo && (
-          <Note>Este nó é estrutural (agrupador). Selecione um setor/serviço calculável na árvore, ou <a onClick={() => setAddNodeOpen(true)} style={{ cursor: 'pointer' }}>adicione um serviço dentro dele</a>.</Note>
+          <Note>Selecione uma especialidade na árvore, ou <a onClick={() => setAddNodeOpen(true)} style={{ cursor: 'pointer' }}>adicione uma especialidade à unidade</a>.</Note>
         )}
 
         {no?.escopo && (
@@ -173,7 +175,7 @@ export default function Construcao() {
 
             {tab === 'Resumo' && <TabResumo no={no} calc={calc} completude={completude} />}
             {tab === 'Parâmetros' && <TabParametros no={no} planoId={planoId} refresh={refresh} />}
-            {tab === 'Equipe / RH' && <TabEquipe no={no} planoId={planoId} calc={calc} cebas={cebas} modelo={modelo} grupoEquipe={grupoEquipe} onClearGrupo={() => setGrupoEquipeId(null)} refresh={refresh} onMemo={setMemo} onAdd={() => setAddProfOpen(true)} onRegra={() => setRegraOpen(true)} onJustif={setJustif} />}
+            {tab === 'Equipe / RH' && <TabEquipe no={no} planoId={planoId} calc={calc} cebas={cebas} modelo={modelo} grupoEquipe={grupoEquipe} onClearGrupo={() => setGrupoEquipeId(null)} refresh={refresh} onMemo={setMemo} onAdd={() => setAddProfOpen(true)} onAddGrupo={() => setAddGrupoOpen(true)} onRemoveGrupo={(grupo) => { api.removeGrupoEquipe(planoId, no.id, grupo.id); setGrupoEquipeId(no.gruposEquipe?.[0]?.id || null); refresh() }} onRegra={() => setRegraOpen(true)} onJustif={setJustif} />}
             {tab === 'Custeio' && <TabCusteio no={no} planoId={planoId} calc={calc} refresh={refresh} onAdd={() => setAddCusteioOpen(true)} />}
             {tab === 'Produção' && <TabProducao no={no} planoId={planoId} refresh={refresh} />}
             {tab === 'Regras' && <TabRegras plano={plano} no={no} />}
@@ -202,7 +204,7 @@ export default function Construcao() {
           <Progress value={completude.resumo.percentual} warn={completude.resumo.percentual < 100} />
           <div className="flex" style={{ justifyContent: 'space-between', marginTop: 6, fontSize: 12 }}>
             <span className="muted">{completude.resumo.percentual}% preenchido</span>
-            <span className="muted">{completude.resumo.escopos_completos}/{completude.resumo.escopos_total} setores ok</span>
+            <span className="muted">{completude.resumo.escopos_completos}/{completude.resumo.escopos_total} especialidades ok</span>
           </div>
         </div>
 
@@ -230,7 +232,8 @@ export default function Construcao() {
 
       {presetOpen && <RDCModal no={no} planoId={planoId} onClose={() => setPresetOpen(false)} onApply={() => { setPresetOpen(false); setGrupoEquipeId(null); refresh() }} />}
       {memo && <MemoModal data={memo} onClose={() => setMemo(null)} />}
-      {addNodeOpen && <AddNodeModal planoId={planoId} selId={selId} onClose={() => setAddNodeOpen(false)} onCreate={(novo) => { setAddNodeOpen(false); setSelId(novo.id); setGrupoEquipeId(null); setTab(novo.escopo ? 'Parâmetros' : 'Resumo'); refresh() }} />}
+      {addNodeOpen && <AddNodeModal planoId={planoId} onClose={() => setAddNodeOpen(false)} onCreate={(novo) => { setAddNodeOpen(false); setSelId(novo.id); setGrupoEquipeId(novo.gruposEquipe?.[0]?.id || null); setTab('Equipe / RH'); refresh() }} />}
+      {addGrupoOpen && no && <AddGrupoModal onClose={() => setAddGrupoOpen(false)} onAdd={(nome) => { const grupo = api.addGrupoEquipe(planoId, no.id, nome); setAddGrupoOpen(false); setGrupoEquipeId(grupo?.id || null); setTab('Equipe / RH'); refresh() }} />}
       {addProfOpen && no && <AddProfModal onClose={() => setAddProfOpen(false)} onAdd={(dados) => {
         const { perfilId, qtd, chs, quantidadeTurno } = dados
         const item = api.addProfissional(planoId, no.id, perfilId, qtd, grupoEquipe, { chs, quantidadeTurno })
@@ -240,7 +243,7 @@ export default function Construcao() {
         if (no.rdcId != null && !previsto) {
           const perfil = api.getPerfil(perfilId)
           setJustif({
-            perfil, previsto: 0, novo: Math.round(qtd), texto: 'Profissional não previsto pela RDC deste setor.',
+            perfil, previsto: 0, novo: Math.round(qtd), texto: 'Profissional não previsto pela referência normativa desta especialidade.',
             onConfirm: (motivo) => { api.registrarDesvio(planoId, no.id, Number(perfilId), { de: 0, para: Math.round(qtd), motivo, tipo: 'adicionado' }); refresh() },
             onCancel: () => { if (item) api.removeProfissional(planoId, no.id, item.id); refresh() },
           })
@@ -326,8 +329,8 @@ function TabResumo({ no, calc, completude }) {
   const linha = completude.linhas.find((l) => l.no.id === no.id)
   return (
     <>
-      {no.origemTemplate && <Note icon="🏥">Setor criado automaticamente pelo template hospitalar. Remoção exige justificativa técnica.</Note>}
-      {no.foraMatriz && <Note icon="⚠️">Setor manual sem regra estruturada na matriz validada. Cadastre ou aplique uma normativa antes do uso oficial.</Note>}
+      {no.origemTemplate && <Note icon="🏥">Especialidade criada automaticamente pelo modelo hospitalar. Remoção exige justificativa técnica.</Note>}
+      {no.foraMatriz && <Note icon="⚠️">Especialidade sem regra estruturada correspondente na matriz. A equipe pode ser preenchida manualmente e revisada antes do uso oficial.</Note>}
       <div className="grid cols-3 mb-2">
         <Mini t="Equipe total" v={`${num(calc.equipe_total)} prof.`} />
         <Mini t="Custo mensal" v={brl(calc.total_mensal)} dest />
@@ -339,9 +342,9 @@ function TabResumo({ no, calc, completude }) {
         <BarLine label="Custeio operacional" valor={calc.custeio_total} total={calc.total_mensal} cor="var(--roxo)" />
       </div>
       <div className="card card-pad">
-        <div className="section-title">Situação deste setor</div>
+        <div className="section-title">Situação desta especialidade</div>
         {linha && linha.faltantes === 0 && !linha.semEquipe
-          ? <Note icon="✅">Setor completo: parâmetros obrigatórios preenchidos e equipe definida.</Note>
+          ? <Note icon="✅">Especialidade completa: parâmetros obrigatórios preenchidos e equipe definida.</Note>
           : <Note icon="⚠️">{linha?.faltantes || 0} parâmetro(s) pendente(s){linha?.semEquipe ? ' · sem equipe' : ''}. Veja as abas Parâmetros e Equipe / RH.</Note>}
       </div>
     </>
@@ -364,11 +367,11 @@ function BarLine({ label, valor, total, cor }) {
 
 /* ----------------------------------------------------------- aba Parâmetros */
 function TabParametros({ no, planoId, refresh }) {
-  if (!no.parametros?.length) return <Note>Este tipo de setor não exige parâmetros específicos.</Note>
+  if (!no.parametros?.length) return <Note>Esta especialidade não possui parâmetros dimensionadores vinculados.</Note>
   return (
     <div className="card">
-      <div className="card-pad"><div className="section-title">Parâmetros do setor</div>
-        <p className="muted" style={{ fontSize: 12.5, marginTop: -6 }}>Apenas os campos exigidos por este tipo de setor são exibidos. Alterar leitos/salas recalcula o RH pela matriz e registra histórico, sem virar desvio normativo.</p>
+      <div className="card-pad"><div className="section-title">Parâmetros da especialidade</div>
+        <p className="muted" style={{ fontSize: 12.5, marginTop: -6 }}>Quando houver regra vinculada, alterar capacidade, leitos ou salas recalcula a equipe pela matriz e registra o histórico.</p>
       </div>
       <div className="table-wrap">
         <table className="tbl">
@@ -393,7 +396,7 @@ function TabParametros({ no, planoId, refresh }) {
 }
 
 /* ----------------------------------------------------------- aba Equipe / RH */
-function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo, refresh, onMemo, onAdd, onRegra, onJustif }) {
+function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo, refresh, onMemo, onAdd, onAddGrupo, onRemoveGrupo, onRegra, onJustif }) {
   const [nonce, setNonce] = useState(0)
   const rdc = no.rdcId != null ? api.getRDC(no.rdcId) : null
   const conf = api.conformidadeRDC(planoId, no)
@@ -442,14 +445,23 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo
             <span className="muted">Categoria geral</span>
             <b>{grupoEquipe.nome}</b>
           </div>
-          <button className="btn sm ghost" title="Mostrar equipe completa" aria-label="Mostrar equipe completa" onClick={onClearGrupo}>✕</button>
+          <div className="flex" style={{ gap: 4 }}>
+            <button className="btn sm ghost danger" title="Excluir categoria geral" onClick={() => { if (confirm(`Excluir a categoria geral "${grupoEquipe.nome}"? Os profissionais serão movidos para outra categoria.`)) onRemoveGrupo(grupoEquipe) }}>🗑</button>
+            <button className="btn sm ghost" title="Mostrar equipe completa" aria-label="Mostrar equipe completa" onClick={onClearGrupo}>✕</button>
+          </div>
+        </div>
+      )}
+      {!grupoEquipe && (
+        <div className="team-category-guide mb-2">
+          <div><b>Categorias gerais da especialidade</b><span>Selecione uma categoria na árvore para preencher seus profissionais.</span></div>
+          <button className="btn sm primary" onClick={onAddGrupo}>＋ Nova categoria geral</button>
         </div>
       )}
       {rdc && (
         <div className="card card-pad mb-2" style={{ borderLeft: `3px solid ${conf.desvios.length ? 'var(--ambar-600, #b8860b)' : 'var(--verde-600, #2e7d32)'}` }}>
           <div className="spread">
             <div style={{ fontSize: 13 }}>
-              <span className="muted">Setor regido por</span> <Badge cls="azul">{rdc.codigo}</Badge> <b>{rdc.nome}</b>
+              <span className="muted">Referência normativa</span> <Badge cls="azul">{rdc.codigo}</Badge> <b>{rdc.nome}</b>
               {rdc.referencia && <span className="muted"> · {rdc.referencia}</span>}
             </div>
             {conf.desvios.length === 0
@@ -556,7 +568,8 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo
         </div>
       </div>
       <div className="flex" style={{ gap: 10 }}>
-        <button className="btn primary" onClick={onAdd}>＋ Adicionar profissional</button>
+        <button className="btn primary" disabled={!grupoEquipe} title={!grupoEquipe ? 'Selecione uma categoria geral' : ''} onClick={onAdd}>＋ Adicionar profissional</button>
+        <button className="btn" onClick={onAddGrupo}>＋ Categoria geral</button>
         {rdc && <button className="btn" onClick={() => { api.aplicarRDC(planoId, no.id, rdc.id); refresh() }}>↺ Restaurar quadro normativo</button>}
         <button className="btn" onClick={onRegra}>⚙️ Aplicar regra de quadro</button>
         <button className="btn ghost" onClick={() => onMemo({ tipo: 'encargos', cebas, modelo })}>Ver encargos e benefícios</button>
@@ -569,7 +582,7 @@ function TabEquipe({ no, planoId, calc, cebas, modelo, grupoEquipe, onClearGrupo
 /* ----------------------------------------------------------- aba Custeio */
 function TabCusteio({ no, planoId, calc, refresh, onAdd }) {
   if (!no.custeio?.length) return (
-    <Note>Nenhum componente de custeio cadastrado para este setor. <button className="btn sm primary" style={{ marginLeft: 8 }} onClick={onAdd}>＋ Adicionar custeio</button></Note>
+    <Note>Nenhum componente de custeio cadastrado para esta especialidade. <button className="btn sm primary" style={{ marginLeft: 8 }} onClick={onAdd}>＋ Adicionar custeio</button></Note>
   )
   return (
     <>
@@ -680,8 +693,8 @@ function TabRegras({ plano, no }) {
       </div>
       <div className="card mb-2">
         <div className="card-pad">
-          <div className="section-title">Regras aplicaveis a este setor</div>
-          {!regras.length && <Note icon="⚠️">Nenhuma regra encontrada para este setor. Se for um setor manual, cadastre a regra antes de usar oficialmente.</Note>}
+          <div className="section-title">Regras aplicáveis a esta especialidade</div>
+          {!regras.length && <Note icon="⚠️">Nenhuma regra encontrada para esta especialidade. Revise o preenchimento manual antes do uso oficial.</Note>}
         </div>
         {regras.length > 0 && (
           <div className="table-wrap">
@@ -734,7 +747,7 @@ function TabRegras({ plano, no }) {
       )}
       <div className="card card-pad mt-2">
         <div className="section-title">Memoria do motor normativo</div>
-        <Note icon="📜">A RDC/matriz aplicada ao setor{no.rdcId != null ? <> (<b>{api.getRDC(no.rdcId)?.nome}</b>)</> : ''} continua sendo a referencia que recalcula a equipe. Cada numero gerado em Equipe / RH guarda memoria de calculo, fonte e validacao territorial.</Note>
+        <Note icon="📜">A RDC/matriz vinculada à especialidade{no.rdcId != null ? <> (<b>{api.getRDC(no.rdcId)?.nome}</b>)</> : ''} continua sendo a referência que recalcula a equipe. Cada número gerado em Equipe / RH guarda memória de cálculo, fonte e validação territorial.</Note>
       </div>
     </>
   )
@@ -765,7 +778,7 @@ function TabHistorico({ plano, no }) {
     })),
   ].sort((a, b) => String(b.d).localeCompare(String(a.d)))
 
-  if (!eventos.length) return <Note>Nenhum evento registrado para este setor ainda.</Note>
+  if (!eventos.length) return <Note>Nenhum evento registrado para esta especialidade ainda.</Note>
   return (
     <div className="card">
       <div className="table-wrap">
@@ -788,8 +801,8 @@ function RDCModal({ no, planoId, onClose, onApply }) {
         <button className="btn ghost" onClick={onClose}>Cancelar</button>
         <button className="btn primary" disabled={!sel} onClick={() => { api.aplicarRDC(planoId, no.id, sel); onApply() }}>Aplicar RDC</button>
       </>}>
-      <p className="muted" style={{ marginTop: -6, marginBottom: 14 }}>A RDC carrega os parâmetros e o <b>quadro preconizado</b> para este setor. Você pode ajustar depois — qualquer desvio exigirá justificativa.</p>
-      {compativeis.length === 0 && <Note icon="⚠️">Nenhuma RDC cadastrada para este tipo de setor. Cadastre em Cadastros › Normativas / RDCs.</Note>}
+      <p className="muted" style={{ marginTop: -6, marginBottom: 14 }}>A RDC carrega parâmetros e o <b>quadro preconizado</b> para esta especialidade. Você pode ajustar depois; qualquer desvio exigirá justificativa.</p>
+      {compativeis.length === 0 && <Note icon="⚠️">Nenhuma RDC compatível cadastrada. Consulte Cadastros › Normativas / RDCs.</Note>}
       {compativeis.map((p) => (
         <div key={p.id} className={`preset-opt ${sel === p.id ? 'sel' : ''}`} onClick={() => setSel(p.id)}>
           <div className="p-ico">{p.icone}</div>
@@ -899,15 +912,96 @@ custo_total  = custo_unit. × ${num(it.quantidade)}  = ${fmt(it.custo_total)}`}<
           ? <Note icon="📜">Correspondência salarial aproximada: a função normativa não encontrou categoria exata na base e usou a referência mais próxima para não travar o cronograma.</Note>
           : it.origemFinanceira === 'planilha'
             ? <Note icon="📜">Fonte salarial: planilha de origem. Encargos e benefícios são calculados pelo aplicativo.</Note>
-            : <Note icon="📜">Fonte salarial: Base Salarial RH.xlsx. A categoria profissional é única para todos os setores; o setor aparece apenas na memória normativa.</Note>}
+            : <Note icon="📜">Fonte salarial: Base Salarial RH.xlsx. A categoria profissional é única para todas as especialidades; a referência assistencial aparece apenas na memória normativa.</Note>}
     </Modal>
   )
 }
 
 const fmt = (v) => v.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
-/* ----------------------------------------------------------- modal: adicionar setor/serviço */
-function AddNodeModal({ planoId, selId, onClose, onCreate }) {
+/* ----------------------------------------------------------- modal: adicionar especialidade */
+function AddNodeModal({ planoId, onClose, onCreate }) {
+  const catalogo = api.listEspecialidadesCronograma()
+  const [catalogoKey, setCatalogoKey] = useState(catalogo[0]?.key || 'personalizada')
+  const inicial = catalogo[0]
+  const [nome, setNome] = useState(inicial?.nome || '')
+  const [categorias, setCategorias] = useState(() => inicial?.categoriasSugeridas?.length
+    ? inicial.categoriasSugeridas.map((grupo, index) => ({ ...grupo, ativo: index === 0 }))
+    : [{ id: 'categoria-equipe-geral', nome: inicial ? `Equipe de ${inicial.nome}` : 'Equipe geral', ativo: true }])
+  const [novaCategoria, setNovaCategoria] = useState('')
+  const selecionada = catalogo.find((item) => item.key === catalogoKey)
+  const preview = api.previewEspecialidadeCronograma({
+    key: catalogoKey,
+    nome,
+    especialidadeId: selecionada?.id,
+    matrizSetorSlug: selecionada?.matrizSetorSlug,
+    categoriasGerais: categorias,
+  })
+  const trocar = (key) => {
+    setCatalogoKey(key)
+    const item = catalogo.find((registro) => registro.key === key)
+    if (!item) { setNome(''); setCategorias([]); return }
+    setNome(item.nome)
+    setCategorias(item.categoriasSugeridas?.length
+      ? item.categoriasSugeridas.map((grupo, index) => ({ ...grupo, ativo: index === 0 }))
+      : [{ id: `categoria-${item.key.replace(/[^a-z0-9]+/gi, '-')}`, nome: `Equipe de ${item.nome}`, ativo: true }])
+  }
+  const adicionarCategoria = () => {
+    const valor = novaCategoria.trim()
+    if (!valor) return
+    setCategorias((atuais) => [...atuais, { id: `categoria-manual-${atuais.length + 1}-${Date.now()}`, nome: valor, ativo: true }])
+    setNovaCategoria('')
+  }
+  const criar = () => onCreate(api.addEspecialidadePlano(planoId, {
+    key: catalogoKey,
+    nome: nome.trim(),
+    especialidadeId: selecionada?.id,
+    matrizSetorSlug: selecionada?.matrizSetorSlug,
+    categoriasGerais: categorias.filter((grupo) => grupo.ativo !== false),
+  }))
+
+  return (
+    <Modal title="Adicionar especialidade" icon="🏥" onClose={onClose} lg
+      footer={<>
+        <button className="btn ghost" onClick={onClose}>Cancelar</button>
+        <button className="btn primary" disabled={!nome.trim() || !categorias.some((grupo) => grupo.ativo !== false)} onClick={criar}>Criar especialidade</button>
+      </>}>
+      <div className="field">
+        <label>Especialidade ou área da unidade</label>
+        <select value={catalogoKey} onChange={(e) => trocar(e.target.value)}>
+          {catalogo.map((item) => <option key={item.key} value={item.key}>{item.nome} · {item.tipo}</option>)}
+          <option value="personalizada">Outra especialidade</option>
+        </select>
+      </div>
+      <div className="field">
+        <label>Nome exibido no cronograma</label>
+        <input value={nome} onChange={(e) => setNome(e.target.value)} placeholder="Ex.: Anestesiologia, Clínica Médica, Gestão Macro" />
+      </div>
+      <div className="field">
+        <label>Categorias gerais</label>
+        <div className="general-category-options bordered">
+          {categorias.map((grupo) => (
+            <label key={grupo.id} className="general-category-option">
+              <input type="checkbox" checked={grupo.ativo !== false} onChange={(e) => setCategorias((atuais) => atuais.map((item) => item.id === grupo.id ? { ...item, ativo: e.target.checked } : item))} />
+              <span>{grupo.nome}</span>
+            </label>
+          ))}
+        </div>
+        <div className="specialty-add-category">
+          <input value={novaCategoria} onChange={(e) => setNovaCategoria(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter') { e.preventDefault(); adicionarCategoria() } }} placeholder="Adicionar outra categoria geral" />
+          <button className="btn sm" disabled={!novaCategoria.trim()} onClick={adicionarCategoria}>Adicionar</button>
+        </div>
+      </div>
+      <Note icon={preview.matrizSetorSlug ? '📜' : '✍️'}>
+        {preview.matrizSetorSlug
+          ? <>Referência encontrada: <b>{preview.referenciaNormativa}</b>. Parâmetros e equipe normativa serão carregados automaticamente.</>
+          : 'Sem correspondência automática na matriz. A especialidade será criada para preenchimento manual das categorias e profissionais.'}
+      </Note>
+    </Modal>
+  )
+}
+
+function LegacyAddNodeModal({ planoId, selId, onClose, onCreate }) {
   const nos = api.listNos(planoId)
   const selNode = nos.find((n) => n.id === selId)
   // pai padrão: o nó estrutural selecionado, ou o pai do escopo selecionado, ou raiz
@@ -1063,6 +1157,23 @@ function AddNodeModal({ planoId, selId, onClose, onCreate }) {
           ? 'Ao criar, o setor carrega a RDC selecionada quando houver uma normativa compatível. Qualquer alteração que fuja da norma pedirá justificativa.'
           : 'Tipos sem motor direto entram como estrutura operacional: você pode organizar o cronograma e adicionar equipe manualmente com justificativa quando necessário.'}
       </Note>
+    </Modal>
+  )
+}
+
+function AddGrupoModal({ onClose, onAdd }) {
+  const [nome, setNome] = useState('')
+  return (
+    <Modal title="Adicionar categoria geral" icon="📂" onClose={onClose}
+      footer={<>
+        <button className="btn ghost" onClick={onClose}>Cancelar</button>
+        <button className="btn primary" disabled={!nome.trim()} onClick={() => onAdd(nome.trim())}>Adicionar categoria</button>
+      </>}>
+      <div className="field">
+        <label>Nome da categoria geral</label>
+        <input autoFocus value={nome} onChange={(e) => setNome(e.target.value)} onKeyDown={(e) => { if (e.key === 'Enter' && nome.trim()) onAdd(nome.trim()) }} placeholder="Ex.: Equipe multidisciplinar, Apoio à gestão hospitalar" />
+        <div className="hint">Os profissionais adicionados nesta categoria ficarão agrupados como nas abas da planilha.</div>
+      </div>
     </Modal>
   )
 }

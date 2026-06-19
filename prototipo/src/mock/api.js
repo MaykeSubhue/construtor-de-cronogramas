@@ -442,11 +442,129 @@ export function previewSetorPorTexto(texto) {
   }
 }
 
+const PALAVRAS_ESTRUTURA = new Set(['serv', 'servico', 'servicos', 'equipe', 'setor', 'area', 'areas', 'hospitalar', 'hospitalares'])
+
+function tokensEspecialidade(value) {
+  return slug(value).split('-').filter((token) => token && !PALAVRAS_ESTRUTURA.has(token))
+}
+
+function afinidadeEspecialidade(a, b) {
+  const ta = tokensEspecialidade(a)
+  const tb = tokensEspecialidade(b)
+  if (!ta.length || !tb.length) return 0
+  const iguais = ta.filter((token) => tb.includes(token)).length
+  return iguais / Math.min(ta.length, tb.length)
+}
+
+function servicoDaEspecialidade(nome) {
+  const candidatos = (db.servicos || []).map((servico) => ({
+    servico,
+    score: slug(servico.nome) === slug(nome) ? 2 : afinidadeEspecialidade(nome, servico.nome),
+  })).sort((a, b) => b.score - a.score)
+  return candidatos[0]?.score >= 0.75 ? candidatos[0].servico : null
+}
+
+export function categoriasGeraisSugeridas(nome) {
+  const mapa = new Map()
+  cronogramasProntosNormalizados.forEach((modelo) => {
+    ;(modelo.setores || []).forEach((especialidade) => {
+      if (afinidadeEspecialidade(nome, especialidade.nome) < 0.75) return
+      ;(especialidade.agrupadores || []).forEach((grupo) => {
+        const key = slug(grupo.nome)
+        if (!mapa.has(key)) mapa.set(key, { id: `categoria-${key}`, nome: grupo.nome, origem: modelo.nome })
+      })
+    })
+  })
+  return [...mapa.values()].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
+}
+
+export function listEspecialidadesCronograma() {
+  const mapa = new Map()
+  ;(db.especialidades || []).filter((item) => item.ativo !== false).forEach((item) => {
+    const key = slug(item.nome)
+    mapa.set(key, {
+      key: `cadastro:${item.id}`,
+      id: item.id,
+      nome: item.nome,
+      tipo: item.tipo || 'Assistencial',
+      origem: 'Cadastro de especialidades',
+    })
+  })
+  ;(db.servicos || []).filter((item) => item.ativo !== false).forEach((item) => {
+    const key = slug(item.nome)
+    if (!key) return
+    const atual = mapa.get(key)
+    if (atual) {
+      mapa.set(key, { ...atual, matrizSetorSlug: item.matrizSetorSlug || item.slug })
+      return
+    }
+    mapa.set(key, {
+      key: `matriz:${item.matrizSetorSlug || item.slug}`,
+      id: null,
+      nome: item.nome,
+      tipo: item.macroarea || 'Área da unidade',
+      origem: 'Matriz técnica v4',
+      matrizSetorSlug: item.matrizSetorSlug || item.slug,
+    })
+  })
+  return [...mapa.values()].map((item) => ({
+    ...item,
+    categoriasSugeridas: categoriasGeraisSugeridas(item.nome),
+  })).sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
+}
+
+export function previewEspecialidadeCronograma(item = {}) {
+  const cadastrada = item.especialidadeId != null ? getEspecialidade(Number(item.especialidadeId)) : null
+  const nome = item.nome || cadastrada?.nome || 'Especialidade'
+  const servico = item.matrizSetorSlug
+    ? (db.servicos || []).find((registro) => registro.matrizSetorSlug === item.matrizSetorSlug)
+    : servicoDaEspecialidade(nome)
+  const quantidade = Number(item.quantidade) || 1
+  const unidade = item.unidade || 'unidade'
+  const base = servico?.matrizSetorSlug ? previewSetorMatriz(servico.matrizSetorSlug, quantidade, unidade) : null
+  const categorias = (item.categoriasGerais || []).filter((grupo) => grupo.ativo !== false && grupo.nome?.trim())
+  return {
+    ...item,
+    key: item.key || `especialidade-${slug(nome)}`,
+    nome,
+    especialidadeId: cadastrada?.id ?? item.especialidadeId ?? null,
+    matrizSetorSlug: base?.setorSlug || null,
+    parametros: base?.parametros || [],
+    regras: base?.regras || [],
+    fontes: base?.fontes || [],
+    equipeTotal: base?.equipeTotal || 0,
+    qp30Total: base?.qp30Total || 0,
+    qp40Total: base?.qp40Total || 0,
+    categoriasGerais: categorias.length ? categorias : [{ id: `categoria-${slug(nome)}-equipe`, nome: `Equipe de ${nome}`, ativo: true }],
+    referenciaNormativa: servico?.nome || null,
+    aviso: base?.aviso || (!servico ? 'Especialidade sem regra automática correspondente; a equipe será preenchida manualmente.' : ''),
+  }
+}
+
 export function previewPlanoNormativo(payload = {}) {
   const modo = payload.modo || 'setor'
   const unidade = payload.unidade?.tipo === 'nova'
     ? { nome: payload.unidade.nome || 'Nova unidade', tipo: payload.unidade.tipoUnidade || 'Hospital geral', cnes: payload.unidade.cnes || '', nova: true }
     : getObjeto(payload.unidade?.id || payload.objeto_planejamento_id)
+
+  if (modo === 'especialidades') {
+    const especialidades = (payload.especialidades || []).map(previewEspecialidadeCronograma)
+    return {
+      modo,
+      unidade,
+      especialidades,
+      setores: especialidades,
+      resumo: {
+        setoresAtivos: especialidades.length,
+        especialidadesAtivas: especialidades.length,
+        categoriasGerais: especialidades.reduce((total, item) => total + item.categoriasGerais.length, 0),
+        equipeTotal: especialidades.reduce((total, item) => total + item.equipeTotal, 0),
+        qp30Total: especialidades.reduce((total, item) => total + item.qp30Total, 0),
+        qp40Total: especialidades.reduce((total, item) => total + item.qp40Total, 0),
+      },
+      avisos: especialidades.filter((item) => item.aviso).map((item) => `${item.nome}: ${item.aviso}`),
+    }
+  }
 
   if (modo === 'setor') {
     const setor = previewSetorPorTexto(payload.setorTexto || '')
@@ -715,9 +833,9 @@ function materializarPlanoDeCronogramaPronto(modelo, payload = {}) {
     const no = {
       id: ++_novoId,
       nome: setor.nome,
-      tipo: 'servico',
+      tipo: 'especialidade',
       tipoSetor: null,
-      especialidade: null,
+      especialidade: setor.nome,
       icone: '📄',
       escopo: true,
       bloco: setor.nome,
@@ -824,6 +942,38 @@ function sincronizarPlanosComAgrupadores() {
   return alterou
 }
 
+function sincronizarHierarquiaDeEspecialidades() {
+  let alterou = false
+  db.planos.forEach((plano) => {
+    listEscopos(plano.id).forEach((no) => {
+      if (no.tipo !== 'especialidade') { no.tipo = 'especialidade'; alterou = true }
+      if (!no.especialidade) { no.especialidade = no.nome; alterou = true }
+      no.gruposEquipe = no.gruposEquipe || []
+      const semGrupo = (no.quadro || []).filter((item) => !item.categoriaGeralId)
+      if (!no.gruposEquipe.length || semGrupo.length) {
+        const grupoId = `especialidade-${no.id}-equipe-geral`
+        let grupo = no.gruposEquipe.find((item) => item.id === grupoId)
+        if (!grupo) {
+          grupo = {
+            id: grupoId,
+            nome: no.gruposEquipe.length ? 'Equipe geral' : `Equipe de ${no.nome}`,
+            ordem: 0,
+            origem: 'organização do aplicativo',
+          }
+          no.gruposEquipe.unshift(grupo)
+          alterou = true
+        }
+        semGrupo.forEach((item) => {
+          item.categoriaGeralId = grupo.id
+          item.categoriaGeralNome = grupo.nome
+          alterou = true
+        })
+      }
+    })
+  })
+  return alterou
+}
+
 function garantirPlanosReferencia() {
   if (planosReferenciaGarantidos) return
   planosReferenciaGarantidos = true
@@ -844,6 +994,7 @@ function garantirPlanosReferencia() {
     alterou = true
   })
   if (sincronizarPlanosComAgrupadores()) alterou = true
+  if (sincronizarHierarquiaDeEspecialidades()) alterou = true
   if (alterou) persist()
 }
 
@@ -1256,7 +1407,9 @@ export function criarPlanoNormativo(payload = {}) {
   const preview = previewPlanoNormativo(payload)
   const unidade = unidadeDoPayload(payload)
   const id = nextId(db.planos)
-  const nomePadrao = payload.modo === 'setor'
+  const nomePadrao = payload.modo === 'especialidades'
+    ? `Cronograma por especialidades - ${unidade.nome}`
+    : payload.modo === 'setor'
     ? `Cronograma ${preview.setores[0]?.setor?.setor || 'Setor'} - ${unidade.nome}`
     : `Cronograma ${preview.template?.nome || 'Hospital'} - ${unidade.nome}`
   const plano = {
@@ -1270,7 +1423,9 @@ export function criarPlanoNormativo(payload = {}) {
     competencia_inicial: payload.competencia_inicial || '2026-01',
     meses_projecao: Number(payload.meses_projecao || 12),
     status: 'rascunho',
-    descricao_recorte: payload.modo === 'setor' ? 'Recorte normativo por setor.' : `Perfil hospitalar: ${preview.template?.nome || 'Hospital/unidade completa'}.`,
+    descricao_recorte: payload.modo === 'especialidades'
+      ? `${preview.especialidades?.length || 0} especialidade(s) selecionada(s) para preenchimento de equipes.`
+      : payload.modo === 'setor' ? 'Recorte normativo por setor.' : `Perfil hospitalar: ${preview.template?.nome || 'Hospital/unidade completa'}.`,
     sei: payload.sei ? { numero: payload.sei, etapa: 'Abertura', responsavel: '', status: 'em_analise', abertura: new Date().toISOString().slice(0, 10), link: '#' } : null,
     responsavel: 'Usuário',
     atualizado_em: new Date().toISOString().slice(0, 10),
@@ -1284,7 +1439,46 @@ export function criarPlanoNormativo(payload = {}) {
   const raiz = criarNoAgrupador(unidade.nome, 'unidade', { objeto_planejamento_id: unidade.id })
   db.estruturas[id] = [raiz]
 
-  if ((payload.modo || 'setor') === 'setor') {
+  if (payload.modo === 'especialidades') {
+    ;(preview.especialidades || []).forEach((especialidade) => {
+      let no
+      if (especialidade.matrizSetorSlug) {
+        no = materializarSetorNormativo(id, raiz.id, {
+          setorSlug: especialidade.matrizSetorSlug,
+          setor: { setor: especialidade.nome },
+          parametros: especialidade.parametros,
+        }, { origemCriacao: 'especialidade_selecionada', obrigatorio: true })
+      } else {
+        no = addNo(id, {
+          nome: especialidade.nome,
+          paiId: raiz.id,
+          calculavel: true,
+          especialidadeId: especialidade.especialidadeId,
+        })
+        no.foraMatriz = true
+        no.origemCriacao = 'especialidade_selecionada'
+      }
+      no.tipo = 'especialidade'
+      no.especialidade = especialidade.nome
+      no.especialidadeId = especialidade.especialidadeId
+      no.gruposEquipe = (especialidade.categoriasGerais || []).map((grupo, index) => ({
+        id: grupo.id || `especialidade-${no.id}-categoria-${index + 1}`,
+        nome: grupo.nome,
+        ordem: index + 1,
+        origem: grupo.origem || 'seleção do usuário',
+      }))
+      if (!no.gruposEquipe.length) {
+        no.gruposEquipe.push({ id: `especialidade-${no.id}-equipe-geral`, nome: `Equipe de ${especialidade.nome}`, ordem: 1, origem: 'organização do aplicativo' })
+      }
+      const grupoInicial = no.gruposEquipe[0]
+      ;(no.quadro || []).forEach((item) => {
+        if (!item.categoriaGeralId) {
+          item.categoriaGeralId = grupoInicial.id
+          item.categoriaGeralNome = grupoInicial.nome
+        }
+      })
+    })
+  } else if ((payload.modo || 'setor') === 'setor') {
     const setor = preview.setores[0]
     if (setor?.setorSlug) {
       materializarSetorNormativo(id, raiz.id, setor, { origemCriacao: 'setor_texto', obrigatorio: true })
@@ -1975,6 +2169,86 @@ export function addNoPorTexto(planoId, texto, extras = {}) {
     parametros: sugestao.parametros,
     rdcId: sugestao.setorSlug ? `matriz:${sugestao.setorSlug}` : null,
   })
+}
+
+export function addEspecialidadePlano(planoId, dados = {}) {
+  const preview = previewEspecialidadeCronograma(dados)
+  const raiz = getEstrutura(planoId)[0]
+  let no
+  if (preview.matrizSetorSlug) {
+    no = addNo(planoId, {
+      nome: preview.nome,
+      paiId: raiz?.id ?? null,
+      calculavel: true,
+      matrizSetorSlug: preview.matrizSetorSlug,
+      parametros: preview.parametros,
+      especialidadeId: preview.especialidadeId,
+    })
+    no.origemCriacao = 'especialidade_adicionada'
+  } else {
+    no = addNo(planoId, {
+      nome: preview.nome,
+      paiId: raiz?.id ?? null,
+      calculavel: true,
+      especialidadeId: preview.especialidadeId,
+    })
+    no.foraMatriz = true
+    no.origemCriacao = 'especialidade_adicionada'
+  }
+  no.tipo = 'especialidade'
+  no.especialidade = preview.nome
+  no.especialidadeId = preview.especialidadeId
+  no.gruposEquipe = preview.categoriasGerais.map((grupo, index) => ({
+    id: grupo.id || `especialidade-${no.id}-categoria-${index + 1}`,
+    nome: grupo.nome,
+    ordem: index + 1,
+    origem: grupo.origem || 'seleção do usuário',
+  }))
+  const grupoInicial = no.gruposEquipe[0]
+  ;(no.quadro || []).forEach((item) => {
+    if (!item.categoriaGeralId) {
+      item.categoriaGeralId = grupoInicial.id
+      item.categoriaGeralNome = grupoInicial.nome
+    }
+  })
+  persist()
+  return no
+}
+
+export function addGrupoEquipe(planoId, noId, nome) {
+  const no = findNo(planoId, noId)
+  if (!no || !nome?.trim()) return null
+  no.gruposEquipe = no.gruposEquipe || []
+  const existente = no.gruposEquipe.find((grupo) => slug(grupo.nome) === slug(nome))
+  if (existente) return existente
+  const grupo = {
+    id: `especialidade-${no.id}-categoria-${++_novoId}`,
+    nome: nome.trim(),
+    ordem: no.gruposEquipe.length + 1,
+    origem: 'Cadastro manual',
+  }
+  no.gruposEquipe.push(grupo)
+  persist()
+  return grupo
+}
+
+export function removeGrupoEquipe(planoId, noId, grupoId) {
+  const no = findNo(planoId, noId)
+  if (!no) return false
+  no.gruposEquipe = no.gruposEquipe || []
+  const outros = no.gruposEquipe.filter((grupo) => grupo.id !== grupoId)
+  let destino = outros[0]
+  if (!destino) {
+    destino = { id: `especialidade-${no.id}-equipe-geral`, nome: `Equipe de ${no.nome}`, ordem: 1, origem: 'organização do aplicativo' }
+    outros.push(destino)
+  }
+  ;(no.quadro || []).filter((item) => item.categoriaGeralId === grupoId).forEach((item) => {
+    item.categoriaGeralId = destino.id
+    item.categoriaGeralNome = destino.nome
+  })
+  no.gruposEquipe = outros.map((grupo, index) => ({ ...grupo, ordem: index + 1 }))
+  persist()
+  return true
 }
 
 export function removeNo(planoId, noId) {
