@@ -893,9 +893,13 @@ custo_total  = custo_unit. × ${num(it.quantidade)}  = ${fmt(it.custo_total)}`}<
         <div className="memo-line"><span className="k">Custo unitário</span><span className="v">{brl(it.custo_unitario)}</span></div>
         <div className="memo-line"><span className="k"><b>Custo total ({num(it.quantidade)} prof.)</b></span><span className="v">{brl(it.custo_total)}</span></div>
       </div>
-      {it.salarioProvisorio
-        ? <Note icon="📜">Correspondência salarial aproximada: a função normativa não encontrou categoria exata na base e usou a referência mais próxima para não travar o cronograma.</Note>
-        : <Note icon="📜">Fonte salarial: Base Salarial RH.xlsx. A categoria profissional é única para todos os setores; o setor aparece apenas na memória normativa.</Note>}
+      {it.origemFinanceira === 'planilha_sem_valor'
+        ? <Note icon="⚠️">A planilha de origem não informa remuneração para esta linha. Revise a categoria salarial antes do uso oficial.</Note>
+        : it.salarioProvisorio
+          ? <Note icon="📜">Correspondência salarial aproximada: a função normativa não encontrou categoria exata na base e usou a referência mais próxima para não travar o cronograma.</Note>
+          : it.origemFinanceira === 'planilha'
+            ? <Note icon="📜">Fonte salarial: planilha de origem. Encargos e benefícios são calculados pelo aplicativo.</Note>
+            : <Note icon="📜">Fonte salarial: Base Salarial RH.xlsx. A categoria profissional é única para todos os setores; o setor aparece apenas na memória normativa.</Note>}
     </Modal>
   )
 }
