@@ -7,6 +7,19 @@ const passos = ['Unidade', 'Serviços', 'Prévia', 'Criar']
 
 const tiposUnidade = ['Hospital geral', 'Hospital especializado', 'Maternidade', 'UPA 24h', 'CER', 'Unidade especializada']
 
+function nomeCategoriaExibida(grupo) {
+  const nome = grupo.nomeBase || grupo.nome
+  const quantidade = Number(grupo.quantidadeDimensionadora) || Number(grupo.dimensionador?.valorReferencia)
+  if (!grupo.dimensionador || !quantidade) return nome
+  const padroes = {
+    salas: /\d+\s*salas?/i,
+    leitos: /\d+\s*leitos?/i,
+    consultorios: /\d+\s*consult[oó]rios?/i,
+  }
+  const padrao = padroes[grupo.dimensionador.tipo]
+  return padrao ? nome.replace(padrao, (trecho) => trecho.replace(/\d+/, String(quantidade))) : nome
+}
+
 export default function NovoPlano() {
   const nav = useNavigate()
   const loc = useLocation()
@@ -19,7 +32,6 @@ export default function NovoPlano() {
   const [step, setStep] = useState(0)
   const [f, setF] = useState(() => ({
     modo: modoInicial,
-    nome: '',
     unidadeModo: 'existente',
     objeto_planejamento_id: boot.objetos_planejamento[0]?.id,
     unidadeNova: { nome: '', sigla: '', cnes: '', tipoUnidade: 'Hospital geral' },
@@ -36,7 +48,12 @@ export default function NovoPlano() {
     const existe = s.servicos.some((servico) => servico.key === item.key)
     if (existe) return { ...s, servicos: s.servicos.filter((servico) => servico.key !== item.key) }
     const categorias = item.categoriasSugeridas?.length
-      ? item.categoriasSugeridas.map((grupo, index) => ({ ...grupo, ativo: index === 0 }))
+      ? item.categoriasSugeridas.map((grupo, index) => ({
+          ...grupo,
+          nomeBase: grupo.nome,
+          ativo: index === 0,
+          quantidadeDimensionadora: grupo.dimensionador?.valorReferencia || null,
+        }))
       : [{ id: `categoria-${item.key.replace(/[^a-z0-9]+/gi, '-')}`, nome: 'Equipe do serviço', ativo: true }]
     return { ...s, servicos: [...s.servicos, { ...item, categoriasGerais: categorias }] }
   })
@@ -47,7 +64,6 @@ export default function NovoPlano() {
 
   const payload = useMemo(() => ({
     modo: f.modo,
-    nome: f.nome,
     unidade: f.unidadeModo === 'nova'
       ? { tipo: 'nova', ...f.unidadeNova }
       : { tipo: 'existente', id: Number(f.objeto_planejamento_id) },
@@ -135,7 +151,7 @@ export default function NovoPlano() {
               <div className="field">
                 <label>Unidade de saúde</label>
                 <select value={f.objeto_planejamento_id} onChange={(e) => set('objeto_planejamento_id', Number(e.target.value))}>
-                  {boot.objetos_planejamento.map((o) => <option key={o.id} value={o.id}>{o.nome} · {o.tipo} · CNES {o.cnes || 'sem CNES'}</option>)}
+                  {boot.objetos_planejamento.map((o) => <option key={o.id} value={o.id}>{o.nome}</option>)}
                 </select>
               </div>
             ) : (
@@ -170,11 +186,6 @@ export default function NovoPlano() {
 
         {step === 1 && (
           <>
-            <div className="section-title">Dados do cronograma</div>
-            <div className="field">
-              <label>Nome do plano <span className="muted">(opcional)</span></label>
-              <input value={f.nome} onChange={(e) => set('nome', e.target.value)} placeholder="Se ficar vazio, o sistema monta um nome automático" />
-            </div>
             {f.modo === 'servicos' ? (
               <SeletorServicos
                 disponiveis={servicosDisponiveis}
@@ -268,7 +279,7 @@ function SeletorServicos({ disponiveis, selecionados, onToggle, onCategorias }) 
   const [aberto, setAberto] = useState(false)
   const [busca, setBusca] = useState('')
   const termo = busca.trim().toLocaleLowerCase('pt-BR')
-  const filtradas = disponiveis.filter((item) => !termo || `${item.nome} ${item.modelos?.map((modelo) => modelo.nome).join(' ')}`.toLocaleLowerCase('pt-BR').includes(termo))
+  const filtradas = disponiveis.filter((item) => !termo || item.nome.toLocaleLowerCase('pt-BR').includes(termo))
   const selecionadosIds = new Set(selecionados.map((item) => item.key))
 
   return (
@@ -282,13 +293,13 @@ function SeletorServicos({ disponiveis, selecionados, onToggle, onCategorias }) 
         <div className="service-picker-panel">
           <div className="field">
             <label>Serviços disponíveis</label>
-            <input autoFocus value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar pelo nome da aba ou hospital de referência" />
+            <input autoFocus value={busca} onChange={(e) => setBusca(e.target.value)} placeholder="Buscar pelo nome do serviço" />
           </div>
           <div className="specialty-options" role="group" aria-label="Serviços disponíveis">
             {filtradas.map((item) => (
               <label key={item.key} className={`specialty-option ${selecionadosIds.has(item.key) ? 'selected' : ''}`}>
                 <input type="checkbox" checked={selecionadosIds.has(item.key)} onChange={() => onToggle(item)} />
-                <span><b>{item.nome}</b><small>{item.modelos?.map((modelo) => modelo.nome).join(' · ') || item.origem}</small></span>
+                <span><b>{item.nome}</b></span>
               </label>
             ))}
             {!filtradas.length && <div className="muted specialty-empty">Nenhum serviço encontrado.</div>}
@@ -333,10 +344,25 @@ function ServicoSelecionado({ item, onRemove, onChange }) {
       </div>
       <div className="general-category-options">
         {categorias.map((grupo) => (
-          <label key={grupo.id} className="general-category-option">
-            <input type="checkbox" checked={grupo.ativo !== false} onChange={(e) => onChange(categorias.map((itemCategoria) => itemCategoria.id === grupo.id ? { ...itemCategoria, ativo: e.target.checked } : itemCategoria))} />
-            <span>{grupo.nome}</span>
-          </label>
+          <div key={grupo.id} className={`general-category-config ${grupo.ativo !== false ? 'active' : ''}`}>
+            <label className="general-category-option">
+              <input type="checkbox" checked={grupo.ativo !== false} onChange={(e) => onChange(categorias.map((itemCategoria) => itemCategoria.id === grupo.id ? { ...itemCategoria, ativo: e.target.checked } : itemCategoria))} />
+              <span>{nomeCategoriaExibida(grupo)}</span>
+            </label>
+            {grupo.ativo !== false && grupo.dimensionador && (
+              <label className="category-dimension-field">
+                <span>{grupo.dimensionador.rotulo}</span>
+                <input
+                  type="number"
+                  min="1"
+                  value={grupo.quantidadeDimensionadora || grupo.dimensionador.valorReferencia || 1}
+                  onChange={(e) => onChange(categorias.map((itemCategoria) => itemCategoria.id === grupo.id
+                    ? { ...itemCategoria, quantidadeDimensionadora: Math.max(1, Number(e.target.value) || 1) }
+                    : itemCategoria))}
+                />
+              </label>
+            )}
+          </div>
         ))}
       </div>
       <div className="specialty-add-category">

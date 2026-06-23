@@ -458,13 +458,24 @@ table.sheet tr.item td.label { padding-left: 26px; font-weight: 400; color: var(
 .specialty-empty { grid-column: 1 / -1; padding: 20px; text-align: center; }
 .specialty-selected-list { display: grid; gap: 10px; margin-top: 10px; }
 .specialty-selected { border: 1px solid var(--cinza-borda); border-left: 3px solid var(--azul-600); padding: 12px 14px; background: #fff; }
-.general-category-options { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.general-category-options { display: grid; gap: 7px; margin-top: 10px; }
 .general-category-options.bordered { padding: 10px; border: 1px solid var(--cinza-borda); background: var(--cinza-bg); }
 .general-category-option { display: inline-flex; align-items: center; gap: 7px; padding: 6px 9px; border: 1px solid var(--cinza-borda); border-radius: 6px; background: #fff; font-size: 12px; }
+.general-category-config { display: grid; grid-template-columns: minmax(0, 1fr) 180px; align-items: center; gap: 10px; padding: 7px; border: 1px solid var(--cinza-borda); background: var(--cinza-bg); }
+.general-category-config.active { border-color: #bfd9f2; background: var(--azul-050); }
+.general-category-config .general-category-option { border: 0; background: transparent; font-weight: 600; }
+.category-dimension-field { display: grid; grid-template-columns: minmax(0, 1fr) 68px; align-items: center; gap: 8px; color: var(--texto-suave); font-size: 11px; }
+.category-dimension-field input { width: 68px; padding: 6px 7px; border: 1px solid var(--cinza-borda-forte); border-radius: 5px; background: #fff; font: inherit; color: var(--texto); }
 .specialty-add-category { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; margin-top: 9px; }
 .specialty-add-category input { min-width: 0; padding: 7px 9px; border: 1px solid var(--cinza-borda-forte); border-radius: 6px; font: inherit; }
 .team-category-guide { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid #cfe2f5; background: var(--azul-050); }
 .team-category-guide span { display: block; margin-top: 2px; color: var(--texto-suave); font-size: 12px; }
+
+@media (max-width: 720px) {
+  .general-category-config { grid-template-columns: 1fr; }
+  .category-dimension-field { grid-template-columns: minmax(0, 1fr) 82px; }
+  .category-dimension-field input { width: 82px; }
+}
 
 /* misc */
 .muted { color: var(--texto-suave); }

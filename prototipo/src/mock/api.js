@@ -37,12 +37,20 @@ import { gerarCompetencias } from '../lib/format.js'
 import { cronogramasProntos, gruposCronogramasProntos, perfisCronogramasProntos } from '../data/cronogramasProntos.js'
 import { agrupadoresCronogramas } from '../data/agrupadoresCronogramas.js'
 import { componentesPlanilhasCronogramas } from '../data/componentesPlanilhasCronogramas.js'
+import {
+  agrupadoresCronogramaHmsa,
+  componentesPlanilhaCronogramaHmsa,
+  cronogramasProntosHmsa,
+  perfisCronogramaHmsa,
+} from '../data/cronogramaHmsa.js'
 
 const db = initStore(seedDb)
 const persist = () => persistStore(db)
 
 // Proxy dinâmico: reflete perfis adicionados em runtime (cadastro de perfis).
-const perfisCronogramasProntosById = new Map(perfisCronogramasProntos.map((perfil) => [String(perfil.id), perfil]))
+const perfisCronogramasProntosCompletos = [...perfisCronogramasProntos, ...perfisCronogramaHmsa]
+const cronogramasProntosCompletos = [...cronogramasProntos, ...cronogramasProntosHmsa]
+const perfisCronogramasProntosById = new Map(perfisCronogramasProntosCompletos.map((perfil) => [String(perfil.id), perfil]))
 
 function perfilCronogramaPronto(perfilId) {
   const id = String(perfilId || '')
@@ -67,8 +75,8 @@ function perfilCronogramaPronto(perfilId) {
 const perfilById = new Proxy({}, { get: (_t, k) => db.perfis.find((p) => String(p.id) === String(k)) || perfilCronogramaPronto(k) || perfilMatriz(k) })
 
 function normalizarModeloComAgrupadores(modelo) {
-  const agrupadoresModelo = agrupadoresCronogramas[modelo.id] || {}
-  const componentesModelo = componentesPlanilhasCronogramas[modelo.id] || {}
+  const agrupadoresModelo = agrupadoresCronogramas[modelo.id] || agrupadoresCronogramaHmsa[modelo.id] || {}
+  const componentesModelo = componentesPlanilhasCronogramas[modelo.id] || componentesPlanilhaCronogramaHmsa[modelo.id] || {}
   return {
     ...modelo,
     setores: (modelo.setores || []).map((setor) => {
@@ -91,7 +99,7 @@ function normalizarModeloComAgrupadores(modelo) {
   }
 }
 
-const cronogramasProntosNormalizados = cronogramasProntos.map(normalizarModeloComAgrupadores)
+const cronogramasProntosNormalizados = cronogramasProntosCompletos.map(normalizarModeloComAgrupadores)
 
 const SETOR_DEFAULTS = {
   'enfermaria-clinica-adulto': { quantidade: 30, unidade: 'leitos' },
@@ -480,35 +488,147 @@ export function categoriasGeraisSugeridas(nome) {
   return [...mapa.values()].sort((a, b) => a.nome.localeCompare(b.nome, 'pt-BR'))
 }
 
+function dimensionadorDaCategoria(nome = '') {
+  const texto = slug(nome)
+  const tipos = [
+    { padrao: /(?:^|-)(\d+)-salas?(?:-|$)/, tipo: 'salas', rotulo: 'Número de salas' },
+    { padrao: /(?:^|-)(\d+)-leitos?(?:-|$)/, tipo: 'leitos', rotulo: 'Número de leitos' },
+    { padrao: /(?:^|-)(\d+)-consultorios?(?:-|$)/, tipo: 'consultorios', rotulo: 'Número de consultórios' },
+  ]
+  const encontrado = tipos.find((item) => item.padrao.test(texto))
+  if (!encontrado) return null
+  const valorReferencia = Number(texto.match(encontrado.padrao)?.[1]) || 1
+  return {
+    tipo: encontrado.tipo,
+    rotulo: encontrado.rotulo,
+    unidade: encontrado.tipo,
+    valorReferencia,
+  }
+}
+
+function nomeCategoriaDimensionada(grupo = {}) {
+  const nome = grupo.nomeBase || grupo.nome || 'Equipe do serviço'
+  const quantidade = Number(grupo.quantidadeDimensionadora) || Number(grupo.dimensionador?.valorReferencia)
+  if (!grupo.dimensionador || !quantidade) return nome
+  const padroes = {
+    salas: /\d+\s*salas?/i,
+    leitos: /\d+\s*leitos?/i,
+    consultorios: /\d+\s*consult[oó]rios?/i,
+  }
+  const padrao = padroes[grupo.dimensionador.tipo]
+  return padrao ? nome.replace(padrao, (trecho) => trecho.replace(/\d+/, String(quantidade))) : nome
+}
+
+function nomeCategoriaGeralPadronizado(nome = '') {
+  const texto = slug(nome)
+  if (/gestao-assistencial/.test(texto)) return 'EQUIPE DE GESTÃO ASSISTENCIAL HOSPITALAR'
+  if (/apoio-(?:a-)?gestao/.test(texto)) return 'APOIO À GESTÃO HOSPITALAR'
+  if (/gestao-macro-hospitalar|equipe-gestao-hospitalar/.test(texto)) return 'EQUIPE DE GESTÃO MACRO HOSPITALAR'
+  return nome
+}
+
+function grupoComLinhasModelo(modelo, servico, grupo) {
+  return {
+    ...grupo,
+    nome: nomeCategoriaGeralPadronizado(grupo.nome),
+    origem: modelo.nome,
+    modeloId: modelo.id,
+    modeloFonte: modelo.fonte,
+    abaOrigem: servico.abaOrigem || servico.nome,
+    dimensionador: dimensionadorDaCategoria(grupo.nome),
+    linhasModelo: (servico.linhas || []).filter((linha) => linha.categoriaGeralId === grupo.id),
+  }
+}
+
+const SERVICOS_CRONOGRAMA_PADRAO = [
+  { key: 'gestao-macro', nome: 'B1 - EQUIPE DE GESTÃO MACRO', padrao: /(?:^|-)gestao(?:-macro)?(?:-|$)|equipe-(?:de-)?gestao-macro/ },
+  { key: 'anestesiologia', nome: 'B2 - SERVIÇO DE ANESTESIOLOGIA', padrao: /anestesiologia/ },
+  { key: 'multidisciplinar', nome: 'B4 - SERVIÇO MULTIDISCIPLINAR', padrao: /multidisciplinar|equipe-multi/ },
+  { key: 'emergencia', nome: 'B5 - SERVIÇO DE EMERGÊNCIA', padrao: /emergencia/ },
+  { key: 'ortopedia', nome: 'B6 - SERVIÇO DE ORTOPEDIA', padrao: /ortopedia/ },
+  { key: 'cirurgia-vascular', nome: 'B7 - SERVIÇO DE CIRURGIA VASCULAR', padrao: /vascular/ },
+  { key: 'cirurgia-geral', nome: 'B8 - SERVIÇO DE CIRURGIA GERAL', padrao: /cirurgia-geral/ },
+  { key: 'terapia-intensiva', nome: 'B10 - SERVIÇO DE TERAPIA INTENSIVA', padrao: /terapia-intensiva|cti-adulto|cti-ped/ },
+  { key: 'clinica-medica', nome: 'B12 - SERVIÇO DE CLÍNICA MÉDICA', padrao: /clinica-medica/ },
+  { key: 'pediatria', nome: 'B13 - SERVIÇO DE PEDIATRIA', padrao: /pediatria|internacao-pediatr/ },
+  { key: 'imagem', nome: 'B14 - SERVIÇO DE IMAGEM', padrao: /(?:^|-)imagem(?:-|$)/ },
+  { key: 'nefrologia', nome: 'B21 - SERVIÇO DE NEFROLOGIA', padrao: /nefrologia/ },
+  { key: 'bucomaxilofacial', nome: 'B22 - SERVIÇO DE BUCOMAXILOFACIAL', padrao: /bucomax/ },
+  { key: 'clinica-cirurgica', nome: 'SERVIÇO DE CLÍNICA CIRÚRGICA', padrao: /clinica-cirurgica/ },
+  { key: 'internacao-cirurgica', nome: 'SERVIÇO DE INTERNAÇÃO CIRÚRGICA', padrao: /internacao-cirur/ },
+  { key: 'internacao-bronquiolite', nome: 'SERVIÇO DE INTERNAÇÃO EM BRONQUIOLITE', padrao: /internacao-bronquio/ },
+  { key: 'hospital-dia-odontologia', nome: 'SERVIÇO DE HOSPITAL-DIA ODONTOLÓGICO', padrao: /hosp(?:ital)?-dia-odonto/ },
+  { key: 'hospital-dia', nome: 'SERVIÇO DE HOSPITAL-DIA', padrao: /hosp(?:ital)?-dia/ },
+  { key: 'ambulatorio', nome: 'SERVIÇO DE AMBULATÓRIO', padrao: /ambulatorio/ },
+  { key: 'hemoterapia', nome: 'SERVIÇO DE HEMOTERAPIA', padrao: /hemoterapia|hemonucleo/ },
+  { key: 'saude-mental', nome: 'SERVIÇO DE SAÚDE MENTAL', padrao: /saude-mental/ },
+  { key: 'centro-cirurgico', nome: 'SERVIÇO DE CENTRO CIRÚRGICO', padrao: /centro-cirurgico|centro-cir(?:-|$)/ },
+  { key: 'neurocirurgia', nome: 'SERVIÇO DE NEUROCIRURGIA', padrao: /neurocirurgia/ },
+  { key: 'proctologia', nome: 'SERVIÇO DE PROCTOLOGIA', padrao: /proctologia/ },
+  { key: 'urologia', nome: 'SERVIÇO DE UROLOGIA', padrao: /urologia/ },
+  { key: 'mastologia', nome: 'SERVIÇO DE MASTOLOGIA', padrao: /mastologia/ },
+  { key: 'ginecologia-mastologia', nome: 'SERVIÇO DE GINECOLOGIA E MASTOLOGIA', padrao: /ginecomasto/ },
+  { key: 'ginecologia', nome: 'SERVIÇO DE GINECOLOGIA', padrao: /ginecologia/ },
+  { key: 'cirurgia-bariatrica', nome: 'SERVIÇO DE CIRURGIA BARIÁTRICA', padrao: /cirurgia-bariatrica/ },
+  { key: 'cirurgia-plastica', nome: 'SERVIÇO DE CIRURGIA PLÁSTICA', padrao: /plastica/ },
+  { key: 'otorrinolaringologia', nome: 'SERVIÇO DE OTORRINOLARINGOLOGIA', padrao: /otorrino/ },
+  { key: 'trauma', nome: 'SERVIÇO DE TRAUMA', padrao: /trauma/ },
+  { key: 'ctq', nome: 'SERVIÇO DE CENTRO DE TRATAMENTO DE QUEIMADOS', padrao: /(?:^|-)ctq(?:-|$)/ },
+  { key: 'padi', nome: 'SERVIÇO DE PADI', padrao: /(?:^|-)padi(?:-|$)/ },
+  { key: 'ceo', nome: 'SERVIÇO DE CEO', padrao: /(?:^|-)ceo(?:-|$)/ },
+  { key: 'infectologia', nome: 'SERVIÇO DE INFECTOLOGIA', padrao: /infectologia|inectologia/ },
+  { key: 'pneumologia', nome: 'SERVIÇO DE PNEUMOLOGIA', padrao: /pneumologia|pnelmologia/ },
+]
+
+function servicoCronogramaPadronizado(nomeAba, nomeServico) {
+  const texto = slug(`${nomeServico || ''} ${nomeAba || ''}`)
+  const padrao = SERVICOS_CRONOGRAMA_PADRAO.find((item) => item.padrao.test(texto))
+  if (padrao) return padrao
+
+  let nome = String(nomeServico || nomeAba || 'Serviço').trim()
+    .replace(/^b\d+\s*[-)]\s*/i, '')
+    .replace(/\s+\d+\s*(?:leitos?|l|lei|cuid|salas?)\b.*$/i, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+  if (!/^equipe\b/i.test(nome) && !/^servi[cç]o\b/i.test(nome)) nome = `Serviço de ${nome}`
+  nome = nome.replace(/^serv\b/i, 'Serviço').toLocaleUpperCase('pt-BR')
+  return { key: slug(nome), nome }
+}
+
 export function listServicosCronograma() {
   const mapa = new Map()
   cronogramasProntosNormalizados.forEach((modelo) => {
     ;(modelo.setores || []).forEach((servico) => {
-      const nomeAba = String(servico.abaOrigem || servico.nome || '').trim()
-      const key = slug(nomeAba)
+      const nomeOriginal = String(servico.abaOrigem || servico.nome || '').trim()
+      const padronizado = servicoCronogramaPadronizado(nomeOriginal, servico.nome)
+      const nomeAba = padronizado.nome
+      const key = padronizado.key
       if (!key) return
       const atual = mapa.get(key)
-      const modeloRef = { id: modelo.id, nome: modelo.nome }
+      const modeloRef = { id: modelo.id, nome: modelo.nome, abaOrigem: nomeOriginal }
       if (atual) {
         if (!atual.modelos.some((item) => item.id === modelo.id)) atual.modelos.push(modeloRef)
+        if (!atual.variantes.includes(nomeOriginal)) atual.variantes.push(nomeOriginal)
         ;(servico.agrupadores || []).forEach((grupo) => {
-          if (!atual.categoriasSugeridas.some((item) => slug(item.nome) === slug(grupo.nome))) {
-            atual.categoriasSugeridas.push({ ...grupo, origem: modelo.nome })
+          const candidato = grupoComLinhasModelo(modelo, servico, grupo)
+          if (!atual.categoriasSugeridas.some((item) => slug(item.nome) === slug(candidato.nome))) {
+            atual.categoriasSugeridas.push(candidato)
           }
         })
         return
       }
-      const servicoMatriz = servicoDaEspecialidade(servico.nome)
+      const servicoMatriz = servicoDaEspecialidade(servico.nome) || servicoDaEspecialidade(nomeAba)
       mapa.set(key, {
-        key: `aba:${key}`,
+        key: `servico:${key}`,
         id: null,
         nome: nomeAba,
-        nomeServico: servico.nome,
+        nomeServico: nomeAba,
         tipo: 'Serviço de cronograma',
         origem: 'Abas dos cronogramas de referência',
         modelos: [modeloRef],
+        variantes: [nomeOriginal],
         matrizSetorSlug: servicoMatriz?.matrizSetorSlug || null,
-        categoriasSugeridas: (servico.agrupadores || []).map((grupo) => ({ ...grupo, origem: modelo.nome })),
+        categoriasSugeridas: (servico.agrupadores || []).map((grupo) => grupoComLinhasModelo(modelo, servico, grupo)),
       })
     })
   })
@@ -518,13 +638,23 @@ export function listServicosCronograma() {
 export function previewServicoCronograma(item = {}) {
   const nome = item.nome || 'Serviço'
   const nomeBase = item.nomeServico || nome
+  const categorias = (item.categoriasGerais || [])
+    .filter((grupo) => grupo.ativo !== false && grupo.nome?.trim())
+    .map((grupo) => ({ ...grupo, nome: nomeCategoriaDimensionada(grupo) }))
+  const primeiroDimensionador = categorias.find((grupo) => grupo.dimensionador)
   const servico = item.matrizSetorSlug
     ? (db.servicos || []).find((registro) => registro.matrizSetorSlug === item.matrizSetorSlug)
     : servicoDaEspecialidade(nomeBase)
-  const quantidade = Number(item.quantidade) || 1
-  const unidade = item.unidade || 'unidade'
+  const quantidade = Number(item.quantidade) || Number(primeiroDimensionador?.quantidadeDimensionadora) || Number(primeiroDimensionador?.dimensionador?.valorReferencia) || 1
+  const unidade = item.unidade || primeiroDimensionador?.dimensionador?.unidade || 'unidade'
   const base = servico?.matrizSetorSlug ? previewSetorMatriz(servico.matrizSetorSlug, quantidade, unidade) : null
-  const categorias = (item.categoriasGerais || []).filter((grupo) => grupo.ativo !== false && grupo.nome?.trim())
+  const linhasModelo = categorias.flatMap((grupo) => (grupo.linhasModelo || []).map((linha) => ({ linha, grupo })))
+  const quantidadeModelo = linhasModelo.reduce((total, { linha, grupo }) => {
+    const referencia = Number(grupo.dimensionador?.valorReferencia) || 0
+    const escolhida = Number(grupo.quantidadeDimensionadora) || referencia
+    const fator = referencia > 0 ? escolhida / referencia : 1
+    return total + Math.max(0, Math.ceil((Number(linha.quantidade) || 0) * fator))
+  }, 0)
   return {
     ...item,
     key: item.key || `servico-${slug(nome)}`,
@@ -534,12 +664,12 @@ export function previewServicoCronograma(item = {}) {
     parametros: base?.parametros || [],
     regras: base?.regras || [],
     fontes: base?.fontes || [],
-    equipeTotal: base?.equipeTotal || 0,
+    equipeTotal: quantidadeModelo || base?.equipeTotal || 0,
     qp30Total: base?.qp30Total || 0,
     qp40Total: base?.qp40Total || 0,
     categoriasGerais: categorias.length ? categorias : [{ id: `categoria-${slug(nome)}-equipe`, nome: `Equipe do serviço`, ativo: true }],
-    referenciaNormativa: servico?.nome || null,
-    aviso: base?.aviso || (!servico ? 'Serviço sem regra automática correspondente; a equipe será preenchida manualmente.' : ''),
+    referenciaNormativa: servico?.nome || (quantidadeModelo ? 'Equipe de referência da planilha' : null),
+    aviso: quantidadeModelo ? '' : (base?.aviso || (!servico ? 'Serviço sem regra automática correspondente; a equipe será preenchida manualmente.' : '')),
   }
 }
 
@@ -795,6 +925,50 @@ function linhaModeloParaQuadro(linha, modelo, setor) {
   }
 }
 
+function linhaModeloDimensionadaParaQuadro(linha, grupo, servico) {
+  const referenciaDimensionadora = Number(grupo.dimensionador?.valorReferencia) || 0
+  const quantidadeDimensionadora = Number(grupo.quantidadeDimensionadora) || referenciaDimensionadora
+  const fator = referenciaDimensionadora > 0 ? quantidadeDimensionadora / referenciaDimensionadora : 1
+  const quantidadeReferencia = Math.max(0, Math.round(Number(linha.quantidade) || 0))
+  const quantidadePlanejada = Math.max(0, Math.ceil(quantidadeReferencia * fator))
+  const quantidadeTurno = Math.max(0, Math.ceil((Number(linha.quantidadeTurno) || 0) * fator))
+  return {
+    id: ++_novoId,
+    perfil_alocacao_id: linha.perfilId,
+    quantidade_planejada: quantidadePlanejada,
+    quantidade_referencia: quantidadePlanejada,
+    quantidade_turno_12h: quantidadeTurno,
+    chs: Number(linha.chs) || 40,
+    origem: 'modelo_cronograma_dimensionado',
+    ativo: true,
+    modeloCronograma: true,
+    revisar: !!linha.revisar,
+    categoriaGeralId: grupo.id,
+    categoriaGeralNome: grupo.nome,
+    componentesPlanilha: linha.componentesPlanilha ? { ...linha.componentesPlanilha } : null,
+    memoriaCalculo: {
+      formula: referenciaDimensionadora
+        ? `Quantidade do modelo × (${quantidadeDimensionadora} ${grupo.dimensionador.unidade} / ${referenciaDimensionadora} ${grupo.dimensionador.unidade}), arredondada para cima.`
+        : 'Quantidade preservada da linha do modelo de planilha.',
+      fonte: grupo.modeloFonte || 'Cronograma de referência',
+      abaOrigem: grupo.abaOrigem || servico.nome,
+      linhaOrigem: linha.linhaOrigem,
+      categoriaOriginal: linha.categoria,
+      categoriaGeral: grupo.nome,
+      quantidadeModelo: quantidadeReferencia,
+      quantidadeEscolhida: quantidadePlanejada,
+      parametroDimensionador: grupo.dimensionador?.rotulo || null,
+      valorDimensionador: quantidadeDimensionadora || null,
+      observacao: 'Equipe preenchida a partir do modelo de planilha; revisar antes do uso oficial.',
+    },
+  }
+}
+
+function quadroDasCategoriasSelecionadas(servico) {
+  return (servico.categoriasGerais || []).flatMap((grupo) =>
+    (grupo.linhasModelo || []).map((linha) => linhaModeloDimensionadaParaQuadro(linha, grupo, servico)))
+}
+
 function materializarPlanoDeCronogramaPronto(modelo, payload = {}) {
   const unidade = unidadeDoPayload(payload)
   const id = nextId(db.planos)
@@ -981,7 +1155,10 @@ function sincronizarHierarquiaDeServicos() {
 }
 
 function garantirPlanosReferencia() {
-  if (planosReferenciaGarantidos) return
+  if (planosReferenciaGarantidos) {
+    if (sincronizarPlanosComAgrupadores()) persist()
+    return
+  }
   planosReferenciaGarantidos = true
   let alterou = false
   cronogramasProntosNormalizados.forEach((modelo) => {
@@ -1414,7 +1591,7 @@ export function criarPlanoNormativo(payload = {}) {
   const unidade = unidadeDoPayload(payload)
   const id = nextId(db.planos)
   const nomePadrao = payload.modo === 'servicos'
-    ? `Cronograma por serviços - ${unidade.nome}`
+    ? `Cronograma ${unidade.nome}`
     : payload.modo === 'setor'
     ? `Cronograma ${preview.setores[0]?.setor?.setor || 'Setor'} - ${unidade.nome}`
     : `Cronograma ${preview.template?.nome || 'Hospital'} - ${unidade.nome}`
@@ -1470,17 +1647,26 @@ export function criarPlanoNormativo(payload = {}) {
         nome: grupo.nome,
         ordem: index + 1,
         origem: grupo.origem || 'seleção do usuário',
+        dimensionador: grupo.dimensionador ? { ...grupo.dimensionador } : null,
+        quantidadeDimensionadora: grupo.dimensionador
+          ? Number(grupo.quantidadeDimensionadora) || Number(grupo.dimensionador.valorReferencia) || 1
+          : null,
       }))
       if (!no.gruposEquipe.length) {
         no.gruposEquipe.push({ id: `servico-${no.id}-equipe-geral`, nome: 'Equipe do serviço', ordem: 1, origem: 'organização do aplicativo' })
       }
-      const grupoInicial = no.gruposEquipe[0]
-      ;(no.quadro || []).forEach((item) => {
-        if (!item.categoriaGeralId) {
-          item.categoriaGeralId = grupoInicial.id
-          item.categoriaGeralNome = grupoInicial.nome
-        }
-      })
+      const quadroModelo = quadroDasCategoriasSelecionadas(servico)
+      if (quadroModelo.length) {
+        no.quadro = quadroModelo
+      } else {
+        const grupoInicial = no.gruposEquipe[0]
+        ;(no.quadro || []).forEach((item) => {
+          if (!item.categoriaGeralId) {
+            item.categoriaGeralId = grupoInicial.id
+            item.categoriaGeralNome = grupoInicial.nome
+          }
+        })
+      }
     })
   } else if ((payload.modo || 'setor') === 'setor') {
     const setor = preview.setores[0]
@@ -1713,6 +1899,11 @@ function linhaLancamento(planoId, no, item, opts = {}) {
   const quantidade = Number(item.quantidade_planejada) || 0
   const chs = chsDoItem(item, perfil)
   const quantidadeTurno = Number(item.quantidade_turno_12h ?? item.quantidadePorTurno12h ?? Math.ceil(quantidade / (chs >= 40 ? 1 : 3))) || 0
+  const componentes = item.componentesPlanilha || null
+  const quantidadePlanilha = Number(componentes?.quantidade)
+  const preservaComponentesPlanilha = !!componentes &&
+    Number.isFinite(quantidadePlanilha) &&
+    Math.abs(quantidade - quantidadePlanilha) < 0.001
 
   const base = Number(salario.base) || 0
   const insalubridade = Number(salario.insalubridade) || 0
@@ -1720,13 +1911,28 @@ function linhaLancamento(planoId, no, item, opts = {}) {
   const titulacao = Number(salario.titulacao) || 0
   const adicionalNoturno = Number(salario.adicional_noturno) || 0
   const remuneracaoBruta = base + insalubridade + gratificacao + titulacao + adicionalNoturno
-  const salarioTotal = remuneracaoBruta * quantidade
+  const salarioTotalPlanilha = Number(componentes?.salarioTotal)
+  const salarioTotal = preservaComponentesPlanilha && Number.isFinite(salarioTotalPlanilha) && salarioTotalPlanilha > 0
+    ? salarioTotalPlanilha
+    : remuneracaoBruta * quantidade
   const encargos = encargosDetalhados(salarioTotal, opts.cebas)
-  const dias = diasOperacionais(chs)
-  const vtBeneficiarios = base <= Number(params.salarioMinimo) * 4 ? quantidade : 0
-  const vrBeneficiarios = chs >= 30 ? quantidade : 0
-  const valeTransporte = vtBeneficiarios * dias * Number(params.valeTransporteDia)
-  const valeRefeicao = vrBeneficiarios * dias * Number(params.valeRefeicaoDia)
+  const diasPlanilha = Number(componentes?.diasOperacionais)
+  const usaDiasOperacionaisPlanilha = preservaComponentesPlanilha && Number.isFinite(diasPlanilha) && diasPlanilha > 0
+  const dias = usaDiasOperacionaisPlanilha ? diasPlanilha : diasOperacionais(chs)
+  const vtPlanilha = Number(componentes?.valeTransporteBeneficiarios)
+  const vrPlanilha = Number(componentes?.valeRefeicaoBeneficiarios)
+  const vtBeneficiarios = preservaComponentesPlanilha && Number.isFinite(vtPlanilha)
+    ? vtPlanilha
+    : (base <= Number(params.salarioMinimo) * 4 ? quantidade : 0)
+  const vrBeneficiarios = preservaComponentesPlanilha && Number.isFinite(vrPlanilha)
+    ? vrPlanilha
+    : (chs >= 30 ? quantidade : 0)
+  const valeTransporte = usaDiasOperacionaisPlanilha
+    ? (vtBeneficiarios > 0 ? dias * Number(params.valeTransporteDia) : 0)
+    : vtBeneficiarios * dias * Number(params.valeTransporteDia)
+  const valeRefeicao = usaDiasOperacionaisPlanilha
+    ? (vrBeneficiarios > 0 ? dias * Number(params.valeRefeicaoDia) : 0)
+    : vrBeneficiarios * dias * Number(params.valeRefeicaoDia)
   const beneficiosTotal = valeTransporte + valeRefeicao
   const totalMensal = salarioTotal + encargos.total + beneficiosTotal
   const quantidadeNormativa = item.quantidade_normativa
@@ -1947,6 +2153,51 @@ function montarLinhaCronograma({ id, label, valor, meses, tipo = 'item', fonte =
   }
 }
 
+function montarLinhaCronogramaHistorica(linha, mesesQtd) {
+  const valores = Array.from({ length: mesesQtd }, (_item, index) => Number(linha.valores?.[index]) || 0)
+  const ano1 = Number.isFinite(Number(linha.totalAno1))
+    ? Number(linha.totalAno1)
+    : valores.slice(0, 12).reduce((acc, v) => acc + v, 0)
+  const ano2 = Number.isFinite(Number(linha.totalAno2))
+    ? Number(linha.totalAno2)
+    : valores.slice(12, 24).reduce((acc, v) => acc + v, 0)
+  const contrato = Number.isFinite(Number(linha.totalContrato)) ? Number(linha.totalContrato) : ano1 + ano2
+  return {
+    id: linha.id,
+    label: linha.label,
+    tipo: linha.tipo || 'item',
+    valorUnitario: Number(linha.valorUnitario) || valores.find((valor) => valor) || 0,
+    valores,
+    totalAno1: ano1,
+    totalAno2: ano2,
+    totalContrato: contrato,
+    fonte: linha.fonte || 'Planilha de origem',
+    memoria: linha.memoria || 'Linha historica extraida da planilha de origem.',
+  }
+}
+
+function resumoDeCronogramaHistorico(grupos) {
+  const todas = grupos.flatMap((grupo) => grupo.linhas || [])
+  const encontrar = (termo) => todas.find((linha) => slug(linha.label || '').includes(termo))
+  const parte1 = encontrar('total-parte-1') || encontrar('apoio-a-gestao')
+  const parte2 = encontrar('total-parte-2') || encontrar('rh-e-custeio')
+  const parte3 = encontrar('total-parte-3') || encontrar('investimento')
+  const parte4 = encontrar('total-parte-4') || encontrar('variavel')
+  const total = encontrar('total-termo-de-parceria') || todas.at(-1)
+  const primeiroMes = (linha) => Number(linha?.valores?.[0]) || Number(linha?.valorUnitario) || 0
+  return {
+    rhMensal: 0,
+    custeioMensal: 0,
+    rhCusteioMensal: primeiroMes(parte2),
+    apoioTotal: primeiroMes(parte1),
+    investimento: primeiroMes(parte3),
+    parcelaFixa: primeiroMes(parte1) + primeiroMes(parte2) + primeiroMes(parte3),
+    variavelTotal: primeiroMes(parte4),
+    totalMensal: primeiroMes(total),
+    totalContrato: Number(total?.totalContrato) || 0,
+  }
+}
+
 export function getCronogramaFinal(planoId, opts = {}) {
   const plano = getPlano(planoId)
   const lancamentos = getLancamentosPlano(planoId, { cebas: opts.cebas })
@@ -1954,6 +2205,29 @@ export function getCronogramaFinal(planoId, opts = {}) {
   const mesesQtd = Math.max(24, Number(params.mesesCronograma) || 24)
   const meses = gerarCompetencias(plano?.competencia_inicial || '2026-01', mesesQtd)
   const unidade = plano?.objeto?.sigla || plano?.objeto?.nome || 'Unidade'
+  const modeloOrigem = plano?.planoReferencia
+    ? cronogramasProntosNormalizados.find((modelo) => modelo.id === plano.templateCronogramaId)
+    : null
+  const historico = modeloOrigem?.resumoFinanceiro?.[opts.cebas ? 'comCebas' : 'semCebas']?.grupos
+  if (historico?.length) {
+    const gruposHistoricos = historico.map((grupo) => ({
+      id: grupo.id,
+      titulo: grupo.titulo,
+      linhas: (grupo.linhas || []).map((linha) => montarLinhaCronogramaHistorica(linha, mesesQtd)),
+    }))
+    return {
+      plano,
+      unidade,
+      cebas: !!opts.cebas,
+      parametros: params,
+      meses,
+      lancamentos,
+      grupos: gruposHistoricos,
+      resumo: resumoDeCronogramaHistorico(gruposHistoricos),
+      historicoPlanilha: true,
+      fonteHistorica: modeloOrigem.fonte,
+    }
+  }
 
   const rhMensal = lancamentos.totais.totalMensal
   const custeioMensal = rhMensal * Number(params.custeioOperacionalPct)
@@ -2204,14 +2478,23 @@ export function addServicoPlano(planoId, dados = {}) {
     nome: grupo.nome,
     ordem: index + 1,
     origem: grupo.origem || 'seleção do usuário',
+    dimensionador: grupo.dimensionador ? { ...grupo.dimensionador } : null,
+    quantidadeDimensionadora: grupo.dimensionador
+      ? Number(grupo.quantidadeDimensionadora) || Number(grupo.dimensionador.valorReferencia) || 1
+      : null,
   }))
-  const grupoInicial = no.gruposEquipe[0]
-  ;(no.quadro || []).forEach((item) => {
-    if (!item.categoriaGeralId) {
-      item.categoriaGeralId = grupoInicial.id
-      item.categoriaGeralNome = grupoInicial.nome
-    }
-  })
+  const quadroModelo = quadroDasCategoriasSelecionadas(preview)
+  if (quadroModelo.length) {
+    no.quadro = quadroModelo
+  } else {
+    const grupoInicial = no.gruposEquipe[0]
+    ;(no.quadro || []).forEach((item) => {
+      if (!item.categoriaGeralId) {
+        item.categoriaGeralId = grupoInicial.id
+        item.categoriaGeralNome = grupoInicial.nome
+      }
+    })
+  }
   persist()
   return no
 }
